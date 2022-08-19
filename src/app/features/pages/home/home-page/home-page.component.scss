@@ -1,0 +1,23 @@
+.contenedor-homepage {
+    padding: 10px 50px;
+    .home-header {
+
+        display: flex;
+        flex-flow: row wrap;
+
+        .home-text-bienvenida {
+            width: 50%;
+        }
+
+        .home-slider {
+            width: 50%;
+        }
+    }
+
+    .home-novedades {
+        display: flex;
+        flex-flow: column wrap;
+        justify-content: center;
+        align-items: center;
+    }
+}

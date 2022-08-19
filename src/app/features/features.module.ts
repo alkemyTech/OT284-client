@@ -10,6 +10,8 @@ import { NewsFormComponent } from "./pages/news/news-form/news-form.component";
 import { SlidesFormComponent } from "./pages/slides/slides-form/slides-form.component";
 import { TestimonialFormComponent } from "./pages/testimonials/testimonial-form/testimonial-form.component";
 import { UserFormComponent } from "./pages/users/user-form/user-form.component";
+import { HomePageComponent } from './pages/home/home-page/home-page.component';
+import { CarruselComponent } from './pages/home/carrusel/carrusel.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +23,8 @@ import { UserFormComponent } from "./pages/users/user-form/user-form.component";
     SlidesFormComponent,
     TestimonialFormComponent,
     UserFormComponent,
+    HomePageComponent,
+    CarruselComponent,
   ],
   exports: [
     ActivityFormComponent,
