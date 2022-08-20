@@ -2,6 +2,7 @@ import { ActivityFormComponent } from "./pages/activities/activity-form/activity
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { RouterModule, Routes } from "@angular/router";
+import { RegisterFormComponent } from "./pages/auth/register-form/register-form.component";
 
 const routes: Routes = [
   { 
@@ -17,6 +18,10 @@ const routes: Routes = [
     redirectTo: "actividades",
     pathMatch: "full",
   },
+  {
+    path: "register",
+    component: RegisterFormComponent
+  }
 ];
 
 @NgModule({
