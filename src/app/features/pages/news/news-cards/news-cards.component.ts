@@ -30,4 +30,15 @@ export class NewsCardsComponent implements OnInit {
       }
     })
   }
+
+  public mostrarFechaAct(fechaCreacion:string,fechaAct:string){
+    let result=false;
+    let creationDate=Date.parse(fechaCreacion);
+    let uploadedDate=Date.parse(fechaAct);
+    //console.log("CReacion:"+fechaCreacion+". Actualiz:"+fechaAct);
+    if(creationDate<uploadedDate){
+      result=true;
+    }
+    return result;
+  }
 }
