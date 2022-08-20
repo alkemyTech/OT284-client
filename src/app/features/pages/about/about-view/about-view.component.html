@@ -1,11 +1,12 @@
 <div class="container">
+    <app-title title="Nosotros"></app-title>
     <mat-card>
-        <h1 class="title"><b>Sobre Nosotros</b></h1>
+        <h1 class="title">Sobre Nosotros</h1>
         <div *ngIf="organization$ | async as organization">
             <div class="row">
                 <div class="organization">
-                    <div [innerHTML]="organization.short_description"></div>
-                    <div [innerHTML]="organization.long_description"></div>
+                    <h3 [innerHTML]="organization.short_description"></h3>
+                    <h3 [innerHTML]="organization.long_description"></h3>
                 </div>
                 <div class="organization-links">
                     <a href="{{organization.facebook_url}}">

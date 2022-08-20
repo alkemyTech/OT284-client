@@ -13,6 +13,7 @@ import { UserFormComponent } from "./pages/users/user-form/user-form.component";
 import { AboutViewComponent } from './pages/about/about-view/about-view.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
+import { SharedModule } from "../shared/shared.module";
 
 
 @NgModule({
@@ -38,6 +39,6 @@ import { MatButtonModule } from '@angular/material/button';
     UserFormComponent,
     RouterModule
   ],
-  imports: [CommonModule, AppRoutingModule, RouterModule, MatCardModule, MatButtonModule],
+  imports: [CommonModule, AppRoutingModule, RouterModule, MatCardModule, MatButtonModule, SharedModule],
 })
 export class FeaturesModule {}
