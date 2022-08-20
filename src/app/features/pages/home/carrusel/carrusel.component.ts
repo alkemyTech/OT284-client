@@ -7,6 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CarruselComponent implements OnInit {
 
+  listSlider: Array<any> = [
+    { image: 'https://www.wallpaperuse.com/wallp/85-855565_m.jpg', title: 'Messi', description: 'El mejor jugador del mundo' },
+    { image: 'https://www.wallpaperuse.com/wallp/85-855565_m.jpg', title: 'Messi', description: 'El mejor jugador del mundo' },
+    { image: 'https://www.wallpaperuse.com/wallp/85-855565_m.jpg', title: 'Messi', description: 'El mejor jugador del mundo' }
+  ];
   constructor() { }
 
   ngOnInit(): void {
