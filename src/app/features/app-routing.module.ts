@@ -7,7 +7,12 @@ import { RegisterFormComponent } from "./pages/auth/register-form/register-form.
 const routes: Routes = [
   { 
     path: "actividades", 
-    component: ActivityFormComponent },
+    component: ActivityFormComponent 
+  },
+  {
+    path: "backoffice",
+    loadChildren:() => import('./pages/backoffice/backoffice.module').then(m => m.BackofficeModule)
+  },
   {
     path: "",
     redirectTo: "actividades",
