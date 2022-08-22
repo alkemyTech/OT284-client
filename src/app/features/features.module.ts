@@ -14,6 +14,8 @@ import { AboutViewComponent } from './pages/about/about-view/about-view.componen
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { SharedModule } from "../shared/shared.module";
+import { ContactFormComponent } from './pages/contact/contact-form/contact-form.component';
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 
 @NgModule({
@@ -27,6 +29,7 @@ import { SharedModule } from "../shared/shared.module";
     TestimonialFormComponent,
     UserFormComponent,
     AboutViewComponent,
+    ContactFormComponent,
   ],
   exports: [
     ActivityFormComponent,
@@ -39,6 +42,7 @@ import { SharedModule } from "../shared/shared.module";
     UserFormComponent,
     RouterModule
   ],
-  imports: [CommonModule, AppRoutingModule, RouterModule, MatCardModule, MatButtonModule, SharedModule],
-})
+  imports: [CommonModule, AppRoutingModule, RouterModule, MatCardModule, MatButtonModule, SharedModule, FormsModule,
+    ReactiveFormsModule],})
+    
 export class FeaturesModule {}
