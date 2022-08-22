@@ -1,8 +1,8 @@
-$rojito: #DB5752;
-$azulcito: #9AC9FB;
-$amarillito: #FAFA88;
+$rojo: #DB5752;
+$azul: #9AC9FB;
+$amarillo: #FAFA88;
 
-$azulcito-active: #679ed8;
+$azul-active: #679ed8;
 
 .contenedor {
     padding: 5% 10%;
@@ -17,7 +17,7 @@ $azulcito-active: #679ed8;
             resize: none;
             width: 100%;
 
-            border-color: $azulcito;
+            border-color: $azul;
             padding: 1em;
             border-radius: 20px;
             transition: all 1s;
@@ -47,13 +47,13 @@ $azulcito-active: #679ed8;
 
             label {
                 color: white;
-                background-color: $azulcito;
+                background-color: $azul;
                 border-radius: 0.5em;
                 padding: 0.8em;
                 cursor: pointer;
 
                 &:active {
-                    background-color: $azulcito-active;
+                    background-color: $azul-active;
                 }
             }
 
@@ -69,14 +69,14 @@ $azulcito-active: #679ed8;
             .text-for-file {
                 width: 100%;
                 border: none;
-                border-color: $azulcito;
-                border-bottom: 1px solid $azulcito;
+                border-color: $azul;
+                border-bottom: 1px solid $azul;
                 padding: 0.5em;
                 transition: all 1s;
 
                 &:focus {
                     outline: none;
-                    border: 1px solid $azulcito;
+                    border: 1px solid $azul;
                     border-radius: 0.5em;
                 }
             }
@@ -95,14 +95,14 @@ $azulcito-active: #679ed8;
 .boton {
     color: white;
     width: 100%;
-    background-color: $azulcito;
+    background-color: $azul;
     border: none;
     border-radius: 0.5em;
     padding: 0.8em;
     cursor: pointer;
 
     &:active {
-        background-color: $azulcito-active;
+        background-color: $azul-active;
     }
 
 }

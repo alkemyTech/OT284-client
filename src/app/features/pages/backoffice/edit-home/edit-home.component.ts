@@ -9,6 +9,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class EditHomeComponent implements OnInit {
 
   public formulario!: FormGroup;
+
   constructor(private fb: FormBuilder) {
     this.formulario = this.fb.group({
       'txtMensaje': ['', [Validators.required, Validators.minLength(20)]],
@@ -25,7 +26,13 @@ export class EditHomeComponent implements OnInit {
   }
 
   enviar() {
+    console.info('FORMULARIO', this.formulario);
     console.log(this.formulario.valid);
+
+    if(this.formulario.valid)
+    {
+      //ENVIAR
+    }
   }
 
 }
