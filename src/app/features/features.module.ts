@@ -11,6 +11,13 @@ import { SlidesFormComponent } from "./pages/slides/slides-form/slides-form.comp
 import { TestimonialFormComponent } from "./pages/testimonials/testimonial-form/testimonial-form.component";
 import { UserFormComponent } from "./pages/users/user-form/user-form.component";
 import { NewsCardsComponent } from './pages/news/news-cards/news-cards.component';
+import { AboutViewComponent } from './pages/about/about-view/about-view.component';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
+import { SharedModule } from "../shared/shared.module";
+import { ContactFormComponent } from './pages/contact/contact-form/contact-form.component';
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+
 
 @NgModule({
   declarations: [
@@ -23,6 +30,8 @@ import { NewsCardsComponent } from './pages/news/news-cards/news-cards.component
     TestimonialFormComponent,
     UserFormComponent,
     NewsCardsComponent,
+    AboutViewComponent,
+    ContactFormComponent,
   ],
   exports: [
     ActivityFormComponent,
@@ -35,6 +44,7 @@ import { NewsCardsComponent } from './pages/news/news-cards/news-cards.component
     UserFormComponent,
     RouterModule
   ],
-  imports: [CommonModule, AppRoutingModule, RouterModule],
-})
+  imports: [CommonModule, AppRoutingModule, RouterModule, MatCardModule, MatButtonModule, SharedModule, FormsModule,
+    ReactiveFormsModule],})
+    
 export class FeaturesModule {}
