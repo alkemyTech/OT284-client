@@ -1,0 +1,125 @@
+$rojito: #DB5752;
+$azulcito: #9AC9FB;
+$amarillito: #FAFA88;
+
+$azulcito-active: #679ed8;
+
+.contenedor {
+    padding: 5% 10%;
+
+    .contenedor-textarea {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        textarea {
+            resize: none;
+            width: 100%;
+
+            border-color: $azulcito;
+            padding: 1em;
+            border-radius: 20px;
+            transition: all 1s;
+
+            &:focus {
+                outline: none;
+                border-radius: 5px;
+            }
+        }
+
+    }
+
+    .contenedor-slide {
+        width: 100%;
+        margin: 2em 0;
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-around;
+        align-items: center;
+        padding: 1em;
+
+        .file-input {
+            width: 100%;
+            display: inherit;
+            align-items: center;
+            justify-content: center;
+
+            label {
+                color: white;
+                background-color: $azulcito;
+                border-radius: 0.5em;
+                padding: 0.8em;
+                cursor: pointer;
+
+                &:active {
+                    background-color: $azulcito-active;
+                }
+            }
+
+            .file {
+                display: none;
+            }
+        }
+
+        .textito {
+            width: 100%;
+            margin-top: 1em;
+
+            .text-for-file {
+                width: 100%;
+                border: none;
+                border-color: $azulcito;
+                border-bottom: 1px solid $azulcito;
+                padding: 0.5em;
+                transition: all 1s;
+
+                &:focus {
+                    outline: none;
+                    border: 1px solid $azulcito;
+                    border-radius: 0.5em;
+                }
+            }
+        }
+    }
+
+}
+
+.btn-submit{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.boton {
+    color: white;
+    width: 100%;
+    background-color: $azulcito;
+    border: none;
+    border-radius: 0.5em;
+    padding: 0.8em;
+    cursor: pointer;
+
+    &:active {
+        background-color: $azulcito-active;
+    }
+
+}
+
+
+@media screen and (min-width:600px) {
+    .file-input {
+        width: 50% !important;
+    }
+
+    .textito {
+        margin-top: 0 !important;
+        width: 50% !important;
+    }
+
+    .boton{
+        width: 50%;
+    }
+
+}
