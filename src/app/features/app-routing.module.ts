@@ -2,6 +2,7 @@ import { ActivityFormComponent } from "./pages/activities/activity-form/activity
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { RouterModule, Routes } from "@angular/router";
+import { NewsCardsComponent } from "./pages/news/news-cards/news-cards.component";
 import { AboutViewComponent } from "./pages/about/about-view/about-view.component";
 
 const routes: Routes = [
@@ -23,10 +24,9 @@ const routes: Routes = [
     pathMatch: "full",
   },
   {
-    path: "**",
-    redirectTo: "actividades",
-    pathMatch: "full",
-  },
+    path:"novedades",
+    component:NewsCardsComponent
+  }
 ];
 
 @NgModule({
