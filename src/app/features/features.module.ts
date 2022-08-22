@@ -14,6 +14,7 @@ import { AboutViewComponent } from './pages/about/about-view/about-view.componen
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { SharedModule } from "../shared/shared.module";
+import { MembersViewComponent } from './pages/members/members-view/members-view.component';
 
 
 @NgModule({
@@ -27,6 +28,7 @@ import { SharedModule } from "../shared/shared.module";
     TestimonialFormComponent,
     UserFormComponent,
     AboutViewComponent,
+    MembersViewComponent,
   ],
   exports: [
     ActivityFormComponent,
