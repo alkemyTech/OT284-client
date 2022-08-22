@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MembersService } from '../../../../core/services/members.service';
+import { Member } from '../../../../shared/interfaces/member';
 
 @Component({
   selector: 'app-members-view',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MembersViewComponent implements OnInit {
 
-  constructor() { }
+  members!: Member[];
+
+  constructor( private membersService: MembersService ) { }
 
   ngOnInit(): void {
+    this.membersService.getMembers().subscribe( resp => {
+      console.log(resp);
+    }
+    )
   }
 
 }
