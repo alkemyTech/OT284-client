@@ -10,10 +10,14 @@ import { NewsFormComponent } from "./pages/news/news-form/news-form.component";
 import { SlidesFormComponent } from "./pages/slides/slides-form/slides-form.component";
 import { TestimonialFormComponent } from "./pages/testimonials/testimonial-form/testimonial-form.component";
 import { UserFormComponent } from "./pages/users/user-form/user-form.component";
-import { ReactiveFormsModule } from "@angular/forms";
-
 import { HttpClientModule } from "@angular/common/http";
+import { NewsCardsComponent } from "./pages/news/news-cards/news-cards.component";
+import { AboutViewComponent } from "./pages/about/about-view/about-view.component";
+import { MatCardModule } from "@angular/material/card";
+import { MatButtonModule } from "@angular/material/button";
 import { SharedModule } from "../shared/shared.module";
+import { ContactFormComponent } from "./pages/contact/contact-form/contact-form.component";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -25,6 +29,9 @@ import { SharedModule } from "../shared/shared.module";
     SlidesFormComponent,
     TestimonialFormComponent,
     UserFormComponent,
+    NewsCardsComponent,
+    AboutViewComponent,
+    ContactFormComponent,
   ],
   exports: [
     ActivityFormComponent,
@@ -44,6 +51,11 @@ import { SharedModule } from "../shared/shared.module";
     ReactiveFormsModule,
     HttpClientModule,
     SharedModule,
+    MatCardModule,
+    MatButtonModule,
+    SharedModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
 })
 export class FeaturesModule {}

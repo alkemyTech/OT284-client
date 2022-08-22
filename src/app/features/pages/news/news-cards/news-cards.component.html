@@ -1,0 +1,22 @@
+<h1 [ngStyle]="{'text-align':'center'}">Novedades</h1>
+<div class="container">
+    <div class="row">
+        <div *ngFor="let new of newsLista" class="card">
+            <div class="card-title">
+                <h2>{{new.name}}</h2>
+            </div>
+            <div class="card-img">
+                <img [src]="new.image">
+            </div>
+            <div class="card-body">
+                <div [innerHTML]="new.content"></div>
+                <div *ngIf="mostrarFechaAct(new.created_at,new.updated_at)">
+                    <p>Fecha de actualización: {{new.updated_at | date :'dd/MM/yy'}}</p>
+                </div>
+                <div *ngIf="!mostrarFechaAct(new.created_at,new.updated_at)">
+                    <p>Fecha de creación: {{new.created_at | date :'dd/MM/yy'}}</p>
+                </div> 
+            </div>
+        </div>  
+    </div>
+</div>
