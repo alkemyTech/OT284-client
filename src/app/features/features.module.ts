@@ -10,6 +10,14 @@ import { NewsFormComponent } from "./pages/news/news-form/news-form.component";
 import { SlidesFormComponent } from "./pages/slides/slides-form/slides-form.component";
 import { TestimonialFormComponent } from "./pages/testimonials/testimonial-form/testimonial-form.component";
 import { UserFormComponent } from "./pages/users/user-form/user-form.component";
+import { NewsCardsComponent } from './pages/news/news-cards/news-cards.component';
+import { AboutViewComponent } from './pages/about/about-view/about-view.component';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
+import { SharedModule } from "../shared/shared.module";
+import { ContactFormComponent } from './pages/contact/contact-form/contact-form.component';
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+
 import { HomePageComponent } from './pages/home/home-page/home-page.component';
 import { CarruselComponent } from './pages/home/carrusel/carrusel.component';
 
@@ -23,6 +31,9 @@ import { CarruselComponent } from './pages/home/carrusel/carrusel.component';
     SlidesFormComponent,
     TestimonialFormComponent,
     UserFormComponent,
+    NewsCardsComponent,
+    AboutViewComponent,
+    ContactFormComponent,
     HomePageComponent,
     CarruselComponent,
   ],
@@ -37,6 +48,7 @@ import { CarruselComponent } from './pages/home/carrusel/carrusel.component';
     UserFormComponent,
     RouterModule
   ],
-  imports: [CommonModule, AppRoutingModule, RouterModule],
-})
+  imports: [CommonModule, AppRoutingModule, RouterModule, MatCardModule, MatButtonModule, SharedModule, FormsModule,
+    ReactiveFormsModule],})
+    
 export class FeaturesModule {}
