@@ -4,23 +4,16 @@ import { CommonModule } from "@angular/common";
 import { RouterModule, Routes } from "@angular/router";
 
 const routes: Routes = [
-  { 
-    path: "actividades", 
-    component: ActivityFormComponent 
+  {
+    path: "actividades",
+    component: ActivityFormComponent,
   },
   {
     path: "backoffice",
-    loadChildren:() => import('./pages/backoffice/backoffice.module').then(m => m.BackofficeModule)
-  },
-  {
-    path: "",
-    redirectTo: "actividades",
-    pathMatch: "full",
-  },
-  {
-    path: "**",
-    redirectTo: "actividades",
-    pathMatch: "full",
+    loadChildren: () =>
+      import("./pages/backoffice/backoffice.module").then(
+        (m) => m.BackofficeModule
+      ),
   },
 ];
 

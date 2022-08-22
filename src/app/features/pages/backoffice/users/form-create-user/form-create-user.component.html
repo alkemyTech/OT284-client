@@ -1,0 +1,95 @@
+<div class="wrapper">
+  <h1>Usuarios</h1>
+  <form
+    [formGroup]="formUser"
+    #ngForm="ngForm"
+    (ngSubmit)="onSubmit()"
+  >
+    <div class="container">
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Nombre</mat-label>
+        <input #name matInput name="name" type="text" formControlName="name" />
+      </mat-form-field>
+
+      <div
+        class="invalid-inputs"
+        *ngIf="ngForm.submitted && formUser.get('name')?.invalid"
+      >
+        El nombre debe tener al menos 4 caracteres.
+      </div>
+
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Contraseña</mat-label>
+        <input
+          #password
+          matInput
+          name="password"
+          type="password"
+          formControlName="password"
+        />
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>E-mail</mat-label>
+        <input
+          #email
+          matInput
+          name="email"
+          type="email"
+          formControlName="email"
+        />
+      </mat-form-field>
+      <div
+        class="invalid-inputs"
+        *ngIf="ngForm.submitted && formUser.get('email')?.invalid"
+      >
+        Por favor ingrese un e-mail válido
+      </div>
+      <mat-form-field appearance="fill">
+        <mat-label>Rol</mat-label>
+        <mat-select matNativeControl formControlName="role_id">
+          <mat-option value="1">Administrador</mat-option>
+          <mat-option value="2">Usuario</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <div class="upload_profile_photo">
+        <label>Imagen</label>
+        <input
+          id="imageUpload"
+          type="file"
+          name="profile_photo"
+          formControlName="profilePic"
+        />
+      </div>
+      <div
+        class="invalid-inputs"
+        *ngIf="ngForm.submitted && formUser.get('profilePic')?.invalid"
+      >
+        Archivo inválido.
+      </div>
+
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Descripción</mat-label>
+        <input matInput formControlName="description" />
+      </mat-form-field>
+
+      <div
+        class="invalid-inputs"
+        *ngIf="ngForm.submitted && formUser.get('description')?.invalid"
+      >
+        La descripción debe tener al menos 10 caracteres.
+      </div>
+      <div class="buttons">
+        <button type="submit" mat-button color="primary">
+          <div *ngIf="user.editUserData.id == ''; else elseBlock">
+            Crear Usuario
+          </div>
+          <ng-template #elseBlock>Editar Usuario</ng-template>
+        </button>
+      </div>
+      <div class="invalid-inputs" *ngIf="!formUser.valid && ngForm.submitted">
+        Por favor complete todos los campos.
+      </div>
+    </div>
+  </form>
+</div>

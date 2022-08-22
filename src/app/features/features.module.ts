@@ -10,6 +10,10 @@ import { NewsFormComponent } from "./pages/news/news-form/news-form.component";
 import { SlidesFormComponent } from "./pages/slides/slides-form/slides-form.component";
 import { TestimonialFormComponent } from "./pages/testimonials/testimonial-form/testimonial-form.component";
 import { UserFormComponent } from "./pages/users/user-form/user-form.component";
+import { ReactiveFormsModule } from "@angular/forms";
+
+import { HttpClientModule } from "@angular/common/http";
+import { SharedModule } from "../shared/shared.module";
 
 @NgModule({
   declarations: [
@@ -31,8 +35,15 @@ import { UserFormComponent } from "./pages/users/user-form/user-form.component";
     SlidesFormComponent,
     TestimonialFormComponent,
     UserFormComponent,
-    RouterModule
+    RouterModule,
   ],
-  imports: [CommonModule, AppRoutingModule, RouterModule],
+  imports: [
+    CommonModule,
+    AppRoutingModule,
+    RouterModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    SharedModule,
+  ],
 })
 export class FeaturesModule {}
