@@ -2,11 +2,22 @@
     <h3>Bienvenido</h3>
     <h2>Inicia Sesión en tu cuenta!</h2>
 
-    <form >
-        <input type="email" name="email" id="email" placeholder="Email">
-        <input type="password" name="password" id="password" placeholder="Contraseña">
-        <input type="submit" value="Inicia Sesión">
+    <form [formGroup]="loginForm" (ngSubmit)="login(loginForm)">
+        <input type="email" name="email" id="email" placeholder="Email" formControlName="email">
+        <div *ngIf="f.email.errors  && f.email.touched">
+            <span *ngIf="f.email.errors.required">El campo Email es requerido</span>
+            <span *ngIf="f.email.errors.email">Ingrese un Email valido.</span>
+        </div>
+
+        <input type="password" name="password" id="password" placeholder="Contraseña" formControlName="password">
+        <div *ngIf="f.password.errors  && f.password.touched">
+            <span *ngIf="f.password.errors.required">El campo contraseña es requerido</span>
+            <span *ngIf="f.password.errors.minlength">Contraseña debe tener 6 caracteres como minimo</span>
+            <span *ngIf="f.password.errors.pattern">La contraseña debe contener al menos un número, una letra y un símbolo (por ejemplo: @#$%).</span>
+        </div>
+
+        <input type="submit" value="Inicia Sesión" [disabled]="loginForm.invalid">
     </form>
 
-    <p>No tienes una cuenta? <a href="#">Registrate</a></p>
+    <p>No tienes una cuenta? <a routerLink="/register">Registrate</a></p>
 </div>
