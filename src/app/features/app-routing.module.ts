@@ -26,6 +26,10 @@ const routes: Routes = [
     pathMatch: "full",
   },
   {
+    path:"novedades",
+    component:NewsCardsComponent
+  },
+  {
     path: "register",
     component: RegisterFormComponent
   },

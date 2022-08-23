@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, AbstractControlOptions, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from 'src/app/core/services/auth.service';
 import { HttpService } from 'src/app/core/services/http.service';
 
 @Component({
@@ -9,7 +10,7 @@ import { HttpService } from 'src/app/core/services/http.service';
 })
 export class RegisterFormComponent implements OnInit {
   public registerForm!: FormGroup;
-  constructor(private formBuilder:FormBuilder,private httpService: HttpService) { }
+  constructor(private formBuilder:FormBuilder, private authService:AuthService) { }
 
   ngOnInit(): void {
     this.initRegisterForm();
@@ -64,15 +65,15 @@ export class RegisterFormComponent implements OnInit {
     console.log(form.value);
     const {name,email,password} = form.value;
     console.log({name,email,password});
-    // this.httpService.register(name,email,password).subscribe({
-    //   next:(response) => {
-    //     console.log(response);
-    //   },
-    //   error: (error) => {
-    //     console.error(`error`);
-    //   },
-    //   complete: () => console.log("peticion completada")
-    // })
+    this.authService.register(name,email,password).subscribe({
+      next: (response) => {
+        console.log(response);
+      },
+      error: (error) => {
+        console.error(`error: ${error}`);
+      },
+      complete: () => console.log("cuenta creada con exito.")
+    })
   }
 
 }

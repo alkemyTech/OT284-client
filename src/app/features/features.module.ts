@@ -14,6 +14,9 @@ import { NewsCardsComponent } from './pages/news/news-cards/news-cards.component
 import { AboutViewComponent } from './pages/about/about-view/about-view.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
 import { SharedModule } from "../shared/shared.module";
 import { ContactFormComponent } from './pages/contact/contact-form/contact-form.component';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
@@ -45,7 +48,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
     UserFormComponent,
     RouterModule
   ],
-  imports: [CommonModule, AppRoutingModule, RouterModule, MatCardModule, MatButtonModule, SharedModule, FormsModule,
+  imports: [CommonModule, AppRoutingModule, RouterModule, MatCardModule, MatButtonModule, MatFormFieldModule,  MatInputModule, MatIconModule, SharedModule, FormsModule,
     ReactiveFormsModule],})
     
 export class FeaturesModule {}
