@@ -1,7 +1,9 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
+import { MatDialog } from "@angular/material/dialog";
 import { MatPaginator } from "@angular/material/paginator";
 import { MatTableDataSource } from "@angular/material/table";
 import { Router } from "@angular/router";
+import { MatAlertDialogComponent } from "src/app/shared/components/mat-alert-dialog/mat-alert-dialog.component";
 
 import { NewsUsersService } from "./services/newsUsers.service";
 import { UsersService } from "./services/users.service";
@@ -34,7 +36,8 @@ export class UsersComponent implements OnInit {
   constructor(
     private user: UsersService,
     private http: NewsUsersService,
-    private router: Router
+    private router: Router,
+    public dialog: MatDialog
   ) {}
 
   updateTable() {
@@ -53,12 +56,23 @@ export class UsersComponent implements OnInit {
   }
 
   deleteUser(i: number) {
-    const realIndex = i + this.pageIndex * this.pageSize;
-    this.http.delete(this.urlAPI, this.row[realIndex].id).subscribe((data) => {
-      console.log(data);
-    });
-    this.row.splice(realIndex, 1);
-    this.updateTable();
+    this.dialog
+      .open(MatAlertDialogComponent, {
+        data: `¿Estás seguro que deseas borrar este usuario?`,
+      })
+      .afterClosed()
+      .subscribe((confirmado: Boolean) => {
+        if (confirmado) {
+          const realIndex = i + this.pageIndex * this.pageSize;
+          this.http
+            .delete(this.urlAPI, this.row[realIndex].id)
+            .subscribe((data) => {
+              console.log(data);
+            });
+          this.row.splice(realIndex, 1);
+          this.updateTable();
+        }
+      });
   }
 
   // Mejorar esto ?

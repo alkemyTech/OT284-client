@@ -7,6 +7,10 @@ import { AboutViewComponent } from "./pages/about/about-view/about-view.componen
 
 const routes: Routes = [
   {
+    path: "nosotros",
+    component: AboutViewComponent,
+  },
+  {
     path: "actividades",
     component: ActivityFormComponent,
   },
@@ -16,6 +20,15 @@ const routes: Routes = [
       import("./pages/backoffice/backoffice.module").then(
         (m) => m.BackofficeModule
       ),
+  },
+  {
+    path: "",
+    redirectTo: "actividades",
+    pathMatch: "full",
+  },
+  {
+    path: "novedades",
+    component: NewsCardsComponent,
   },
 ];
 

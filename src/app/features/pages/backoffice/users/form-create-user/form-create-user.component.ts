@@ -99,16 +99,10 @@ export class FormCreateUserComponent
     }
   }
 
-  updateUserData() {
-    if (this.user.editUserData) {
-      this.name.nativeElement.value = this.user.editUserData.name;
-      this.email.nativeElement.value = this.user.editUserData.email;
-      this.password.nativeElement.value = this.user.editUserData.password;
-    }
-  }
-
   ngAfterViewInit(): void {
-    this.updateUserData();
+    this.name.nativeElement.value = this.user.editUserData.name;
+    this.email.nativeElement.value = this.user.editUserData.email;
+    this.password.nativeElement.value = this.user.editUserData.password;
   }
 
   ngOnDestroy(): void {
