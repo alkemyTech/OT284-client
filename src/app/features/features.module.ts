@@ -18,6 +18,8 @@ import { SharedModule } from "../shared/shared.module";
 import { ContactFormComponent } from './pages/contact/contact-form/contact-form.component';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
+import { HomePageComponent } from './pages/home/home-page/home-page.component';
+import { CarruselComponent } from './pages/home/carrusel/carrusel.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +34,8 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
     NewsCardsComponent,
     AboutViewComponent,
     ContactFormComponent,
+    HomePageComponent,
+    CarruselComponent,
   ],
   exports: [
     ActivityFormComponent,
