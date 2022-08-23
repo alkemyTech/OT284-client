@@ -29,10 +29,10 @@ export class EditHomeComponent implements OnInit {
     console.info('FORMULARIO', this.formulario);
     console.log(this.formulario.valid);
 
-    if(this.formulario.valid)
-    {
+    if (this.formulario.valid) {
       //ENVIAR
     }
   }
+
 
 }

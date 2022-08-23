@@ -7,119 +7,31 @@ $azul-active: #679ed8;
 .contenedor {
     padding: 5% 10%;
 
-    .contenedor-textarea {
+    .form {
+        min-width: 150px;
         width: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
 
-        textarea {
-            resize: none;
-            width: 100%;
-
-            border-color: $azul;
-            padding: 1em;
-            border-radius: 20px;
-            transition: all 1s;
-
-            &:focus {
-                outline: none;
-                border-radius: 5px;
-            }
+        .contenedor-imagen-texto {
+            display: flex;
+            flex-flow: row wrap;
+            margin-bottom: 2em;
         }
 
-    }
-
-    .contenedor-slide {
-        width: 100%;
-        margin: 2em 0;
-        display: flex;
-        flex-flow: row wrap;
-        justify-content: space-around;
-        align-items: center;
-        padding: 1em;
-
-        .file-input {
+        .form-field {
             width: 100%;
-            display: inherit;
-            align-items: center;
-            justify-content: center;
 
-            label {
-                color: white;
-                background-color: $azul;
-                border-radius: 0.5em;
-                padding: 0.8em;
-                cursor: pointer;
-
-                &:active {
-                    background-color: $azul-active;
-                }
-            }
-
-            .file {
-                display: none;
-            }
-        }
-
-        .textito {
-            width: 100%;
-            margin-top: 1em;
-
-            .text-for-file {
-                width: 100%;
-                border: none;
-                border-color: $azul;
-                border-bottom: 1px solid $azul;
-                padding: 0.5em;
-                transition: all 1s;
-
-                &:focus {
-                    outline: none;
-                    border: 1px solid $azul;
-                    border-radius: 0.5em;
-                }
+            .noresize {
+                resize: none;
             }
         }
     }
-
-}
-
-.btn-submit{
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.boton {
-    color: white;
-    width: 100%;
-    background-color: $azul;
-    border: none;
-    border-radius: 0.5em;
-    padding: 0.8em;
-    cursor: pointer;
-
-    &:active {
-        background-color: $azul-active;
-    }
-
 }
 
 
-@media screen and (min-width:600px) {
-    .file-input {
-        width: 50% !important;
-    }
+@media screen and(min-width:600px) {
 
-    .textito {
-        margin-top: 0 !important;
-        width: 50% !important;
-    }
-
-    .boton{
+    .contenedor .form .contenedor-imagen-texto .form-field {
         width: 50%;
+        padding: 10px;
     }
-
 }
