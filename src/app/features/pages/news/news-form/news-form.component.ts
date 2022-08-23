@@ -1,7 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { newDataCategory } from '../models/category';
 import { newData } from '../models/newM';
 import { NewsService } from '../news.service';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
@@ -16,9 +15,9 @@ export class NewsFormComponent implements OnInit {
   public newForm!:newData;
   public newModel: newData;
   private id:number;
-  public categories:newDataCategory[]=[
-    {id: 2292, name: "Deportes monumento", description:"", image:"", created_at:"", updated_at:"",  parent_category_id:null, deleted_at:null, group_id:null},
-    {id: 2293, name: "Recaudacion 2022 julio",description:"", image:"", created_at:"", updated_at:"",  parent_category_id:null, deleted_at:null, group_id:null}
+  public categories:any[]=[
+    {id: 2292, name: "Deportes monumento"},
+    {id: 2293, name: "Recaudacion 2022 julio"}
   ]
   public metodo:string="";
 
