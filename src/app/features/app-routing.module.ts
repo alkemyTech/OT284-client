@@ -4,6 +4,7 @@ import { CommonModule } from "@angular/common";
 import { RouterModule, Routes } from "@angular/router";
 import { NewsCardsComponent } from "./pages/news/news-cards/news-cards.component";
 import { AboutViewComponent } from "./pages/about/about-view/about-view.component";
+import { ContactViewComponent } from "./pages/contact/contact-view/contact-view.component";
 
 const routes: Routes = [
   {
@@ -13,6 +14,10 @@ const routes: Routes = [
   { 
     path: "actividades", 
     component: ActivityFormComponent 
+  },
+  { 
+    path: "contacto", 
+    component: ContactViewComponent 
   },
   {
     path: "backoffice",

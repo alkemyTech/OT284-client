@@ -17,6 +17,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { SharedModule } from "../shared/shared.module";
 import { ContactFormComponent } from './pages/contact/contact-form/contact-form.component';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { ContactViewComponent } from './pages/contact/contact-view/contact-view.component';
 
 
 @NgModule({
@@ -32,6 +33,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
     NewsCardsComponent,
     AboutViewComponent,
     ContactFormComponent,
+    ContactViewComponent,
   ],
   exports: [
     ActivityFormComponent,
