@@ -3,6 +3,7 @@ import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { UsersComponent } from "./users/users.component";
 import { FormCreateUserComponent } from "./users/form-create-user/form-create-user.component";
+import { EditHomeComponent } from "./edit-home/edit-home.component";
 
 const routes: Routes = [
   {
@@ -20,6 +21,10 @@ const routes: Routes = [
   {
     path: "users/edit",
     component: FormCreateUserComponent,
+  },
+  {
+    path: "home",
+    component: EditHomeComponent,
   },
 ];
 

@@ -1,0 +1,47 @@
+<div class="contenedor">
+
+    <form class="form" [formGroup]="formulario" (ngSubmit)="enviar()">
+
+        <mat-form-field class="form-field" appearance="fill">
+            <mat-label>Nuevo texto de bienvenida</mat-label>
+            <textarea formControlName="txtMensaje" matInput placeholder="Ingrese el nuevo texto de bienvenida"
+                class="noresize" rows="5"></textarea>
+        </mat-form-field>
+
+        <div class="contenedor-imagen-texto">
+            <mat-form-field class="form-field" appearance="fill">
+                <ngx-mat-file-input formControlName="img1" matInput placeholder="Seleccione una imagen">
+                </ngx-mat-file-input>
+            </mat-form-field>
+            <mat-form-field class="form-field" appearance="fill">
+                <mat-label>Texto imagen 1</mat-label>
+                <input formControlName="txtimg1" matInput placeholder="Ingrese el texto de la primer imagen">
+            </mat-form-field>
+        </div>
+
+        <div class="contenedor-imagen-texto">
+            <mat-form-field class="form-field" appearance="fill">
+                <ngx-mat-file-input formControlName="img2" matInput placeholder="Seleccione una imagen">
+                </ngx-mat-file-input>
+            </mat-form-field>
+            <mat-form-field class="form-field" appearance="fill">
+                <mat-label>Texto imagen 2</mat-label>
+                <input formControlName="txtimg2" matInput placeholder="Ingrese el texto de la segunda imagen">
+            </mat-form-field>
+        </div>
+
+        <div class="contenedor-imagen-texto">
+            <mat-form-field class="form-field" appearance="fill">
+                <ngx-mat-file-input formControlName="img3" matInput placeholder="Seleccione una imagen">
+                </ngx-mat-file-input>
+            </mat-form-field>
+            <mat-form-field class="form-field" appearance="fill">
+                <mat-label>Texto imagen 3</mat-label>
+                <input formControlName="txtimg3" matInput placeholder="Ingrese el texto de la tercer imagen">
+            </mat-form-field>
+        </div>
+
+        <button mat-raised-button color="primary" type="submit">Enviar </button>
+    </form>
+
+</div>
