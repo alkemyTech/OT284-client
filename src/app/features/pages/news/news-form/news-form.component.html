@@ -1,1 +1,42 @@
-<p>news-form works!</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <form class="example-form">
+
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Titulo de la Novedad</mat-label>
+            <input matInput [value]="newModel.name" id="name" name="name">
+          </mat-form-field>
+        
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Contenido</mat-label>
+            <textarea rows="10" matInput [value]="newModel.content" id="content" name="content"></textarea>
+          </mat-form-field>
+          <ckeditor data="Buenas"></ckeditor>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Categorias</mat-label>
+            <mat-select>
+              <mat-option *ngFor="let category of categories" [value]="category.id">
+                {{category.name}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>URL de imagen de la novedad</mat-label>
+            <input matInput [value]="newModel.image" id="image" name="image">
+          </mat-form-field>
+
+          <button type="button" mat-raised-button color="primary" (click)="enviarDatos(this.metodo)">ENVIAR</button>
+      </form>
+
+</body>
+</html>
