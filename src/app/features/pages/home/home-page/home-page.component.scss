@@ -1,0 +1,46 @@
+$rojo: #DB5752;
+$azul: #9AC9FB;
+$amarillo: #FAFA88;
+
+.contenedor-homepage {
+    padding: 1em 3em;
+
+    .home-header {
+        display: flex;
+        flex-flow: row wrap;
+
+        .home-text-bienvenida {
+            background-color: $rojo;
+            width: 50%;
+        }
+
+        .home-slider {
+            background-color: $azul;
+            width: 50%;
+        }
+    }
+
+    .home-novedades {
+        background-color: $amarillo;
+        display: flex;
+        flex-flow: column wrap;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+@media screen and (max-width:600px) {
+    .contenedor-homepage {
+        .home-header {
+
+            .home-text-bienvenida {
+                width: 100%;
+            }
+
+            .home-slider {
+                width: 100%;
+            }
+        }
+    }
+
+}
