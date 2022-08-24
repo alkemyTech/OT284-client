@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { MembersService } from '../../../../core/services/members.service';
+import { Component, Input, OnInit } from '@angular/core';
 import { Member } from '../../../../shared/interfaces/member';
 
 @Component({
@@ -9,15 +8,12 @@ import { Member } from '../../../../shared/interfaces/member';
 })
 export class MembersViewComponent implements OnInit {
 
-  members!: Member[];
+  @Input() members!: Member[];
 
-  constructor( private membersService: MembersService ) { }
+  constructor() { }
 
   ngOnInit(): void {
-    this.membersService.getMembers().subscribe( resp => {
-      console.log(resp);
-    }
-    )
+    console.log(this.members);
   }
 
 }

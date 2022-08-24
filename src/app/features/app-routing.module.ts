@@ -3,16 +3,11 @@ import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { RouterModule, Routes } from "@angular/router";
 import { AboutViewComponent } from "./pages/about/about-view/about-view.component";
-import { MembersViewComponent } from './pages/members/members-view/members-view.component';
 
 const routes: Routes = [
   {
     path: "nosotros",
     component: AboutViewComponent
-  },
-  {
-    path: "miembros",
-    component: MembersViewComponent
   },
   { 
     path: "actividades", 
