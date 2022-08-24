@@ -16,7 +16,7 @@ mat-card{
     width: 40%;
     margin: 0px auto;
     text-align: center;
-    height: 80vh;
+    max-height: 85vh;
     margin-top: 8vh;
     background-color: transparent;
 }
@@ -39,7 +39,7 @@ mat-form-field{
 }
 
 mat-card-content{
-    margin-top: 10vh;
+    margin-top: 8vh;
 }
 
 mat-card-actions{
