@@ -11,23 +11,26 @@ import { LoginFormComponent } from "./pages/auth/login-form/login-form.component
 const routes: Routes = [
   {
     path: "nosotros",
-    component: AboutViewComponent
+    component: AboutViewComponent,
   },
-  { 
-    path: "", 
-    component: HomePageComponent 
+  {
+    path: "",
+    component: HomePageComponent,
   },
-  { 
-    path: "actividades", 
-    component: ActivityFormComponent 
+  {
+    path: "actividades",
+    component: ActivityFormComponent,
   },
   {
     path: "backoffice",
-    loadChildren:() => import('./pages/backoffice/backoffice.module').then(m => m.BackofficeModule)
+    loadChildren: () =>
+      import("./pages/backoffice/backoffice.module").then(
+        (m) => m.BackofficeModule
+      ),
   },
   {
-    path:"novedades",
-    component:NewsCardsComponent
+    path: "novedades",
+    component: NewsCardsComponent,
   },
   {
     path: "register",
@@ -36,7 +39,7 @@ const routes: Routes = [
   {
     path: "login",
     component: LoginFormComponent
-  }
+  },
 ];
 
 @NgModule({
