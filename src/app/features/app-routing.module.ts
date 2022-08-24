@@ -9,24 +9,27 @@ import { HomePageComponent } from "./pages/home/home-page/home-page.component";
 const routes: Routes = [
   {
     path: "nosotros",
-    component: AboutViewComponent
+    component: AboutViewComponent,
   },
-  { 
-    path: "", 
-    component: HomePageComponent 
+  {
+    path: "",
+    component: HomePageComponent,
   },
-  { 
-    path: "actividades", 
-    component: ActivityFormComponent 
+  {
+    path: "actividades",
+    component: ActivityFormComponent,
   },
   {
     path: "backoffice",
-    loadChildren:() => import('./pages/backoffice/backoffice.module').then(m => m.BackofficeModule)
+    loadChildren: () =>
+      import("./pages/backoffice/backoffice.module").then(
+        (m) => m.BackofficeModule
+      ),
   },
   {
-    path:"novedades",
-    component:NewsCardsComponent
-  }
+    path: "novedades",
+    component: NewsCardsComponent,
+  },
 ];
 
 @NgModule({
