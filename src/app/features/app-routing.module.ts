@@ -7,6 +7,7 @@ import { AboutViewComponent } from "./pages/about/about-view/about-view.componen
 import { HomePageComponent } from "./pages/home/home-page/home-page.component";
 import { RegisterFormComponent } from "./pages/auth/register-form/register-form.component";
 import { LoginFormComponent } from "./pages/auth/login-form/login-form.component";
+import { canActivate, redirectUnauthorizedTo } from "@angular/fire/auth-guard";
 
 const routes: Routes = [
   {
@@ -16,6 +17,7 @@ const routes: Routes = [
   {
     path: "",
     component: HomePageComponent,
+    ...canActivate( () => redirectUnauthorizedTo(['/login']))
   },
   {
     path: "actividades",

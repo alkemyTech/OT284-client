@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, AbstractControlOptions, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControlOptions, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/core/services/auth.service';
-import { HttpService } from 'src/app/core/services/http.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-register-form',
@@ -10,7 +11,7 @@ import { HttpService } from 'src/app/core/services/http.service';
 })
 export class RegisterFormComponent implements OnInit {
   public registerForm!: FormGroup;
-  constructor(private formBuilder:FormBuilder, private authService:AuthService) { }
+  constructor(private formBuilder:FormBuilder, private authService:AuthService, private router:Router) { }
 
   ngOnInit(): void {
     this.initRegisterForm();
@@ -65,15 +66,32 @@ export class RegisterFormComponent implements OnInit {
     console.log(form.value);
     const {name,email,password} = form.value;
     console.log({name,email,password});
-    this.authService.register(name,email,password).subscribe({
-      next: (response) => {
-        console.log(response);
-      },
-      error: (error) => {
-        console.error(`error: ${error}`);
-      },
-      complete: () => console.log("cuenta creada con exito.")
+    // this.authService.register(name,email,password).subscribe({
+    //   next: (response) => {
+    //     console.log(response);
+    //   },
+    //   error: (error) => {
+    //     console.error(`error: ${error}`);
+    //   },
+    //   complete: () => console.log("cuenta creada con exito.")
+    // })
+
+    this.authService.registerFirebase(email,password)
+    .then( response => {
+      console.log(response);
+      Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: 'Te has registrado con éxito',
+        showConfirmButton: false,
+        timer: 2000
+      }).finally(() => {
+        this.router.navigate(['/login']);
+      })
+
     })
+    .catch( error => console.error(`error ${error}`));
+    
   }
 
 }
