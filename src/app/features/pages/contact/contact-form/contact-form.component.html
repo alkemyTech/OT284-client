@@ -40,7 +40,7 @@
             </span>
         </div>
         <div >
-            <button class="button" type=”submit” [disabled]="!contactForm.valid" >Enviar</button>
+            <button (click)="resetForm()" class="button" type=”submit” [disabled]="!contactForm.valid" >Enviar</button>
         </div>
     </form>
 </div>

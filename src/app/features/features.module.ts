@@ -47,6 +47,6 @@ import { ContactViewComponent } from './pages/contact/contact-view/contact-view.
     RouterModule
   ],
   imports: [CommonModule, AppRoutingModule, RouterModule, MatCardModule, MatButtonModule, SharedModule, FormsModule,
-    ReactiveFormsModule],})
+    ReactiveFormsModule,],})
     
 export class FeaturesModule {}

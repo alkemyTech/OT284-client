@@ -43,4 +43,8 @@ export class ContactFormComponent implements OnInit {
     console.log(this.contactForm.value)
   }
 
+  resetForm() {
+    this.contactForm.reset();
+}
+
 }

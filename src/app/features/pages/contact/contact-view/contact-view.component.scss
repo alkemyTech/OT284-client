@@ -23,6 +23,13 @@
 
 .title2{
     text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.form-image{
+    align-content: center;
+    object-fit: contain;
+
 }
 
 .contact-form-container{
@@ -31,13 +38,13 @@
     align-items: center;
     div{
         margin: 10px;
-        .form{
-           width: fit-content;
-            object-fit:contain;
-        }
         img {
             object-fit: cover;
           }
     }
+}
+
+#form-message-success{
+    color: greenyellow;
 }
 
