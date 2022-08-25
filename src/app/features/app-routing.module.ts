@@ -4,16 +4,21 @@ import { CommonModule } from "@angular/common";
 import { RouterModule, Routes } from "@angular/router";
 import { NewsCardsComponent } from "./pages/news/news-cards/news-cards.component";
 import { AboutViewComponent } from "./pages/about/about-view/about-view.component";
+import { HomePageComponent } from "./pages/home/home-page/home-page.component";
 import { ContactViewComponent } from "./pages/contact/contact-view/contact-view.component";
 
 const routes: Routes = [
   {
     path: "nosotros",
-    component: AboutViewComponent
+    component: AboutViewComponent,
   },
-  { 
-    path: "actividades", 
-    component: ActivityFormComponent 
+  {
+    path: "",
+    component: HomePageComponent,
+  },
+  {
+    path: "actividades",
+    component: ActivityFormComponent,
   },
   { 
     path: "contacto", 
@@ -21,17 +26,15 @@ const routes: Routes = [
   },
   {
     path: "backoffice",
-    loadChildren:() => import('./pages/backoffice/backoffice.module').then(m => m.BackofficeModule)
+    loadChildren: () =>
+      import("./pages/backoffice/backoffice.module").then(
+        (m) => m.BackofficeModule
+      ),
   },
   {
-    path: "",
-    redirectTo: "actividades",
-    pathMatch: "full",
+    path: "novedades",
+    component: NewsCardsComponent,
   },
-  {
-    path:"novedades",
-    component:NewsCardsComponent
-  }
 ];
 
 @NgModule({
