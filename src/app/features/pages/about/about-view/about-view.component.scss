@@ -29,7 +29,7 @@
 .organization-links {
     flex: 10%;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
     padding: 20px;
@@ -54,5 +54,8 @@
 @media (min-width: 1200px) {
     .container {
         width: 1170px;
+    }
+    .organization-links {
+        flex-direction: column;
     }
 }
