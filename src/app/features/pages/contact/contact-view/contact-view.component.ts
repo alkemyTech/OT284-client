@@ -23,7 +23,7 @@ export class ContactViewComponent implements OnInit {
   }
 
   receiveMessage($event: any) {
-    this.messageResponse = $event
+    this.messageResponse = $event.messageResponse
   }
 
 }
