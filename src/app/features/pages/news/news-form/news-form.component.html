@@ -12,7 +12,7 @@
 
         <mat-form-field class="example-full-width" appearance="fill">
             <mat-label>Titulo de la Novedad</mat-label>
-            <input matInput [value]="newModel.name" id="name" name="name" type="text"
+            <input matInput  id="name" name="name" type="text"
                   formControlName="name"
                   [ngClass]="{'is-invalid':titulo.errors && titulo.touched}">
                   <div *ngIf="titulo.errors && titulo.touched">
@@ -27,7 +27,7 @@
         
           <mat-form-field class="example-full-width" appearance="fill">
             <mat-label>Contenido</mat-label>
-            <textarea rows="10" matInput [value]="newModel.content" id="content" name="content"
+            <textarea rows="10" matInput  id="content" name="content"
             formControlName="content" type="text" 
             [ngClass]="{'is-invalid':contenido.errors && contenido.touched}"></textarea>
             <div *ngIf="contenido.errors && contenido.touched">
@@ -47,7 +47,7 @@
             <mat-label>Categorias</mat-label>
             <mat-select id="category_id" name="category_id" formControlName="category_id"
             [ngClass]="{'is-invalid':categoria.errors && categoria.touched}">
-            <mat-option [value]="newModel.category_id">La categoria que posee</mat-option>
+            <mat-option >La categoria que posee</mat-option>
               <mat-option *ngFor="let category of categories" [value]="category.id">
                 {{category.name}}
               </mat-option>

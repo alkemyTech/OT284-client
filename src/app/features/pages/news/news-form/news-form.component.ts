@@ -36,7 +36,7 @@ export class NewsFormComponent implements OnInit {
         name:["",[Validators.required, Validators.minLength(4)]],
         content:["",[Validators.required, Validators.minLength(200)]],
         category_id:["",[Validators.required]],
-        image:["", [Validators.required]]
+        image:["", []]
       }
     )
    }
@@ -51,9 +51,9 @@ export class NewsFormComponent implements OnInit {
         next:(newM:newData)=>{
           this.newModel=newM;
           this.metodo="put";
-          this.titulo.clearValidators();
-          this.titulo.setValidators(this.newModel.name,[Validators.required,Validators.minLength(4)]);
-          this.titulo.updateValueAndValidity();
+          this.sendForm.controls.name.setValue(this.newModel.name)
+          this.sendForm.controls.content.setValue(this.newModel.content)
+          this.sendForm.controls.category_id.setValue(this.newModel.category_id)
         },
         error:(error:HttpErrorResponse)=>{
           console.log(error.message);
