@@ -9,7 +9,6 @@ import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } f
 })
 export class AuthService {
   private httpHeaders: HttpHeaders = new HttpHeaders({'Content-Type': 'application/json'});
-  private userid: string | null;
 
   constructor(private http: HttpClient,private auth:Auth) { }
 

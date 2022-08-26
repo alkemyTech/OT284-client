@@ -11,12 +11,10 @@ import { MatTableModule } from "@angular/material/table";
 import { MatDialogModule } from "@angular/material/dialog";
 import { TitleComponent } from "./components/title/title.component";
 import { MatAlertDialogComponent } from './components/mat-alert-dialog/mat-alert-dialog.component';
-import { LogoutComponent } from './components/logout/logout.component';
-import { LoginComponent } from './components/login/login.component';
-import { RegisterComponent } from './components/register/register.component';
+import { AuthButtonsComponent } from './components/auth-buttons/auth-buttons.component';
 
 @NgModule({
-  declarations: [LinkComponent, TitleComponent, MatAlertDialogComponent, LogoutComponent, LoginComponent, RegisterComponent],
+  declarations: [LinkComponent, TitleComponent, MatAlertDialogComponent, AuthButtonsComponent],
   imports: [CommonModule, RouterModule, MatButtonModule],
   exports: [
     LinkComponent,
@@ -29,9 +27,7 @@ import { RegisterComponent } from './components/register/register.component';
     MatTableModule,
     MatDialogModule,
     TitleComponent,
-    LogoutComponent,
-    LoginComponent,
-    RegisterComponent
+    AuthButtonsComponent
   ],
 })
 export class SharedModule {}
