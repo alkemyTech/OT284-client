@@ -21,26 +21,6 @@
     font-size: 12px;
 }
 
-.organization {
-    flex: 90%;
-    padding: 20px;
-}
-
-.organization-links {
-    flex: 10%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-}
-
-.btn-red {
-    background-color: #DB5752;
-    color: white;
-    margin: 5px;
-}
-
 @media (min-width: 768px) {
     .container {
         width: 750px;

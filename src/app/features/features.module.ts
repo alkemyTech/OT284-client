@@ -25,6 +25,7 @@ import { MembersViewComponent } from './pages/members/members-view/members-view.
 
 import { HomePageComponent } from "./pages/home/home-page/home-page.component";
 import { CarruselComponent } from "./pages/home/carrusel/carrusel.component";
+import { AboutUsComponent } from './pages/about/about-us/about-us.component';
 
 
 @NgModule({
@@ -43,6 +44,7 @@ import { CarruselComponent } from "./pages/home/carrusel/carrusel.component";
     HomePageComponent,
     CarruselComponent,
     MembersViewComponent,
+    AboutUsComponent,
   ],
   exports: [
     ActivityFormComponent,

@@ -17,6 +17,16 @@ export class OrganizationEffects {
     )
   );
 
+  loadMembers$ = createEffect(() => this.actions$.pipe(
+    ofType('[Organization View] Load members'),
+    mergeMap(() => this.aboutService.getMembers()
+      .pipe(
+        map(members => ({ type: '[Organization View] Loaded members success', members })),
+        catchError(() => EMPTY)
+      ))
+    )
+  );
+
   constructor(
     private actions$: Actions,
     private aboutService: AboutService
