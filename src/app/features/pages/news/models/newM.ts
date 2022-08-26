@@ -1,3 +1,5 @@
+import { NumberValueAccessor } from "@angular/forms";
+
 export interface newM{
   success: boolean,
   data: newData[]
@@ -23,6 +25,7 @@ export interface newImportantData{
 }
 
 export class Novedad{
+        id?:number;
         name: string;
         slug: null;
         content: string;
@@ -35,6 +38,7 @@ export class Novedad{
         group_id: null;
 
         constructor(data:any){
+          this.id=data.id;
           this.name=data.name;
           this.slug=null;
           this.content=data.content;
@@ -46,4 +50,5 @@ export class Novedad{
           this.deleted_at=null;
           this.group_id=null;
         }
+
 }
