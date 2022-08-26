@@ -10,15 +10,15 @@ export class NewsHomeService {
   constructor(private http: HttpService) { }
 
   getSlides() {
-    return this.http.get<any>(environment.apiUrl+'slides');
+    return this.http.get<any>(environment.url+'slides');
   }
 
   getMessageText() {
-    return this.http.get<any>(environment.apiUrl+'organization');
+    return this.http.get<any>(environment.url+'organization');
   }
 
   getNews(){
-    return this.http.get<any>(environment.apiUrl+'news?limit=8');
+    return this.http.get<any>(environment.url+'news?limit=8');
   }
 
 }
