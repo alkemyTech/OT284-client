@@ -27,5 +27,8 @@ export class NewsService {
     return this.http.post<Novedad>(this.api,novedad);
   } 
 
+  public modificarNew(novedad:Novedad):Observable<Novedad>{
+    return this.http.put<Novedad>(`${this.api}/${novedad.id}`,novedad);
+  } 
 
 }
