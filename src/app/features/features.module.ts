@@ -15,6 +15,9 @@ import { NewsCardsComponent } from "./pages/news/news-cards/news-cards.component
 import { AboutViewComponent } from "./pages/about/about-view/about-view.component";
 import { MatCardModule } from "@angular/material/card";
 import { MatButtonModule } from "@angular/material/button";
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
 import { SharedModule } from "../shared/shared.module";
 import { ContactFormComponent } from "./pages/contact/contact-form/contact-form.component";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
@@ -22,6 +25,7 @@ import { MembersViewComponent } from './pages/members/members-view/members-view.
 
 import { HomePageComponent } from "./pages/home/home-page/home-page.component";
 import { CarruselComponent } from "./pages/home/carrusel/carrusel.component";
+
 
 @NgModule({
   declarations: [
@@ -60,7 +64,7 @@ import { CarruselComponent } from "./pages/home/carrusel/carrusel.component";
     SharedModule,
     MatCardModule,
     MatButtonModule,
-    SharedModule,
+    MatFormFieldModule,  MatInputModule, MatIconModule, SharedModule,
     FormsModule,
     ReactiveFormsModule,
   ],

@@ -5,6 +5,8 @@ import { RouterModule, Routes } from "@angular/router";
 import { NewsCardsComponent } from "./pages/news/news-cards/news-cards.component";
 import { AboutViewComponent } from "./pages/about/about-view/about-view.component";
 import { HomePageComponent } from "./pages/home/home-page/home-page.component";
+import { RegisterFormComponent } from "./pages/auth/register-form/register-form.component";
+import { LoginFormComponent } from "./pages/auth/login-form/login-form.component";
 
 const routes: Routes = [
   {
@@ -29,6 +31,14 @@ const routes: Routes = [
   {
     path: "novedades",
     component: NewsCardsComponent,
+  },
+  {
+    path: "register",
+    component: RegisterFormComponent
+  },
+  {
+    path: "login",
+    component: LoginFormComponent
   },
 ];
 

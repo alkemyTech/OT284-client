@@ -1,0 +1,94 @@
+.container-form-register{
+    background-color: #dcf1e5;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.info{
+    width: 50%;
+}
+
+mat-icon{
+    display: block;
+    text-align: center;
+    font-size: 5em;
+    width: auto;
+    height: 10vh;
+}
+
+h2{
+    font-size: 7em;
+    margin-top: 2vh;
+    text-align: center;
+}
+
+.info img{
+    display: block;
+    width: 25%;
+    height: 22vh;
+    margin: 0px auto;
+}
+
+mat-card{
+    display: block;
+    width: 40%;
+    margin: 0px auto;
+    text-align: center;
+    height: 60vh;
+    margin-top: 1vh;
+    background-color: rgb(245, 245, 245,0.9);
+}
+
+mat-form-field{
+    width: 85%;
+    height: 10vh;
+}
+
+div form{
+    margin-top: 4vh;
+}
+
+mat-card button{
+    display: block;
+    margin: 0px auto;
+    margin-top: 2vh;
+    width: 85%;
+    background-color: #FF0000;
+}
+
+@media (max-width: 1000px){
+    .container-form-register{
+        flex-direction: column;
+    }
+    .info{
+        width: 100%;
+    }
+    .info img{
+        display: none;
+    }
+    mat-icon{
+        margin-top: 4vh;
+    }
+    h2{
+        font-size: 5em;
+
+    }
+    mat-card{
+        width: 70%;
+        margin-top: 5vh;
+    }
+
+}
+
+@media (max-width: 450px){
+    h2{
+        font-size: 3.5em;
+
+    }
+    mat-card{
+        width: 75%;
+    }
+
+}
