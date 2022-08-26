@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { AboutService } from '../../../../core/services/about.service';
 import { Organization } from '../../../../shared/interfaces/organization';
 import { loadOrganization, loadedOrganization } from '../../../../state/actions/organization.actions';
-import { selectLoading } from '../../../../state/selectors/organization.selectors';
+import { selectLoading, selectOrganization } from '../../../../state/selectors/organization.selectors';
+import { AppState } from '../../../../state/app.state';
 
 @Component({
   selector: 'app-about-view',
@@ -13,19 +13,16 @@ import { selectLoading } from '../../../../state/selectors/organization.selector
 })
 export class AboutViewComponent implements OnInit {
 
-  organization$!: Observable<Organization>;
+  organization$: Observable<Organization>;
   loading$: Observable<boolean>;
 
-  constructor( private aboutService: AboutService, private store: Store<any> ) { }
+  constructor( private store: Store<AppState> ) { }
 
   ngOnInit(): void {
-    // this.organization$ = this.aboutService.getOrganization();
-    this.loading$ = this.store.select(selectLoading)
     this.store.dispatch(loadOrganization());
-    
-    this.aboutService.getOrganization().subscribe( resp => {
-      this.store.dispatch(loadedOrganization({organization: resp}));
-    })
+
+    this.loading$ = this.store.select(selectLoading);
+    this.organization$ = this.store.select(selectOrganization);
   }
 
 }

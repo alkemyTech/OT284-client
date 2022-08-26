@@ -4,7 +4,7 @@ import { OrganizationState } from '../../shared/interfaces/organization.state';
 
 export const selectOrganizationFeature = (state: AppState) => state.organization;
 
-export const selectListOrganization = createSelector(
+export const selectOrganization = createSelector(
     selectOrganizationFeature,
     (state: OrganizationState) => state.organization
 );
