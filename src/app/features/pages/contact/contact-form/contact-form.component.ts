@@ -47,12 +47,18 @@ export class ContactFormComponent implements OnInit {
     this.contactService.sendMessage(contactFormDTO).subscribe(
       (data)=>{
         this.messageResponse.emit({ messageResponse: data });
+        this.resetForm()
       },
       (err)=>{
         this.messageResponse.emit({ messageResponse: err });
+        this.resetForm()
       }
     )
     
   }
+
+  resetForm() {
+    this.contactForm.reset();
+}
 
 }
