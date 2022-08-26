@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Organization } from '../../../../shared/interfaces/organization';
-import { loadOrganization, loadedOrganization } from '../../../../state/actions/organization.actions';
+import { Member } from '../../../../shared/interfaces/member';
+import { loadOrganization } from '../../../../state/actions/organization.actions';
 import { selectLoading, selectOrganization } from '../../../../state/selectors/organization.selectors';
 import { AppState } from '../../../../state/app.state';
 
@@ -15,6 +16,7 @@ export class AboutViewComponent implements OnInit {
 
   organization$: Observable<Organization>;
   loading$: Observable<boolean>;
+  members!: Member[];
 
   constructor( private store: Store<AppState> ) { }
 
@@ -23,6 +25,7 @@ export class AboutViewComponent implements OnInit {
 
     this.loading$ = this.store.select(selectLoading);
     this.organization$ = this.store.select(selectOrganization);
+    // this.aboutService.getMembers().subscribe( resp => this.members = resp);
   }
 
 }
