@@ -8,6 +8,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import {MatButtonModule} from '@angular/material/button';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
     MatFormFieldModule,
     MatSelectModule,
     MatButtonModule,
-    CKEditorModule
+    CKEditorModule,
+    ReactiveFormsModule
   ]
 })
 

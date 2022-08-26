@@ -21,3 +21,29 @@ export interface newImportantData{
   id: number,
   name: string,
 }
+
+export class Novedad{
+        name: string;
+        slug: null;
+        content: string;
+        image: string;
+        user_id: null;
+        category_id: number;
+        created_at: string;
+        updated_at: string;
+        deleted_at: null;
+        group_id: null;
+
+        constructor(data:any){
+          this.name=data.name;
+          this.slug=null;
+          this.content=data.content;
+          this.image=data.image;
+          this.user_id=null;
+          this.category_id=data.category_id;
+          this.created_at=new Date().toISOString();
+          this.updated_at=new Date().toISOString();
+          this.deleted_at=null;
+          this.group_id=null;
+        }
+}
