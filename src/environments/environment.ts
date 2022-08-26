@@ -11,7 +11,8 @@ export const environment = {
     authDomain: 'ot284-f386f.firebaseapp.com',
     messagingSenderId: '916014183122',
   },
-  production: false
+  production: false,
+  url: "https://ongapi.alkemy.org/api/"
 };
 
 /*

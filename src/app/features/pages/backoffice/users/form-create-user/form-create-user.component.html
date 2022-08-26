@@ -1,10 +1,6 @@
 <div class="wrapper">
   <h1>Usuarios</h1>
-  <form
-    [formGroup]="formUser"
-    #ngForm="ngForm"
-    (ngSubmit)="onSubmit()"
-  >
+  <form [formGroup]="formUser" #ngForm="ngForm" (ngSubmit)="onSubmit()">
     <div class="container">
       <mat-form-field class="example-full-width" appearance="fill">
         <mat-label>Nombre</mat-label>
@@ -13,7 +9,7 @@
 
       <div
         class="invalid-inputs"
-        *ngIf="ngForm.submitted && formUser.get('name')?.invalid"
+        *ngIf="formUser.get('name')?.touched && formUser.get('name')?.invalid"
       >
         El nombre debe tener al menos 4 caracteres.
       </div>
@@ -41,10 +37,11 @@
       </mat-form-field>
       <div
         class="invalid-inputs"
-        *ngIf="ngForm.submitted && formUser.get('email')?.invalid"
+        *ngIf="formUser.get('email')?.touched && formUser.get('email')?.invalid"
       >
         Por favor ingrese un e-mail válido
       </div>
+
       <mat-form-field appearance="fill">
         <mat-label>Rol</mat-label>
         <mat-select matNativeControl formControlName="role_id">
@@ -63,7 +60,10 @@
       </div>
       <div
         class="invalid-inputs"
-        *ngIf="ngForm.submitted && formUser.get('profilePic')?.invalid"
+        *ngIf="
+          formUser.get('profilePic')?.touched &&
+          formUser.get('profilePic')?.invalid
+        "
       >
         Archivo inválido.
       </div>
@@ -75,12 +75,49 @@
 
       <div
         class="invalid-inputs"
-        *ngIf="ngForm.submitted && formUser.get('description')?.invalid"
+        *ngIf="
+          formUser.get('description')?.touched &&
+          formUser.get('description')?.invalid
+        "
       >
         La descripción debe tener al menos 10 caracteres.
       </div>
+      <div class="address">
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Direccion</mat-label>
+          <input
+            #address
+            matInput
+            name="address"
+            type="address"
+            formControlName="address"
+          />
+        </mat-form-field>
+        <button type="button" mat-button color="primary" (click)="openDialog()">
+          Confirmar
+        </button>
+        <div *ngIf="confirmedAddress; else elseBlock2">
+          <mat-icon color="primary">check</mat-icon>
+        </div>
+        <ng-template #elseBlock2>
+          <mat-icon color="warn">cancel</mat-icon>
+        </ng-template>
+      </div>
+      <div
+        class="invalid-inputs"
+        *ngIf="!confirmedAddress && formUser.get('address')?.touched"
+      >
+        Por favor confirma tu dirección
+      </div>
+
       <div class="buttons">
-        <button type="submit" mat-button color="primary">
+        <button
+          [disabled]="!formUser.valid"
+          [disabled]="!confirmedAddress"
+          type="submit"
+          mat-button
+          color="primary"
+        >
           <div *ngIf="user.editUserData.id == ''; else elseBlock">
             Crear Usuario
           </div>

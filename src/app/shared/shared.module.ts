@@ -11,9 +11,10 @@ import { MatTableModule } from "@angular/material/table";
 import { MatDialogModule } from "@angular/material/dialog";
 import { TitleComponent } from "./components/title/title.component";
 import { MatAlertDialogComponent } from './components/mat-alert-dialog/mat-alert-dialog.component';
-
+import { PhonePipe } from './helpers/phonePipe';
 @NgModule({
-  declarations: [LinkComponent, TitleComponent, MatAlertDialogComponent],
+  declarations: [LinkComponent, TitleComponent,
+    PhonePipe, MatAlertDialogComponent],
   imports: [CommonModule, RouterModule, MatButtonModule],
   exports: [
     LinkComponent,
@@ -26,6 +27,7 @@ import { MatAlertDialogComponent } from './components/mat-alert-dialog/mat-alert
     MatTableModule,
     MatDialogModule,
     TitleComponent,
+    PhonePipe
   ],
 })
 export class SharedModule {}
