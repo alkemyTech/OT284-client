@@ -65,17 +65,6 @@ export class RegisterFormComponent implements OnInit {
   register(form: any){
     console.log(form.value);
     const {name,email,password} = form.value;
-    console.log({name,email,password});
-    // this.authService.register(name,email,password).subscribe({
-    //   next: (response) => {
-    //     console.log(response);
-    //   },
-    //   error: (error) => {
-    //     console.error(`error: ${error}`);
-    //   },
-    //   complete: () => console.log("cuenta creada con exito.")
-    // })
-
     this.authService.registerFirebase(email,password)
     .then( response => {
       console.log(response);
