@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { newData, Novedad } from '../models/newM';
 import { NewsService } from '../news.service';
-//import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -13,7 +13,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./news-form.component.scss']
 })
 export class NewsFormComponent implements OnInit {
-  //public Editor = ClassicEditor;
+  public Editor = ClassicEditor;
   public newModel!: newData;
   private id:number;
   public categories:any[]=[
@@ -30,7 +30,6 @@ export class NewsFormComponent implements OnInit {
     }
     this.id=this.ruta.snapshot.params['id'];
     this.metodo="post";
-    
     this.sendForm=this.formBuilder.group(
       {
         name:["",[Validators.required, Validators.minLength(4)]],
@@ -53,6 +52,7 @@ export class NewsFormComponent implements OnInit {
           this.metodo="put";
           this.sendForm.controls.name.setValue(this.newModel.name)
           this.sendForm.controls.content.setValue(this.newModel.content)
+          this.sendForm.controls.image.setValue(this.newModel.image)
           this.sendForm.controls.category_id.setValue(this.newModel.category_id)
         },
         error:(error:HttpErrorResponse)=>{
@@ -62,12 +62,11 @@ export class NewsFormComponent implements OnInit {
     }
   }
 
-  public enviarNovedad(metodo:string, newForm:newData, event:any):void{
-    debugger
+  public enviarNovedad(metodo:string):void{
     if(this.sendForm.valid){
       if(metodo=='post'){
-        let novedad=new Novedad(this.sendForm.value);
-        novedad.image=btoa(novedad.image);
+        const novedad=new Novedad(this.sendForm.value);
+        novedad.id=0;
         this.svcNew.nuevaNew(novedad).subscribe({
           next:(response:Novedad)=>{
             console.log(response);
@@ -78,8 +77,17 @@ export class NewsFormComponent implements OnInit {
           }
         });  
       }else if(metodo='put'){
-        //this.sendForm.updated_at=new Date().toISOString();
-        //llamar al servicio del put
+        const novedad=new Novedad(this.sendForm.value);
+        novedad.id=this.id;
+        novedad.updated_at=new Date().toISOString();
+        this.svcNew.modificarNew(novedad).subscribe({
+          next:(response:Novedad)=>{
+            console.log(response);
+            this.sendForm.reset;
+          },error:(error:HttpErrorResponse)=>{
+            console.log(error.message);
+          }
+        })
       }
     }else{
       Swal.fire({
@@ -88,7 +96,6 @@ export class NewsFormComponent implements OnInit {
         text: 'Por favor complete los campos'
       })
     }
-    
     //console.log(metodo, newForm);
   }
 
