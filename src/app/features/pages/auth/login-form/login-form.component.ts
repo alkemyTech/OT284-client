@@ -52,7 +52,8 @@ export class LoginFormComponent implements OnInit {
     this.authService.loginFirebase(email,password)
     .then(response => {
       console.log(response);
-      this.router.navigate([''])
+      localStorage.setItem('loginStatus','true');
+      this.router.navigate(['']);
     })
     .catch(error => {
       console.error(`error : ${error}`);

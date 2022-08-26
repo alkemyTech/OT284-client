@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Auth } from '@angular/fire/auth';
+import { Auth, onAuthStateChanged} from '@angular/fire/auth';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from '@angular/fire/auth';
 
 @Injectable({
@@ -9,6 +9,7 @@ import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } f
 })
 export class AuthService {
   private httpHeaders: HttpHeaders = new HttpHeaders({'Content-Type': 'application/json'});
+  private userid: string | null;
 
   constructor(private http: HttpClient,private auth:Auth) { }
 
@@ -41,4 +42,5 @@ export class AuthService {
   logoutFirebase(){
     return signOut(this.auth);
   }
+
 }
