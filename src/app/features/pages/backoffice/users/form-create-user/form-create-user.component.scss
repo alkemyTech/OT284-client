@@ -18,6 +18,16 @@ mat-form-field {
   margin-top: 0.5rem;
 }
 
+mat-icon {
+  margin-left: 10px;
+}
+
+.address {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
 .container {
   display: flex;
   flex-direction: column;

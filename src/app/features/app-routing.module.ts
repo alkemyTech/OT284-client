@@ -7,6 +7,7 @@ import { AboutViewComponent } from "./pages/about/about-view/about-view.componen
 import { HomePageComponent } from "./pages/home/home-page/home-page.component";
 import { RegisterFormComponent } from "./pages/auth/register-form/register-form.component";
 import { LoginFormComponent } from "./pages/auth/login-form/login-form.component";
+import { ContactViewComponent } from "./pages/contact/contact-view/contact-view.component";
 
 const routes: Routes = [
   {
@@ -20,6 +21,10 @@ const routes: Routes = [
   {
     path: "actividades",
     component: ActivityFormComponent,
+  },
+  { 
+    path: "contacto", 
+    component: ContactViewComponent 
   },
   {
     path: "backoffice",
