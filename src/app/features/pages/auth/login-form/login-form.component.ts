@@ -39,20 +39,10 @@ export class LoginFormComponent implements OnInit {
   login(form: any){
     console.log(form.value);
     const {email,password} = form.value;
-    console.log(email,password);
-    // this.authService.login(email,password).subscribe({
-    //   next: (response) => {
-    //     console.log(response);
-    //   },
-    //   error: (error) => {
-    //     console.error(`error ${error}`);
-    //   },
-    //   complete: () => console.log("logeado con exito.")
-    // })
+    
     this.authService.loginFirebase(email,password)
     .then(response => {
       console.log(response);
-      localStorage.setItem('loginStatus','true');
       this.router.navigate(['']);
     })
     .catch(error => {
@@ -63,14 +53,6 @@ export class LoginFormComponent implements OnInit {
         text: 'La cuenta ingresada no existe'
       })
     });
-  }
-
-  logout(){
-    this.authService.logoutFirebase()
-    .then( () => {
-      alert("Has cerrado sesion.");
-    })
-    .catch( error => console.error(`error: ${error}`))
   }
 
 }

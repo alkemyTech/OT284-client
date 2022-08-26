@@ -47,7 +47,6 @@ export class AuthButtonsComponent implements OnInit {
     onAuthStateChanged(this.auth, (user) => {
       if(user){
        this.userid= user?.uid;
-       console.log(this.userid);
       }
       else{
         this.userid = null;
