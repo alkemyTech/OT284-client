@@ -1,0 +1,13 @@
+<div id="map" class="full"></div>
+
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancelar</button>
+  <button
+    mat-button
+    [mat-dialog-close]="confirmedAddress"
+    (click)="confirmingAdress()"
+    cdkFocusInitial
+  >
+    Confirmar Dirección
+  </button>
+</mat-dialog-actions>
