@@ -4,6 +4,14 @@
 
 export const environment = {
   production: false,
+  endpoints:{
+    contactos:{
+      list:"https://ongapi.alkemy.org/api/contacts",
+      create:"https://ongapi.alkemy.org/api/contacts",
+      edit:"https://ongapi.alkemy.org/api/contacts/?id=${id}",
+      delete:"https://ongapi.alkemy.org/api/contacts/?id=${id}",
+    }
+  },
   url: "https://ongapi.alkemy.org/api/"
 };
 
