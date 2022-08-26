@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "news-form.component.scss"
+    ],
+    "names": [],
+    "file": "news-form.component.css"
+}

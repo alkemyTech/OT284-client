@@ -12,9 +12,10 @@ import { MatDialogModule } from "@angular/material/dialog";
 import { TitleComponent } from "./components/title/title.component";
 import { MatAlertDialogComponent } from './components/mat-alert-dialog/mat-alert-dialog.component';
 import { AuthButtonsComponent } from './components/auth-buttons/auth-buttons.component';
-
+import { PhonePipe } from './helpers/phonePipe';
 @NgModule({
-  declarations: [LinkComponent, TitleComponent, MatAlertDialogComponent, AuthButtonsComponent],
+  declarations: [LinkComponent, TitleComponent,
+    PhonePipe, MatAlertDialogComponent, AuthButtonsComponent],
   imports: [CommonModule, RouterModule, MatButtonModule],
   exports: [
     LinkComponent,
@@ -27,6 +28,7 @@ import { AuthButtonsComponent } from './components/auth-buttons/auth-buttons.com
     MatTableModule,
     MatDialogModule,
     TitleComponent,
+    PhonePipe,
     AuthButtonsComponent
   ],
 })

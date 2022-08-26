@@ -1,0 +1,50 @@
+.contenedor-homepage {
+  padding: 1em 3em;
+}
+
+.contenedor-homepage .home-header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
+}
+
+.contenedor-homepage .home-header .home-text-bienvenida {
+  background-color: #DB5752;
+  width: 50%;
+}
+
+.contenedor-homepage .home-header .home-slider {
+  background-color: #9AC9FB;
+  width: 50%;
+}
+
+.contenedor-homepage .home-novedades {
+  background-color: #FAFA88;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column wrap;
+          flex-flow: column wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+@media screen and (max-width: 600px) {
+  .contenedor-homepage .home-header .home-text-bienvenida {
+    width: 100%;
+  }
+  .contenedor-homepage .home-header .home-slider {
+    width: 100%;
+  }
+}
+/*# sourceMappingURL=home-page.component.css.map */
