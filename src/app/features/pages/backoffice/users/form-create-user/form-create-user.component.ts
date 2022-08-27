@@ -1,6 +1,7 @@
 import {
   AfterViewInit,
   Component,
+  DoCheck,
   ElementRef,
   OnDestroy,
   OnInit,
@@ -14,7 +15,9 @@ import {
 } from "@angular/forms";
 import { NewsUsersService } from "../services/newsUsers.service";
 import { UsersService } from "../services/users.service";
-
+import { FormMapService } from "./form-map/form-map.service";
+import { MatDialog } from "@angular/material/dialog";
+import { FormMapComponent } from "./form-map/form-map.component";
 @Component({
   selector: "app-form-create-user",
   templateUrl: "./form-create-user.component.html",
@@ -23,7 +26,12 @@ import { UsersService } from "../services/users.service";
 export class FormCreateUserComponent
   implements OnInit, AfterViewInit, OnDestroy
 {
-  constructor(private http: NewsUsersService, public user: UsersService) {}
+  constructor(
+    private http: NewsUsersService,
+    public user: UsersService,
+    private formMap: FormMapService,
+    public dialog: MatDialog
+  ) {}
 
   formUser = new FormGroup({
     name: new FormControl("", [Validators.required, Validators.minLength(4)]),
@@ -38,8 +46,10 @@ export class FormCreateUserComponent
       Validators.required,
       Validators.minLength(10),
     ]),
+    address: new FormControl("", Validators.required),
   });
   id: number;
+  confirmedAddress = false;
 
   @ViewChild("email", { static: false }) email: ElementRef;
   @ViewChild("name", { static: false }) name: ElementRef;
@@ -53,16 +63,32 @@ export class FormCreateUserComponent
     }
   }
 
+  openDialog(): void {
+    this.formMap.mapAddress = this.formUser.value.address;
+    const dialogRef = this.dialog
+      .open(FormMapComponent, {
+        width: "550px",
+        height: "550px",
+      })
+      .afterClosed()
+      .subscribe((resp) => {
+        if (resp) {
+          this.confirmedAddress = true;
+        }
+      });
+  }
+
   onSubmit() {
     const url = "https://ongapi.alkemy.org/api/users";
     const name = this.formUser.value.name;
     const email = this.formUser.value.email;
     const role_id = Number(this.formUser.value.role_id);
     const password = this.formUser.value.password;
-
+    const lat = this.formMap.lat;
+    const long = this.formMap.long;
     const id = this.user.editUserData.id;
 
-    if (this.formUser.valid) {
+    if (this.formUser.valid && this.confirmedAddress) {
       if (this.user.editUserData.id == "") {
         this.http
           .post(url, {
@@ -70,6 +96,8 @@ export class FormCreateUserComponent
             email: email,
             role_id: role_id,
             password: password,
+            latitude: lat,
+            longitude: long,
           })
           .subscribe({
             next: (data) => {
@@ -86,13 +114,15 @@ export class FormCreateUserComponent
             email: email,
             role_id: role_id,
             password: password,
+            latitude: lat,
+            longitude: long,
           })
           .subscribe({
             next: (data) => {
               console.log(data);
             },
             error: (error) => {
-              console.log(error.message, role_id);
+              console.log(error.message);
             },
           });
       }

@@ -3,6 +3,7 @@ import { MatDialog } from "@angular/material/dialog";
 import { MatPaginator } from "@angular/material/paginator";
 import { MatTableDataSource } from "@angular/material/table";
 import { Router } from "@angular/router";
+
 import { MatAlertDialogComponent } from "src/app/shared/components/mat-alert-dialog/mat-alert-dialog.component";
 
 import { NewsUsersService } from "./services/newsUsers.service";
@@ -33,6 +34,8 @@ export class UsersComponent implements OnInit {
   pageIndex = 0;
   pageSize = 10;
 
+  @ViewChild("map", { static: false }) map: HTMLElement;
+
   constructor(
     private user: UsersService,
     private http: NewsUsersService,
@@ -51,7 +54,6 @@ export class UsersComponent implements OnInit {
   editUser(i: number) {
     const realIndex = i + this.pageIndex * this.pageSize;
     this.user.editUserData = this.row[realIndex];
-
     this.router.navigateByUrl("backoffice/users/edit");
   }
 
