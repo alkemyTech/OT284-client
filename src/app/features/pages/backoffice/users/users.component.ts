@@ -124,11 +124,19 @@ export class UsersComponent implements OnInit {
   }
 
   fillTable() {
-    this.http.get(environment.url).subscribe((data: any) => {
-      this.row = data.data;
-      this.updateTable();
-      this.dataSource.paginator = this.paginator;
-    });
+    const roleSelect = this.roleSelect.nativeElement.value;
+    const searchInput = this.searchInput.nativeElement.value;
+    this.http
+      .getSearch(
+        environment.url,
+        searchInput ? searchInput : "",
+        roleSelect != 0 ? roleSelect : ""
+      )
+      .subscribe((data: any) => {
+        this.row = data.data;
+        this.updateTable();
+        this.dataSource.paginator = this.paginator;
+      });
   }
 
   ngOnInit(): void {
