@@ -6,6 +6,8 @@ import { newData, Novedad } from '../models/newM';
 import { NewsService } from '../news.service';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import Swal from 'sweetalert2';
+import Base64UploaderPlugin from 'customBuilder/Base64Upload';
+
 
 @Component({
   selector: 'app-news-form',
@@ -14,6 +16,7 @@ import Swal from 'sweetalert2';
 })
 export class NewsFormComponent implements OnInit {
   public Editor = ClassicEditor;
+  editorConfig={extraPlugins:[Base64UploaderPlugin]}
   public newModel!: newData;
   private id:number;
   public categories:any[]=[
