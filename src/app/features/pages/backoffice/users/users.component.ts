@@ -1,12 +1,20 @@
-import { Component, OnInit, ViewChild } from "@angular/core";
+import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
 import { MatPaginator } from "@angular/material/paginator";
 import { MatTableDataSource } from "@angular/material/table";
 import { Router } from "@angular/router";
+import { fromEvent, merge } from "rxjs";
+import {
+  debounceTime,
+  distinctUntilChanged,
+  filter,
+  map,
+} from "rxjs/operators";
 
 import { MatAlertDialogComponent } from "src/app/shared/components/mat-alert-dialog/mat-alert-dialog.component";
+import { environment } from "src/environments/environment";
 
-import { NewsUsersService } from "./services/newsUsers.service";
+import { NewsUsersService } from "../../../../core/services/newsUsers.service";
 import { UsersService } from "./services/users.service";
 
 export interface apiData {
@@ -33,8 +41,12 @@ export class UsersComponent implements OnInit {
   routerPath = "create";
   pageIndex = 0;
   pageSize = 10;
-
-  @ViewChild("map", { static: false }) map: HTMLElement;
+  @ViewChild("searchInput", { static: true })
+  searchInput: ElementRef;
+  @ViewChild("roleSelect", { static: true })
+  roleSelect: ElementRef;
+  @ViewChild("map", { static: false })
+  map: HTMLElement;
 
   constructor(
     private user: UsersService,
@@ -51,6 +63,40 @@ export class UsersComponent implements OnInit {
     });
   }
 
+  roleSearch() {
+    const roleSelect = this.roleSelect.nativeElement.value;
+    const searchInput = this.searchInput.nativeElement.value;
+    this.http
+      .getSearch(
+        environment.url,
+        searchInput ? searchInput : "",
+        roleSelect != 0 ? roleSelect : ""
+      )
+      .subscribe((apiData: any) => {
+        this.row = apiData.data;
+        this.updateTable();
+      });
+  }
+
+  search() {
+    fromEvent(this.searchInput.nativeElement, "keyup")
+      .pipe(
+        debounceTime(1000),
+        map((event: any) => {
+          return event.target.value;
+        }),
+        distinctUntilChanged()
+      )
+      .subscribe((searchData: string) => {
+        if (searchData.length < 2) {
+          this.fillTable();
+          this.updateTable();
+        } else {
+          this.roleSearch();
+        }
+      });
+  }
+
   editUser(i: number) {
     const realIndex = i + this.pageIndex * this.pageSize;
     this.user.editUserData = this.row[realIndex];
@@ -60,14 +106,14 @@ export class UsersComponent implements OnInit {
   deleteUser(i: number) {
     this.dialog
       .open(MatAlertDialogComponent, {
-        data: `¿Estás seguro que deseas borrar este usuario?`,
+        data: `¿Estás seguro que deseas borrar el usuario ${this.row[i].name}?`,
       })
       .afterClosed()
       .subscribe((confirmado: Boolean) => {
         if (confirmado) {
           const realIndex = i + this.pageIndex * this.pageSize;
           this.http
-            .delete(this.urlAPI, this.row[realIndex].id)
+            .delete(environment.url, this.row[realIndex].id)
             .subscribe((data) => {
               console.log(data);
             });
@@ -77,22 +123,16 @@ export class UsersComponent implements OnInit {
       });
   }
 
-  // Mejorar esto ?
-
-  ngOnInit(): void {
-    this.http.get(this.urlAPI).subscribe((data: any) => {
-      for (let i = 0; i < data.data.length; i++) {
-        this.row.push({
-          id: data.data[i].id,
-          name: data.data[i].name,
-          email: data.data[i].email,
-          password: data.data[i].password,
-          role_id: data.data[i].role_id,
-        });
-      }
-
+  fillTable() {
+    this.http.get(environment.url).subscribe((data: any) => {
+      this.row = data.data;
       this.updateTable();
       this.dataSource.paginator = this.paginator;
     });
+  }
+
+  ngOnInit(): void {
+    this.fillTable();
+    this.search();
   }
 }
