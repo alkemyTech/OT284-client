@@ -25,30 +25,28 @@ export interface newImportantData{
 }
 
 export class Novedad{
-        id?:number;
+        id:number;
         name: string;
-        slug: null;
+        slug: string;
         content: string;
         image: string;
-        user_id: null;
+        user_id: number;
         category_id: number;
         created_at: string;
         updated_at: string;
-        deleted_at: null;
-        group_id: null;
+        deleted_at: string;
 
         constructor(data:any){
           this.id=data.id;
           this.name=data.name;
-          this.slug=null;
+          this.slug=data.slug;
           this.content=data.content;
           this.image=data.image;
-          this.user_id=null;
+          this.user_id=data.user_id;
           this.category_id=data.category_id;
           this.created_at=new Date().toISOString();
           this.updated_at=new Date().toISOString();
-          this.deleted_at=null;
-          this.group_id=null;
+          this.deleted_at=new Date().toISOString();
         }
 
 }
