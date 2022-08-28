@@ -29,4 +29,20 @@ export class ContactService {
     );
   }
 
+  editContact(id:number, body:any): Observable<any> {
+    return this.httpServ.put(environment.endpoints.contactos.edit, body).pipe(
+      map(
+        (resp: any) => resp
+      )
+    );
+  }
+
+  listContact(): Observable<any> {
+    return this.httpServ.get(environment.endpoints.contactos.list).pipe(
+      map(
+        (resp: any) => resp
+      )
+    );
+  }
+
 }
