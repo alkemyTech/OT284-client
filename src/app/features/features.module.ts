@@ -27,6 +27,7 @@ import { ContactViewComponent } from './pages/contact/contact-view/contact-view.
 import { HomePageComponent } from "./pages/home/home-page/home-page.component";
 import { CarruselComponent } from "./pages/home/carrusel/carrusel.component";
 import { AboutUsComponent } from './pages/about/about-us/about-us.component';
+import { DetailsComponent } from './pages/news/details/details.component';
 
 
 @NgModule({
@@ -47,6 +48,7 @@ import { AboutUsComponent } from './pages/about/about-us/about-us.component';
     MembersViewComponent,
     ContactViewComponent,
     AboutUsComponent,
+    DetailsComponent,
   ],
   exports: [
     ActivityFormComponent,
