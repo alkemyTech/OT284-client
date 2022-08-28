@@ -1,5 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { Member } from '../../../../shared/interfaces/member';
+import { AppState } from '../../../../state/app.state';
+import { Observable } from 'rxjs';
+import { selectMembers } from '../../../../state/selectors/organization.selectors';
 
 @Component({
   selector: 'app-members-view',
@@ -8,12 +12,12 @@ import { Member } from '../../../../shared/interfaces/member';
 })
 export class MembersViewComponent implements OnInit {
 
-  @Input() members!: Member[];
+  members$: Observable<Member[]>
 
-  constructor() { }
+  constructor( private store: Store<AppState> ) { }
 
   ngOnInit(): void {
-    console.log(this.members);
+    this.members$ = this.store.select(selectMembers);
   }
 
 }
