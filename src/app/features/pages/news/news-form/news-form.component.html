@@ -9,9 +9,10 @@
 <body>
 
     <form [formGroup]="sendForm" class="example-form" (ngSubmit)="enviarNovedad(this.metodo)">
-
+      
+      <mat-label>Titulo de la Novedad</mat-label>
         <mat-form-field class="example-full-width" appearance="fill">
-            <mat-label>Titulo de la Novedad</mat-label>
+            
             <input matInput  id="name" name="name" type="text"
                   formControlName="name"
                   [ngClass]="{'is-invalid':titulo.errors && titulo.touched}">
@@ -25,26 +26,26 @@
                   </div>
           </mat-form-field>
         
-
-            <ckeditor rows="10" id="content" name="content"
-            formControlName="content" type="text" [editor]="Editor" data="Hello, world!"
-            [ngClass]="{'is-invalid':contenido.errors && contenido.touched}"></ckeditor>
-            <div *ngIf="contenido.errors && contenido.touched">
-              <p *ngIf="contenido.hasError('required')" class="text-danger">
-                El contenido es requerido.
-              </p>
-              <p *ngIf="contenido.errors?.['minlength']" class="text-danger">
-                El contenido es muy corto.
-              </p>
-            </div>
-
           
-
+            <mat-label>Contenido de la Novedad</mat-label>
+            <ckeditor [editor]="Editor" rows="10" id="content" name="content"
+            formControlName="content" type="text" data="Hello, world!"
+            [ngClass]="{'is-invalid':contenido.errors && contenido.touched}">
+          </ckeditor>
+          <div *ngIf="contenido.errors && contenido.touched">
+            <p *ngIf="contenido.hasError('required')" class="text-danger">
+              El contenido es requerido.
+            </p>
+            <p *ngIf="contenido.errors?.['minlength']" class="text-danger">
+              El contenido es muy corto.
+            </p>
+          </div><br>
+            
+          
+            <mat-label>Categorias</mat-label><br>
           <mat-form-field appearance="fill">
-            <mat-label>Categorias</mat-label>
             <mat-select id="category_id" name="category_id" formControlName="category_id"
             [ngClass]="{'is-invalid':categoria.errors && categoria.touched}">
-            <mat-option >La categoria que posee</mat-option>
               <mat-option *ngFor="let category of categories" [value]="category.id">
                 {{category.name}}
               </mat-option>
@@ -54,18 +55,21 @@
                 La categoria es requerida.
               </p>
             </div> 
-          </mat-form-field>
+          </mat-form-field><br>
 
-          <mat-form-field class="example-full-width" appearance="fill">
+      
             <mat-label>URL de imagen de la novedad</mat-label>
-            <input matInput id="image" name="image" formControlName="image"
-            [ngClass]="{'is-invalid':imagen.errors && imagen.touched}">
+            <ckeditor  [editor]="Editor" matInput [config]="editorConfig"
+            [ngClass]="{'is-invalid':imagen.errors && imagen.touched}" formControlName="image">
+            <figure>
+              <img id="image" name="image">
+            </figure></ckeditor>
             <div *ngIf="imagen.errors && imagen.touched">
               <p *ngIf="imagen.hasError('required')" class="text-danger">
                 La imagen es requerida.
               </p>
-            </div> 
-          </mat-form-field>
+            </div><br>
+          
     
           <button type="submit" mat-raised-button color="primary">ENVIAR</button>
       </form>

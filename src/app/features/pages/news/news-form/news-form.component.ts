@@ -7,6 +7,7 @@ import { NewsService } from '../news.service';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import Swal from 'sweetalert2';
 import Base64UploaderPlugin from 'customBuilder/Base64Upload';
+import { Observable } from 'rxjs';
 
 
 @Component({
@@ -70,6 +71,8 @@ export class NewsFormComponent implements OnInit {
       if(metodo=='post'){
         const novedad=new Novedad(this.sendForm.value);
         novedad.id=0;
+        console.log(novedad);
+        novedad.image=novedad.image.split('data:')[1];
         this.svcNew.nuevaNew(novedad).subscribe({
           next:(response:Novedad)=>{
             console.log(response);
@@ -116,10 +119,6 @@ export class NewsFormComponent implements OnInit {
   
   get imagen():any{
     return this.sendForm.get('image');
-  }
-
-  public utf8_to_b64(str:string) :string{
-    return window.btoa(unescape(encodeURIComponent( str )));
   }
 
 }
