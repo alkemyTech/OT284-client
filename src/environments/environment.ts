@@ -4,6 +4,20 @@
 
 export const environment = {
   production: false,
+  endpoints:{
+    contactos:{
+      list:"https://ongapi.alkemy.org/api/contacts",
+      create:"https://ongapi.alkemy.org/api/contacts",
+      edit:"https://ongapi.alkemy.org/api/contacts/?id=${id}",
+      delete:"https://ongapi.alkemy.org/api/contacts/?id=${id}",
+    },
+    testimonios:{
+      list:"https://ongapi.alkemy.org/api/testimonials",
+      create:"https://ongapi.alkemy.org/api/testimonials",
+      edit:"https://ongapi.alkemy.org/api/testimonials/?id=${id}",
+      delete:"https://ongapi.alkemy.org/api/testimonials/?id=${id}",
+    }
+  },
   url: "https://ongapi.alkemy.org/api/"
 };
 
