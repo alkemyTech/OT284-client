@@ -1,23 +1,21 @@
 <div class="container">
     <div class="row">
-        <div *ngFor="let member of members">
-            <div class="card">
-                <img class="image-fit" src="{{member.image}}" alt="member.name">
-                <div class="member-description">
-                    <a href="{{member.facebookUrl}}">
-                        <button mat-mini-fab class="btn-red">
-                            <i class="fab fa-facebook"></i>
-                        </button>
-                    </a>
-                    <a href="{{member.linkedinUrl}}">
-                        <button mat-mini-fab class="btn-red">
-                            <i class="fab fa-linkedin"></i>
-                        </button>
-                    </a>
-                    <h3><b>{{ member.name }}</b></h3>
-                    <div class="negative-margin" [innerHTML]="member.description"></div>
-                </div> 
-            </div>
+        <div class="card" *ngFor="let member of members$ | async">
+            <img class="image-fit" src="{{member.image}}" alt="member.name">
+            <div class="member-description">
+                <a href="{{member.facebookUrl}}">
+                    <button mat-mini-fab class="btn-red">
+                        <i class="fab fa-facebook"></i>
+                    </button>
+                </a>
+                <a href="{{member.linkedinUrl}}">
+                    <button mat-mini-fab class="btn-red">
+                        <i class="fab fa-linkedin"></i>
+                    </button>
+                </a>
+                <h3><b>{{ member.name }}</b></h3>
+                <div class="negative-margin" [innerHTML]="member.description"></div>
+            </div> 
         </div>
     </div>
 </div>
