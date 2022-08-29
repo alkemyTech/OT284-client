@@ -1,4 +1,9 @@
-<title [title]="myTitle"></title>
-
-<img [src]="srcImg">
-<p>{{content}}</p>
+<app-title [title]="myTitle"></app-title>
+<div class="container">
+    <div class="img-center">
+        <img [src]="srcImg">
+    </div>
+    <div class="texto">
+        <p [innerHTML]="content"></p>
+    </div>
+</div>
