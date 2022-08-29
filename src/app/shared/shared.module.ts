@@ -12,10 +12,13 @@ import { MatDialogModule } from "@angular/material/dialog";
 import { TitleComponent } from "./components/title/title.component";
 import { MatAlertDialogComponent } from './components/mat-alert-dialog/mat-alert-dialog.component';
 import { PhonePipe } from './helpers/phonePipe';
+import { MapWindowComponent } from './components/map-window/map-window.component';
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+
 @NgModule({
   declarations: [LinkComponent, TitleComponent,
-    PhonePipe, MatAlertDialogComponent],
-  imports: [CommonModule, RouterModule, MatButtonModule],
+    PhonePipe, MatAlertDialogComponent, MapWindowComponent],
+  imports: [CommonModule, RouterModule, MatButtonModule, LeafletModule],
   exports: [
     LinkComponent,
     MatButtonModule,
@@ -27,7 +30,8 @@ import { PhonePipe } from './helpers/phonePipe';
     MatTableModule,
     MatDialogModule,
     TitleComponent,
-    PhonePipe
+    PhonePipe,
+    MapWindowComponent
   ],
 })
 export class SharedModule {}

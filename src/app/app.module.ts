@@ -2,6 +2,7 @@ import { FeaturesModule } from "./features/features.module";
 import { CoreModule } from "./core/core.module";
 import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 
 import { AppComponent } from "./app.component";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
@@ -13,7 +14,7 @@ import { OrganizationEffects } from './state/effects/organization.effects';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, CoreModule, FeaturesModule, NoopAnimationsModule, StoreModule.forRoot(ROOT_REDUCERS), StoreDevtoolsModule.instrument({ name: 'TEST' }), EffectsModule.forRoot([OrganizationEffects])],
+  imports: [BrowserModule, CoreModule, FeaturesModule, NoopAnimationsModule, StoreModule.forRoot(ROOT_REDUCERS), StoreDevtoolsModule.instrument({ name: 'TEST' }), EffectsModule.forRoot([OrganizationEffects]),LeafletModule],
   providers: [],
   bootstrap: [AppComponent],
 })
