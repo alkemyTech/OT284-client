@@ -24,10 +24,6 @@ const routes: Routes = [
     path: "actividades",
     component: ActivityFormComponent,
   },
-  { 
-    path: "contacto", 
-    component: ContactViewComponent 
-  },
   {
     path: "contacto", 
     component: ContactViewComponent 
