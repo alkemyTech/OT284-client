@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/core/services/auth.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login-form',
@@ -11,7 +13,7 @@ export class LoginFormComponent implements OnInit {
   
   public loginForm!: FormGroup;
 
-  constructor(private formBuilder:FormBuilder, private authService:AuthService) { }
+  constructor(private formBuilder:FormBuilder, private authService:AuthService, private router: Router) { }
 
   ngOnInit(): void {
     this.initLoginForm();
@@ -37,16 +39,27 @@ export class LoginFormComponent implements OnInit {
   login(form: any){
     console.log(form.value);
     const {email,password} = form.value;
-    console.log(email,password);
-    this.authService.login(email,password).subscribe({
-      next: (response) => {
-        console.log(response);
-      },
-      error: (error) => {
-        console.error(`error ${error}`);
-      },
-      complete: () => console.log("logeado con exito.")
+    this.authService.loginFirebase(email,password)
+    .then(response => {
+      console.log(response);
+      this.router.navigate([''])
     })
+    .catch(error => {
+      console.error(`error : ${error}`);
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'La cuenta ingresada no existe'
+      })
+    });
+  }
+
+  logout(){
+    this.authService.logoutFirebase()
+    .then( () => {
+      alert("Has cerrado sesion.");
+    })
+    .catch( error => console.error(`error: ${error}`))
   }
 
 }
