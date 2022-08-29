@@ -1,5 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { newData } from '../models/newM';
 import { NewsService } from '../news.service';
 
@@ -13,12 +14,12 @@ export class NewsDetailsComponent implements OnInit {
   public id:number;
   public srcImg:string;
   public content:string;
-  constructor(private svc:NewsService) {
-    this.myTitle="";
-    this.id=this.svc.getId();
+  constructor(private svc:NewsService, private ruta:ActivatedRoute) {
+    this.id=this.getId();
    }
 
   ngOnInit(): void {
+    this.verNovedad(this.id);
   }
 
   public verNovedad(id:number){
@@ -34,4 +35,7 @@ export class NewsDetailsComponent implements OnInit {
     })
   }
 
+  public getId():number{
+    return this.ruta.snapshot.params['id'];
+  }
 }
