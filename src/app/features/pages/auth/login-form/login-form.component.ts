@@ -39,10 +39,11 @@ export class LoginFormComponent implements OnInit {
   login(form: any){
     console.log(form.value);
     const {email,password} = form.value;
+    
     this.authService.loginFirebase(email,password)
     .then(response => {
       console.log(response);
-      this.router.navigate([''])
+      this.router.navigate(['']);
     })
     .catch(error => {
       console.error(`error : ${error}`);
@@ -52,14 +53,6 @@ export class LoginFormComponent implements OnInit {
         text: 'La cuenta ingresada no existe'
       })
     });
-  }
-
-  logout(){
-    this.authService.logoutFirebase()
-    .then( () => {
-      alert("Has cerrado sesion.");
-    })
-    .catch( error => console.error(`error: ${error}`))
   }
 
 }

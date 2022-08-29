@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Auth } from '@angular/fire/auth';
+import { Auth, onAuthStateChanged} from '@angular/fire/auth';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from '@angular/fire/auth';
 
 @Injectable({
@@ -41,4 +41,5 @@ export class AuthService {
   logoutFirebase(){
     return signOut(this.auth);
   }
+
 }

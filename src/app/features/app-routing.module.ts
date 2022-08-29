@@ -8,7 +8,7 @@ import { HomePageComponent } from "./pages/home/home-page/home-page.component";
 import { RegisterFormComponent } from "./pages/auth/register-form/register-form.component";
 import { LoginFormComponent } from "./pages/auth/login-form/login-form.component";
 import { ContactViewComponent } from "./pages/contact/contact-view/contact-view.component";
-import { canActivate, redirectUnauthorizedTo } from "@angular/fire/auth-guard";
+import { canActivate, redirectUnauthorizedTo, redirectLoggedInTo } from "@angular/fire/auth-guard";
 
 const routes: Routes = [
   {
@@ -24,7 +24,7 @@ const routes: Routes = [
     path: "actividades",
     component: ActivityFormComponent,
   },
-  { 
+  {
     path: "contacto", 
     component: ContactViewComponent 
   },
@@ -41,11 +41,13 @@ const routes: Routes = [
   },
   {
     path: "register",
-    component: RegisterFormComponent
+    component: RegisterFormComponent,
+    ...canActivate( () => redirectLoggedInTo(['']))
   },
   {
     path: "login",
-    component: LoginFormComponent
+    component: LoginFormComponent,
+    ...canActivate( () => redirectLoggedInTo(['']))
   },
 ];
 
