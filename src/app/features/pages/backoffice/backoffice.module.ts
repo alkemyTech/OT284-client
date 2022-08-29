@@ -12,6 +12,8 @@ import { MatInputModule } from "@angular/material/input";
 import { MatButtonModule } from "@angular/material/button";
 import { NgxMatFileInputModule } from "@angular-material-components/file-input";
 import { FormMapComponent } from "./users/form-create-user/form-map/form-map.component";
+import { MemberFormComponent } from './members/member-form/member-form.component';
+import {MatFormFieldModule} from '@angular/material/form-field';
 
 @NgModule({
   declarations: [
@@ -20,6 +22,7 @@ import { FormMapComponent } from "./users/form-create-user/form-map/form-map.com
     FormCreateUserComponent,
     UsersComponent,
     FormMapComponent,
+    MemberFormComponent,
   ],
   imports: [
     CommonModule,
@@ -28,6 +31,7 @@ import { FormMapComponent } from "./users/form-create-user/form-map/form-map.com
     MatButtonModule,
     NgxMatFileInputModule,
     MatInputModule,
+    MatFormFieldModule,
     SharedModule,
   ],
 })

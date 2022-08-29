@@ -4,6 +4,7 @@ import { RouterModule, Routes } from "@angular/router";
 import { UsersComponent } from "./users/users.component";
 import { FormCreateUserComponent } from "./users/form-create-user/form-create-user.component";
 import { EditHomeComponent } from "./edit-home/edit-home.component";
+import { MemberFormComponent } from "./members/member-form/member-form.component";
 
 const routes: Routes = [
   {
@@ -25,6 +26,10 @@ const routes: Routes = [
   {
     path: "home",
     component: EditHomeComponent,
+  },
+  {
+    path: "members/edit",
+    component: MemberFormComponent
   },
 ];
 

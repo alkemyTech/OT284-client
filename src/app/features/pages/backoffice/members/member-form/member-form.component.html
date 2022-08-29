@@ -1,0 +1,40 @@
+<div class="container">
+    <div class="row-flex">
+        <div class="card">
+            <h4 class="title">EDITAR MIEMBRO</h4>
+            <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                <!-- <div class="form-floating mb-3"> -->
+                <mat-form-field appearance="fill" class="full-width">
+                    <mat-label>Nombre</mat-label>
+                    <input formControlName="name" type="text" matInput>
+                    <mat-error *ngIf="invalidInput('name')">
+                        El nombre es obligatorio. (Al menos 4 caracteres)
+                    </mat-error>
+                </mat-form-field>
+                <!-- </div> -->
+                <div class="full-width mb-3">
+                    <input (change)="onFileSelected($event)" type="file" class="form-control border-0 border-bottom shadow-none" id="imagen" placeholder="URL de imagen">
+                    <p *ngIf="invalidInput('image')" class="text-danger text-center">La imagen es obligatoria. (Debe ser .png o .jpg)</p>
+                </div>
+                <mat-form-field appearance="fill" class="full-width">
+                    <mat-label>Facebook url</mat-label>
+                    <input formControlName="facebookUrl" type="text" matInput>
+                    <mat-error *ngIf="invalidInput('facebookUrl')">
+                        Ingrese un link válido.
+                    </mat-error>
+                </mat-form-field>
+                <br>
+                <mat-form-field appearance="fill" class="full-width">
+                    <mat-label>LinkedIn url</mat-label>
+                    <input formControlName="linkedinUrl" type="text" matInput>
+                    <mat-error *ngIf="invalidInput('linkedinUrl')">
+                        Ingrese un link válido.
+                    </mat-error>
+                </mat-form-field>
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-outline-primary rounded-pill p-3 fw-bold">EDITAR MIEMBRO</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
