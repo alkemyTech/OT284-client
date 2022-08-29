@@ -5,6 +5,9 @@ import { Organization } from '../../../../shared/interfaces/organization';
 import { AppState } from '../../../../state/app.state';
 import { selectOrganization } from '../../../../state/selectors/organization.selectors';
 
+/* ckeditor */
+import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+
 @Component({
   selector: 'app-about-us',
   templateUrl: './about-us.component.html',
@@ -13,6 +16,7 @@ import { selectOrganization } from '../../../../state/selectors/organization.sel
 export class AboutUsComponent implements OnInit {
 
   organization$: Observable<Organization>
+  Editor = ClassicEditor;
 
   constructor( private store: Store<AppState> ) { }
 
