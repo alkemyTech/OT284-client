@@ -7,7 +7,6 @@ import { NewsService } from '../news.service';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import Swal from 'sweetalert2';
 import Base64UploaderPlugin from 'customBuilder/Base64Upload';
-import { Observable } from 'rxjs';
 
 
 @Component({
@@ -71,8 +70,8 @@ export class NewsFormComponent implements OnInit {
       if(metodo=='post'){
         const novedad=new Novedad(this.sendForm.value);
         novedad.id=0;
-        console.log(novedad);
-        novedad.image=novedad.image.split('data:')[1];
+        let str1=novedad.image.split('src="')[1];
+        novedad.image=str1.split('"')[0];
         this.svcNew.nuevaNew(novedad).subscribe({
           next:(response:Novedad)=>{
             console.log(response);
@@ -86,6 +85,8 @@ export class NewsFormComponent implements OnInit {
         const novedad=new Novedad(this.sendForm.value);
         novedad.id=this.id;
         novedad.updated_at=new Date().toISOString();
+        let str1=novedad.image.split('src="')[1];
+        novedad.image=str1.split('"')[0];
         this.svcNew.modificarNew(novedad).subscribe({
           next:(response:Novedad)=>{
             console.log(response);
@@ -102,7 +103,6 @@ export class NewsFormComponent implements OnInit {
         text: 'Por favor complete los campos'
       })
     }
-    //console.log(metodo, newForm);
   }
 
   get titulo():any{
