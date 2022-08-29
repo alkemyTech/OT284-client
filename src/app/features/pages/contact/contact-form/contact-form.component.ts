@@ -57,7 +57,6 @@ export class ContactFormComponent implements OnInit {
       .open(MatAlertErrorComponent, {
         data: {text:`error al cargar mensaje `, message: err.message},
       })
-        this.messageResponse.emit({ messageResponse: err });
         this.resetForm()
       }
     )
