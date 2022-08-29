@@ -49,17 +49,13 @@ export class ContactFormComponent implements OnInit {
     let contactFormDTO = new contactDTO(this.contactForm.value)
     this.contactService.sendMessage(contactFormDTO).subscribe(
       (data)=>{
-        this.dialog
-        .open(MatAlertErrorComponent, {
-          data: data,
-        })
         this.messageResponse.emit({ messageResponse: data });
         this.resetForm()
       },
       (err)=>{
         this.dialog
       .open(MatAlertErrorComponent, {
-        data: `error al cargar mensaje`,
+        data: {text:`error al cargar mensaje `, message: err.message},
       })
         this.messageResponse.emit({ messageResponse: err });
         this.resetForm()
