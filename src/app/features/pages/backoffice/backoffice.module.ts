@@ -10,8 +10,11 @@ import { EditHomeComponent } from "./edit-home/edit-home.component";
 import { ReactiveFormsModule } from "@angular/forms";
 import { MatInputModule } from "@angular/material/input";
 import { MatButtonModule } from "@angular/material/button";
+import {MatTableModule} from '@angular/material/table';
 import { NgxMatFileInputModule } from "@angular-material-components/file-input";
 import { FormMapComponent } from "./users/form-create-user/form-map/form-map.component";
+import { MembersComponent } from './members/members.component';
+import { CreateMemberComponent } from './members/create-member/create-member.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +23,8 @@ import { FormMapComponent } from "./users/form-create-user/form-map/form-map.com
     FormCreateUserComponent,
     UsersComponent,
     FormMapComponent,
+    MembersComponent,
+    CreateMemberComponent,
   ],
   imports: [
     CommonModule,
@@ -29,6 +34,7 @@ import { FormMapComponent } from "./users/form-create-user/form-map/form-map.com
     NgxMatFileInputModule,
     MatInputModule,
     SharedModule,
+    MatTableModule
   ],
 })
 export class BackofficeModule {}

@@ -1,0 +1,29 @@
+.container-list-members{
+    width: 100%;
+    min-height: 100vh;
+    background-color: wheat;
+    padding-top: 5vh;
+    padding-bottom: 4vh;
+}
+
+table {
+    width: 60%;
+    margin: 0px auto;
+}
+table img{
+    width: 200px;
+    height: 200px;
+}
+h2{
+    display: block;
+    text-align: center;
+    font-size: 5em;
+    padding-bottom: 4vh;
+}
+button{
+    display: block;
+    background-color: rgb(17, 174, 17);
+    color: whitesmoke;
+    margin: 0px auto;
+    margin-bottom: 4vh;
+}
