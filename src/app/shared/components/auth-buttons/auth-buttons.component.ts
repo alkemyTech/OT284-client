@@ -33,6 +33,7 @@ export class AuthButtonsComponent implements OnInit {
         showConfirmButton: false,
         timer: 1500
       }).finally(() => {
+        localStorage.removeItem('uid');
         this.router.navigate(['/login']);
       })
     })

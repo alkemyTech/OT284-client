@@ -43,6 +43,7 @@ export class LoginFormComponent implements OnInit {
     this.authService.loginFirebase(email,password)
     .then(response => {
       console.log(response);
+      localStorage.setItem('uid', response.user.uid);
       this.router.navigate(['']);
     })
     .catch(error => {
