@@ -1,7 +1,17 @@
 <div class="wrapper">
   <div class="container">
     <app-link [routerLink]="routerPath" [linkReference]="linkRef"></app-link>
-    <router-outlet></router-outlet>
+
+    <label for="search">Buscar usuario</label>
+
+    <div class="searchInputs">
+      <input type="text" #searchInput />
+      <select class="selectRole" (change)="roleSearch()" name="" #roleSelect>
+        <option value="0">Todos</option>
+        <option value="2">Usuario</option>
+        <option value="1">Administrador</option>
+      </select>
+    </div>
 
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
       <ng-container matColumnDef="name">
@@ -35,5 +45,3 @@
     </div>
   </div>
 </div>
-
-
