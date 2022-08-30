@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import {map} from 'rxjs/operators';
 import { newData, newM, Novedad } from './models/newM';
-import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +11,7 @@ import { environment } from 'src/environments/environment';
 export class NewsService {
   private api='https://ongapi.alkemy.org/api/news';
   public novedad!:newData;
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient, private ruta: Router) { }
 
   public verNews():Observable<newData[]>{
     return this.http.get<newM>(this.api)
@@ -30,5 +30,9 @@ export class NewsService {
   public modificarNew(novedad:Novedad):Observable<Novedad>{
     return this.http.put<Novedad>(`${this.api}/${novedad.id}`,novedad);
   } 
+
+  public redireccionar():void{
+    this.ruta.navigate(['/novedades']);
+  }
 
 }
