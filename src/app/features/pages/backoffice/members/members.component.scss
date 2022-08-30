@@ -27,3 +27,49 @@ button{
     margin: 0px auto;
     margin-bottom: 4vh;
 }
+
+@media (max-width: 1000px) {
+    table {
+        width: 80%;
+    }
+    h2{
+        font-size: 4em;
+    }
+}
+
+@media (max-width: 700px) {
+    h2{
+        font-size: 3em;
+    }
+    table {
+        width: 90%;
+    }
+
+    table img{
+        width: 150px;
+        height: 150px;
+    }
+}
+
+@media (max-width: 550px) {
+    h2{
+        font-size: 2em;
+    }
+    table {
+        font-size: 1em;
+    }
+
+    table img{
+        width: 100px;
+        height: 100px;
+    }
+    
+    table button{
+        font-size: 10px;
+        width: 3em;
+    }
+
+    table td, table th{
+        font-size: 10px;
+    }
+}
