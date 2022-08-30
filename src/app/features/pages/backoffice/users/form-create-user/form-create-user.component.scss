@@ -1,0 +1,64 @@
+* {
+  color: rgb(37, 37, 37);
+}
+
+.wrapper {
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+mat-form-field {
+  margin-top: 0.5rem;
+}
+
+mat-icon {
+  margin-left: 10px;
+}
+
+.address {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  justify-content: center;
+  align-items: center;
+}
+
+.upload_profile_photo {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 15px;
+  width: 300px;
+}
+
+label {
+  margin: 0.3rem;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-weight: 500;
+}
+
+.invalid-inputs {
+  color: red;
+  font-size: 12px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

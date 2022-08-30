@@ -9,14 +9,22 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatButtonModule} from '@angular/material/button';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { ReactiveFormsModule } from '@angular/forms';
+import { SharedModule } from "src/app/shared/shared.module";
+import { FormCreateUserComponent } from "./users/form-create-user/form-create-user.component";
+import { UsersComponent } from "./users/users.component";
+import { EditHomeComponent } from "./edit-home/edit-home.component";
+import { NgxMatFileInputModule } from "@angular-material-components/file-input";
+import { FormMapComponent } from "./users/form-create-user/form-map/form-map.component";
+
 
 @NgModule({
   declarations: [
     BackofficeComponent,
     NewsFormComponent,
-  ],
-  exports:[
-    NewsFormComponent,
+    EditHomeComponent,
+    FormCreateUserComponent,
+    UsersComponent,
+    FormMapComponent,
   ],
   imports: [
     CommonModule,
@@ -29,5 +37,4 @@ import { ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule
   ]
 })
-
 export class BackofficeModule { }

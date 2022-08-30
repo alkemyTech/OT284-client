@@ -9,14 +9,23 @@ import { CategoriesFormComponent } from "./pages/categories/categories-form/cate
 import { SlidesFormComponent } from "./pages/slides/slides-form/slides-form.component";
 import { TestimonialFormComponent } from "./pages/testimonials/testimonial-form/testimonial-form.component";
 import { UserFormComponent } from "./pages/users/user-form/user-form.component";
-import { NewsCardsComponent } from './pages/news/news-cards/news-cards.component';
-import { AboutViewComponent } from './pages/about/about-view/about-view.component';
-import { MatCardModule } from '@angular/material/card';
-import { MatButtonModule } from '@angular/material/button';
+import { HttpClientModule } from "@angular/common/http";
+import { NewsCardsComponent } from "./pages/news/news-cards/news-cards.component";
+import { AboutViewComponent } from "./pages/about/about-view/about-view.component";
+import { MatCardModule } from "@angular/material/card";
+import { MatButtonModule } from "@angular/material/button";
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
 import { SharedModule } from "../shared/shared.module";
-import { ContactFormComponent } from './pages/contact/contact-form/contact-form.component';
+import { ContactFormComponent } from "./pages/contact/contact-form/contact-form.component";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { MembersViewComponent } from './pages/members/members-view/members-view.component';
+import { ContactViewComponent } from './pages/contact/contact-view/contact-view.component';
 
+import { HomePageComponent } from "./pages/home/home-page/home-page.component";
+import { CarruselComponent } from "./pages/home/carrusel/carrusel.component";
+import { AboutUsComponent } from './pages/about/about-us/about-us.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +39,11 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
     NewsCardsComponent,
     AboutViewComponent,
     ContactFormComponent,
+    HomePageComponent,
+    CarruselComponent,
+    MembersViewComponent,
+    ContactViewComponent,
+    AboutUsComponent,
   ],
   exports: [
     ActivityFormComponent,
@@ -39,9 +53,20 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
     SlidesFormComponent,
     TestimonialFormComponent,
     UserFormComponent,
-    RouterModule
+    RouterModule,
   ],
-  imports: [CommonModule, AppRoutingModule, RouterModule, MatCardModule, MatButtonModule, SharedModule, FormsModule,
-    ReactiveFormsModule],})
-    
+  imports: [
+    CommonModule,
+    AppRoutingModule,
+    RouterModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    SharedModule,
+    MatCardModule,
+    MatButtonModule,
+    MatFormFieldModule,  MatInputModule, MatIconModule, SharedModule,
+    FormsModule,
+    ReactiveFormsModule,
+  ],
+})
 export class FeaturesModule {}

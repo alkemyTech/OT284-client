@@ -1,0 +1,30 @@
+<div *ngIf="organization$ | async as organization">
+    <div class="row">
+        <div class="organization">
+            <h3 [innerHTML]="organization.short_description"></h3>
+            <h3 [innerHTML]="organization.long_description"></h3>
+        </div>
+        <div class="organization-links">
+            <a href="{{organization.facebook_url}}">
+                <button mat-mini-fab class="btn-red">
+                    <i class="fab fa-facebook"></i>
+                </button>
+            </a>
+            <a href="{{organization.linkedin_url}}">
+                <button mat-mini-fab class="btn-red">
+                    <i class="fab fa-linkedin"></i>
+                </button>
+            </a>
+            <a href="{{organization.instagram_url}}">
+                <button mat-mini-fab class="btn-red">
+                    <i class="fab fa-instagram"></i>
+                </button>
+            </a>
+            <a href="{{organization.twitter_url}}">
+                <button mat-mini-fab class="btn-red">
+                    <i class="fab fa-twitter"></i>
+                </button>
+            </a>
+        </div>
+    </div>
+</div>

@@ -2,28 +2,45 @@ import { BackofficeComponent } from './backoffice.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { NewsFormComponent } from '../news/news-form/news-form.component';
-//import { GuardGuard } from './services/guard.guard'; FALTA CREARLO
+import { UsersComponent } from "./users/users.component";
+import { FormCreateUserComponent } from "./users/form-create-user/form-create-user.component";
+import { EditHomeComponent } from "./edit-home/edit-home.component";
+
 
 const routes: Routes = [
-  { 
-    path: "", 
-    component: BackofficeComponent
+  {
+    path: "",
+    component: BackofficeComponent,
+  },
+  {
+    path: "users",
+    component: UsersComponent,
+  },
+  {
+    path: "users/create",
+    component: FormCreateUserComponent,
+  },
+  {
+    path: "users/edit",
+    component: FormCreateUserComponent,
+  },
+  {
+    path: "home",
+    component: EditHomeComponent,
   },
   {
     path:"news/:id",
     component: NewsFormComponent,
-    //canActivate:[GuardGuard]
   },
   {
     path:"news",
     component: NewsFormComponent,
-    //canActivate:[GuardGuard]
   },
 
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class BackofficeRoutingModule { }
+export class BackofficeRoutingModule {}

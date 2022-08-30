@@ -4,29 +4,51 @@ import { CommonModule } from "@angular/common";
 import { RouterModule, Routes } from "@angular/router";
 import { NewsCardsComponent } from "./pages/news/news-cards/news-cards.component";
 import { AboutViewComponent } from "./pages/about/about-view/about-view.component";
+import { HomePageComponent } from "./pages/home/home-page/home-page.component";
+import { RegisterFormComponent } from "./pages/auth/register-form/register-form.component";
+import { LoginFormComponent } from "./pages/auth/login-form/login-form.component";
+import { ContactViewComponent } from "./pages/contact/contact-view/contact-view.component";
+import { canActivate, redirectUnauthorizedTo, redirectLoggedInTo } from "@angular/fire/auth-guard";
 
 const routes: Routes = [
   {
     path: "nosotros",
-    component: AboutViewComponent
-  },
-  { 
-    path: "actividades", 
-    component: ActivityFormComponent 
-  },
-  {
-    path: "backoffice",
-    loadChildren:() => import('./pages/backoffice/backoffice.module').then(m => m.BackofficeModule)
+    component: AboutViewComponent,
   },
   {
     path: "",
-    redirectTo: "actividades",
-    pathMatch: "full",
+    component: HomePageComponent,
+    ...canActivate( () => redirectUnauthorizedTo(['/login']))
   },
   {
-    path:"novedades",
-    component:NewsCardsComponent
-  }
+    path: "actividades",
+    component: ActivityFormComponent,
+  },
+  {
+    path: "contacto", 
+    component: ContactViewComponent 
+  },
+  {
+    path: "backoffice",
+    loadChildren: () =>
+      import("./pages/backoffice/backoffice.module").then(
+        (m) => m.BackofficeModule
+      ),
+  },
+  {
+    path: "novedades",
+    component: NewsCardsComponent,
+  },
+  {
+    path: "register",
+    component: RegisterFormComponent,
+    ...canActivate( () => redirectLoggedInTo(['']))
+  },
+  {
+    path: "login",
+    component: LoginFormComponent,
+    ...canActivate( () => redirectLoggedInTo(['']))
+  },
 ];
 
 @NgModule({
