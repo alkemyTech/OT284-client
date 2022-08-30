@@ -10,11 +10,19 @@ export class NewsUsersService {
   constructor(private httpServ: HttpService, private http: HttpClient) {}
 
   public get(url: string) {
-    return this.httpServ.get(url);
+    return this.httpServ.get(`${url}users`);
+  }
+
+  public getSearch(
+    url: string,
+    querySearch: string,
+    queryRole: number
+  ): Observable<any> {
+    return this.http.get(`${url}users?search=${querySearch}&role=${queryRole}`);
   }
 
   public getID(url: string, id: number): Observable<any> {
-    return this.http.get(`${url}/${id}`);
+    return this.http.get(`${url}users/${id}`);
   }
 
   public post(url: string, body: any): Observable<any> {
@@ -26,6 +34,6 @@ export class NewsUsersService {
   }
 
   public delete(url: string, id: number): Observable<any> {
-    return this.http.delete(`${url}/${id}`);
+    return this.http.delete(`${url}users/${id}`);
   }
 }

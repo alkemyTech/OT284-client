@@ -29,7 +29,6 @@ import { CarruselComponent } from "./pages/home/carrusel/carrusel.component";
 import { AboutUsComponent } from './pages/about/about-us/about-us.component';
 import { NewsDetailsComponent } from './pages/news/news-details/news-details.component';
 
-
 @NgModule({
   declarations: [
     ActivityFormComponent,

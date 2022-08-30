@@ -9,6 +9,8 @@ import { RegisterFormComponent } from "./pages/auth/register-form/register-form.
 import { LoginFormComponent } from "./pages/auth/login-form/login-form.component";
 import { ContactViewComponent } from "./pages/contact/contact-view/contact-view.component";
 import { NewsDetailsComponent } from "./pages/news/news-details/news-details.component";
+import { canActivate, redirectUnauthorizedTo, redirectLoggedInTo } from "@angular/fire/auth-guard";
+
 
 const routes: Routes = [
   {
@@ -18,12 +20,13 @@ const routes: Routes = [
   {
     path: "",
     component: HomePageComponent,
+    ...canActivate( () => redirectUnauthorizedTo(['/login']))
   },
   {
     path: "actividades",
     component: ActivityFormComponent,
   },
-  { 
+  {
     path: "contacto", 
     component: ContactViewComponent 
   },
@@ -44,11 +47,13 @@ const routes: Routes = [
   },
   {
     path: "register",
-    component: RegisterFormComponent
+    component: RegisterFormComponent,
+    ...canActivate( () => redirectLoggedInTo(['']))
   },
   {
     path: "login",
-    component: LoginFormComponent
+    component: LoginFormComponent,
+    ...canActivate( () => redirectLoggedInTo(['']))
   },
 ];
 
