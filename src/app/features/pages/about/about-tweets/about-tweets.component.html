@@ -1,4 +1,9 @@
-<ngx-twitter-timeline 
-	[data]="{sourceType: 'url', url: 'https://twitter.com/AlkemyEquipo'}"
-	[opts]="{tweetLimit: 3}"
-></ngx-twitter-timeline>
+<div class="container">
+    <h1 class="title"><b>Últimas noticias</b></h1>
+    <div class="row-flex">
+        <ngx-twitter-timeline class="full-width"
+	        [data]="{sourceType: 'url', url: 'https://twitter.com/AlkemyEquipo'}"
+	        [opts]="{tweetLimit: 3}">
+        </ngx-twitter-timeline>
+    </div>
+</div>
