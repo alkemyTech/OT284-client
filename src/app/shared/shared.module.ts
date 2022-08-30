@@ -11,11 +11,12 @@ import { MatTableModule } from "@angular/material/table";
 import { MatDialogModule } from "@angular/material/dialog";
 import { TitleComponent } from "./components/title/title.component";
 import { MatAlertDialogComponent } from './components/mat-alert-dialog/mat-alert-dialog.component';
+import { AuthButtonsComponent } from './components/auth-buttons/auth-buttons.component';
 import { PhonePipe } from './helpers/phonePipe';
 import { MatAlertErrorComponent } from './components/mat-alert-error/mat-alert-error.component';
 @NgModule({
   declarations: [LinkComponent, TitleComponent,
-    PhonePipe, MatAlertDialogComponent, MatAlertErrorComponent],
+    PhonePipe, MatAlertDialogComponent, AuthButtonsComponent, MatAlertErrorComponent],
   imports: [CommonModule, RouterModule, MatButtonModule],
   exports: [
     LinkComponent,
@@ -28,7 +29,8 @@ import { MatAlertErrorComponent } from './components/mat-alert-error/mat-alert-e
     MatTableModule,
     MatDialogModule,
     TitleComponent,
-    PhonePipe
+    PhonePipe,
+    AuthButtonsComponent
   ],
 })
 export class SharedModule {}

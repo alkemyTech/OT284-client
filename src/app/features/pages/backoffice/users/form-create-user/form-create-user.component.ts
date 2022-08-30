@@ -13,7 +13,7 @@ import {
   FormGroup,
   Validators,
 } from "@angular/forms";
-import { NewsUsersService } from "../services/newsUsers.service";
+import { NewsUsersService } from "../../../../../core/services/newsUsers.service";
 import { UsersService } from "../services/users.service";
 import { FormMapService } from "./form-map/form-map.service";
 import { MatDialog } from "@angular/material/dialog";
