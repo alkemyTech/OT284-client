@@ -25,6 +25,7 @@ export class NewsFormComponent implements OnInit {
   ]
   public metodo:string="";
   public sendForm!:FormGroup;
+  public image!:string;
 
   constructor(private svcNew:NewsService, private ruta:ActivatedRoute, private formBuilder:FormBuilder) {
     this.newModel={
@@ -38,7 +39,7 @@ export class NewsFormComponent implements OnInit {
         name:["",[Validators.required, Validators.minLength(4)]],
         content:["",[Validators.required, Validators.minLength(200)]],
         category_id:["",[Validators.required]],
-        image:["", []]
+        image:["", [Validators.required]]
       }
     )
    }
@@ -53,9 +54,10 @@ export class NewsFormComponent implements OnInit {
         next:(newM:newData)=>{
           this.newModel=newM;
           this.metodo="put";
-          this.sendForm.controls.name.setValue(this.newModel.name)
-          this.sendForm.controls.content.setValue(this.newModel.content)
-          this.sendForm.controls.image.setValue(this.newModel.image)
+          this.sendForm.controls.name.setValue(this.newModel.name);
+          this.sendForm.controls.content.setValue(this.newModel.content);
+          this.image=this.newModel.image;
+          this.sendForm.controls.image.setValue(this.newModel.image);
           this.sendForm.controls.category_id.setValue(this.newModel.category_id)
         },
         error:(error:HttpErrorResponse)=>{
@@ -70,12 +72,11 @@ export class NewsFormComponent implements OnInit {
       if(metodo=='post'){
         const novedad=new Novedad(this.sendForm.value);
         novedad.id=0;
-        let str1=novedad.image.split('src="')[1];
-        novedad.image=str1.split('"')[0];
+        this.obtenerImg(novedad);
         this.svcNew.nuevaNew(novedad).subscribe({
           next:(response:Novedad)=>{
             console.log(response);
-            this.sendForm.reset;
+            this.svcNew.redireccionar();
           },
           error:(error:HttpErrorResponse)=>{
             console.log(error.message);
@@ -85,12 +86,13 @@ export class NewsFormComponent implements OnInit {
         const novedad=new Novedad(this.sendForm.value);
         novedad.id=this.id;
         novedad.updated_at=new Date().toISOString();
-        let str1=novedad.image.split('src="')[1];
-        novedad.image=str1.split('"')[0];
+        if(novedad.image.includes('base64')){
+          this.obtenerImg(novedad);
+        }
         this.svcNew.modificarNew(novedad).subscribe({
           next:(response:Novedad)=>{
             console.log(response);
-            this.sendForm.reset;
+            this.svcNew.redireccionar();
           },error:(error:HttpErrorResponse)=>{
             console.log(error.message);
           }
@@ -119,6 +121,11 @@ export class NewsFormComponent implements OnInit {
   
   get imagen():any{
     return this.sendForm.get('image');
+  }
+
+  private obtenerImg(novedad:Novedad):void{
+    let str1=novedad.image.split('src="')[1];
+    novedad.image=str1.split('"')[0];
   }
 
 }
