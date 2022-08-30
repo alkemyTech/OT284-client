@@ -12,6 +12,7 @@ import { MatInputModule } from "@angular/material/input";
 import { MatButtonModule } from "@angular/material/button";
 import { NgxMatFileInputModule } from "@angular-material-components/file-input";
 import { FormMapComponent } from "./users/form-create-user/form-map/form-map.component";
+import { TermsAndConditionsComponent } from "./users/form-create-user/terms-and-conditions/terms-and-conditions.component";
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { FormMapComponent } from "./users/form-create-user/form-map/form-map.com
     FormCreateUserComponent,
     UsersComponent,
     FormMapComponent,
+    TermsAndConditionsComponent,
   ],
   imports: [
     CommonModule,

@@ -3,13 +3,8 @@ import { MatDialog } from "@angular/material/dialog";
 import { MatPaginator } from "@angular/material/paginator";
 import { MatTableDataSource } from "@angular/material/table";
 import { Router } from "@angular/router";
-import { fromEvent, merge } from "rxjs";
-import {
-  debounceTime,
-  distinctUntilChanged,
-  filter,
-  map,
-} from "rxjs/operators";
+import { fromEvent } from "rxjs";
+import { debounceTime, distinctUntilChanged, map } from "rxjs/operators";
 
 import { MatAlertDialogComponent } from "src/app/shared/components/mat-alert-dialog/mat-alert-dialog.component";
 import { environment } from "src/environments/environment";
@@ -36,7 +31,6 @@ export class UsersComponent implements OnInit {
   @ViewChild("users", { static: false })
   paginator: MatPaginator;
   row: apiData[] = [];
-  urlAPI: string = "https://ongapi.alkemy.org/api/users";
   linkRef = "Crear Usuario";
   routerPath = "create";
   pageIndex = 0;
@@ -45,8 +39,6 @@ export class UsersComponent implements OnInit {
   searchInput: ElementRef;
   @ViewChild("roleSelect", { static: true })
   roleSelect: ElementRef;
-  @ViewChild("map", { static: false })
-  map: HTMLElement;
 
   constructor(
     private user: UsersService,
@@ -101,17 +93,23 @@ export class UsersComponent implements OnInit {
     const realIndex = i + this.pageIndex * this.pageSize;
     this.user.editUserData = this.row[realIndex];
     this.router.navigateByUrl("backoffice/users/edit");
+    this.user.userIsEditing = true;
   }
 
   deleteUser(i: number) {
+    const realIndex = i + this.pageIndex * this.pageSize;
     this.dialog
       .open(MatAlertDialogComponent, {
-        data: `¿Estás seguro que deseas borrar el usuario ${this.row[i].name}?`,
+        data: {
+          title: "Confirmación",
+          message: `¿Estás seguro que deseas borrar el usuario ${this.row[realIndex].name}?`,
+          confirmText: "Sí",
+          cancelText: "No",
+        },
       })
       .afterClosed()
       .subscribe((confirmado: Boolean) => {
         if (confirmado) {
-          const realIndex = i + this.pageIndex * this.pageSize;
           this.http
             .delete(environment.url, this.row[realIndex].id)
             .subscribe((data) => {
