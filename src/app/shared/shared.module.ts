@@ -10,11 +10,16 @@ import { MatPaginatorModule } from "@angular/material/paginator";
 import { MatTableModule } from "@angular/material/table";
 import { MatDialogModule } from "@angular/material/dialog";
 import { TitleComponent } from "./components/title/title.component";
-import { MatAlertDialogComponent } from './components/mat-alert-dialog/mat-alert-dialog.component';
-import { PhonePipe } from './helpers/phonePipe';
+import { MatAlertDialogComponent } from "./components/mat-alert-dialog/mat-alert-dialog.component";
+import { MatCheckboxModule } from "@angular/material/checkbox";
+import { PhonePipe } from "./helpers/phonePipe";
 @NgModule({
-  declarations: [LinkComponent, TitleComponent,
-    PhonePipe, MatAlertDialogComponent],
+  declarations: [
+    LinkComponent,
+    TitleComponent,
+    PhonePipe,
+    MatAlertDialogComponent,
+  ],
   imports: [CommonModule, RouterModule, MatButtonModule],
   exports: [
     LinkComponent,
@@ -27,7 +32,8 @@ import { PhonePipe } from './helpers/phonePipe';
     MatTableModule,
     MatDialogModule,
     TitleComponent,
-    PhonePipe
+    PhonePipe,
+    MatCheckboxModule,
   ],
 })
 export class SharedModule {}
