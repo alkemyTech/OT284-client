@@ -11,10 +11,13 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { ROOT_REDUCERS } from "./state/app.state";
 import { EffectsModule } from '@ngrx/effects';
 import { OrganizationEffects } from './state/effects/organization.effects';
+import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
+import { environment } from '../environments/environment';
+import { provideAuth,getAuth } from '@angular/fire/auth';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, CoreModule, FeaturesModule, NoopAnimationsModule, StoreModule.forRoot(ROOT_REDUCERS), StoreDevtoolsModule.instrument({ name: 'TEST' }), EffectsModule.forRoot([OrganizationEffects]),LeafletModule],
+  imports: [BrowserModule, CoreModule, FeaturesModule, NoopAnimationsModule, StoreModule.forRoot(ROOT_REDUCERS), StoreDevtoolsModule.instrument({ name: 'TEST' }), EffectsModule.forRoot([OrganizationEffects]), provideFirebaseApp(() => initializeApp(environment.firebase)), provideAuth(() => getAuth()),LeafletModule],
   providers: [],
   bootstrap: [AppComponent],
 })

@@ -11,13 +11,14 @@ import { MatTableModule } from "@angular/material/table";
 import { MatDialogModule } from "@angular/material/dialog";
 import { TitleComponent } from "./components/title/title.component";
 import { MatAlertDialogComponent } from './components/mat-alert-dialog/mat-alert-dialog.component';
+import { AuthButtonsComponent } from './components/auth-buttons/auth-buttons.component';
 import { PhonePipe } from './helpers/phonePipe';
 import { MapWindowComponent } from './components/map-window/map-window.component';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 
 @NgModule({
   declarations: [LinkComponent, TitleComponent,
-    PhonePipe, MatAlertDialogComponent, MapWindowComponent],
+    PhonePipe, MatAlertDialogComponent, AuthButtonsComponent, MapWindowComponent],
   imports: [CommonModule, RouterModule, MatButtonModule, LeafletModule],
   exports: [
     LinkComponent,
@@ -31,6 +32,7 @@ import { LeafletModule } from '@asymmetrik/ngx-leaflet';
     MatDialogModule,
     TitleComponent,
     PhonePipe,
+    AuthButtonsComponent,
     MapWindowComponent
   ],
 })
