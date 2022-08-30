@@ -10,6 +10,7 @@ import { LoginFormComponent } from "./pages/auth/login-form/login-form.component
 import { ContactViewComponent } from "./pages/contact/contact-view/contact-view.component";
 import { NewsDetailsComponent } from "./pages/news/news-details/news-details.component";
 import { canActivate, redirectUnauthorizedTo, redirectLoggedInTo } from "@angular/fire/auth-guard";
+import { AuthGuardGuard } from "./pages/auth/guards/auth-guard.guard";
 
 
 const routes: Routes = [
@@ -40,6 +41,7 @@ const routes: Routes = [
   {
     path: "novedades",
     component: NewsCardsComponent,
+    canActivate: [AuthGuardGuard]
   },
   {
     path:"novedades/:id",
