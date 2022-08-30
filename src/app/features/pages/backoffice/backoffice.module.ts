@@ -14,6 +14,7 @@ import { NgxMatFileInputModule } from "@angular-material-components/file-input";
 import { FormMapComponent } from "./users/form-create-user/form-map/form-map.component";
 import { MemberFormComponent } from './members/member-form/member-form.component';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import { CKEditorModule } from "@ckeditor/ckeditor5-angular";
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     MatInputModule,
     MatFormFieldModule,
     SharedModule,
+    CKEditorModule,
   ],
 })
 export class BackofficeModule {}

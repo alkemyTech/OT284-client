@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-// import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 @Component({
   selector: 'app-member-form',
@@ -12,7 +12,7 @@ export class MemberFormComponent implements OnInit {
 
   form!: FormGroup;
   file!: any;
-  // Editor = ClassicEditor;
+  Editor = ClassicEditor;
 
   constructor( private fb: FormBuilder ) { }
 
@@ -24,7 +24,7 @@ export class MemberFormComponent implements OnInit {
     this.form = this.fb.group({
       name: ['', [Validators.minLength(4), Validators.required]],
       image: ['', [Validators.required]],
-      // description: ['', [Validators.required]],
+      description: ['', [Validators.required]],
       facebookUrl: ['', [Validators.pattern(/^(http\:\/\/|https:\/\/)?(www.)?(facebook.com\/)((@)?[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF0-9A-Za-z. \-%]{1,}\/?)$/i), Validators.required]],
       linkedinUrl: ['', [Validators.pattern(/^(http(s)?:\/\/)?([\w]+\.)?linkedin\.com\/(pub|in|profile)/gm), Validators.required]]
     })
