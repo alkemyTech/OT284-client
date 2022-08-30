@@ -12,6 +12,7 @@ import { MatDialogModule } from "@angular/material/dialog";
 import { TitleComponent } from "./components/title/title.component";
 import { MatAlertDialogComponent } from "./components/mat-alert-dialog/mat-alert-dialog.component";
 import { MatCheckboxModule } from "@angular/material/checkbox";
+import { AuthButtonsComponent } from "./components/auth-buttons/auth-buttons.component";
 import { PhonePipe } from "./helpers/phonePipe";
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { PhonePipe } from "./helpers/phonePipe";
     TitleComponent,
     PhonePipe,
     MatAlertDialogComponent,
+    AuthButtonsComponent,
   ],
   imports: [CommonModule, RouterModule, MatButtonModule],
   exports: [
@@ -34,6 +36,7 @@ import { PhonePipe } from "./helpers/phonePipe";
     TitleComponent,
     PhonePipe,
     MatCheckboxModule,
+    AuthButtonsComponent,
   ],
 })
 export class SharedModule {}
