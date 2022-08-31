@@ -18,6 +18,13 @@ export const environment = {
       create:"https://ongapi.alkemy.org/api/contacts",
       edit:"https://ongapi.alkemy.org/api/contacts/?id=${id}",
       delete:"https://ongapi.alkemy.org/api/contacts/?id=${id}",
+    },
+    novedades:{
+      list:"https://ongapi.alkemy.org/api/news",
+      detail(id:number){return `https://ongapi.alkemy.org/api/news/${id}`},
+      create:"https://ongapi.alkemy.org/api/news",
+      edit(id:number){return `https://ongapi.alkemy.org/api/news/${id}`},
+      delete(id:number){return `https://ongapi.alkemy.org/api/news/${id}`}
     }
   },
   url: "https://ongapi.alkemy.org/api/"
