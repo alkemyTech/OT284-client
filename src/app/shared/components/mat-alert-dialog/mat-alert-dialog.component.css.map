@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "mat-alert-dialog.component.scss"
+    ],
+    "names": [],
+    "file": "mat-alert-dialog.component.css"
+}
