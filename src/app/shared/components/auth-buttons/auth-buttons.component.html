@@ -1,0 +1,3 @@
+<button class="btn-login" *ngIf="userid == null" mat-stroked-button (click)="login()">Iniciar Sesión</button>
+<button class="btn-logout-register" *ngIf="userid != null" mat-raised-button (click)="logout()">Cerrar Sesión</button>
+<button class="btn-logout-register" *ngIf="userid == null" mat-raised-button (click)="register()">Registrate</button>

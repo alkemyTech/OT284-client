@@ -16,6 +16,7 @@
                 <div *ngIf="!mostrarFechaAct(new.created_at,new.updated_at)">
                     <p>Fecha de creación: {{new.created_at | date :'dd/MM/yy'}}</p>
                 </div> 
+                <button type="button" (click)="detalleVer(new)" mat-raised-button color="primary">VER DETALLE</button>
             </div>
         </div>  
     </div>
