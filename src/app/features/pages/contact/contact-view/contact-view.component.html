@@ -23,14 +23,17 @@
 			<div class="form-image">
 				<h3 class="title2">Completa el formulario de contacto</h3>
 				<div class="contact-form-container">
-					<app-contact-form (messageResponse)="receiveMessage($event)" class="form"></app-contact-form>
+					<section>
+						<app-contact-form (messageResponse)="receiveMessage($event)" class="form"></app-contact-form>
+						<app-map-window [address]="address"></app-map-window>
+					</section>
 					<div id="form-message-success">
 						{{messageResponse}}
 					</div>
 					<div class="image-container">
 						<img src="{{organization.logo}}" alt="Imagen ONG">
 					</div>
-					<app-map-window></app-map-window>
+					
 				</div>
 				
 			</div>
