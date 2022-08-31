@@ -1,0 +1,39 @@
+<div [style.margin.px]="5" class="centrado">
+    <app-link [linkReference]="linkReference" [routerLink]="linkCrear"></app-link>
+</div>
+
+
+<table mat-table class="mat-elevation-z8 demo-table" [dataSource]="newsList">
+    <!--Imagen -->
+    <ng-container matColumnDef="demo-image">
+      <th mat-header-cell *matHeaderCellDef> Imagen </th>
+      <td mat-cell *matCellDef="let new"> <img [src]="new.image"></td>
+    </ng-container>
+  
+    <!-- Name -->
+    <ng-container matColumnDef="demo-name">
+      <th mat-header-cell *matHeaderCellDef> Titulo </th>
+      <td mat-cell *matCellDef="let new"> {{new.name}} </td>
+    </ng-container>
+  
+    <!-- Created_At -->
+    <ng-container matColumnDef="demo-date">
+      <th mat-header-cell *matHeaderCellDef> Fecha de creación </th>
+      <td mat-cell *matCellDef="let new"> {{new.created_at | date :'dd/MM/yy'}} </td>
+    </ng-container>
+  
+    <!-- Delete action -->
+    <ng-container matColumnDef="demo-delete">
+      <th mat-header-cell *matHeaderCellDef>  </th>
+      <td mat-cell *matCellDef="let new"> <button type="button" (click)="eliminar(new.id)" mat-raised-button color="warn">ELIMINAR</button></td>
+    </ng-container>
+
+    <!-- Modify action -->
+    <ng-container matColumnDef="demo-modify">
+        <th mat-header-cell *matHeaderCellDef> </th>
+        <td mat-cell *matCellDef="let new"> <button type="button" (click)="modificar(new.id)" mat-raised-button color="primary">MODIFICAR</button></td>
+      </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
