@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { TestimonialsService } from 'src/app/core/services/testimonials.service';
+import { Testimonial } from 'src/app/shared/interfaces/testimonial';
 
 @Component({
   selector: 'app-testimonial-form',
@@ -11,7 +13,7 @@ export class TestimonialFormComponent implements OnInit {
   public formulario!: FormGroup;
   @Input() element: any = {}
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private service: TestimonialsService) {
     this.formulario = this.fb.group({
       'txtName': [this.element.name ? this.element.name : '', [Validators.required, Validators.minLength(4)]],
       'txtDescription': [this.element.description ? this.element.description : '', [Validators.required]],
@@ -20,6 +22,15 @@ export class TestimonialFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.service.getTestimonials().subscribe((data: any) => {
+
+      if (data.success) {
+        console.log(data.data);
+      } else {
+        //error
+      }
+
+    })
   }
 
   enviar() {
