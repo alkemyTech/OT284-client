@@ -16,7 +16,7 @@
 
         <div class="contenedor-imagen-texto">
             <mat-form-field class="form-field" appearance="fill">
-                <ngx-mat-file-input formControlName="img" matInput placeholder="Seleccione una imagen">
+                <ngx-mat-file-input  (change)="fileEvent($event)" formControlName="img" matInput placeholder="Seleccione una imagen">
                 </ngx-mat-file-input>
             </mat-form-field>
         </div>
