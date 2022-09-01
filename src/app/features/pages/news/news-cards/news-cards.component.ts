@@ -12,6 +12,7 @@ import { NewsService } from '../news.service';
 })
 export class NewsCardsComponent implements OnInit {
   public newsLista: newData[]=[]
+  public newModel!:newData;
 
   constructor(private newsService: NewsService, private ruta:Router) {
     
@@ -43,9 +44,16 @@ export class NewsCardsComponent implements OnInit {
     return result;
   }
 
+  public modificar(newModel:newData){
+    this.ruta.navigate([`backoffice/news/${newModel.id}`]);
+  }
+  
+  public crear(){
+    this.ruta.navigate(['backoffice/news']);
+  }
+  
   public detalleVer(novedad:newData){
     this.ruta.navigate([`novedades/${novedad.id}`]);
   }
 
-  
 }
