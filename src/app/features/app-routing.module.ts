@@ -11,6 +11,7 @@ import { ContactViewComponent } from "./pages/contact/contact-view/contact-view.
 import { NewsDetailsComponent } from "./pages/news/news-details/news-details.component";
 import { canActivate, redirectUnauthorizedTo, redirectLoggedInTo } from "@angular/fire/auth-guard";
 import { AuthGuardGuard } from "./pages/auth/guards/auth-guard.guard";
+import { CategoriesFormComponent } from "./pages/categories/categories-form/categories-form.component";
 
 
 const routes: Routes = [
@@ -56,6 +57,10 @@ const routes: Routes = [
     path: "login",
     component: LoginFormComponent,
     ...canActivate( () => redirectLoggedInTo(['']))
+  },
+  {
+    path: "categorias/edit",
+    component: CategoriesFormComponent
   },
 ];
 

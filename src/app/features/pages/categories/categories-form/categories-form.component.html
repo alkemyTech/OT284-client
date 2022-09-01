@@ -1,1 +1,35 @@
-<p>categories-form works!</p>
+<div class="container">
+    <div class="row-flex">
+        <div class="card">
+            <h4 class="title">EDITAR CATEGORÍA</h4>
+            <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                <mat-form-field appearance="fill" class="full-width margin-y">
+                    <mat-label>Nombre</mat-label>
+                    <input formControlName="name" type="text" matInput>
+                    <mat-error *ngIf="invalidInput('name')">
+                        El nombre es obligatorio. (Al menos 4 caracteres)
+                    </mat-error>
+                </mat-form-field>
+                <div class="margin-y">
+                    <input (change)="onFileSelected($event)" type="file" class="item-center" id="imagen">
+                    <mat-error *ngIf="invalidInput('description')">
+                        La imagen es obligatoria. (Debe ser .png o .jpg)
+                    </mat-error>
+                </div>
+                <div class="row-flex">
+                    <div class="margin-y full-width">
+                        <ckeditor formControlName="description" [editor]="Editor" data="" class=""></ckeditor>
+                        <mat-error *ngIf="invalidInput('description')">
+                            La descripción es obligatoria.
+                        </mat-error>
+                    </div>
+                </div>
+                <div class="row-flex">
+                    <div class="margin-y full-width">
+                        <button mat-raised-button color="warn">EDITAR CATEGORÍA</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
