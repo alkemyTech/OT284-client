@@ -28,13 +28,17 @@ import { FormMapComponent } from "./users/form-create-user/form-map/form-map.com
   ],
   imports: [
     CommonModule,
+    ReactiveFormsModule,
     BackofficeRoutingModule,
     MatInputModule,
     MatFormFieldModule,
     MatSelectModule,
     MatButtonModule,
+    NgxMatFileInputModule,
+    MatInputModule,
+    MatFormFieldModule,
+    SharedModule,
     CKEditorModule,
-    ReactiveFormsModule
-  ]
+  ],
 })
-export class BackofficeModule { }
+export class BackofficeModule {}
