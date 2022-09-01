@@ -73,7 +73,7 @@ import { NgxTwitterTimelineModule } from 'ngx-twitter-timeline';
     MatFormFieldModule,  MatInputModule, MatIconModule, SharedModule,
     FormsModule,
     ReactiveFormsModule,
-    NgxTwitterTimelineModule,
+    NgxTwitterTimelineModule
   ],
 })
 export class FeaturesModule {}
