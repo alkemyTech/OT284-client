@@ -14,6 +14,7 @@ import {MatTableModule} from '@angular/material/table';
 import { NgxMatFileInputModule } from "@angular-material-components/file-input";
 import { FormMapComponent } from "./users/form-create-user/form-map/form-map.component";
 import { MembersComponent } from './members/members.component';
+import { CreateMemberComponent } from './members/create-member/create-member.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { MembersComponent } from './members/members.component';
     FormCreateUserComponent,
     UsersComponent,
     FormMapComponent,
-    MembersComponent
+    MembersComponent,
+    CreateMemberComponent,
   ],
   imports: [
     CommonModule,
