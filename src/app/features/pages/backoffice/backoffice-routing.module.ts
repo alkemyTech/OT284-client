@@ -1,11 +1,13 @@
-import { BackofficeComponent } from "./backoffice.component";
-import { NgModule } from "@angular/core";
-import { RouterModule, Routes } from "@angular/router";
+import { BackofficeComponent } from './backoffice.component';
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { NewsFormComponent } from '../news/news-form/news-form.component';
 import { UsersComponent } from "./users/users.component";
 import { FormCreateUserComponent } from "./users/form-create-user/form-create-user.component";
 import { EditHomeComponent } from "./edit-home/edit-home.component";
+
 import { MembersComponent } from "./members/members.component";
-import { CreateMemberComponent } from "./members/create-member/create-member.component";
+import { CreateMemberComponent } from './members/create-member/create-member.component';
 
 const routes: Routes = [
   {
@@ -28,6 +30,19 @@ const routes: Routes = [
     path: "home",
     component: EditHomeComponent,
   },
+  {
+    path: "members/edit",
+    component: MemberFormComponent
+  },
+  {
+    path:"news/:id",
+    component: NewsFormComponent,
+  },
+  {
+    path:"news",
+    component: NewsFormComponent,
+  },
+
   {
     path: "members",
     component: MembersComponent
