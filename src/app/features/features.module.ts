@@ -6,7 +6,6 @@ import { ActivityFormComponent } from "./pages/activities/activity-form/activity
 import { LoginFormComponent } from "./pages/auth/login-form/login-form.component";
 import { RegisterFormComponent } from "./pages/auth/register-form/register-form.component";
 import { CategoriesFormComponent } from "./pages/categories/categories-form/categories-form.component";
-import { NewsFormComponent } from "./pages/news/news-form/news-form.component";
 import { SlidesFormComponent } from "./pages/slides/slides-form/slides-form.component";
 import { TestimonialFormComponent } from "./pages/testimonials/testimonial-form/testimonial-form.component";
 import { UserFormComponent } from "./pages/users/user-form/user-form.component";
@@ -29,6 +28,9 @@ import { CarruselComponent } from "./pages/home/carrusel/carrusel.component";
 import { AboutUsComponent } from './pages/about/about-us/about-us.component';
 import { NgxMatFileInputModule } from "@angular-material-components/file-input";
 import { NewsDetailsComponent } from './pages/news/news-details/news-details.component';
+import { AboutTweetsComponent } from './pages/about/about-tweets/about-tweets.component';
+import { NgxTwitterTimelineModule } from 'ngx-twitter-timeline';
+
 
 @NgModule({
   declarations: [
@@ -36,7 +38,6 @@ import { NewsDetailsComponent } from './pages/news/news-details/news-details.com
     LoginFormComponent,
     RegisterFormComponent,
     CategoriesFormComponent,
-    NewsFormComponent,
     SlidesFormComponent,
     TestimonialFormComponent,
     UserFormComponent,
@@ -49,13 +50,13 @@ import { NewsDetailsComponent } from './pages/news/news-details/news-details.com
     ContactViewComponent,
     AboutUsComponent,
     NewsDetailsComponent,
+    AboutTweetsComponent,
   ],
   exports: [
     ActivityFormComponent,
     LoginFormComponent,
     RegisterFormComponent,
     CategoriesFormComponent,
-    NewsFormComponent,
     SlidesFormComponent,
     TestimonialFormComponent,
     UserFormComponent,
@@ -74,6 +75,7 @@ import { NewsDetailsComponent } from './pages/news/news-details/news-details.com
     NgxMatFileInputModule,
     FormsModule,
     ReactiveFormsModule,
+    NgxTwitterTimelineModule,
   ],
 })
 export class FeaturesModule {}
