@@ -1,0 +1,16 @@
+p{
+    color: red;
+}
+#title{
+    color: red;
+}
+
+#button{
+    display: flex;
+    flex-direction: row-reverse;
+    border-radius: 35px;
+    cursor: pointer;
+}
+#button:hover {
+        color: blue;
+}

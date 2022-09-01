@@ -1,0 +1,35 @@
+.contenedor {
+  padding: 5% 10%;
+}
+
+.contenedor .form {
+  min-width: 150px;
+  width: 100%;
+}
+
+.contenedor .form .contenedor-imagen-texto {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
+  margin-bottom: 2em;
+}
+
+.contenedor .form .form-field {
+  width: 100%;
+}
+
+.contenedor .form .form-field .noresize {
+  resize: none;
+}
+
+@media screen and (min-width: 600px) {
+  .contenedor .form .contenedor-imagen-texto .form-field {
+    width: 50%;
+    padding: 10px;
+  }
+}
+/*# sourceMappingURL=edit-home.component.css.map */

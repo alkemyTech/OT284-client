@@ -6,7 +6,6 @@ import { ActivityFormComponent } from "./pages/activities/activity-form/activity
 import { LoginFormComponent } from "./pages/auth/login-form/login-form.component";
 import { RegisterFormComponent } from "./pages/auth/register-form/register-form.component";
 import { CategoriesFormComponent } from "./pages/categories/categories-form/categories-form.component";
-import { NewsFormComponent } from "./pages/news/news-form/news-form.component";
 import { SlidesFormComponent } from "./pages/slides/slides-form/slides-form.component";
 import { TestimonialFormComponent } from "./pages/testimonials/testimonial-form/testimonial-form.component";
 import { UserFormComponent } from "./pages/users/user-form/user-form.component";
@@ -27,6 +26,9 @@ import { ContactViewComponent } from './pages/contact/contact-view/contact-view.
 import { HomePageComponent } from "./pages/home/home-page/home-page.component";
 import { CarruselComponent } from "./pages/home/carrusel/carrusel.component";
 import { AboutUsComponent } from './pages/about/about-us/about-us.component';
+import { NewsDetailsComponent } from './pages/news/news-details/news-details.component';
+import { AboutTweetsComponent } from './pages/about/about-tweets/about-tweets.component';
+import { NgxTwitterTimelineModule } from 'ngx-twitter-timeline';
 
 
 @NgModule({
@@ -35,7 +37,6 @@ import { AboutUsComponent } from './pages/about/about-us/about-us.component';
     LoginFormComponent,
     RegisterFormComponent,
     CategoriesFormComponent,
-    NewsFormComponent,
     SlidesFormComponent,
     TestimonialFormComponent,
     UserFormComponent,
@@ -47,13 +48,14 @@ import { AboutUsComponent } from './pages/about/about-us/about-us.component';
     MembersViewComponent,
     ContactViewComponent,
     AboutUsComponent,
+    NewsDetailsComponent,
+    AboutTweetsComponent,
   ],
   exports: [
     ActivityFormComponent,
     LoginFormComponent,
     RegisterFormComponent,
     CategoriesFormComponent,
-    NewsFormComponent,
     SlidesFormComponent,
     TestimonialFormComponent,
     UserFormComponent,
@@ -71,6 +73,7 @@ import { AboutUsComponent } from './pages/about/about-us/about-us.component';
     MatFormFieldModule,  MatInputModule, MatIconModule, SharedModule,
     FormsModule,
     ReactiveFormsModule,
+    NgxTwitterTimelineModule,
   ],
 })
 export class FeaturesModule {}
