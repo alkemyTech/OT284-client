@@ -14,6 +14,7 @@ import { MatAlertDialogComponent } from "./components/mat-alert-dialog/mat-alert
 import { AuthButtonsComponent } from "./components/auth-buttons/auth-buttons.component";
 import { PhonePipe } from "./helpers/phonePipe";
 import { MatCheckboxModule } from "@angular/material/checkbox";
+import { MatAlertErrorComponent } from "./components/mat-alert-error/mat-alert-error.component";
 @NgModule({
   declarations: [
     LinkComponent,
@@ -21,6 +22,7 @@ import { MatCheckboxModule } from "@angular/material/checkbox";
     PhonePipe,
     MatAlertDialogComponent,
     AuthButtonsComponent,
+    MatAlertErrorComponent,
   ],
   imports: [CommonModule, RouterModule, MatButtonModule],
   exports: [

@@ -12,7 +12,7 @@
         <option value="1">Administrador</option>
       </select>
     </div>
-
+    <b *ngIf="loading$ | async">Cargando.. </b>
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
       <ng-container matColumnDef="name">
         <th mat-header-cell *matHeaderCellDef>Name</th>
