@@ -26,8 +26,8 @@ import { TermsAndConditionsComponent } from "./users/form-create-user/terms-and-
     FormCreateUserComponent,
     UsersComponent,
     FormMapComponent,
-    TermsAndConditionsComponent,
     MemberFormComponent,
+    TermsAndConditionsComponent,
   ],
   imports: [
     CommonModule,
