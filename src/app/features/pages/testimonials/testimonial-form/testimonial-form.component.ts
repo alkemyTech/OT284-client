@@ -15,15 +15,15 @@ export class TestimonialFormComponent implements OnInit {
   @Input() element: any = {}
 
   constructor(private fb: FormBuilder, private service: TestimonialsService) {
+  }
+
+  ngOnInit(): void {
+    this.listadoTestimonios();
     this.formulario = this.fb.group({
       'txtName': [this.element.name ? this.element.name : '', [Validators.required, Validators.minLength(4)]],
       'txtDescription': [this.element.description ? this.element.description : '', [Validators.required]],
       'img': [null, [Validators.required]]
     })
-  }
-
-  ngOnInit(): void {
-    this.listadoTestimonios();
   }
 
   async enviar() {
@@ -33,36 +33,42 @@ export class TestimonialFormComponent implements OnInit {
     if (this.formulario.valid) {
       //ENVIAR
       let testimonio: Testimonial;
-      setTimeout(() => {
 
-        testimonio = {
-          name: 'Prueba Testimonio',
-          id: 199,
-          image: this.imgBase64,
-          description: '',
-          created_at: new Date(Date.now()),
-          deleted_at: new Date(2022, 2, 15),
-          updated_at: new Date(Date.now()),
-        }
+      testimonio = {
+        name: 'Prueba Testimonio',
+        image: this.imgBase64,
+        description: 'Descripcion generica'
+      }
 
-        if (Object.entries(this.element).length == 0) {
-          //Agregar -> POST
-          this.service.postTestimonial(testimonio).subscribe((data: any) => {
-            if (data.error) {
-              console.info('HUBO UN ERROR: ', data.error);
-            }
-            else {
-              console.info("EXITO", data);
-            }
-          })
-        }
-        else {
-          //Modificar -> PUT
-        }
-      }, 1000);
+      if (Object.entries(this.element).length == 0) {
+        //Agregar -> POST
+        this.service.postTestimonial(testimonio).subscribe((data: any) => {
+          if (data.error) {
+            console.info('HUBO UN ERROR: ', data.error);
+          }
+          else {
+            console.info("EXITO", data);
+          }
+        })
+
+      }
+      else {
+        //Modificar -> PUT
+        //FIXME ->                 466 = element.id
+        this.service.putTestimonial(466, testimonio).subscribe((data: any) => {
+          if (data.error) {
+            console.info('HUBO UN ERROR: ', data.error);
+          }
+          else {
+            console.info("EXITO", data);
+          }
+        })
+        
+      }
 
     }
     else {
+
       //ERROR
     }
   }

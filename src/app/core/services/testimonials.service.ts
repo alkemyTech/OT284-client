@@ -16,8 +16,11 @@ export class TestimonialsService {
   }
 
   postTestimonial(testimonio: Testimonial): Observable<any> {
-    return this.http.post(environment.endpoints.testimonios.create, testimonio)
-    //Name y image obligatorios
+    return this.http.post(environment.endpoints.testimonios.create, testimonio);
+  }
+
+  putTestimonial(id: number, testimonio: Testimonial) {
+    return this.http.put(environment.endpoints.testimonios.edit+id, testimonio);
   }
 
 }
