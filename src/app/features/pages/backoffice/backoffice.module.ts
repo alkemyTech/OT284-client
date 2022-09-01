@@ -1,3 +1,4 @@
+import { MemberFormComponent } from './members/member-form/member-form.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BackofficeRoutingModule } from './backoffice-routing.module';
@@ -8,13 +9,14 @@ import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import {MatButtonModule} from '@angular/material/button';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { SharedModule } from "src/app/shared/shared.module";
 import { FormCreateUserComponent } from "./users/form-create-user/form-create-user.component";
 import { UsersComponent } from "./users/users.component";
 import { EditHomeComponent } from "./edit-home/edit-home.component";
 import { NgxMatFileInputModule } from "@angular-material-components/file-input";
 import { FormMapComponent } from "./users/form-create-user/form-map/form-map.component";
+
 
 
 @NgModule({
@@ -25,6 +27,7 @@ import { FormMapComponent } from "./users/form-create-user/form-map/form-map.com
     FormCreateUserComponent,
     UsersComponent,
     FormMapComponent,
+    MemberFormComponent
   ],
   imports: [
     CommonModule,
@@ -39,6 +42,7 @@ import { FormMapComponent } from "./users/form-create-user/form-map/form-map.com
     MatFormFieldModule,
     SharedModule,
     CKEditorModule,
+    FormsModule
   ],
 })
 export class BackofficeModule {}
