@@ -5,7 +5,6 @@ import { UsersComponent } from "./users/users.component";
 import { FormCreateUserComponent } from "./users/form-create-user/form-create-user.component";
 import { EditHomeComponent } from "./edit-home/edit-home.component";
 import { MembersComponent } from "./members/members.component";
-import { CreateMemberComponent } from "./members/create-member/create-member.component";
 
 const routes: Routes = [
   {
@@ -34,7 +33,7 @@ const routes: Routes = [
   },
   {
     path: "members/create",
-    component: CreateMemberComponent
+
   }
 ];
 
