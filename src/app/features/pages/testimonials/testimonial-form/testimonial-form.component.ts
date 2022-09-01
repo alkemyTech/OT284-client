@@ -11,7 +11,7 @@ import { Testimonial } from 'src/app/shared/interfaces/testimonial';
 export class TestimonialFormComponent implements OnInit {
 
   public formulario!: FormGroup;
-  imgBase64!: any;
+  private imgBase64!: any;
   @Input() element: any = {}
 
   constructor(private fb: FormBuilder, private service: TestimonialsService) {
@@ -30,14 +30,13 @@ export class TestimonialFormComponent implements OnInit {
     console.info('FORMULARIO', this.formulario);
     console.log(this.formulario.valid);
 
-    if (this.formulario.valid) {
+    if (this.formulario.valid && this.imgBase64) {
       //ENVIAR
       let testimonio: Testimonial;
-
       testimonio = {
-        name: 'Prueba Testimonio',
+        name: this.formulario.controls.txtName.value,
         image: this.imgBase64,
-        description: 'Descripcion generica'
+        description: this.formulario.controls.txtDescription.value
       }
 
       if (Object.entries(this.element).length == 0) {
@@ -54,8 +53,7 @@ export class TestimonialFormComponent implements OnInit {
       }
       else {
         //Modificar -> PUT
-        //FIXME ->                 466 = element.id
-        this.service.putTestimonial(466, testimonio).subscribe((data: any) => {
+        this.service.putTestimonial(this.element.id, testimonio).subscribe((data: any) => {
           if (data.error) {
             console.info('HUBO UN ERROR: ', data.error);
           }
@@ -63,41 +61,51 @@ export class TestimonialFormComponent implements OnInit {
             console.info("EXITO", data);
           }
         })
-        
-      }
 
+      }
     }
     else {
-
       //ERROR
     }
   }
 
   async fileEvent(e: Event) {
     let imagen = this.formulario.controls.img.value;
-    // console.log(imagen);
-    this.convertFileToBase64(imagen);
+    console.log(imagen);
+
+    var allowedExtensions = /(.jpg|.png)$/i;
+
+    if (allowedExtensions.exec(imagen.name)) {
+      console.log("ES IMAGEN");
+      this.convertFileToBase64(imagen);
+    }
+    else {
+      console.log("NO ES IMAGEN");
+      this.imgBase64 = null;
+      this.formulario.controls.img.setErrors({
+        invalidExtension: true
+      })
+    }
+
+
+
   }
 
 
   listadoTestimonios() {
     this.service.getTestimonials().subscribe((data: any) => {
-
       if (data.success) {
         console.log(data.data);
       } else {
         //error
       }
-
     })
   }
 
   async convertFileToBase64(file: any) {
     const reader = new FileReader();
-    let resultado;
     reader.readAsDataURL(file);
     reader.onload = () => {
-      resultado = reader.result
       this.imgBase64 = reader.result?.toString();
       console.log(this.imgBase64);
     };
