@@ -22,10 +22,25 @@ mat-icon {
   margin-left: 10px;
 }
 
+mat-checkbox {
+  margin-right: 10px;
+}
+
+.submitButton {
+  font-size: 20px;
+}
+
 .address {
   display: flex;
   flex-direction: row;
   align-items: center;
+}
+
+.checkbox {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 15px 0 15px 0;
 }
 
 .container {
@@ -55,10 +70,4 @@ label {
 .invalid-inputs {
   color: red;
   font-size: 12px;
-}
-
-.buttons {
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }

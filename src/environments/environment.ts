@@ -25,6 +25,11 @@ export const environment = {
       create:"https://ongapi.alkemy.org/api/news",
       edit(id:number){return `https://ongapi.alkemy.org/api/news/${id}`},
       delete(id:number){return `https://ongapi.alkemy.org/api/news/${id}`}
+    testimonios:{
+      list:"https://ongapi.alkemy.org/api/testimonials",
+      create:"https://ongapi.alkemy.org/api/testimonials",
+      edit:"https://ongapi.alkemy.org/api/testimonials/?id=${id}",
+      delete:"https://ongapi.alkemy.org/api/testimonials/?id=${id}",
     }
   },
   url: "https://ongapi.alkemy.org/api/"

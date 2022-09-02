@@ -18,6 +18,8 @@ import { UsersService } from "../services/users.service";
 import { FormMapService } from "./form-map/form-map.service";
 import { MatDialog } from "@angular/material/dialog";
 import { FormMapComponent } from "./form-map/form-map.component";
+import { TermsAndConditionsComponent } from "./terms-and-conditions/terms-and-conditions.component";
+import { MatCheckboxChange } from "@angular/material/checkbox";
 @Component({
   selector: "app-form-create-user",
   templateUrl: "./form-create-user.component.html",
@@ -48,8 +50,8 @@ export class FormCreateUserComponent
     ]),
     address: new FormControl("", Validators.required),
   });
-  id: number;
   confirmedAddress = false;
+  acceptedTerms = false;
 
   @ViewChild("email", { static: false }) email: ElementRef;
   @ViewChild("name", { static: false }) name: ElementRef;
@@ -78,6 +80,28 @@ export class FormCreateUserComponent
       });
   }
 
+  showTerms(): void {
+    const dialogRef = this.dialog.open(TermsAndConditionsComponent, {
+      width: "750px",
+    });
+  }
+
+  showOptions(event: MatCheckboxChange): void {
+    if (event.checked) {
+      this.acceptedTerms = true;
+    } else {
+      this.acceptedTerms = false;
+    }
+  }
+
+  isDisabled(): boolean {
+    if (this.formUser.valid && this.confirmedAddress) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
   onSubmit() {
     const url = "https://ongapi.alkemy.org/api/users";
     const name = this.formUser.value.name;
@@ -86,28 +110,29 @@ export class FormCreateUserComponent
     const password = this.formUser.value.password;
     const lat = this.formMap.lat;
     const long = this.formMap.long;
-    const id = this.user.editUserData.id;
-
     if (this.formUser.valid && this.confirmedAddress) {
-      if (this.user.editUserData.id == "") {
-        this.http
-          .post(url, {
-            name: name,
-            email: email,
-            role_id: role_id,
-            password: password,
-            latitude: lat,
-            longitude: long,
-          })
-          .subscribe({
-            next: (data) => {
-              console.log(data);
-            },
-            error: (error) => {
-              console.log(error.message, "error");
-            },
-          });
+      if (!this.user.editUserData) {
+        if (this.acceptedTerms) {
+          this.http
+            .post(url, {
+              name: name,
+              email: email,
+              role_id: role_id,
+              password: password,
+              latitude: lat,
+              longitude: long,
+            })
+            .subscribe({
+              next: (data) => {
+                console.log(data);
+              },
+              error: (error) => {
+                console.log(error.message, "error");
+              },
+            });
+        }
       } else {
+        const id = this.user.editUserData.id;
         this.http
           .put(url, id, {
             name: name,
@@ -130,19 +155,16 @@ export class FormCreateUserComponent
   }
 
   ngAfterViewInit(): void {
-    this.name.nativeElement.value = this.user.editUserData.name;
-    this.email.nativeElement.value = this.user.editUserData.email;
-    this.password.nativeElement.value = this.user.editUserData.password;
+    if (this.user.editUserData) {
+      this.name.nativeElement.value = this.user.editUserData.name;
+      this.email.nativeElement.value = this.user.editUserData.email;
+      this.password.nativeElement.value = this.user.editUserData.password;
+    }
   }
 
   ngOnDestroy(): void {
-    this.user.editUserData = {
-      id: "",
-      name: "",
-      email: "",
-      password: "",
-      role_id: "",
-    };
+    delete this.user.editUserData;
+    this.user.userIsEditing = false;
   }
 
   ngOnInit(): void {}
