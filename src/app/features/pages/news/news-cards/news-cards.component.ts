@@ -13,9 +13,9 @@ import { NewsService } from '../news.service';
 export class NewsCardsComponent implements OnInit {
   public newsLista: newData[]=[]
   public newModel!:newData;
-
+  public myTitle:string;
   constructor(private newsService: NewsService, private ruta:Router) {
-    
+    this.myTitle="Novedades";
   }
 
   ngOnInit(): void {
