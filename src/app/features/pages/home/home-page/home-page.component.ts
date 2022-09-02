@@ -21,37 +21,34 @@ export class HomePageComponent implements OnInit {
 
   getSlides() {
     this.http.getSlides().subscribe((data: any) => {
-      if (data.success) {
-        console.log(data.data);
-      }
-      else {
-        this.notifyError("los slides");
-      }
-    })
+      console.log(data.data);
+    },
+      (error: any) => {
+        console.log(error);
+        this.notifyError("Error al obtener los datos de los slides");
+      })
   }
 
   getWelcomeMessage() {
     this.http.getMessageText().subscribe((data: any) => {
-      if (data.success) {
-        console.log(data);
-        this.textoBienvenida = data.data.long_description
-      }
-      else {
-        this.notifyError("texto de bienvenida");
-      }
-    })
+      console.log(data);
+      this.textoBienvenida = data.data.long_description
+    },
+      (error: any) => {
+        console.log(error);
+        this.notifyError("Error al obtener los datos del mensaje de bienvenida");
+      })
   }
 
 
   getNovedades() {
     this.http.getNews().subscribe((data: any) => {
-      if (data.success) {
-        console.log(data.data);
-      }
-      else {
-        this.notifyError("novedades");
-      }
-    })
+      console.log(data.data);
+    },
+      (error: any) => {
+        console.log(error);
+        this.notifyError("Error al obtener los datos de las novedades");
+      })
   }
 
 
@@ -59,8 +56,8 @@ export class HomePageComponent implements OnInit {
     this.dialog
       .open(MatAlertDialogComponent, {
         data: {
-          title: 'Error',
-          message: `Hubo un error al obtener la informacion de ${message}. Intente de nuevo mas tarde`,
+          title: 'Ha ocurrido un error',
+          message: `${message}. Intente de nuevo mas tarde`,
           confirmText: 'Aceptar'
         }
       })
