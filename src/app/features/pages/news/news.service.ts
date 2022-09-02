@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import {map} from 'rxjs/operators';
-import { newData, newM } from './models/newM';
 import { environment } from 'src/environments/environment';
 import { newData, newM, Novedad } from './models/newM';
 
@@ -11,7 +10,6 @@ import { newData, newM, Novedad } from './models/newM';
   providedIn: 'root'
 })
 export class NewsService {
-  constructor(private http:HttpClient) { }
   private api='https://ongapi.alkemy.org/api/news';
   public novedad!:newData;
   constructor(private http:HttpClient, private ruta: Router) { }
