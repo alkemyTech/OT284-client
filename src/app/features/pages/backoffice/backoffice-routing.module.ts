@@ -8,6 +8,9 @@ import { EditHomeComponent } from "./edit-home/edit-home.component";
 import { MemberFormComponent } from "./members/member-form/member-form.component";
 
 
+import { MembersComponent } from "./members/members.component";
+import { CreateMemberComponent } from './members/create-member/create-member.component';
+
 const routes: Routes = [
   {
     path: "",
@@ -42,6 +45,27 @@ const routes: Routes = [
     component: NewsFormComponent,
   },
 
+  {
+    path: "members/edit",
+    component: MemberFormComponent
+  },
+  {
+    path:"news/:id",
+    component: NewsFormComponent,
+  },
+  {
+    path:"news",
+    component: NewsFormComponent,
+  },
+
+  {
+    path: "members",
+    component: MembersComponent
+  },
+  {
+    path: "members/create",
+    component: CreateMemberComponent
+  }
 ];
 
 @NgModule({

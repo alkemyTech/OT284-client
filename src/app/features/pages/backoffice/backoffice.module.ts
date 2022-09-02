@@ -14,8 +14,11 @@ import { SharedModule } from "src/app/shared/shared.module";
 import { FormCreateUserComponent } from "./users/form-create-user/form-create-user.component";
 import { UsersComponent } from "./users/users.component";
 import { EditHomeComponent } from "./edit-home/edit-home.component";
+import {MatTableModule} from '@angular/material/table';
 import { NgxMatFileInputModule } from "@angular-material-components/file-input";
 import { FormMapComponent } from "./users/form-create-user/form-map/form-map.component";
+import { MembersComponent } from './members/members.component';
+import { CreateMemberComponent } from './members/create-member/create-member.component';
 import { TermsAndConditionsComponent } from "./users/form-create-user/terms-and-conditions/terms-and-conditions.component";
 
 @NgModule({
@@ -27,6 +30,8 @@ import { TermsAndConditionsComponent } from "./users/form-create-user/terms-and-
     UsersComponent,
     FormMapComponent,
     MemberFormComponent,
+    MembersComponent,
+    CreateMemberComponent,
     TermsAndConditionsComponent,
   ],
   imports: [
@@ -43,6 +48,7 @@ import { TermsAndConditionsComponent } from "./users/form-create-user/terms-and-
     SharedModule,
     CKEditorModule,
     FormsModule,
+    MatTableModule,
   ],
 })
 export class BackofficeModule {}
