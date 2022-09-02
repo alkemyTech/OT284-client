@@ -2,15 +2,19 @@
   <div class="container">
     <app-link [routerLink]="routerPath" [linkReference]="linkRef"></app-link>
 
-    <label for="search">Buscar usuario</label>
-
     <div class="searchInputs">
-      <input type="text" #searchInput />
-      <select class="selectRole" (change)="roleSearch()" name="" #roleSelect>
-        <option value="0">Todos</option>
-        <option value="2">Usuario</option>
-        <option value="1">Administrador</option>
-      </select>
+      <div class="search">
+        <mat-label for="search">Buscar usuario</mat-label>
+        <input matInput type="text" #searchInput />
+      </div>
+      <div class="role">
+        <mat-label for="search">Buscar usuario por Rol</mat-label>
+        <mat-select [(value)]="selected" (selectionChange)="roleSearch()">
+          <mat-option value="0">Todos</mat-option>
+          <mat-option value="1">Administrador</mat-option>
+          <mat-option value="2">Usuario</mat-option>
+        </mat-select>
+      </div>
     </div>
     <b *ngIf="loading$ | async">Cargando.. </b>
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">

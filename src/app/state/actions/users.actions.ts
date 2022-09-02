@@ -7,11 +7,15 @@ export enum UsersActionType {
   loadUsersFailure = "[Users] Loaded Failure",
   deleteUserAction = "[Users] Deleting User",
   deleteUserSucess = "[Users] User Deleted",
+  creatingUser = "[User Create] Creating User",
+  userCreated = "[User Create] User Created",
+  EditingUser = "[User Edit] Editing User",
+  userEdited = "[User Edit] User Edited",
 }
 
 export const loadUsers = createAction(
   UsersActionType.Loading,
-  props<{ parameters: string; parametersRole: number }>()
+  props<{ parameters: string; parametersRole: any }>()
 );
 
 export const loadedUsers = createAction(
@@ -26,3 +30,17 @@ export const deleteUserAction = createAction(
 export const deleteUserActionSuccess = createAction(
   UsersActionType.deleteUserSucess
 );
+
+export const createUserAction = createAction(
+  UsersActionType.creatingUser,
+  props<{ body: any }>()
+);
+
+export const createUserActionSucess = createAction(UsersActionType.userCreated);
+
+export const editUserAction = createAction(
+  UsersActionType.EditingUser,
+  props<{ id: number; body: any }>()
+);
+
+export const editUserActionSucess = createAction(UsersActionType.userEdited);

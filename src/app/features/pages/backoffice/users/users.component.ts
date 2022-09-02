@@ -39,6 +39,7 @@ export class UsersComponent implements OnInit {
   @ViewChild("roleSelect", { static: true })
   roleSelect: ElementRef;
   loading$: Observable<boolean>;
+  selected: number = 0;
 
   constructor(
     private user: UsersService,
@@ -57,12 +58,11 @@ export class UsersComponent implements OnInit {
   }
 
   roleSearch() {
-    const roleSelect = this.roleSelect.nativeElement.value;
     const searchInput = this.searchInput.nativeElement.value;
     this.store.dispatch(
       loadUsers({
         parameters: searchInput ? searchInput : "",
-        parametersRole: roleSelect != 0 ? roleSelect : "",
+        parametersRole: this.selected != 0 ? this.selected : "",
       })
     );
     this.updateTable();
@@ -121,18 +121,18 @@ export class UsersComponent implements OnInit {
   }
 
   fillTable() {
-    const roleSelect = this.roleSelect.nativeElement.value;
     const searchInput = this.searchInput.nativeElement.value;
     this.store.dispatch(
       loadUsers({
         parameters: searchInput ? searchInput : "",
-        parametersRole: roleSelect != 0 ? roleSelect : "",
+        parametersRole: this.selected != 0 ? this.selected : "",
       })
     );
   }
 
   ngOnInit(): void {
     this.fillTable();
+
     this.search();
     this.loading$ = this.store.select(selectUsersLoading);
     this.store.select(selectUsers).subscribe((data: any) => {
