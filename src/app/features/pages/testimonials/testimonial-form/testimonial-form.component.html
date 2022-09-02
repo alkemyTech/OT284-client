@@ -14,11 +14,7 @@
         </div>
 
         <div class="contenedor-input">
-            <mat-form-field class="form-field" appearance="fill">
-                <mat-label>Descripcion</mat-label>
-                <textarea formControlName="txtDescription" matInput placeholder="Ingrese descripcion" class="noresize"
-                    rows="6"></textarea>
-            </mat-form-field>
+            <ckeditor class="ck-editor__editable_inline" formControlName="txtDescription" [editor]="editor"></ckeditor>
             <span *ngIf="formulario.controls.txtDescription.errors && formulario.controls.txtDescription.touched" class="invalid">
                 La descripcion es requerida
             </span>

@@ -30,6 +30,7 @@ import { NgxMatFileInputModule } from "@angular-material-components/file-input";
 import { NewsDetailsComponent } from './pages/news/news-details/news-details.component';
 import { AboutTweetsComponent } from './pages/about/about-tweets/about-tweets.component';
 import { NgxTwitterTimelineModule } from 'ngx-twitter-timeline';
+import { CKEditorModule } from "@ckeditor/ckeditor5-angular";
 
 
 @NgModule({
@@ -75,6 +76,7 @@ import { NgxTwitterTimelineModule } from 'ngx-twitter-timeline';
     NgxMatFileInputModule,
     FormsModule,
     ReactiveFormsModule,
+    CKEditorModule,
     NgxTwitterTimelineModule,
   ],
 })

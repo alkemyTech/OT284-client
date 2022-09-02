@@ -1,7 +1,40 @@
-.invalid{
+.invalid {
     color: red;
 }
 
-.noresize{
+.noresize {
     resize: none;
+}
+
+.contenedor {
+    padding: 1em;
+}
+
+.form {
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+    justify-content: center;
+
+    .contenedor-input {
+        padding: 1em;
+        width: 50%;
+
+        .form-field {
+            width: 100%;
+        }
+    }
+}
+
+
+@media screen and(max-width: 576px) {
+    .form .contenedor-input {
+        width: 100%;
+    }
+}
+
+@media screen and(max-width: 768px) {
+    .form .contenedor-input {
+        width: 80%;
+    }
 }

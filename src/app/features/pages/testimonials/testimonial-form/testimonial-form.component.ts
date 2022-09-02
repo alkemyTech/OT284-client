@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { TestimonialsService } from 'src/app/core/services/testimonials.service';
 import { Testimonial } from 'src/app/shared/interfaces/testimonial';
 
@@ -10,6 +11,7 @@ import { Testimonial } from 'src/app/shared/interfaces/testimonial';
 })
 export class TestimonialFormComponent implements OnInit {
 
+  public editor = ClassicEditor;
   public formulario!: FormGroup;
   private imgBase64!: any;
   @Input() element: any = {}
