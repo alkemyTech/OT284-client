@@ -6,6 +6,7 @@ import { UsersComponent } from "./users/users.component";
 import { FormCreateUserComponent } from "./users/form-create-user/form-create-user.component";
 import { EditHomeComponent } from "./edit-home/edit-home.component";
 import { MemberFormComponent } from "./members/member-form/member-form.component";
+import { TestimonialsPageComponent } from './testimonials/testimonials-page/testimonials-page.component';
 
 
 const routes: Routes = [
@@ -41,7 +42,14 @@ const routes: Routes = [
     path:"news",
     component: NewsFormComponent,
   },
-
+  {
+    path:"testimonials/create",
+    component: TestimonialsPageComponent,
+  },
+  {
+    path:"testimonials/:id",
+    component: TestimonialsPageComponent,
+  },
 ];
 
 @NgModule({

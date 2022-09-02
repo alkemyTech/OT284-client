@@ -15,12 +15,16 @@ export class TestimonialsService {
     return this.http.get<any>(environment.endpoints.testimonios.list);
   }
 
+  getATestimonial(id: number) {
+    return this.http.get<any>(environment.endpoints.testimonios.list + id);
+  }
+
   postTestimonial(testimonio: Testimonial): Observable<any> {
     return this.http.post(environment.endpoints.testimonios.create, testimonio);
   }
 
   putTestimonial(id: number, testimonio: Testimonial) {
-    return this.http.put(environment.endpoints.testimonios.edit+id, testimonio);
+    return this.http.put(environment.endpoints.testimonios.edit + id, testimonio);
   }
 
 }

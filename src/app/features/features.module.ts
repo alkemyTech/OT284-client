@@ -7,7 +7,6 @@ import { LoginFormComponent } from "./pages/auth/login-form/login-form.component
 import { RegisterFormComponent } from "./pages/auth/register-form/register-form.component";
 import { CategoriesFormComponent } from "./pages/categories/categories-form/categories-form.component";
 import { SlidesFormComponent } from "./pages/slides/slides-form/slides-form.component";
-import { TestimonialFormComponent } from "./pages/testimonials/testimonial-form/testimonial-form.component";
 import { UserFormComponent } from "./pages/users/user-form/user-form.component";
 import { HttpClientModule } from "@angular/common/http";
 import { NewsCardsComponent } from "./pages/news/news-cards/news-cards.component";
@@ -40,7 +39,6 @@ import { CKEditorModule } from "@ckeditor/ckeditor5-angular";
     RegisterFormComponent,
     CategoriesFormComponent,
     SlidesFormComponent,
-    TestimonialFormComponent,
     UserFormComponent,
     NewsCardsComponent,
     AboutViewComponent,
@@ -59,7 +57,6 @@ import { CKEditorModule } from "@ckeditor/ckeditor5-angular";
     RegisterFormComponent,
     CategoriesFormComponent,
     SlidesFormComponent,
-    TestimonialFormComponent,
     UserFormComponent,
     RouterModule,
   ],

@@ -14,7 +14,7 @@
         </div>
 
         <div class="contenedor-input">
-            <ckeditor class="ck-editor__editable_inline" formControlName="txtDescription" [editor]="editor"></ckeditor>
+            <ckeditor class="ck-editor__editable_inline" formControlName="txtDescription" [editor]="editor" placeholder="descripcion" ></ckeditor>
             <span *ngIf="formulario.controls.txtDescription.errors && formulario.controls.txtDescription.touched" class="invalid">
                 La descripcion es requerida
             </span>
