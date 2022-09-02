@@ -26,15 +26,15 @@ export class NewsService {
   }
 
   public deleteNew(id:number):Observable<any>{
-    return this.http.delete<any>(`${this.api}/${id}`);
+    return this.http.delete<any>(environment.endpoints.novedades.delete(id));
   }
   
   public nuevaNew(novedad:Novedad):Observable<Novedad>{
-    return this.http.post<Novedad>(this.api,novedad);
+    return this.http.post<Novedad>(environment.endpoints.novedades.create,novedad);
   } 
 
   public modificarNew(novedad:Novedad):Observable<Novedad>{
-    return this.http.put<Novedad>(`${this.api}/${novedad.id}`,novedad);
+    return this.http.put<Novedad>(environment.endpoints.novedades.edit(novedad.id),novedad);
   } 
 
   public redireccionar():void{
