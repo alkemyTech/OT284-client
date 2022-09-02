@@ -1,7 +1,9 @@
 
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { ContactService } from 'src/app/core/services/contact.service';
+import { MatAlertErrorComponent } from 'src/app/shared/components/mat-alert-error/mat-alert-error.component';
 import { contactDTO } from '../../../../shared/interfaces/contactDTO';
 
 @Component({
@@ -13,7 +15,8 @@ export class ContactFormComponent implements OnInit {
   contactForm: FormGroup;
   @Output() messageResponse = new EventEmitter<{ messageResponse: string }>();
 
-  constructor(private formBuilder: FormBuilder, private contactService: ContactService) {
+  constructor(private formBuilder: FormBuilder, private contactService: ContactService,
+    public dialog: MatDialog) {
   
       this.contactForm = this.formBuilder.group({
         name: ['', [Validators.required]],
@@ -50,7 +53,10 @@ export class ContactFormComponent implements OnInit {
         this.resetForm()
       },
       (err)=>{
-        this.messageResponse.emit({ messageResponse: err });
+        this.dialog
+      .open(MatAlertErrorComponent, {
+        data: {text:`error al cargar mensaje `, message: err.message},
+      })
         this.resetForm()
       }
     )

@@ -1,6 +1,11 @@
 <div class="wrapper">
   <h1>Usuarios</h1>
-  <form [formGroup]="formUser" #ngForm="ngForm" (ngSubmit)="onSubmit()">
+  <form
+    [formGroup]="formUser"
+    #ngForm="ngForm"
+    (ngSubmit)="onSubmit()"
+    *ngIf="formUser"
+  >
     <div class="container">
       <mat-form-field class="example-full-width" appearance="fill">
         <mat-label>Nombre</mat-label>
@@ -110,20 +115,32 @@
         Por favor confirma tu dirección
       </div>
 
-      <div class="buttons">
-        <button
-          [disabled]="!formUser.valid"
-          [disabled]="!confirmedAddress"
-          type="submit"
-          mat-button
-          color="primary"
-        >
-          <div *ngIf="user.editUserData.id == ''; else elseBlock">
-            Crear Usuario
-          </div>
-          <ng-template #elseBlock>Editar Usuario</ng-template>
+      <div class="address" *ngIf="!user.userIsEditing">
+        <button type="button" (click)="showTerms()" mat-button color="primary">
+          Leer los Términos y Condiciones de la ONG
         </button>
       </div>
+      <div class="checkbox" *ngIf="!user.userIsEditing">
+        <mat-checkbox (change)="showOptions($event)"></mat-checkbox>
+        <div>Acepto los términos y condiciones</div>
+      </div>
+      <div
+        class="invalid-inputs"
+        *ngIf="!acceptedTerms && ngForm.submitted && !user.userIsEditing"
+      >
+        Por favor acepte los términos y condiciones
+      </div>
+
+      <button
+        class="submitButton"
+        [disabled]="isDisabled()"
+        type="submit"
+        mat-button
+        color="primary"
+      >
+        Enviar
+      </button>
+
       <div class="invalid-inputs" *ngIf="!formUser.valid && ngForm.submitted">
         Por favor complete todos los campos.
       </div>
