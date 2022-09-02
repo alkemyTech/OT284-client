@@ -8,6 +8,8 @@ import { EditHomeComponent } from "./edit-home/edit-home.component";
 import { NewsListComponent } from "../news/news-list/news-list.component";
 import { NewsFormComponent } from "../news/news-form/news-form.component";
 import { MemberFormComponent } from "./members/member-form/member-form.component";
+import { MembersComponent } from "./members/members.component";
+import { CreateMemberComponent } from './members/create-member/create-member.component';
 
 const routes: Routes = [
   {
@@ -37,7 +39,8 @@ const routes: Routes = [
   {
     path:"news/create",
     component: NewsFormComponent
-  }
+  },
+  {
     path: "members/edit",
     component: MemberFormComponent
   },
@@ -46,10 +49,13 @@ const routes: Routes = [
     component: NewsFormComponent,
   },
   {
-    path:"news",
-    component: NewsFormComponent,
+    path: "members",
+    component: MembersComponent
   },
-
+  {
+    path: "members/create",
+    component: CreateMemberComponent
+  }
 ];
 
 @NgModule({
