@@ -24,5 +24,5 @@ export class MatAlertDialogComponent implements OnInit {
   confirm(): void {
     this.dialog.close(true);
   }
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 }

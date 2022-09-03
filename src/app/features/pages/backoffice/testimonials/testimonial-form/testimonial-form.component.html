@@ -1,0 +1,36 @@
+<div class="contenedor">
+
+    <form class="form" [formGroup]="formulario" (ngSubmit)="enviar()">
+
+        <div class="contenedor-input">
+            <mat-form-field class="form-field" appearance="fill">
+                <mat-label>Nombre</mat-label>
+                <input type="text" formControlName="txtName" matInput placeholder="Ingrese Nombre" class="noresize"
+                    rows="5">
+            </mat-form-field>
+            <span *ngIf="formulario.controls.txtName.errors && formulario.controls.txtName.touched" class="invalid">
+                El nombre debe contener al menos 4 caracteres
+            </span>
+        </div>
+
+        <div class="contenedor-input">
+            <ckeditor class="ck-editor__editable_inline" formControlName="txtDescription" [editor]="editor" placeholder="descripcion" ></ckeditor>
+            <span *ngIf="formulario.controls.txtDescription.errors && formulario.controls.txtDescription.touched" class="invalid">
+                La descripcion es requerida
+            </span>
+        </div>
+
+        <div class="contenedor-input">
+            <mat-form-field class="form-field" appearance="fill">
+                <ngx-mat-file-input (change)="fileEvent($event)" formControlName="img" matInput placeholder="Seleccione una imagen">
+                </ngx-mat-file-input>
+            </mat-form-field>
+            <span *ngIf="formulario.controls.img.errors?.invalidExtension" class="invalid">
+                Ingrese un archivo con extension '.jpg' o '.png'
+            </span>
+        </div>
+
+        <button mat-raised-button color="primary" type="submit">Enviar </button>
+    </form>
+
+</div>
