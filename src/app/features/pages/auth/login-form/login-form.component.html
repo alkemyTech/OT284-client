@@ -26,6 +26,7 @@
                     <button type="submit" mat-raised-button color="primary" [disabled]="loginForm.invalid">Iniciar Sesión</button>
                 </form>
             </mat-card-content>
+            <button mat-raised-button color="secondary" (click)="GoogleLogin()" >Login con Google</button>
 
             <mat-card-actions>
                 <p>No tienes una cuenta? <a routerLink="/register" >Registrate</a></p>
