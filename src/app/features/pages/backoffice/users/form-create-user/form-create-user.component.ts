@@ -1,7 +1,6 @@
 import {
   AfterViewInit,
   Component,
-  DoCheck,
   ElementRef,
   OnDestroy,
   OnInit,
@@ -13,13 +12,18 @@ import {
   FormGroup,
   Validators,
 } from "@angular/forms";
-import { NewsUsersService } from "../../../../../core/services/newsUsers.service";
 import { UsersService } from "../services/users.service";
 import { FormMapService } from "./form-map/form-map.service";
 import { MatDialog } from "@angular/material/dialog";
 import { FormMapComponent } from "./form-map/form-map.component";
 import { TermsAndConditionsComponent } from "./terms-and-conditions/terms-and-conditions.component";
 import { MatCheckboxChange } from "@angular/material/checkbox";
+import { Store } from "@ngrx/store";
+import { AppState } from "src/app/state/app.state";
+import {
+  createUserAction,
+  editUserAction,
+} from "src/app/state/actions/users.actions";
 @Component({
   selector: "app-form-create-user",
   templateUrl: "./form-create-user.component.html",
@@ -29,10 +33,10 @@ export class FormCreateUserComponent
   implements OnInit, AfterViewInit, OnDestroy
 {
   constructor(
-    private http: NewsUsersService,
     public user: UsersService,
     private formMap: FormMapService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private store: Store<AppState>
   ) {}
 
   formUser = new FormGroup({
@@ -103,53 +107,37 @@ export class FormCreateUserComponent
   }
 
   onSubmit() {
-    const url = "https://ongapi.alkemy.org/api/users";
-    const name = this.formUser.value.name;
-    const email = this.formUser.value.email;
-    const role_id = Number(this.formUser.value.role_id);
-    const password = this.formUser.value.password;
-    const lat = this.formMap.lat;
-    const long = this.formMap.long;
     if (this.formUser.valid && this.confirmedAddress) {
       if (!this.user.editUserData) {
         if (this.acceptedTerms) {
-          this.http
-            .post(url, {
-              name: name,
-              email: email,
-              role_id: role_id,
-              password: password,
-              latitude: lat,
-              longitude: long,
+          this.store.dispatch(
+            createUserAction({
+              body: {
+                name: this.formUser.value.name,
+                email: this.formUser.value.email,
+                role_id: Number(this.formUser.value.role_id),
+                password: this.formUser.value.password,
+                latitude: this.formMap.lat,
+                longitude: this.formMap.long,
+              },
             })
-            .subscribe({
-              next: (data) => {
-                console.log(data);
-              },
-              error: (error) => {
-                console.log(error.message, "error");
-              },
-            });
+          );
         }
       } else {
         const id = this.user.editUserData.id;
-        this.http
-          .put(url, id, {
-            name: name,
-            email: email,
-            role_id: role_id,
-            password: password,
-            latitude: lat,
-            longitude: long,
+        this.store.dispatch(
+          editUserAction({
+            id: id,
+            body: {
+              name: this.formUser.value.name,
+              email: this.formUser.value.email,
+              role_id: Number(this.formUser.value.role_id),
+              password: this.formUser.value.password,
+              latitude: this.formMap.lat,
+              longitude: this.formMap.long,
+            },
           })
-          .subscribe({
-            next: (data) => {
-              console.log(data);
-            },
-            error: (error) => {
-              console.log(error.message);
-            },
-          });
+        );
       }
     }
   }
