@@ -1,0 +1,43 @@
+<form [formGroup]="formOrganization" (ngSubmit)="onSubmit()">
+  <div class="container">
+    <h1>EDITAR ORGANIZACION</h1>
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Name</mat-label>
+      <input matInput name="name" type="name" formControlName="name" />
+    </mat-form-field>
+
+    <mat-label class="uploadLabel">Upload Logo</mat-label>
+    <input type="file" formControlName="logo" />
+    <!-- Acá va Logo y short desc con CKEditor -->
+
+    <ckeditor [editor]="Editor" rows="8" formControlName="shortDesc"></ckeditor>
+
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Long Description</mat-label>
+      <input matInput name="longDesc" type="text" formControlName="longDesc" />
+    </mat-form-field>
+
+    <!-- FB, Linkedin, IG, TW -->
+
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Facebook URL</mat-label>
+      <input matInput name="facebook" type="url" formControlName="facebook" />
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Linkedin URL</mat-label>
+      <input matInput name="linkedin" type="url" formControlName="linkedin" />
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Instagram URL</mat-label>
+      <input matInput name="instagram" type="url" formControlName="instagram" />
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Twitter URL</mat-label>
+      <input matInput name="twitter" type="url" formControlName="twitter" />
+    </mat-form-field>
+    <button type="submit" mat-button color="primary">Enviar</button>
+  </div>
+</form>
