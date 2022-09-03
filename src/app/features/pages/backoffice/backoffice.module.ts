@@ -14,11 +14,16 @@ import { SharedModule } from "src/app/shared/shared.module";
 import { FormCreateUserComponent } from "./users/form-create-user/form-create-user.component";
 import { UsersComponent } from "./users/users.component";
 import { EditHomeComponent } from "./edit-home/edit-home.component";
+import {MatTableModule} from '@angular/material/table';
 import { NgxMatFileInputModule } from "@angular-material-components/file-input";
 import { FormMapComponent } from "./users/form-create-user/form-map/form-map.component";
+import { NewsListComponent } from "../news/news-list/news-list.component";
+import { MembersComponent } from './members/members.component';
+import { CreateMemberComponent } from './members/create-member/create-member.component';
 import { TestimonialFormComponent } from './testimonials/testimonial-form/testimonial-form.component';
 import { TestimonialsPageComponent } from './testimonials/testimonials-page/testimonials-page.component';
 import { TermsAndConditionsComponent } from "./users/form-create-user/terms-and-conditions/terms-and-conditions.component";
+
 
 @NgModule({
   declarations: [
@@ -29,7 +34,10 @@ import { TermsAndConditionsComponent } from "./users/form-create-user/terms-and-
     FormCreateUserComponent,
     UsersComponent,
     FormMapComponent,
+    NewsListComponent,
     MemberFormComponent,
+    MembersComponent,
+    CreateMemberComponent,
     TermsAndConditionsComponent,
     TestimonialsPageComponent
   ],
@@ -48,6 +56,7 @@ import { TermsAndConditionsComponent } from "./users/form-create-user/terms-and-
     CKEditorModule,
     ReactiveFormsModule,
     FormsModule,
+    MatTableModule,
   ],
 })
 export class BackofficeModule {}
