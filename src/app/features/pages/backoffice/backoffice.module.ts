@@ -20,6 +20,8 @@ import { FormMapComponent } from "./users/form-create-user/form-map/form-map.com
 import { NewsListComponent } from "../news/news-list/news-list.component";
 import { MembersComponent } from "./members/members.component";
 import { CreateMemberComponent } from "./members/create-member/create-member.component";
+import { TestimonialFormComponent } from "./testimonials/testimonial-form/testimonial-form.component";
+import { TestimonialsPageComponent } from "./testimonials/testimonials-page/testimonials-page.component";
 import { TermsAndConditionsComponent } from "./users/form-create-user/terms-and-conditions/terms-and-conditions.component";
 import { OrganizationComponent } from "./organization/organization.component";
 
@@ -28,6 +30,7 @@ import { OrganizationComponent } from "./organization/organization.component";
     BackofficeComponent,
     NewsFormComponent,
     EditHomeComponent,
+    TestimonialFormComponent,
     FormCreateUserComponent,
     UsersComponent,
     FormMapComponent,
@@ -37,6 +40,7 @@ import { OrganizationComponent } from "./organization/organization.component";
     CreateMemberComponent,
     TermsAndConditionsComponent,
     OrganizationComponent,
+    TestimonialsPageComponent,
   ],
   imports: [
     CommonModule,
@@ -51,6 +55,7 @@ import { OrganizationComponent } from "./organization/organization.component";
     MatFormFieldModule,
     SharedModule,
     CKEditorModule,
+    ReactiveFormsModule,
     FormsModule,
     MatTableModule,
   ],
