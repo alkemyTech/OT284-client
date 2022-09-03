@@ -17,6 +17,7 @@ import { EditHomeComponent } from "./edit-home/edit-home.component";
 import { NgxMatFileInputModule } from "@angular-material-components/file-input";
 import { FormMapComponent } from "./users/form-create-user/form-map/form-map.component";
 import { TermsAndConditionsComponent } from "./users/form-create-user/terms-and-conditions/terms-and-conditions.component";
+import { OrganizationComponent } from './organization/organization.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { TermsAndConditionsComponent } from "./users/form-create-user/terms-and-
     FormMapComponent,
     MemberFormComponent,
     TermsAndConditionsComponent,
+    OrganizationComponent,
   ],
   imports: [
     CommonModule,
