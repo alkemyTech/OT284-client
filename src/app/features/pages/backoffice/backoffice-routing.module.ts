@@ -7,6 +7,7 @@ import { EditHomeComponent } from "./edit-home/edit-home.component";
 import { NewsListComponent } from "../news/news-list/news-list.component";
 import { NewsFormComponent } from "../news/news-form/news-form.component";
 import { MemberFormComponent } from "./members/member-form/member-form.component";
+import { TestimonialsPageComponent } from './testimonials/testimonials-page/testimonials-page.component';
 import { MembersComponent } from "./members/members.component";
 import { CreateMemberComponent } from './members/create-member/create-member.component';
 
@@ -52,9 +53,13 @@ const routes: Routes = [
     component: MembersComponent
   },
   {
-    path: "members/create",
-    component: CreateMemberComponent
-  }
+    path:"testimonials/create",
+    component: TestimonialsPageComponent,
+  },
+  {
+    path:"testimonials/:id",
+    component: TestimonialsPageComponent,
+  },
 ];
 
 @NgModule({
