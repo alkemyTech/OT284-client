@@ -6,6 +6,7 @@ import {
   Validators,
 } from "@angular/forms";
 import * as ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import { AboutService } from "src/app/core/services/about.service";
 
 @Component({
   selector: "app-edit",
@@ -13,8 +14,9 @@ import * as ClassicEditor from "@ckeditor/ckeditor5-build-classic";
   styleUrls: ["./edit.component.scss"],
 })
 export class EditComponent implements OnInit {
-  constructor() {}
+  constructor(private organization: AboutService) {}
   public Editor = ClassicEditor;
+  logo: string;
   urlPattern = "(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?";
   formOrganization = new FormGroup({
     name: new FormControl("", [Validators.required]),
@@ -48,12 +50,12 @@ export class EditComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.formOrganization.valid) {
-      console.log("form válida", this.formOrganization);
-    } else {
-      console.log("form inválida", this.formOrganization);
-    }
+    console.log(this.formOrganization.status);
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.organization.getOrganization().subscribe((data) => {
+      this.logo = data.logo;
+    });
+  }
 }

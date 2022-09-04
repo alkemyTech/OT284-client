@@ -1,21 +1,58 @@
 <form [formGroup]="formOrganization" (ngSubmit)="onSubmit()">
   <div class="container">
     <h1>EDITAR ORGANIZACION</h1>
+    <img [src]="logo" alt="logo" />
     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>Name</mat-label>
       <input matInput name="name" type="name" formControlName="name" />
     </mat-form-field>
-
-    <mat-label class="uploadLabel">Upload Logo</mat-label>
-    <input type="file" formControlName="logo" />
+    <div
+      class="invalid-inputs"
+      *ngIf="
+        formOrganization.get('name')?.touched &&
+        formOrganization.get('name')?.invalid
+      "
+    >
+      Name is required.
+    </div>
     <!-- Acá va Logo y short desc con CKEditor -->
+    <mat-label class="uploadLabel">Upload Logo</mat-label>
+    <input class="fileInput" type="file" formControlName="logo" />
+    <div
+      class="invalid-inputs"
+      *ngIf="
+        formOrganization.get('logo')?.touched &&
+        formOrganization.get('logo')?.invalid
+      "
+    >
+      Logo is required.
+    </div>
 
+    <mat-label class="uploadLabel">Short Description</mat-label>
     <ckeditor [editor]="Editor" rows="8" formControlName="shortDesc"></ckeditor>
+    <div
+      class="invalid-inputs"
+      *ngIf="
+        formOrganization.get('shortDesc')?.touched &&
+        formOrganization.get('shortDesc')?.invalid
+      "
+    >
+      Short Description is required.
+    </div>
 
     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>Long Description</mat-label>
       <input matInput name="longDesc" type="text" formControlName="longDesc" />
     </mat-form-field>
+    <div
+      class="invalid-inputs"
+      *ngIf="
+        formOrganization.get('longDesc')?.touched &&
+        formOrganization.get('longDesc')?.invalid
+      "
+    >
+      Long Description is required.
+    </div>
 
     <!-- FB, Linkedin, IG, TW -->
 
@@ -23,21 +60,57 @@
       <mat-label>Facebook URL</mat-label>
       <input matInput name="facebook" type="url" formControlName="facebook" />
     </mat-form-field>
+    <div
+      class="invalid-inputs"
+      *ngIf="
+        formOrganization.get('facebook')?.touched &&
+        formOrganization.get('facebook')?.invalid
+      "
+    >
+      Invalid URL.
+    </div>
 
     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>Linkedin URL</mat-label>
       <input matInput name="linkedin" type="url" formControlName="linkedin" />
     </mat-form-field>
+    <div
+      class="invalid-inputs"
+      *ngIf="
+        formOrganization.get('linkedin')?.touched &&
+        formOrganization.get('linkedin')?.invalid
+      "
+    >
+      Invalid URL.
+    </div>
 
     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>Instagram URL</mat-label>
       <input matInput name="instagram" type="url" formControlName="instagram" />
     </mat-form-field>
+    <div
+      class="invalid-inputs"
+      *ngIf="
+        formOrganization.get('instagram')?.touched &&
+        formOrganization.get('instagram')?.invalid
+      "
+    >
+      Invalid URL.
+    </div>
 
     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>Twitter URL</mat-label>
       <input matInput name="twitter" type="url" formControlName="twitter" />
     </mat-form-field>
+    <div
+      class="invalid-inputs"
+      *ngIf="
+        formOrganization.get('twitter')?.touched &&
+        formOrganization.get('twitter')?.invalid
+      "
+    >
+      Invalid URL.
+    </div>
     <button type="submit" mat-button color="primary">Enviar</button>
   </div>
 </form>
