@@ -13,9 +13,9 @@ import { NewsService } from '../news.service';
 export class NewsCardsComponent implements OnInit {
   public newsLista: newData[]=[]
   public newModel!:newData;
-
+  public myTitle:string;
   constructor(private newsService: NewsService, private ruta:Router) {
-    
+    this.myTitle="Novedades";
   }
 
   ngOnInit(): void {
@@ -42,14 +42,6 @@ export class NewsCardsComponent implements OnInit {
       result=true;
     }
     return result;
-  }
-
-  public modificar(newModel:newData){
-    this.ruta.navigate([`backoffice/news/${newModel.id}`]);
-  }
-  
-  public crear(){
-    this.ruta.navigate(['backoffice/news']);
   }
   
   public detalleVer(novedad:newData){

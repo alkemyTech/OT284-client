@@ -10,13 +10,22 @@ import { MatPaginatorModule } from "@angular/material/paginator";
 import { MatTableModule } from "@angular/material/table";
 import { MatDialogModule } from "@angular/material/dialog";
 import { TitleComponent } from "./components/title/title.component";
-import { MatAlertDialogComponent } from './components/mat-alert-dialog/mat-alert-dialog.component';
-import { AuthButtonsComponent } from './components/auth-buttons/auth-buttons.component';
-import { PhonePipe } from './helpers/phonePipe';
-import { MatAlertErrorComponent } from './components/mat-alert-error/mat-alert-error.component';
+import { MatAlertDialogComponent } from "./components/mat-alert-dialog/mat-alert-dialog.component";
+import { AuthButtonsComponent } from "./components/auth-buttons/auth-buttons.component";
+import { PhonePipe } from "./helpers/phonePipe";
+import { MatCheckboxModule } from "@angular/material/checkbox";
+import { MatAlertErrorComponent } from "./components/mat-alert-error/mat-alert-error.component";
+import { SpinnerComponent } from "./components/spinner/spinner.component";
 @NgModule({
-  declarations: [LinkComponent, TitleComponent,
-    PhonePipe, MatAlertDialogComponent, AuthButtonsComponent, MatAlertErrorComponent],
+  declarations: [
+    LinkComponent,
+    TitleComponent,
+    PhonePipe,
+    MatAlertDialogComponent,
+    AuthButtonsComponent,
+    MatAlertErrorComponent,
+    SpinnerComponent
+  ],
   imports: [CommonModule, RouterModule, MatButtonModule],
   exports: [
     LinkComponent,
@@ -30,7 +39,9 @@ import { MatAlertErrorComponent } from './components/mat-alert-error/mat-alert-e
     MatDialogModule,
     TitleComponent,
     PhonePipe,
-    AuthButtonsComponent
+    AuthButtonsComponent,
+    MatCheckboxModule,
+    SpinnerComponent
   ],
 })
 export class SharedModule {}

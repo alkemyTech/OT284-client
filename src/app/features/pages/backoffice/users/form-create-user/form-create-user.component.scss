@@ -10,6 +10,19 @@
   align-items: center;
 }
 
+form {
+  padding: 3rem;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+    rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+h1 {
+  margin-top: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
 .example-full-width {
   width: 100%;
 }
@@ -22,10 +35,25 @@ mat-icon {
   margin-left: 10px;
 }
 
+mat-checkbox {
+  margin-right: 10px;
+}
+
+.submitButton {
+  font-size: 20px;
+}
+
 .address {
   display: flex;
   flex-direction: row;
   align-items: center;
+}
+
+.checkbox {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 15px 0 15px 0;
 }
 
 .container {
@@ -55,10 +83,4 @@ label {
 .invalid-inputs {
   color: red;
   font-size: 12px;
-}
-
-.buttons {
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
