@@ -1,5 +1,4 @@
-<h1 [ngStyle]="{'text-align':'center'}">Novedades</h1>
-<button mat-raised-button color="primary" [style.margin.px]='10' (click)="crear()">Crear Novedad</button>
+<app-title [title]="myTitle"></app-title>
 <div class="container">
     <div class="row">
         <div *ngFor="let new of newsLista" class="card">
@@ -17,8 +16,7 @@
                 <div *ngIf="!mostrarFechaAct(new.created_at,new.updated_at)">
                     <p>Fecha de creación: {{new.created_at | date :'dd/MM/yy'}}</p>
                 </div> 
-                <button type="button" (click)="modificar(new)" mat-raised-button color="primary">MODIFICAR</button>
-                <button type="button" (click)="detalleVer(new)" mat-raised-button color="primary">VER DETALLE</button>
+                <button type="button" (click)="detalleVer(new)" mat-raised-button color="warn">VER DETALLE</button>
             </div>
         </div>  
     </div>
