@@ -10,16 +10,25 @@ import { MatPaginatorModule } from "@angular/material/paginator";
 import { MatTableModule } from "@angular/material/table";
 import { MatDialogModule } from "@angular/material/dialog";
 import { TitleComponent } from "./components/title/title.component";
-import { MatAlertDialogComponent } from './components/mat-alert-dialog/mat-alert-dialog.component';
-import { AuthButtonsComponent } from './components/auth-buttons/auth-buttons.component';
-import { PhonePipe } from './helpers/phonePipe';
-import { MatAlertErrorComponent } from './components/mat-alert-error/mat-alert-error.component';
+import { MatAlertDialogComponent } from "./components/mat-alert-dialog/mat-alert-dialog.component";
+import { AuthButtonsComponent } from "./components/auth-buttons/auth-buttons.component";
+import { PhonePipe } from "./helpers/phonePipe";
+import { MatCheckboxModule } from "@angular/material/checkbox";
+import { MatAlertErrorComponent } from "./components/mat-alert-error/mat-alert-error.component";
+import { SpinnerComponent } from "./components/spinner/spinner.component";
 import { MapWindowComponent } from './components/map-window/map-window.component';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 
 @NgModule({
-  declarations: [LinkComponent, TitleComponent,
-    PhonePipe, MatAlertDialogComponent, AuthButtonsComponent, MatAlertErrorComponent, MapWindowComponent],
+  declarations: [
+    LinkComponent,
+    TitleComponent,
+    PhonePipe,
+    MatAlertDialogComponent,
+    AuthButtonsComponent,
+    MatAlertErrorComponent,
+    SpinnerComponent
+  , MapWindowComponent],
   imports: [CommonModule, RouterModule, MatButtonModule, LeafletModule],
   exports: [
     LinkComponent,
@@ -34,7 +43,9 @@ import { LeafletModule } from '@asymmetrik/ngx-leaflet';
     TitleComponent,
     PhonePipe,
     AuthButtonsComponent,
-    MapWindowComponent
+    MapWindowComponent,
+    MatCheckboxModule,
+    SpinnerComponent
   ],
 })
 export class SharedModule {}

@@ -15,6 +15,10 @@ export class LoginFormComponent implements OnInit {
 
   constructor(private formBuilder:FormBuilder, private authService:AuthService, private router: Router) { }
 
+  GoogleLogin(){
+    this.authService.registerGoogle();
+  }
+
   ngOnInit(): void {
     this.initLoginForm();
   }
