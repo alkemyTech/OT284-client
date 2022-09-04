@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Activity } from 'src/app/shared/interfaces/activity';
 
 @Component({
@@ -10,9 +11,13 @@ export class SlidesComponent implements OnInit {
 
   @Input() activity:Activity
 
-  constructor() { }
+  constructor(private router:Router) { }
 
   ngOnInit(): void {
+  }
+
+  goToActivityDetail(activity: Activity) {
+    this.router.navigate(['/activity-detail', { activity: activity }]);
   }
 
 }
