@@ -29,6 +29,8 @@ import { AboutUsComponent } from './pages/about/about-us/about-us.component';
 import { NewsDetailsComponent } from './pages/news/news-details/news-details.component';
 import { AboutTweetsComponent } from './pages/about/about-tweets/about-tweets.component';
 import { NgxTwitterTimelineModule } from 'ngx-twitter-timeline';
+import { ActivityViewComponent } from './pages/activities/activity-view/activity-view.component';
+import { SlidesComponent } from './pages/activities/slides/slides.component';
 
 
 @NgModule({
@@ -50,6 +52,8 @@ import { NgxTwitterTimelineModule } from 'ngx-twitter-timeline';
     AboutUsComponent,
     NewsDetailsComponent,
     AboutTweetsComponent,
+    ActivityViewComponent,
+    SlidesComponent,
   ],
   exports: [
     ActivityFormComponent,
