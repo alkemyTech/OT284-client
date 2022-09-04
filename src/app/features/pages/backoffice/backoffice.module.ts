@@ -42,7 +42,7 @@ import { EditComponent } from "./organization/edit/edit.component";
     TermsAndConditionsComponent,
     OrganizationComponent,
     TestimonialsPageComponent,
-    EditComponent
+    EditComponent,
   ],
   imports: [
     CommonModule,
