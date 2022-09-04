@@ -1,0 +1,16 @@
+<div class="wrapper">
+  <h1>ORGANIZACION</h1>
+  <div class="container" *ngIf="orgData">
+    <div class="title">
+      {{ orgData.name }}
+    </div>
+    <div class="logo">
+      <img [src]="orgData.logo" alt="" />
+    </div>
+    <div class="description">
+      {{ orgData.short_description }}
+    </div>
+
+    <button mat-button color="primary">Formulario de edición</button>
+  </div>
+</div>
