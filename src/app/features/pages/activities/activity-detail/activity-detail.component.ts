@@ -14,7 +14,7 @@ export class ActivityDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
-      this.name = params['name'];
+      this.activity = params
     });
   }
 
