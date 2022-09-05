@@ -59,7 +59,11 @@ const routes: Routes = [
     ...canActivate( () => redirectLoggedInTo(['']))
   },
   {
-    path: "categorias/edit",
+    path: "categorias/edit/:id",
+    component: CategoriesFormComponent
+  },
+  {
+    path: "categorias/new",
     component: CategoriesFormComponent
   },
 ];

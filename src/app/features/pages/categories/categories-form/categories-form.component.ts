@@ -1,9 +1,11 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-
+import { ActivatedRoute } from '@angular/router';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { CategoryService } from '../../../../core/services/category.service';
 import { Category } from '../../../../shared/interfaces/category';
+
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-categories-form',
@@ -12,43 +14,39 @@ import { Category } from '../../../../shared/interfaces/category';
 })
 export class CategoriesFormComponent implements OnInit {
 
-  @Input() category: Category;
-
+  category: Category;
   form!: FormGroup;
   file!: any;
   Editor = ClassicEditor;
 
-  constructor( private fb: FormBuilder, private categoryService: CategoryService ) { }
+  constructor( private fb: FormBuilder, private categoryService: CategoryService, private route: ActivatedRoute ) { }
 
   ngOnInit(): void {
-    this.category = {
-      id: 2296,
-      name: "big ooooooooooof2",
-      description: "<p>test2</p>",
-      image: "http://ongapi.alkemy.org/storage/gpqFivkw3I.png",
-      created_at: "2022-09-02T12:18:59.000000Z",
-    }
+    this.createForm();
 
-    if (this.category) {
-      this.editForm();
-    } else {
-      this.createForm();
-    }
+    this.route.params.subscribe( params => {
+      let { id } = params;
+
+      if ( id ) {
+        this.categoryService.getCategoryById(id).subscribe( category => {
+          this.category = category;
+          this.form.get('image')?.removeValidators(Validators.required);
+          console.log(this.category);
+          this.form.setValue({
+            name: category.name,
+            image: '',
+            description: category.description
+          })
+        })
+      }
+    })
   }
 
   createForm() {
     this.form = this.fb.group({
-      name: [this.category?.name ?? '', [Validators.minLength(4), Validators.required]],
+      name: ['', [Validators.minLength(4), Validators.required]],
       image: ['', Validators.required],
-      description: [this.category?.description ?? '', [Validators.required]],
-    })
-  }
-
-  editForm() {
-    this.form = this.fb.group({
-      name: [this.category?.name ?? '', [Validators.minLength(4), Validators.required]],
-      image: [''],
-      description: [this.category?.description ?? '', [Validators.required]],
+      description: ['', [Validators.required]],
     })
   }
 
@@ -98,6 +96,13 @@ export class CategoriesFormComponent implements OnInit {
           if ( this.form.invalid ) {
             this.invalidForm();
           } else {
+            Swal.fire({
+              allowOutsideClick: false,
+              icon: 'info',
+              text: 'Espere por favor...',
+            });
+        
+            Swal.showLoading();
             /* make the call to the API */
             this.createCategory();
           }
@@ -130,19 +135,22 @@ export class CategoriesFormComponent implements OnInit {
   }
 
   createCategory() {
-    // this.categoryService.createCategory(this.form.value).subscribe(resp => console.log(resp));
-    console.log('CREAR');
-    console.log(this.form.value);
+    this.categoryService.createCategory(this.form.value).subscribe((resp: any) => {
+      console.log(resp);
+      Swal.close();
+      Swal.fire({
+        icon: 'success',
+        title: 'Completado',
+        text: resp.message
+      });
+    });
     this.createForm();
   }
 
   editCategory() {
-    console.log('EDITAR');
-    console.log(this.form.value);
-    this.editForm();
-    // if (this.category.id) {
-    //   this.categoryService.updateCategory(this.category.id, this.form.value).subscribe(resp => console.log(resp));
-    // }
+    if (this.category.id) {
+      this.categoryService.updateCategory(this.category.id, this.form.value).subscribe(resp => console.log(resp));
+    }
   }
 
 }
