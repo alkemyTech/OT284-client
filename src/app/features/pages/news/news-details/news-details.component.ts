@@ -14,8 +14,10 @@ export class NewsDetailsComponent implements OnInit {
   public id:number;
   public srcImg:string;
   public content:string;
+  public isLoading:boolean;
   constructor(private svc:NewsService, private ruta:ActivatedRoute) {
     this.id=this.getId();
+    this.isLoading=true;
    }
 
   ngOnInit(): void {
@@ -27,6 +29,7 @@ export class NewsDetailsComponent implements OnInit {
       next:(data:newData)=>{
         this.myTitle=data.name;
         this.srcImg=data.image;
+        this.isLoading=false;
         this.content=data.content;
       },
       error:(error:HttpErrorResponse)=>{

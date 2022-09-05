@@ -74,7 +74,7 @@ import { CKEditorModule } from "@ckeditor/ckeditor5-angular";
     FormsModule,
     ReactiveFormsModule,
     CKEditorModule,
-    NgxTwitterTimelineModule,
+    NgxTwitterTimelineModule
   ],
 })
 export class FeaturesModule {}

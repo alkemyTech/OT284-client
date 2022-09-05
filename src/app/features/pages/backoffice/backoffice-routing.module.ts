@@ -1,13 +1,16 @@
-import { BackofficeComponent } from './backoffice.component';
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { NewsFormComponent } from '../news/news-form/news-form.component';
+import { BackofficeComponent } from "./backoffice.component";
+import { NgModule } from "@angular/core";
+import { RouterModule, Routes } from "@angular/router";
+import { NewsFormComponent } from "../news/news-form/news-form.component";
 import { UsersComponent } from "./users/users.component";
 import { FormCreateUserComponent } from "./users/form-create-user/form-create-user.component";
 import { EditHomeComponent } from "./edit-home/edit-home.component";
+import { NewsListComponent } from "../news/news-list/news-list.component";
 import { MemberFormComponent } from "./members/member-form/member-form.component";
-import { TestimonialsPageComponent } from './testimonials/testimonials-page/testimonials-page.component';
-
+import { TestimonialsPageComponent } from "./testimonials/testimonials-page/testimonials-page.component";
+import { MembersComponent } from "./members/members.component";
+import { CreateMemberComponent } from "./members/create-member/create-member.component";
+import { OrganizationComponent } from "./organization/organization.component";
 
 const routes: Routes = [
   {
@@ -31,24 +34,36 @@ const routes: Routes = [
     component: EditHomeComponent,
   },
   {
+    path: "news",
+    component: NewsListComponent,
+  },
+  {
+    path: "news/create",
+    component: NewsFormComponent,
+  },
+  {
     path: "members/edit",
-    component: MemberFormComponent
+    component: MemberFormComponent,
   },
   {
-    path:"news/:id",
+    path: "news/:id",
     component: NewsFormComponent,
   },
   {
-    path:"news",
-    component: NewsFormComponent,
+    path: "members",
+    component: MembersComponent,
   },
   {
-    path:"testimonials/create",
+    path: "testimonials/create",
     component: TestimonialsPageComponent,
   },
   {
-    path:"testimonials/:id",
+    path: "testimonials/:id",
     component: TestimonialsPageComponent,
+  },
+  {
+    path: "organization",
+    component: OrganizationComponent,
   },
 ];
 
