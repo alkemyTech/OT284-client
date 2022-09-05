@@ -8,7 +8,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ActivityDetailComponent implements OnInit {
 
-  activity: Activity;
+  activity: any;
 
   constructor( private route: ActivatedRoute,) { }
 

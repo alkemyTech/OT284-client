@@ -11,6 +11,7 @@ import { ContactViewComponent } from "./pages/contact/contact-view/contact-view.
 import { NewsDetailsComponent } from "./pages/news/news-details/news-details.component";
 import { canActivate, redirectUnauthorizedTo, redirectLoggedInTo } from "@angular/fire/auth-guard";
 import { AuthGuardGuard } from "./pages/auth/guards/auth-guard.guard";
+import { ActivityDetailComponent } from "./pages/activities/activity-detail/activity-detail.component";
 
 
 const routes: Routes = [
@@ -26,6 +27,10 @@ const routes: Routes = [
   {
     path: "actividades",
     component: ActivityFormComponent,
+  },
+  {
+    path: "activity",
+    component: ActivityDetailComponent,
   },
   {
     path: "contacto", 
