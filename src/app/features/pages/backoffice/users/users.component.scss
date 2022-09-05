@@ -11,16 +11,38 @@ app-link {
   margin: 2rem 0 2rem 0;
 }
 
-label {
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  font-weight: 600;
+mat-label {
+  font-weight: 500;
+}
+
+.searchInputs {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+.search {
+  display: flex;
+  flex-direction: column;
+  margin-right: 1rem;
+}
+
+.role {
+  display: flex;
+  flex-direction: column;
+}
+
+mat-select {
+  margin: 0 0 1rem 0;
+  padding: 1rem;
+  width: 300px;
+  background-color: rgb(245, 245, 245);
 }
 
 input {
   border: 1px solid rgba(0, 0, 1, 0.473);
-  width: 400px;
-  height: 40px;
+  width: 300px;
+
   margin-bottom: 0.7rem;
   border-radius: 8px;
   padding: 0.5rem;
@@ -35,10 +57,6 @@ input {
   justify-content: center;
   align-items: center;
   width: 100%;
-}
-
-.selectRole {
-  margin-left: 0.5rem;
 }
 
 .paginator {
