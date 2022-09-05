@@ -16,6 +16,7 @@ export class ContactViewComponent implements OnInit {
 
   organization$ !: Observable<Organization>;
   messageResponse: any =null;
+  address: string = "Paraguay 733, (C1057AAI) Ciudad Autónoma de Buenos Aires";
 
   ngOnInit(): void {
     this.organization$  = this.aboutService.getOrganization()

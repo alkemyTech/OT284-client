@@ -9,6 +9,10 @@
     align-items:center;
 }
 
+section{
+    display: flex;
+}
+
 .contact-item{
     display: flex;
     border: 1px solid black;

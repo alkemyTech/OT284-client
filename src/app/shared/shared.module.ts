@@ -16,6 +16,9 @@ import { PhonePipe } from "./helpers/phonePipe";
 import { MatCheckboxModule } from "@angular/material/checkbox";
 import { MatAlertErrorComponent } from "./components/mat-alert-error/mat-alert-error.component";
 import { SpinnerComponent } from "./components/spinner/spinner.component";
+import { MapWindowComponent } from './components/map-window/map-window.component';
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+
 @NgModule({
   declarations: [
     LinkComponent,
@@ -25,8 +28,8 @@ import { SpinnerComponent } from "./components/spinner/spinner.component";
     AuthButtonsComponent,
     MatAlertErrorComponent,
     SpinnerComponent
-  ],
-  imports: [CommonModule, RouterModule, MatButtonModule],
+  , MapWindowComponent],
+  imports: [CommonModule, RouterModule, MatButtonModule, LeafletModule],
   exports: [
     LinkComponent,
     MatButtonModule,
@@ -40,6 +43,7 @@ import { SpinnerComponent } from "./components/spinner/spinner.component";
     TitleComponent,
     PhonePipe,
     AuthButtonsComponent,
+    MapWindowComponent,
     MatCheckboxModule,
     SpinnerComponent
   ],
