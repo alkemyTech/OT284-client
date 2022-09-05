@@ -3,27 +3,21 @@ import { MatDialog } from "@angular/material/dialog";
 import { MatPaginator } from "@angular/material/paginator";
 import { MatTableDataSource } from "@angular/material/table";
 import { Router } from "@angular/router";
-import { fromEvent, merge } from "rxjs";
-import {
-  debounceTime,
-  distinctUntilChanged,
-  filter,
-  map,
-} from "rxjs/operators";
-
+import { fromEvent, Observable } from "rxjs";
+import { debounceTime, distinctUntilChanged, map } from "rxjs/operators";
 import { MatAlertDialogComponent } from "src/app/shared/components/mat-alert-dialog/mat-alert-dialog.component";
-import { environment } from "src/environments/environment";
-
-import { NewsUsersService } from "../../../../core/services/newsUsers.service";
 import { UsersService } from "./services/users.service";
-
-export interface apiData {
-  id: number;
-  name: string;
-  email: string;
-  password: string;
-  role_id: number;
-}
+import { userData } from "../../../../shared/interfaces/userInterface";
+import { Store } from "@ngrx/store";
+import {
+  deleteUserAction,
+  loadUsers,
+} from "src/app/state/actions/users.actions";
+import {
+  selectUsers,
+  selectUsersLoading,
+} from "src/app/state/selectors/users.selectors";
+import { AppState } from "src/app/state/app.state";
 
 @Component({
   selector: "app-users",
@@ -32,11 +26,10 @@ export interface apiData {
 })
 export class UsersComponent implements OnInit {
   displayedColumns: string[] = ["name", "email", "actions"];
-  dataSource = new MatTableDataSource<apiData>();
-  @ViewChild("users", { static: false })
+  dataSource = new MatTableDataSource<userData>();
+  @ViewChild("users", { static: true })
   paginator: MatPaginator;
-  row: apiData[] = [];
-  urlAPI: string = "https://ongapi.alkemy.org/api/users";
+  row: userData[];
   linkRef = "Crear Usuario";
   routerPath = "create";
   pageIndex = 0;
@@ -45,18 +38,19 @@ export class UsersComponent implements OnInit {
   searchInput: ElementRef;
   @ViewChild("roleSelect", { static: true })
   roleSelect: ElementRef;
-  @ViewChild("map", { static: false })
-  map: HTMLElement;
+  loading$: Observable<boolean>;
+  selected: number = 0;
 
   constructor(
     private user: UsersService,
-    private http: NewsUsersService,
     private router: Router,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private store: Store<AppState>
   ) {}
 
   updateTable() {
     this.dataSource.data = this.row;
+    this.dataSource.paginator = this.paginator;
     this.paginator.page.subscribe((data: any) => {
       this.pageIndex = data.pageIndex;
       this.pageSize = data.pageSize;
@@ -64,18 +58,14 @@ export class UsersComponent implements OnInit {
   }
 
   roleSearch() {
-    const roleSelect = this.roleSelect.nativeElement.value;
     const searchInput = this.searchInput.nativeElement.value;
-    this.http
-      .getSearch(
-        environment.url,
-        searchInput ? searchInput : "",
-        roleSelect != 0 ? roleSelect : ""
-      )
-      .subscribe((apiData: any) => {
-        this.row = apiData.data;
-        this.updateTable();
-      });
+    this.store.dispatch(
+      loadUsers({
+        parameters: searchInput ? searchInput : "",
+        parametersRole: this.selected != 0 ? this.selected : "",
+      })
+    );
+    this.updateTable();
   }
 
   search() {
@@ -101,46 +91,57 @@ export class UsersComponent implements OnInit {
     const realIndex = i + this.pageIndex * this.pageSize;
     this.user.editUserData = this.row[realIndex];
     this.router.navigateByUrl("backoffice/users/edit");
+    this.user.userIsEditing = true;
   }
 
   deleteUser(i: number) {
+    const realIndex = i + this.pageIndex * this.pageSize;
     this.dialog
       .open(MatAlertDialogComponent, {
-        data: `¿Estás seguro que deseas borrar el usuario ${this.row[i].name}?`,
+        data: {
+          title: "Confirmación",
+          message: `¿Estás seguro que deseas borrar el usuario ${this.row[realIndex].name}?`,
+          confirmText: "Sí",
+          cancelText: "No",
+        },
       })
       .afterClosed()
       .subscribe((confirmado: Boolean) => {
         if (confirmado) {
-          const realIndex = i + this.pageIndex * this.pageSize;
-          this.http
-            .delete(environment.url, this.row[realIndex].id)
-            .subscribe((data) => {
-              console.log(data);
-            });
-          this.row.splice(realIndex, 1);
+          this.store.dispatch(
+            deleteUserAction({ parameters: this.row[realIndex].id })
+          );
+          this.row = this.row.filter(
+            (e: any) => e.id != this.row[realIndex].id
+          );
+
           this.updateTable();
         }
       });
   }
 
   fillTable() {
-    const roleSelect = this.roleSelect.nativeElement.value;
     const searchInput = this.searchInput.nativeElement.value;
-    this.http
-      .getSearch(
-        environment.url,
-        searchInput ? searchInput : "",
-        roleSelect != 0 ? roleSelect : ""
-      )
-      .subscribe((data: any) => {
-        this.row = data.data;
-        this.updateTable();
-        this.dataSource.paginator = this.paginator;
-      });
+    this.store.dispatch(
+      loadUsers({
+        parameters: searchInput ? searchInput : "",
+        parametersRole: this.selected != 0 ? this.selected : "",
+      })
+    );
   }
 
   ngOnInit(): void {
     this.fillTable();
+
     this.search();
+    this.loading$ = this.store.select(selectUsersLoading);
+    this.store.select(selectUsers).subscribe((data: any) => {
+      if (data.data) {
+        this.row = data.data;
+        this.updateTable();
+      } else {
+        console.log("no data");
+      }
+    });
   }
 }
