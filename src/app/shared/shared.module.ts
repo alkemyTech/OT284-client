@@ -15,6 +15,7 @@ import { AuthButtonsComponent } from "./components/auth-buttons/auth-buttons.com
 import { PhonePipe } from "./helpers/phonePipe";
 import { MatCheckboxModule } from "@angular/material/checkbox";
 import { MatAlertErrorComponent } from "./components/mat-alert-error/mat-alert-error.component";
+import { SpinnerComponent } from "./components/spinner/spinner.component";
 @NgModule({
   declarations: [
     LinkComponent,
@@ -23,6 +24,7 @@ import { MatAlertErrorComponent } from "./components/mat-alert-error/mat-alert-e
     MatAlertDialogComponent,
     AuthButtonsComponent,
     MatAlertErrorComponent,
+    SpinnerComponent
   ],
   imports: [CommonModule, RouterModule, MatButtonModule],
   exports: [
@@ -39,6 +41,7 @@ import { MatAlertErrorComponent } from "./components/mat-alert-error/mat-alert-e
     PhonePipe,
     AuthButtonsComponent,
     MatCheckboxModule,
+    SpinnerComponent
   ],
 })
 export class SharedModule {}

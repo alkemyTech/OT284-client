@@ -13,13 +13,23 @@
 .uploadLabel {
   font-size: 16px;
   text-transform: uppercase;
-  margin-bottom: 1rem;
+}
+
+.invalid-inputs {
+  color: red;
+  font-size: 12px;
 }
 
 mat-form-field,
 ckeditor {
   margin-top: 2rem;
   width: 80%;
+}
+
+mat-label,
+.fileInput,
+ckeditor {
+  margin-top: 1rem;
 }
 
 button {

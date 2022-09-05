@@ -14,21 +14,24 @@ import { SharedModule } from "src/app/shared/shared.module";
 import { FormCreateUserComponent } from "./users/form-create-user/form-create-user.component";
 import { UsersComponent } from "./users/users.component";
 import { EditHomeComponent } from "./edit-home/edit-home.component";
-import {MatTableModule} from '@angular/material/table';
+import { MatTableModule } from "@angular/material/table";
 import { NgxMatFileInputModule } from "@angular-material-components/file-input";
 import { FormMapComponent } from "./users/form-create-user/form-map/form-map.component";
 import { NewsListComponent } from "../news/news-list/news-list.component";
-import { MembersComponent } from './members/members.component';
-import { CreateMemberComponent } from './members/create-member/create-member.component';
+import { MembersComponent } from "./members/members.component";
+import { CreateMemberComponent } from "./members/create-member/create-member.component";
+import { TestimonialFormComponent } from "./testimonials/testimonial-form/testimonial-form.component";
+import { TestimonialsPageComponent } from "./testimonials/testimonials-page/testimonials-page.component";
 import { TermsAndConditionsComponent } from "./users/form-create-user/terms-and-conditions/terms-and-conditions.component";
-import { OrganizationComponent } from './organization/organization.component';
-
+import { OrganizationComponent } from "./organization/organization.component";
+import { EditComponent } from "./organization/edit/edit.component";
 
 @NgModule({
   declarations: [
     BackofficeComponent,
     NewsFormComponent,
     EditHomeComponent,
+    TestimonialFormComponent,
     FormCreateUserComponent,
     UsersComponent,
     FormMapComponent,
@@ -38,6 +41,8 @@ import { OrganizationComponent } from './organization/organization.component';
     CreateMemberComponent,
     TermsAndConditionsComponent,
     OrganizationComponent,
+    TestimonialsPageComponent,
+    EditComponent,
   ],
   imports: [
     CommonModule,
@@ -52,6 +57,7 @@ import { OrganizationComponent } from './organization/organization.component';
     MatFormFieldModule,
     SharedModule,
     CKEditorModule,
+    ReactiveFormsModule,
     FormsModule,
     MatTableModule,
   ],
