@@ -31,6 +31,13 @@ export const environment = {
       create:"https://ongapi.alkemy.org/api/testimonials/",
       edit:"https://ongapi.alkemy.org/api/testimonials/",
       delete:"https://ongapi.alkemy.org/api/testimonials/",
+    },
+    miembros:{
+      list: "https://ongapi.alkemy.org/api/members",
+      getMiembro(id:number) {return `https://ongapi.alkemy.org/api/members/${id}`},
+      create: "https://ongapi.alkemy.org/api/members",
+      edit(id:number) {return `https://ongapi.alkemy.org/api/members/${id}`},
+      delete(id:number) {return `https://ongapi.alkemy.org/api/members/${id}`}
     }
   },
   url: "https://ongapi.alkemy.org/api/"
