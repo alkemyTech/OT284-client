@@ -14,9 +14,13 @@ import { AboutService } from "src/app/core/services/about.service";
   styleUrls: ["./edit.component.scss"],
 })
 export class EditComponent implements OnInit {
-  constructor(private organization: AboutService) {}
+  constructor(
+    private organization: AboutService,
+    private about: AboutService
+  ) {}
   public Editor = ClassicEditor;
   logo: string;
+  id: number;
   urlPattern = "(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?";
   formOrganization = new FormGroup({
     name: new FormControl("", [Validators.required]),
@@ -50,12 +54,36 @@ export class EditComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.formOrganization.status);
+    const name = this.formOrganization.value.name;
+    const logo = this.formOrganization.value.logo;
+    const shortDesc = this.formOrganization.value.shortDesc;
+    const longDesc = this.formOrganization.value.longDesc;
+    const facebook = this.formOrganization.value.facebook;
+    const linkedin = this.formOrganization.value.linkedin;
+    const instagram = this.formOrganization.value.instagram;
+    const twitter = this.formOrganization.value.twitter;
+
+    if (this.formOrganization.valid) {
+      this.about
+        .putOrganization(this.id, {
+          name: name,
+          short_description: shortDesc,
+          long_description: longDesc,
+          facebook_url: facebook,
+          linkedin_url: linkedin,
+          instagram_url: instagram,
+          twitter_url: twitter,
+        })
+        .subscribe((data) => {
+          console.log(data);
+        });
+    }
   }
 
   ngOnInit(): void {
     this.organization.getOrganization().subscribe((data) => {
       this.logo = data.logo;
+      this.id = data.id;
     });
   }
 }

@@ -25,9 +25,7 @@ export class AboutService {
   }
 
   putOrganization(id: number, body: any): Observable<Organization> {
-    return this.http
-      .put(environment.endpoints.organization.edit + id, body)
-      .pipe(map((resp: any) => resp.data));
+    return this.http.put(environment.endpoints.organization.edit + id, body);
   }
 
   getMembers(): Observable<Member[]> {
