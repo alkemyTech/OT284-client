@@ -1,7 +1,8 @@
 <div class="container">
     <div class="row-flex">
         <div class="card">
-            <h4 class="title">CREAR CATEGORÍA</h4>
+            <h4 *ngIf="!category" class="title">CREAR CATEGORÍA</h4>
+            <h4 *ngIf="category" class="title">EDITAR CATEGORÍA</h4>
             <form [formGroup]="form" (ngSubmit)="onSubmit()">
                 <mat-form-field appearance="fill" class="full-width margin-y">
                     <mat-label>Nombre</mat-label>
@@ -11,8 +12,8 @@
                     </mat-error>
                 </mat-form-field>
                 <div class="margin-y">
-                    <input (change)="onFileSelected($event)" type="file" class="item-center" id="imagen">
-                    <mat-error *ngIf="invalidInput('description')">
+                    <input formControlName="image" (change)="onFileSelected($event)" type="file" class="item-center" id="imagen">
+                    <mat-error *ngIf="invalidInput('image')">
                         La imagen es obligatoria. (Debe ser .png o .jpg)
                     </mat-error>
                 </div>
@@ -26,7 +27,8 @@
                 </div>
                 <div class="row-flex">
                     <div class="margin-y full-width">
-                        <button mat-raised-button color="warn">CREAR CATEGORÍA</button>
+                        <button *ngIf="!category" mat-raised-button color="warn">CREAR CATEGORÍA</button>
+                        <button *ngIf="category" mat-raised-button color="warn">EDITAR CATEGORÍA</button>
                     </div>
                 </div>
             </form>

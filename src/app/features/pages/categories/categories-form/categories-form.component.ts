@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { CategoryService } from '../../../../core/services/category.service';
+import { Category } from '../../../../shared/interfaces/category';
 
 @Component({
   selector: 'app-categories-form',
@@ -10,26 +12,44 @@ import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 })
 export class CategoriesFormComponent implements OnInit {
 
+  @Input() category: Category;
+
   form!: FormGroup;
   file!: any;
   Editor = ClassicEditor;
 
-  constructor( private fb: FormBuilder ) { }
+  constructor( private fb: FormBuilder, private categoryService: CategoryService ) { }
 
   ngOnInit(): void {
-    this.createForm();
+    this.category = {
+      id: 2296,
+      name: "big ooooooooooof2",
+      description: "<p>test2</p>",
+      image: "http://ongapi.alkemy.org/storage/gpqFivkw3I.png",
+      created_at: "2022-09-02T12:18:59.000000Z",
+    }
+
+    if (this.category) {
+      this.editForm();
+    } else {
+      this.createForm();
+    }
   }
 
   createForm() {
     this.form = this.fb.group({
-      name: ['', [Validators.minLength(4), Validators.required]],
-      image: ['', [Validators.required]],
-      description: ['', [Validators.required]],
+      name: [this.category?.name ?? '', [Validators.minLength(4), Validators.required]],
+      image: ['', Validators.required],
+      description: [this.category?.description ?? '', [Validators.required]],
     })
   }
 
-  onFileSelected(event: any) {
-    this.file = event.target.files[0];
+  editForm() {
+    this.form = this.fb.group({
+      name: [this.category?.name ?? '', [Validators.minLength(4), Validators.required]],
+      image: [''],
+      description: [this.category?.description ?? '', [Validators.required]],
+    })
   }
 
   invalidInput(input: string) {
@@ -40,60 +60,89 @@ export class CategoriesFormComponent implements OnInit {
     return Object.values(this.form.controls).forEach( control => control.markAsTouched() );
   }
 
-  /* check if image is jpg or png */
   fileExtensionCheck( file: any ) {
     const extensionFile = file.type;
     
     if ( extensionFile === 'image/jpg' || extensionFile === 'image/png' ) {
-      return true
-    } else {
-      return false
+      return true;
+    } 
+
+    return false;
+  }
+
+  onFileSelected(event: any) {
+    this.file = event.target.files[0];
+    if(!this.fileExtensionCheck(this.file)) {
+      this.setImageError();
     }
   }
 
-  // convertFileToBase64(file: any) {
-  //   const reader = new FileReader();
-
-  //   reader.readAsDataURL(file);
-  //   reader.onload = () => {
-  //     console.log(reader.result);
-  //   }
-  // }
+  setImageError() {
+    this.form.controls['image'].setErrors({'incorrect': true});
+    if ( this.form.invalid ) {
+      this.invalidForm();
+    }
+  }
 
   onSubmit() {
-    if (this.file) {
-      /* check if file extension is valid */
-      if( !this.fileExtensionCheck(this.file) ) {
-        /* if invalid mark control as incorrect */
-        this.form.controls['image'].setErrors({'incorrect': true});
-        /* mark all controls */
-        if ( this.form.invalid ) {
-          this.invalidForm();
-        }
-      } else {
+    if (!this.category) {
+      /* create category */
+      if (this.file && this.fileExtensionCheck(this.file)) {
         /* the image is valid */
         this.form.controls['image'].setErrors(null);
 
         const reader = new FileReader();
-
         reader.readAsDataURL(this.file);
         reader.onload = () => {
           this.form.value.image = reader.result;
-
           if ( this.form.invalid ) {
             this.invalidForm();
           } else {
             /* make the call to the API */
-            console.log(this.form.value);
+            this.createCategory();
           }
+        }
+      } else {
+        /* there is no image */
+        if ( this.form.invalid ) {
+          this.invalidForm();
         }
       }
     } else {
-      /* there is no image */
-      if ( this.form.invalid ) {
-        this.invalidForm();
+      /* edit category */
+      if (!this.file) {
+        this.form.removeControl('image'); 
+        this.editCategory()
+        return;
       }
+      const reader = new FileReader();
+        reader.readAsDataURL(this.file);
+        reader.onload = () => {
+          this.form.value.image = reader.result;
+          if ( this.form.invalid ) {
+            this.invalidForm();
+          } else {
+            /* make the call to the API */
+            this.editCategory();
+          }
+        }
     }
+  }
+
+  createCategory() {
+    // this.categoryService.createCategory(this.form.value).subscribe(resp => console.log(resp));
+    console.log('CREAR');
+    console.log(this.form.value);
+    this.createForm();
+  }
+
+  editCategory() {
+    console.log('EDITAR');
+    console.log(this.form.value);
+    this.editForm();
+    // if (this.category.id) {
+    //   this.categoryService.updateCategory(this.category.id, this.form.value).subscribe(resp => console.log(resp));
+    // }
   }
 
 }
