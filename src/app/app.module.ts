@@ -28,7 +28,7 @@ import { UsersEffects } from "./state/effects/users.effects";
     EffectsModule.forRoot([OrganizationEffects, UsersEffects]),
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
-  ,LeafletModule],
+  LeafletModule],
   providers: [],
   bootstrap: [AppComponent],
 })
