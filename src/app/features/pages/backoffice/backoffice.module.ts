@@ -24,6 +24,7 @@ import { TestimonialFormComponent } from "./testimonials/testimonial-form/testim
 import { TestimonialsPageComponent } from "./testimonials/testimonials-page/testimonials-page.component";
 import { TermsAndConditionsComponent } from "./users/form-create-user/terms-and-conditions/terms-and-conditions.component";
 import { OrganizationComponent } from "./organization/organization.component";
+import { EditComponent } from "./organization/edit/edit.component";
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { OrganizationComponent } from "./organization/organization.component";
     TermsAndConditionsComponent,
     OrganizationComponent,
     TestimonialsPageComponent,
+    EditComponent,
   ],
   imports: [
     CommonModule,
