@@ -53,7 +53,9 @@ export class NewsListComponent implements OnInit {
             Swal.fire('Deleted!', '', 'success')
           },
           error:(error:HttpErrorResponse)=>{
-            console.log(error.message);
+            this.dialog.open(MatAlertErrorComponent,{
+              data:{text:"Error al eliminar novedad", message:error.message},
+            })
           }
         })
       } else if (result.isDenied) {
