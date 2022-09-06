@@ -31,7 +31,6 @@ export class CategoriesFormComponent implements OnInit {
         this.categoryService.getCategoryById(id).subscribe( category => {
           this.category = category;
           this.form.get('image')?.removeValidators(Validators.required);
-          console.log(this.category);
           this.form.setValue({
             name: category.name,
             image: '',
@@ -96,13 +95,7 @@ export class CategoriesFormComponent implements OnInit {
           if ( this.form.invalid ) {
             this.invalidForm();
           } else {
-            Swal.fire({
-              allowOutsideClick: false,
-              icon: 'info',
-              text: 'Espere por favor...',
-            });
-        
-            Swal.showLoading();
+            this.swalFire();
             /* make the call to the API */
             this.createCategory();
           }
@@ -116,8 +109,9 @@ export class CategoriesFormComponent implements OnInit {
     } else {
       /* edit category */
       if (!this.file) {
-        this.form.removeControl('image'); 
-        this.editCategory()
+        this.form.removeControl('image');
+        this.swalFire();
+        this.editCategory();
         return;
       }
       const reader = new FileReader();
@@ -128,6 +122,7 @@ export class CategoriesFormComponent implements OnInit {
             this.invalidForm();
           } else {
             /* make the call to the API */
+            this.swalFire();
             this.editCategory();
           }
         }
@@ -136,7 +131,6 @@ export class CategoriesFormComponent implements OnInit {
 
   createCategory() {
     this.categoryService.createCategory(this.form.value).subscribe((resp: any) => {
-      console.log(resp);
       Swal.close();
       Swal.fire({
         icon: 'success',
@@ -147,9 +141,25 @@ export class CategoriesFormComponent implements OnInit {
     this.createForm();
   }
 
+  swalFire() {
+    Swal.fire({
+      allowOutsideClick: false,
+      icon: 'info',
+      text: 'Espere por favor...',
+    });
+
+    Swal.showLoading();
+  }
+
   editCategory() {
     if (this.category.id) {
-      this.categoryService.updateCategory(this.category.id, this.form.value).subscribe(resp => console.log(resp));
+      this.categoryService.updateCategory(this.category.id, this.form.value).subscribe((resp: any) => {
+        Swal.fire({
+          icon: 'success',
+          title: 'Completado',
+          text: resp.message
+        });
+      });
     }
   }
 

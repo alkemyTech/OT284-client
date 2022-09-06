@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import * as L from 'leaflet';
 import { FormMapService } from 'src/app/features/pages/backoffice/users/form-create-user/form-map/form-map.service';
+import { MatAlertErrorComponent } from '../mat-alert-error/mat-alert-error.component';
 
 @Component({
   selector: 'app-map-window',
