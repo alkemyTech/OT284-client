@@ -12,6 +12,7 @@ import { MembersComponent } from "./members/members.component";
 import { CreateMemberComponent } from "./members/create-member/create-member.component";
 import { OrganizationComponent } from "./organization/organization.component";
 import { EditComponent } from "./organization/edit/edit.component";
+import { CategoriesFormComponent } from '../categories/categories-form/categories-form.component';
 
 const routes: Routes = [
   {
@@ -70,6 +71,10 @@ const routes: Routes = [
     path: "organization/edit",
     component: EditComponent,
   },
+  {
+    path: "categories",
+    component: CategoriesFormComponent
+  }
 ];
 
 @NgModule({
