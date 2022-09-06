@@ -11,6 +11,7 @@ import { TestimonialsPageComponent } from "./testimonials/testimonials-page/test
 import { MembersComponent } from "./members/members.component";
 import { CreateMemberComponent } from "./members/create-member/create-member.component";
 import { OrganizationComponent } from "./organization/organization.component";
+import { EditComponent } from "./organization/edit/edit.component";
 
 const routes: Routes = [
   {
@@ -64,6 +65,10 @@ const routes: Routes = [
   {
     path: "organization",
     component: OrganizationComponent,
+  },
+  {
+    path: "organization/edit",
+    component: EditComponent,
   },
 ];
 
