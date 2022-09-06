@@ -1,9 +1,12 @@
 <nav class="nav">
   <span class="logo">LOGO</span>
+
   <ul class="nav-menu">
-    <li class="nav-item"> <a class="nav-item-link" href="">Contacto</a> </li>
-    <li class="nav-item"> <a class="nav-item-link" href="">Home</a> </li>
-    <li class="nav-item"> <a class="nav-item-link" href="">Nosotros</a> </li>
-    <li class="nav-item"> <a class="nav-item-link" href="">Pedro</a> </li>
+    <li class="nav-item" *ngFor="let item of list" [ngClass]="{'hidden': !item.render}">
+      <a *ngIf="item.render" class="nav-item-link" (click)="navigateTo(item)">
+        {{item.text}}
+      </a>
+    </li>
   </ul>
+
 </nav>

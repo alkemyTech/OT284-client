@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -7,9 +8,29 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  public list: any = [
+    {
+      text: 'Actividades',
+      link: 'actividades',
+      render: true
+    }, 
+    {
+      text: 'Nosotros',
+      link: 'nosotros',
+      render: false
+    }, 
+    {
+      text: 'Contacto',
+      link: 'contacto',
+      render: true
+    }]
+  constructor(public router: Router) { }
 
   ngOnInit(): void {
+  }
+
+  navigateTo(item:any){
+    this.router.navigateByUrl(item.link)
   }
 
 }
