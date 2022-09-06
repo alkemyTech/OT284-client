@@ -4,36 +4,48 @@
 
 export const environment = {
   firebase: {
-    projectId: 'ot284-f386f',
-    appId: '1:916014183122:web:ebe2404c2cdd8378a8b30b',
-    storageBucket: 'ot284-f386f.appspot.com',
-    apiKey: 'AIzaSyBB3Zw3cach_-XMeNDr-ZTvu6fXVrm6-Tg',
-    authDomain: 'ot284-f386f.firebaseapp.com',
-    messagingSenderId: '916014183122',
+    projectId: "ot284-f386f",
+    appId: "1:916014183122:web:ebe2404c2cdd8378a8b30b",
+    storageBucket: "ot284-f386f.appspot.com",
+    apiKey: "AIzaSyBB3Zw3cach_-XMeNDr-ZTvu6fXVrm6-Tg",
+    authDomain: "ot284-f386f.firebaseapp.com",
+    messagingSenderId: "916014183122",
   },
   production: false,
-  endpoints:{
-    contactos:{
-      list:"https://ongapi.alkemy.org/api/contacts",
-      create:"https://ongapi.alkemy.org/api/contacts",
-      edit:"https://ongapi.alkemy.org/api/contacts/?id=${id}",
-      delete:"https://ongapi.alkemy.org/api/contacts/?id=${id}",
+  endpoints: {
+    contactos: {
+      list: "https://ongapi.alkemy.org/api/contacts",
+      create: "https://ongapi.alkemy.org/api/contacts",
+      edit: "https://ongapi.alkemy.org/api/contacts/?id=${id}",
+      delete: "https://ongapi.alkemy.org/api/contacts/?id=${id}",
     },
-    novedades:{
-      list:"https://ongapi.alkemy.org/api/news",
-      detail(id:number){return `https://ongapi.alkemy.org/api/news/${id}`},
-      create:"https://ongapi.alkemy.org/api/news",
-      edit(id:number){return `https://ongapi.alkemy.org/api/news/${id}`},
-      delete(id:number){return `https://ongapi.alkemy.org/api/news/${id}`}
-    }, 
-    testimonios:{
-      list:"https://ongapi.alkemy.org/api/testimonials/",
-      create:"https://ongapi.alkemy.org/api/testimonials/",
-      edit:"https://ongapi.alkemy.org/api/testimonials/",
-      delete:"https://ongapi.alkemy.org/api/testimonials/",
-    }
+    novedades: {
+      list: "https://ongapi.alkemy.org/api/news",
+      detail(id: number) {
+        return `https://ongapi.alkemy.org/api/news/${id}`;
+      },
+      create: "https://ongapi.alkemy.org/api/news",
+      edit(id: number) {
+        return `https://ongapi.alkemy.org/api/news/${id}`;
+      },
+      delete(id: number) {
+        return `https://ongapi.alkemy.org/api/news/${id}`;
+      },
+    },
+    testimonios: {
+      list: "https://ongapi.alkemy.org/api/testimonials/",
+      create: "https://ongapi.alkemy.org/api/testimonials/",
+      edit: "https://ongapi.alkemy.org/api/testimonials/",
+      delete: "https://ongapi.alkemy.org/api/testimonials/",
+    },
+    organization: {
+      list: "https://ongapi.alkemy.org/api/organization",
+      edit: "https://ongapi.alkemy.org/api/organization/",
+      delete: "https://ongapi.alkemy.org/api/organization/",
+      create: "https://ongapi.alkemy.org/api/organization",
+    },
   },
-  url: "https://ongapi.alkemy.org/api/"
+  url: "https://ongapi.alkemy.org/api/",
 };
 
 /*
