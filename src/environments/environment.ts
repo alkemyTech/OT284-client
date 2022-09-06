@@ -38,19 +38,6 @@ export const environment = {
       edit: "https://ongapi.alkemy.org/api/testimonials/",
       delete: "https://ongapi.alkemy.org/api/testimonials/",
     },
-    novedades:{
-      list:"https://ongapi.alkemy.org/api/news",
-      detail(id:number){return `https://ongapi.alkemy.org/api/news/${id}`},
-      create:"https://ongapi.alkemy.org/api/news",
-      edit(id:number){return `https://ongapi.alkemy.org/api/news/${id}`},
-      delete(id:number){return `https://ongapi.alkemy.org/api/news/${id}`}
-    }, 
-    testimonios:{
-      list:"https://ongapi.alkemy.org/api/testimonials/",
-      create:"https://ongapi.alkemy.org/api/testimonials/",
-      edit:"https://ongapi.alkemy.org/api/testimonials/",
-      delete:"https://ongapi.alkemy.org/api/testimonials/",
-    },
     miembros:{
       list: "https://ongapi.alkemy.org/api/members",
       getMiembro(id:number) {return `https://ongapi.alkemy.org/api/members/${id}`},
