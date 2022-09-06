@@ -18,6 +18,8 @@ import { MatAlertErrorComponent } from "./components/mat-alert-error/mat-alert-e
 import { SpinnerComponent } from "./components/spinner/spinner.component";
 import { MapWindowComponent } from './components/map-window/map-window.component';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+import { HeaderComponent } from './components/header/header.component';
+
 
 @NgModule({
   declarations: [
@@ -27,8 +29,9 @@ import { LeafletModule } from '@asymmetrik/ngx-leaflet';
     MatAlertDialogComponent,
     AuthButtonsComponent,
     MatAlertErrorComponent,
-    SpinnerComponent
-  , MapWindowComponent],
+    SpinnerComponent, 
+    MapWindowComponent,
+    HeaderComponent],
   imports: [CommonModule, RouterModule, MatButtonModule, LeafletModule],
   exports: [
     LinkComponent,
@@ -45,7 +48,8 @@ import { LeafletModule } from '@asymmetrik/ngx-leaflet';
     AuthButtonsComponent,
     MapWindowComponent,
     MatCheckboxModule,
-    SpinnerComponent
+    SpinnerComponent,
+    HeaderComponent
   ],
 })
 export class SharedModule {}

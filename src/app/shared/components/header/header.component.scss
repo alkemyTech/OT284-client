@@ -1,0 +1,28 @@
+.nav {
+    width: 100%;
+    display: flex;
+    background-color: yellowgreen;
+    justify-content: space-between;
+    padding: 5px 10px;
+
+    .logo {
+
+    }
+
+    .nav-menu {
+        display: flex;
+        flex-flow: row wrap;
+        text-decoration: none;
+        list-style: none;
+
+        .nav-item {
+            text-decoration: none;
+
+            .nav-item-link {
+                color: white;
+                text-decoration: none;
+            }
+        }
+    }
+
+}
