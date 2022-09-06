@@ -1,6 +1,8 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { MatAlertErrorComponent } from 'src/app/shared/components/mat-alert-error/mat-alert-error.component';
 import Swal from 'sweetalert2';
 import { newData } from '../models/newM';
 import { NewsService } from '../news.service';
@@ -16,7 +18,7 @@ export class NewsListComponent implements OnInit {
   public linkReference: string='CREAR NOVEDAD';
   displayedColumns: string[] = ['demo-image', 'demo-name', 'demo-date', 'demo-delete', 'demo-modify'];
   
-  constructor(private srcNews:NewsService, private ruta:Router) { }
+  constructor(private srcNews:NewsService, private ruta:Router, public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.verNovedades();
@@ -29,7 +31,9 @@ export class NewsListComponent implements OnInit {
         this.newsList=Response;
       },
       error:(error:HttpErrorResponse)=>{
-        console.log(error.message)
+        this.dialog.open(MatAlertErrorComponent,{
+          data:{text:"Error al cargar novedades", message:error.message},
+        })
       }
     })
   }
