@@ -1,6 +1,9 @@
 <div class="container">
+    <div class="row-flex margin-bottom">
+        <app-link routerLink="/backoffice/categorias/create" linkReference="Crear categoría"></app-link>
+    </div>
     <div class="row-flex">
-        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 full-width">
+        <table mat-table [dataSource]="dataSource$" class="mat-elevation-z8 full-width">
             <!-- Name Column -->
             <ng-container matColumnDef="name">
                 <th mat-header-cell *matHeaderCellDef class="text-center"> Name </th>
