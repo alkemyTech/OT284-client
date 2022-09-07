@@ -16,8 +16,8 @@ export class SlidesComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  goToActivityDetail(activity: Activity) {
-    this.router.navigate(['/activity-detail', { activity: activity }]);
+  goToActivityDetail() {
+    this.router.navigate(['/activity-detail', { activity: JSON.stringify(this.activity)}]);
   }
 
 }

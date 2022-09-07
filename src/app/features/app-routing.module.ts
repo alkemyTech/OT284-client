@@ -32,7 +32,7 @@ const routes: Routes = [
     component: ActivityViewComponent,
   },
   {
-    path: "activity",
+    path: "activity-detail",
     component: ActivityDetailComponent,
   },
   {

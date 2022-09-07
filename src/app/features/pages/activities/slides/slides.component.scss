@@ -7,5 +7,14 @@
     align-content: center;
     align-self: center;
   }
+
+  mat-card-actions{
+    button{
+      border: solid white 1px;
+      cursor: pointer;
+    }
+    align-self: flex-end;
+    
+  }
   
   
