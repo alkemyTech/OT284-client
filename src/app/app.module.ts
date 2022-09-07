@@ -29,7 +29,7 @@ import { MembersEffects } from "./state/effects/members.effects";
     EffectsModule.forRoot([OrganizationEffects, UsersEffects, MembersEffects]),
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
-  LeafletModule],
+    LeafletModule],
   providers: [],
   bootstrap: [AppComponent],
 })

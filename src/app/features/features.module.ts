@@ -33,7 +33,6 @@ import { CKEditorModule } from "@ckeditor/ckeditor5-angular";
 import { ActivityViewComponent } from './pages/activities/activity-view/activity-view.component';
 import { SlidesComponent } from './pages/activities/slides/slides.component';
 
-
 @NgModule({
   declarations: [
     ActivityFormComponent,
@@ -78,7 +77,7 @@ import { SlidesComponent } from './pages/activities/slides/slides.component';
     FormsModule,
     ReactiveFormsModule,
     CKEditorModule,
-    NgxTwitterTimelineModule
+    NgxTwitterTimelineModule,
   ],
 })
 export class FeaturesModule {}
