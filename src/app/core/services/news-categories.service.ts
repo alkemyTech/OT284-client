@@ -1,13 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Category } from '../../shared/interfaces/category';
-import { map } from 'rxjs/operators'
-import { Observable } from 'rxjs';
 import { HttpService } from './http.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class CategoryService {
+export class NewsCategoriesService {
 
   private url = 'https://ongapi.alkemy.org/api/categories';
 
@@ -36,5 +33,4 @@ export class CategoryService {
   deleteCategory( id: number ) {
     return this.http.delete(`${this.url}/${id}`);
   }
-
 }

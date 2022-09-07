@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
-import { CategoryService } from '../../../../core/services/category.service';
 import { Category } from '../../../../shared/interfaces/category';
 import { Observable } from 'rxjs';
+import { NewsCategoriesService } from '../../../../core/services/news-categories.service';
 
 @Component({
   selector: 'app-categories-table',
@@ -15,7 +15,7 @@ export class CategoriesTableComponent implements OnInit {
   displayedColumns: string[] = ['name', 'createdAt', 'edit', 'delete'];
   dataSource$: Observable<Category[]>;
 
-  constructor( private router: Router, private categoryService: CategoryService ) { }
+  constructor( private router: Router, private categoryService: NewsCategoriesService ) { }
 
   ngOnInit(): void {
     this.dataSource$ = this.categoryService.getCategories();
