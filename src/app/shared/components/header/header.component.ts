@@ -10,15 +10,15 @@ export class HeaderComponent implements OnInit {
 
   public list: any = [
     {
-      text: 'Actividades',
-      link: 'actividades',
+      text: 'Inicio',
+      link: '',
       render: true
-    }, 
+    },
     {
       text: 'Nosotros',
       link: 'nosotros',
-      render: false
-    }, 
+      render: true
+    },
     {
       text: 'Contacto',
       link: 'contacto',
@@ -27,10 +27,6 @@ export class HeaderComponent implements OnInit {
   constructor(public router: Router) { }
 
   ngOnInit(): void {
-  }
-
-  navigateTo(item:any){
-    this.router.navigateByUrl(item.link)
   }
 
 }

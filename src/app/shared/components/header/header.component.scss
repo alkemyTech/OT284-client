@@ -6,13 +6,18 @@
 .nav {
     width: 100%;
     display: flex;
-    background-color: yellowgreen;
     justify-content: space-between;
     align-items: center;
-    padding: 5px 10px;
+    background-color: white;
+    padding: 0 10px;
+    box-shadow: rgba(0, 0, 0, 0.19) 0px .5em 1em, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+    margin-bottom: .5em;
 
     .logo {
-        font-size: 18px;
+        .img {
+            width: 75px;
+            cursor: pointer;
+        }
     }
 
     .nav-menu {
@@ -22,11 +27,17 @@
         list-style: none;
 
         .nav-item {
-            margin: 10px;
+            padding: 10px;
+            transition: all .2s;
+            border-radius: 5px;
+
+            &:hover {
+                background-color: rgba(0, 0, 0, 0.19);
+            }
 
             .nav-item-link {
+                color: black;
                 cursor: pointer;
-                color: white;
                 text-decoration: none;
             }
         }
@@ -34,6 +45,44 @@
 
 }
 
-.hidden{
+.hidden {
     display: none;
+}
+
+.active {
+    font-weight: bold;
+}
+
+
+.dropdown {
+    &:hover {
+        .dropdown-content {
+            display: block;
+        }
+    }
+
+    .dropdown-content {
+        background-color: white;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        z-index: 1;
+        display: none;
+
+        li {
+            padding: 10px 0;
+            list-style: none;
+            transition: all .2s;
+            border-radius: 5px;
+
+            &:hover {
+                background-color: rgba(0, 0, 0, 0.19);
+            }
+
+            a {
+                text-decoration: none;
+            }
+        }
+
+    }
 }
