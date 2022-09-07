@@ -34,7 +34,7 @@ export class NewsService {
   } 
 
   public modificarNew(novedad:Novedad):Observable<Novedad>{
-    return this.http.put<Novedad>(environment.endpoints.novedades.edit(novedad.id),novedad);
+    return this.httpServ.put<Novedad>(environment.endpoints.novedades.edit(novedad.id),novedad);
   } 
 
   public redireccionar():void{

@@ -1,6 +1,8 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
+import { MatAlertErrorComponent } from 'src/app/shared/components/mat-alert-error/mat-alert-error.component';
 import { newData } from '../models/newM';
 import { NewsService } from '../news.service';
 
@@ -15,7 +17,7 @@ export class NewsDetailsComponent implements OnInit {
   public srcImg:string;
   public content:string;
   public isLoading:boolean;
-  constructor(private svc:NewsService, private ruta:ActivatedRoute) {
+  constructor(private svc:NewsService, private ruta:ActivatedRoute, public dialog:MatDialog) {
     this.id=this.getId();
     this.isLoading=true;
    }
@@ -33,7 +35,9 @@ export class NewsDetailsComponent implements OnInit {
         this.content=data.content;
       },
       error:(error:HttpErrorResponse)=>{
-        console.log(error.message);
+        this.dialog.open(MatAlertErrorComponent,{
+          data:{text:"Error al cargar novedad", message:error.message},
+        })
       }
     })
   }
