@@ -12,7 +12,7 @@ import { MembersComponent } from "./members/members.component";
 import { CreateMemberComponent } from "./members/create-member/create-member.component";
 import { OrganizationComponent } from "./organization/organization.component";
 import { EditComponent } from "./organization/edit/edit.component";
-import { CategoriesFormComponent } from '../categories/categories-form/categories-form.component';
+import { CategoriesTableComponent } from './categories-table/categories-table.component';
 
 const routes: Routes = [
   {
@@ -73,7 +73,7 @@ const routes: Routes = [
   },
   {
     path: "categories",
-    component: CategoriesFormComponent
+    component: CategoriesTableComponent
   }
 ];
 
