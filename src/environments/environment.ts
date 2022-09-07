@@ -38,6 +38,12 @@ export const environment = {
       edit: "https://ongapi.alkemy.org/api/testimonials/",
       delete: "https://ongapi.alkemy.org/api/testimonials/",
     },
+    organization: {
+      list: "https://ongapi.alkemy.org/api/organization",
+      edit: "https://ongapi.alkemy.org/api/organization/",
+      delete: "https://ongapi.alkemy.org/api/organization/",
+      create: "https://ongapi.alkemy.org/api/organization",
+    },
     miembros:{
       list: "https://ongapi.alkemy.org/api/members",
       getMiembro(id:number) {return `https://ongapi.alkemy.org/api/members/${id}`},

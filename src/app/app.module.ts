@@ -15,6 +15,7 @@ import { initializeApp, provideFirebaseApp } from "@angular/fire/app";
 import { environment } from "../environments/environment";
 import { provideAuth, getAuth } from "@angular/fire/auth";
 import { UsersEffects } from "./state/effects/users.effects";
+import { MembersEffects } from "./state/effects/members.effects";
 
 @NgModule({
   declarations: [AppComponent],
@@ -25,7 +26,7 @@ import { UsersEffects } from "./state/effects/users.effects";
     NoopAnimationsModule,
     StoreModule.forRoot(ROOT_REDUCERS),
     StoreDevtoolsModule.instrument({ name: "TEST" }),
-    EffectsModule.forRoot([OrganizationEffects, UsersEffects]),
+    EffectsModule.forRoot([OrganizationEffects, UsersEffects, MembersEffects]),
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
   LeafletModule],
