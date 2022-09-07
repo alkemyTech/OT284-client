@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic'
+import { activitiesExample } from '../../../activities/activity-view/activities-example';
 
 @Component({
   selector: 'app-create-edit-activity',
@@ -9,38 +10,34 @@ import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic'
 })
 export class CreateEditActivityComponent implements OnInit {
 
-  public form: FormGroup
+  public form: FormGroup;
+  private formType: string;
   public editor=  ClassicEditor;
-  activity={ id: 2056,
-    name: "actividad 02",
-    slug: "",
-    description: "The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan. A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally bred for hunting.",
-    image: "http://ongapi.alkemy.org/storage/oqhHt6tOMb.png",
-    user_id: 1,
-    category_id: 1,
-    created_at: new Date(),
-    updated_at: new Date(),
-    deleted_at: null
-    };
+  activity= activitiesExample[0];
   private imgBase64!: any;
 
   constructor(private formB: FormBuilder) {
 
     this.form = this.formB.group({
-     /*  activity:this.formB.group({ */
         name:[this.activity.name.toLocaleUpperCase(),[Validators.required]],
         description:[this.activity.description,[Validators.required]],
         image:[this.activity.image,[Validators.required]],
-     /*  }) */
     })
 
   }
 
   ngOnInit(): void {
+    this.activity ? this.formType="edit" : this.formType="create"
   }
 
   onSubmit(){
-    console.log(this.form)
+    if (this.formType == "edit"){
+      console.log("Hacer la solicitud HTTP PATCH")
+      console.log(this.form.value)
+    }
+    else{
+      console.log("Hacer la solicitud HTTP POST")
+    }
   }
 
   fileEvent(e: Event) {
@@ -65,6 +62,7 @@ export class CreateEditActivityComponent implements OnInit {
     reader.onload = () => {
       this.imgBase64 = reader.result?.toString();
       this.form.controls.image.setValue(this.imgBase64)
+      this.activity.image= this.imgBase64
       console.log(this.imgBase64);
     };
   }
