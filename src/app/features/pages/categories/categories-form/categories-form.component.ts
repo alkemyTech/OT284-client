@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import { CategoryService } from '../../../../core/services/category.service';
 import { Category } from '../../../../shared/interfaces/category';
 
 import Swal from 'sweetalert2';
