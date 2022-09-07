@@ -13,6 +13,7 @@ import { canActivate, redirectUnauthorizedTo, redirectLoggedInTo } from "@angula
 import { AuthGuardGuard } from "./pages/auth/guards/auth-guard.guard";
 import { SlidesComponent } from "./pages/activities/slides/slides.component";
 import { ActivityViewComponent } from "./pages/activities/activity-view/activity-view.component";
+import { CategoriesFormComponent } from "./pages/categories/categories-form/categories-form.component";
 
 
 const routes: Routes = [
@@ -58,6 +59,14 @@ const routes: Routes = [
     path: "login",
     component: LoginFormComponent,
     ...canActivate( () => redirectLoggedInTo(['']))
+  },
+  {
+    path: "categorias/edit/:id",
+    component: CategoriesFormComponent
+  },
+  {
+    path: "categorias/new",
+    component: CategoriesFormComponent
   },
 ];
 
