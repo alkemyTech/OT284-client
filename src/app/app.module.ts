@@ -2,6 +2,7 @@ import { FeaturesModule } from "./features/features.module";
 import { CoreModule } from "./core/core.module";
 import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 
 import { AppComponent } from "./app.component";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
@@ -27,7 +28,7 @@ import { UsersEffects } from "./state/effects/users.effects";
     EffectsModule.forRoot([OrganizationEffects, UsersEffects]),
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
-  ],
+    LeafletModule],
   providers: [],
   bootstrap: [AppComponent],
 })
