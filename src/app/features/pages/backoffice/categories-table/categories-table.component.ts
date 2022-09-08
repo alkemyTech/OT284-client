@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import Swal from 'sweetalert2';
 import { Category } from '../../../../shared/interfaces/category';
 import { Observable } from 'rxjs';
 import { NewsCategoriesService } from '../../../../core/services/news-categories.service';
+import { MatTable } from '@angular/material/table';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-categories-table',
@@ -12,8 +13,10 @@ import { NewsCategoriesService } from '../../../../core/services/news-categories
 })
 export class CategoriesTableComponent implements OnInit {
 
-  displayedColumns: string[] = ['name', 'createdAt', 'edit', 'delete'];
+  @ViewChild(MatTable) table: MatTable<any>;
+
   dataSource$: Observable<Category[]>;
+  displayedColumns: string[] = ['name', 'createdAt', 'edit', 'delete'];
 
   constructor( private router: Router, private categoryService: NewsCategoriesService ) { }
 
@@ -39,6 +42,7 @@ export class CategoriesTableComponent implements OnInit {
       if (result.isConfirmed) {
         this.categoryService.deleteCategory(category.id).subscribe(
           (resp: any) => {
+            this.table.renderRows();
             Swal.fire(
               'Eliminado',
               resp.message,
