@@ -3,6 +3,11 @@
     <img class="img" routerLink="/" src="/assets/img/LOGO-SOMOS MAS.png" alt="">
   </span>
 
+  <input type="checkbox" id="check" class="hidden">
+  <label for="check" class="lbl">
+    <i class="fa fa-bars" aria-hidden="true"></i>
+  </label>
+
   <ul class="nav-menu">
     <li class="nav-item" *ngFor="let item of list" [ngClass]="{'hidden': !item.render}">
       <a *ngIf="item.render" routerLinkActive="active" routerLink="/{{item.link}}" class="nav-item-link"
@@ -29,5 +34,7 @@
     </li>
 
   </ul>
+
+
 
 </nav>

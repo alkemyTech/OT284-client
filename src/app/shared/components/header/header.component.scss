@@ -49,6 +49,12 @@
     display: none;
 }
 
+.lbl {
+    display: none;
+    font-size: 2em;
+    cursor: pointer;
+}
+
 .active {
     font-weight: bold;
 }
@@ -85,4 +91,49 @@
         }
 
     }
+}
+
+
+
+@media screen and(max-width: 600px) {
+    #check:checked~ul {
+        display: flex;
+        flex-flow: column wrap;
+    }
+
+    .nav {
+
+        .nav-menu {
+            width: 100%;
+            display: none;
+            position: absolute;
+            top: 10%;
+            left: 0;
+            background-color: white;
+            z-index: 9999;
+
+            .nav-item {
+                width: 100%;
+
+                .nav-item-link {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    width: 100%;
+                    font-size: 1.5em;
+                }
+
+            }
+
+            box-shadow: rgba(0, 0, 0, 0.19) 0px .5em 1em, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+
+        }
+    }
+
+    .lbl {
+        display: block;
+    }
+
+
+
 }
