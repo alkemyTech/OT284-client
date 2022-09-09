@@ -1,0 +1,37 @@
+<app-title  title={{activity.name}}></app-title>
+<div class="cards">
+    <form class="cards__item" [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="card"  >
+
+        <div class="input_text" >
+          <input type=”text”  placeholder="Nombre" formControlName="name"/>
+          <span *ngIf="form.controls.name?.hasError('required')" class="alert">
+              El campo "Nombre" es requerido
+          </span>
+        </div>
+
+        <div class="card__image card__image--fence" [ngStyle]="{'background-image': 'url('+activity.image+')'}">
+          <div class="contenedor-input">
+            <mat-form-field class="form-field" appearance="fill">
+                <ngx-mat-file-input (change)="fileEvent($event)" formControlName="image" matInput placeholder="Seleccione una imagen">
+                </ngx-mat-file-input>
+            </mat-form-field>
+            <span *ngIf="form.controls.image.errors?.invalidExtension" class="invalid">
+                Ingrese un archivo con extension '.jpg' o '.png'
+            </span>
+        </div>
+        </div>
+        <div class="card__content">
+          <div class="contenedor-input">
+            <ckeditor class="ck-editor__editable_inline" formControlName="description" 
+            [editor]="editor" ></ckeditor>
+            <span *ngIf="form.controls.description.errors && form.controls.description.touched" class="invalid">
+                La descripcion es requerida
+            </span>
+            </div>
+          <div class="card__title">{{activity.created_at}}</div>
+          <button type=”submit” >ENVIAR</button>
+        </div>
+      </div>
+    </form>
+  </div>

@@ -16,6 +16,7 @@ import { environment } from "../environments/environment";
 import { provideAuth, getAuth } from "@angular/fire/auth";
 import { UsersEffects } from "./state/effects/users.effects";
 import { MembersEffects } from "./state/effects/members.effects";
+import { SharedModule } from "./shared/shared.module";
 
 @NgModule({
   declarations: [AppComponent],
@@ -23,13 +24,14 @@ import { MembersEffects } from "./state/effects/members.effects";
     BrowserModule,
     CoreModule,
     FeaturesModule,
+    SharedModule,
     NoopAnimationsModule,
     StoreModule.forRoot(ROOT_REDUCERS),
     StoreDevtoolsModule.instrument({ name: "TEST" }),
     EffectsModule.forRoot([OrganizationEffects, UsersEffects, MembersEffects]),
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
-    LeafletModule],
+  LeafletModule],
   providers: [],
   bootstrap: [AppComponent],
 })
