@@ -32,7 +32,7 @@ export class VjsPlayerComponent implements OnInit, OnDestroy, AfterViewInit {
 
   ngAfterViewInit() {
     this.player = videojs(this.target.nativeElement, this.options, function onPlayerReady() {
-      console.log('onPlayerReady', this);
+      //console.log('onPlayerReady', this);
       });
   }
 
