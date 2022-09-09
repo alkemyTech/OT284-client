@@ -1,0 +1,40 @@
+<nav class="nav">
+  <span class="logo">
+    <img class="img" routerLink="/" src="/assets/img/LOGO-SOMOS MAS.png" alt="">
+  </span>
+
+  <input type="checkbox" id="check" class="hidden">
+  <label for="check" class="lbl">
+    <i class="fa fa-bars" aria-hidden="true"></i>
+  </label>
+
+  <ul class="nav-menu">
+    <li class="nav-item" *ngFor="let item of list" [ngClass]="{'hidden': !item.render}">
+      <a *ngIf="item.render" routerLinkActive="active" routerLink="/{{item.link}}" class="nav-item-link"
+        [routerLinkActiveOptions]="{exact:true}">
+        {{item.text}}
+      </a>
+    </li>
+
+    <li class="nav-item dropdown">
+      <a routerLinkActive="active" routerLink="/juguetes" class="nav-item-link dropdown-btn"
+        [routerLinkActiveOptions]="{exact:true}">
+        Campañas
+      </a>
+      <ul class="dropdown-content">
+        <li>
+          <a routerLinkActive="active" routerLink="/juguetes" class="nav-item-link"
+            [routerLinkActiveOptions]="{exact:true}">Juguetes</a>
+        </li>
+        <li>
+          <a routerLinkActive="active" routerLink="/matetiales escolares" class="nav-item-link"
+            [routerLinkActiveOptions]="{exact:true}">Materiales escolares</a>
+        </li>
+      </ul>
+    </li>
+
+  </ul>
+
+
+
+</nav>
