@@ -31,7 +31,14 @@ export const environment = {
       create:"https://ongapi.alkemy.org/api/testimonials/",
       edit:"https://ongapi.alkemy.org/api/testimonials/",
       delete:"https://ongapi.alkemy.org/api/testimonials/",
-    }
+    },
+    actividades:{
+      list:"https://ongapi.alkemy.org/api/activities",
+      getById:"https://ongapi.alkemy.org/api/activities/?id=${id}",
+      create:"https://ongapi.alkemy.org/api/activities",
+      edit:"https://ongapi.alkemy.org/api/activities/?id=${id}",
+      delete:"https://ongapi.alkemy.org/api/activities/?id=${id}",
+    },
   },
   url: "https://ongapi.alkemy.org/api/"
 };
