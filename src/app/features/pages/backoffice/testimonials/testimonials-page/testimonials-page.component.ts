@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { TestimonialsService } from 'src/app/core/services/testimonials.service';
-import { Testimonial } from 'src/app/shared/interfaces/testimonial';
+import { MatAlertDialogComponent } from 'src/app/shared/components/mat-alert-dialog/mat-alert-dialog.component';
 
 @Component({
   selector: 'app-testimonials-page',
@@ -11,7 +12,7 @@ import { Testimonial } from 'src/app/shared/interfaces/testimonial';
 export class TestimonialsPageComponent implements OnInit {
 
   testimonialParam: Object = {};
-  constructor(private _route: ActivatedRoute, private service: TestimonialsService) { }
+  constructor(private _route: ActivatedRoute, private service: TestimonialsService, private dialog: MatDialog) { }
 
   ngOnInit(): void {
     let id: any = this._route.snapshot.paramMap.get('id');
@@ -19,7 +20,11 @@ export class TestimonialsPageComponent implements OnInit {
     if (id) {
       this.service.getATestimonial(id).subscribe((data: any) => {
         this.testimonialParam = data.data;
-      })
+      },
+        (error: any) => {
+          console.log(error);
+          this.notifyError(error.error.message);
+        })
     }
   }
 
@@ -29,24 +34,33 @@ export class TestimonialsPageComponent implements OnInit {
     if (data.method == 'post') {
       //CREAR
       this.service.postTestimonial(data.testimonio).subscribe((data: any) => {
-        if (data.error) {
-          console.info('HUBO UN ERROR: ', data.error);
-        }
-        else {
-          console.info("EXITO", data);
-        }
-      })
+        console.info("EXITO", data);
+      },
+        (error: any) => {
+          console.log(error);
+          this.notifyError(error.message);
+        })
     } else {
       //MODIFICAR
       this.service.putTestimonial(data.testimonio.id, data.testimonio).subscribe((data: any) => {
-        if (data.error) {
-          console.info('HUBO UN ERROR: ', data.error);
-        }
-        else {
-          console.info("EXITO", data);
+        console.info("EXITO", data);
+      },
+        (error: any) => {
+          console.log(error);
+          this.notifyError(error.message);
+        })
+    }
+  }
+
+  notifyError(message: string) {
+    this.dialog
+      .open(MatAlertDialogComponent, {
+        data: {
+          title: 'Ocurrio un error. Intente de nuevo mas tarde',
+          message: `el error: ${message}`,
+          confirmText: 'Aceptar'
         }
       })
-    }
   }
 
 

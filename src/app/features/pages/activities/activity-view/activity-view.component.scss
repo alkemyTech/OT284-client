@@ -1,0 +1,16 @@
+app-slides{
+    display: flex;
+    flex-direction: column;
+}
+button span{
+    color: black;
+    background-color: black;
+}
+
+.carousel-indicators{
+    position: relative;
+    button{
+        color: black;
+        background-color: black;
+    }
+}

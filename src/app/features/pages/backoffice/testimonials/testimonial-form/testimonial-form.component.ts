@@ -17,11 +17,10 @@ export class TestimonialFormComponent implements OnInit, OnChanges {
   @Input() element: any = {};
   @Output() testimonialEmitter: EventEmitter<any> = new EventEmitter<any>();
 
-  constructor(private fb: FormBuilder, private service: TestimonialsService) {
+  constructor(private fb: FormBuilder) {
   }
 
   ngOnChanges() {
-    // this.listadoTestimonios();
     this.formulario = this.fb.group({
       'txtName': [this.element.name ? this.element.name : '', [Validators.required, Validators.minLength(4)]],
       'txtDescription': [this.element.description ? this.element.description : '', [Validators.required]],
@@ -69,17 +68,6 @@ export class TestimonialFormComponent implements OnInit, OnChanges {
       })
     }
   }
-
-
-  // listadoTestimonios() {
-  //   this.service.getTestimonials().subscribe((data: any) => {
-  //     if (data.success) {
-  //       console.log(data.data);
-  //     } else {
-  //       //error
-  //     }
-  //   })
-  // }
 
   async convertFileToBase64(file: any) {
     const reader = new FileReader();

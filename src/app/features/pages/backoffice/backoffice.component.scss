@@ -1,0 +1,46 @@
+.wrapper {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #edf2f7;
+}
+.contenedor {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 2rem 8rem;
+  width: 1200px;
+}
+
+.cardOng {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  width: 200px;
+  height: 200px;
+}
+
+.cardOng p {
+  color: #92bcf9;
+  font-weight: 500;
+}
+
+.cardOng img {
+  height: 85px;
+}
+
+button {
+  border: none;
+  background-color: #319795;
+  color: white;
+  font-weight: 500;
+  width: 50px;
+  border-radius: 5px;
+  margin-top: 1rem;
+}
