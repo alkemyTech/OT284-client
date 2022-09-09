@@ -12,6 +12,7 @@ import { MembersComponent } from "./members/members.component";
 import { CreateMemberComponent } from "./members/create-member/create-member.component";
 import { OrganizationComponent } from "./organization/organization.component";
 import { EditComponent } from "./organization/edit/edit.component";
+import { CreateEditActivityComponent } from "./activities/create-edit-activity/create-edit-activity.component";
 
 const routes: Routes = [
   {
@@ -69,6 +70,14 @@ const routes: Routes = [
   {
     path: "organization/edit",
     component: EditComponent,
+  },
+  {
+    path: "activity/create",
+    component: CreateEditActivityComponent,
+  },
+  {
+    path: "activity/edit",
+    component: CreateEditActivityComponent,
   },
 ];
 

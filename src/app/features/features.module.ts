@@ -30,10 +30,10 @@ import { NewsDetailsComponent } from './pages/news/news-details/news-details.com
 import { AboutTweetsComponent } from './pages/about/about-tweets/about-tweets.component';
 import { NgxTwitterTimelineModule } from 'ngx-twitter-timeline';
 import { CKEditorModule } from "@ckeditor/ckeditor5-angular";
+import { ActivityDetailComponent } from './pages/activities/activity-detail/activity-detail.component';
 import { ActivityViewComponent } from './pages/activities/activity-view/activity-view.component';
 import { SlidesComponent } from './pages/activities/slides/slides.component';
 import { VjsPlayerComponent } from './pages/news/vjs-player/vjs-player.component';
-
 
 @NgModule({
   declarations: [
@@ -56,6 +56,7 @@ import { VjsPlayerComponent } from './pages/news/vjs-player/vjs-player.component
     ActivityViewComponent,
     SlidesComponent,
     VjsPlayerComponent,
+    ActivityDetailComponent,
   ],
   exports: [
     ActivityFormComponent,
@@ -82,7 +83,7 @@ import { VjsPlayerComponent } from './pages/news/vjs-player/vjs-player.component
     FormsModule,
     ReactiveFormsModule,
     CKEditorModule,
-    NgxTwitterTimelineModule
+    NgxTwitterTimelineModule,
   ],
 })
 export class FeaturesModule {}

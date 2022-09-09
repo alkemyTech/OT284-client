@@ -7,27 +7,26 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class NewsMembersService {
-  url: string = environment.url + 'members'; //hasta crear variables de entorno correspondientes
 
   constructor(private httpService:HttpService) { }
 
   getMembers(searchQuery ?: string, skipQuery?: string, limitQuery?: string){
-    return this.httpService.get(this.url);
+    return this.httpService.get(environment.endpoints.miembros.list);
   }
 
   postMembers(body: any){
-    return this.httpService.post(this.url, body);
+    return this.httpService.post(environment.endpoints.miembros.create, body);
   }
 
   getMember(id: number){
-    return this.httpService.get(this.url.concat(`/${id}`));
+    return this.httpService.get(environment.endpoints.miembros.getMiembro(id));
   }
 
   putMember(id:number, body: any){
-    return this.httpService.put(this.url.concat(`/${id}`),body);
+    return this.httpService.put(environment.endpoints.miembros.edit(id),body);
   }
 
   deleteMember(id: number){
-    return this.httpService.delete(this.url.concat(`/${id}`));
+    return this.httpService.delete(environment.endpoints.miembros.delete(id));
   }
 }
