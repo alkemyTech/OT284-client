@@ -29,6 +29,7 @@
     "@ngrx/effects": "^12.5.1",
     "@ngrx/store": "^12.5.1",
     "@ngrx/store-devtools": "^12.5.1",
+    "@videojs/themes": "^1.0.1",
     "leaflet": "^1.8.0",
     "ngx-twitter-timeline": "^0.1.5",
     "rxjs": "~6.6.0",
