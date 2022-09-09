@@ -39,7 +39,10 @@
               "./node_modules/leaflet/dist/leaflet.css",
               "./node_modules/video.js/dist/video-js.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/video.js/dist/video.min.js",
+              "node_modules/videojs-youtube/dist/Youtube.min.js"
+            ]
           },
           "configurations": {
             "production": {
