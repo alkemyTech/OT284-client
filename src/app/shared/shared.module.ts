@@ -18,6 +18,8 @@ import { MatAlertErrorComponent } from "./components/mat-alert-error/mat-alert-e
 import { SpinnerComponent } from "./components/spinner/spinner.component";
 import { MapWindowComponent } from "./components/map-window/map-window.component";
 import { LeafletModule } from "@asymmetrik/ngx-leaflet";
+import { HeaderComponent } from './components/header/header.component';
+
 
 import { FooterComponent } from "./components/footer/footer.component";
 @NgModule({
@@ -28,10 +30,9 @@ import { FooterComponent } from "./components/footer/footer.component";
     MatAlertDialogComponent,
     AuthButtonsComponent,
     MatAlertErrorComponent,
-    SpinnerComponent,
-    FooterComponent,
+    SpinnerComponent, 
     MapWindowComponent,
-  ],
+    HeaderComponent],
   imports: [CommonModule, RouterModule, MatButtonModule, LeafletModule],
   exports: [
     LinkComponent,
@@ -49,7 +50,8 @@ import { FooterComponent } from "./components/footer/footer.component";
     MapWindowComponent,
     MatCheckboxModule,
     SpinnerComponent,
-    FooterComponent,
+    FooterComponent,,
+    HeaderComponent
   ],
 })
 export class SharedModule {}
