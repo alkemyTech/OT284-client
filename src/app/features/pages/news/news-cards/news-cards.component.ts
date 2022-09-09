@@ -1,7 +1,8 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { MatAlertErrorComponent } from 'src/app/shared/components/mat-alert-error/mat-alert-error.component';
 import { newData } from '../models/newM';
 import { NewsService } from '../news.service';
 
@@ -14,7 +15,7 @@ export class NewsCardsComponent implements OnInit {
   public newsLista: newData[]=[]
   public newModel!:newData;
   public myTitle:string;
-  constructor(private newsService: NewsService, private ruta:Router) {
+  constructor(private newsService: NewsService, private ruta:Router, public dialog: MatDialog) {
     this.myTitle="Novedades";
   }
 
@@ -28,7 +29,9 @@ export class NewsCardsComponent implements OnInit {
         this.newsLista=Response;
       },
       error:(error:HttpErrorResponse)=>{
-        console.log(error.message)
+        this.dialog.open(MatAlertErrorComponent,{
+          data:{text:"Error al cargar novedades", message:error.message},
+        })
       }
     })
   }

@@ -16,11 +16,12 @@ import { PhonePipe } from "./helpers/phonePipe";
 import { MatCheckboxModule } from "@angular/material/checkbox";
 import { MatAlertErrorComponent } from "./components/mat-alert-error/mat-alert-error.component";
 import { SpinnerComponent } from "./components/spinner/spinner.component";
-import { MapWindowComponent } from './components/map-window/map-window.component';
-import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+import { MapWindowComponent } from "./components/map-window/map-window.component";
+import { LeafletModule } from "@asymmetrik/ngx-leaflet";
 import { HeaderComponent } from './components/header/header.component';
 
 
+import { FooterComponent } from "./components/footer/footer.component";
 @NgModule({
   declarations: [
     LinkComponent,
@@ -49,6 +50,7 @@ import { HeaderComponent } from './components/header/header.component';
     MapWindowComponent,
     MatCheckboxModule,
     SpinnerComponent,
+    FooterComponent,,
     HeaderComponent
   ],
 })

@@ -7,6 +7,8 @@ import { NewsService } from '../news.service';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import Swal from 'sweetalert2';
 import Base64UploaderPlugin from 'customBuilder/Base64Upload';
+import { MatAlertErrorComponent } from 'src/app/shared/components/mat-alert-error/mat-alert-error.component';
+import { MatDialog } from '@angular/material/dialog';
 
 
 @Component({
@@ -27,7 +29,7 @@ export class NewsFormComponent implements OnInit {
   public sendForm!:FormGroup;
   public image!:string;
 
-  constructor(private svcNew:NewsService, private ruta:ActivatedRoute, private formBuilder:FormBuilder) {
+  constructor(private svcNew:NewsService, private ruta:ActivatedRoute, private formBuilder:FormBuilder,public dialog:MatDialog) {
     this.newModel={
       id: 0, name: "", slug: null, content: "", image: "", user_id: 0, category_id: 0,
       created_at: "", updated_at: "", deleted_at: null, group_id: null
@@ -61,7 +63,9 @@ export class NewsFormComponent implements OnInit {
           this.sendForm.controls.category_id.setValue(this.newModel.category_id)
         },
         error:(error:HttpErrorResponse)=>{
-          console.log(error.message);
+          this.dialog.open(MatAlertErrorComponent,{
+            data:{text:"Error al cargar novedad", message:error.message},
+          })
         }
       })
     }
@@ -79,7 +83,9 @@ export class NewsFormComponent implements OnInit {
             this.svcNew.redireccionar();
           },
           error:(error:HttpErrorResponse)=>{
-            console.log(error.message);
+            this.dialog.open(MatAlertErrorComponent,{
+              data:{text:"Error al crear novedad", message:error.message},
+            })
           }
         });  
       }else if(metodo='put'){
@@ -94,7 +100,9 @@ export class NewsFormComponent implements OnInit {
             console.log(response);
             this.svcNew.redireccionar();
           },error:(error:HttpErrorResponse)=>{
-            console.log(error.message);
+            this.dialog.open(MatAlertErrorComponent,{
+              data:{text:"Error al modificar novedad", message:error.message},
+            })
           }
         })
       }

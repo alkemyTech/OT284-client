@@ -13,6 +13,8 @@ import { canActivate, redirectUnauthorizedTo, redirectLoggedInTo } from "@angula
 import { AuthGuardGuard } from "./pages/auth/guards/auth-guard.guard";
 import { SlidesComponent } from "./pages/activities/slides/slides.component";
 import { ActivityViewComponent } from "./pages/activities/activity-view/activity-view.component";
+import { CategoriesFormComponent } from "./pages/categories/categories-form/categories-form.component";
+import { ActivityDetailComponent } from "./pages/activities/activity-detail/activity-detail.component";
 
 
 const routes: Routes = [
@@ -28,6 +30,10 @@ const routes: Routes = [
   {
     path: "actividades",
     component: ActivityViewComponent,
+  },
+  {
+    path: "activity-detail",
+    component: ActivityDetailComponent,
   },
   {
     path: "contacto", 
@@ -58,6 +64,14 @@ const routes: Routes = [
     path: "login",
     component: LoginFormComponent,
     ...canActivate( () => redirectLoggedInTo(['']))
+  },
+  {
+    path: "categorias/edit/:id",
+    component: CategoriesFormComponent
+  },
+  {
+    path: "categorias/new",
+    component: CategoriesFormComponent
   },
 ];
 
