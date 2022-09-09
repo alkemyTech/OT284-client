@@ -16,9 +16,10 @@ import { PhonePipe } from "./helpers/phonePipe";
 import { MatCheckboxModule } from "@angular/material/checkbox";
 import { MatAlertErrorComponent } from "./components/mat-alert-error/mat-alert-error.component";
 import { SpinnerComponent } from "./components/spinner/spinner.component";
-import { MapWindowComponent } from './components/map-window/map-window.component';
-import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+import { MapWindowComponent } from "./components/map-window/map-window.component";
+import { LeafletModule } from "@asymmetrik/ngx-leaflet";
 
+import { FooterComponent } from "./components/footer/footer.component";
 @NgModule({
   declarations: [
     LinkComponent,
@@ -27,8 +28,10 @@ import { LeafletModule } from '@asymmetrik/ngx-leaflet';
     MatAlertDialogComponent,
     AuthButtonsComponent,
     MatAlertErrorComponent,
-    SpinnerComponent
-  , MapWindowComponent],
+    SpinnerComponent,
+    FooterComponent,
+    MapWindowComponent,
+  ],
   imports: [CommonModule, RouterModule, MatButtonModule, LeafletModule],
   exports: [
     LinkComponent,
@@ -45,7 +48,8 @@ import { LeafletModule } from '@asymmetrik/ngx-leaflet';
     AuthButtonsComponent,
     MapWindowComponent,
     MatCheckboxModule,
-    SpinnerComponent
+    SpinnerComponent,
+    FooterComponent,
   ],
 })
 export class SharedModule {}
