@@ -25,8 +25,9 @@ import { TestimonialsPageComponent } from "./testimonials/testimonials-page/test
 import { TermsAndConditionsComponent } from "./users/form-create-user/terms-and-conditions/terms-and-conditions.component";
 import { OrganizationComponent } from "./organization/organization.component";
 import { EditComponent } from "./organization/edit/edit.component";
-import { SlidesViewComponent } from './slides/slides-view/slides-view.component';
-import { SlidesFormComponent } from './slides/slides-form/slides-form.component';
+import { CreateEditActivityComponent } from "./activities/create-edit-activity/create-edit-activity.component";
+import { SlidesViewComponent } from "./slides/slides-view/slides-view.component";
+import { SlidesFormComponent } from "./slides/slides-form/slides-form.component";
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { SlidesFormComponent } from './slides/slides-form/slides-form.component'
     OrganizationComponent,
     TestimonialsPageComponent,
     EditComponent,
+    CreateEditActivityComponent,
     SlidesViewComponent,
     SlidesFormComponent,
   ],

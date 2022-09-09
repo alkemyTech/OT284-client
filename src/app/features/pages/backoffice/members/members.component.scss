@@ -10,6 +10,10 @@ table {
     width: 60%;
     margin: 0px auto;
 }
+
+table td, table th{
+    padding: 1em;
+}
 table img{
     width: 200px;
     height: 200px;
@@ -26,6 +30,20 @@ button{
     color: whitesmoke;
     margin: 0px auto;
     margin-bottom: 4vh;
+}
+
+.spinner-loading-members{
+   display: flex;
+    width: 100px;
+    margin: 0px auto;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+.spinner-loading-members p{
+    font-size: 3em;
 }
 
 @media (max-width: 1000px) {
@@ -72,4 +90,17 @@ button{
     table td, table th{
         font-size: 10px;
     }
+}
+
+@media (max-width: 390px) {
+
+    table img{
+        width: 85px;
+        height: 85px;
+    }
+    
+    table td, table th{
+        padding: 0.5em;
+    }
+
 }
