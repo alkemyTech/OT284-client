@@ -32,6 +32,7 @@ import { NgxTwitterTimelineModule } from 'ngx-twitter-timeline';
 import { CKEditorModule } from "@ckeditor/ckeditor5-angular";
 import { ActivityViewComponent } from './pages/activities/activity-view/activity-view.component';
 import { SlidesComponent } from './pages/activities/slides/slides.component';
+import { VjsPlayerComponent } from './pages/news/vjs-player/vjs-player.component';
 
 
 @NgModule({
@@ -54,6 +55,7 @@ import { SlidesComponent } from './pages/activities/slides/slides.component';
     AboutTweetsComponent,
     ActivityViewComponent,
     SlidesComponent,
+    VjsPlayerComponent,
   ],
   exports: [
     ActivityFormComponent,
@@ -62,7 +64,7 @@ import { SlidesComponent } from './pages/activities/slides/slides.component';
     CategoriesFormComponent,
     SlidesFormComponent,
     UserFormComponent,
-    RouterModule,
+    RouterModule
   ],
   imports: [
     CommonModule,
@@ -73,7 +75,9 @@ import { SlidesComponent } from './pages/activities/slides/slides.component';
     SharedModule,
     MatCardModule,
     MatButtonModule,
-    MatFormFieldModule,  MatInputModule, MatIconModule, SharedModule,
+    MatFormFieldModule,
+    MatInputModule, 
+    MatIconModule, 
     NgxMatFileInputModule,
     FormsModule,
     ReactiveFormsModule,
