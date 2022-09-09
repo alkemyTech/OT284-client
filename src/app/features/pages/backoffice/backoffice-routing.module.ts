@@ -12,6 +12,8 @@ import { MembersComponent } from "./members/members.component";
 import { CreateMemberComponent } from "./members/create-member/create-member.component";
 import { OrganizationComponent } from "./organization/organization.component";
 import { EditComponent } from "./organization/edit/edit.component";
+import { SlidesViewComponent } from "./slides/slides-view/slides-view.component";
+import { SlidesFormComponent } from "./slides/slides-form/slides-form.component";
 
 const routes: Routes = [
   {
@@ -69,6 +71,14 @@ const routes: Routes = [
   {
     path: "organization/edit",
     component: EditComponent,
+  },
+  {
+    path: "slides",
+    component: SlidesViewComponent,
+  },
+  {
+    path: "slides/create",
+    component: SlidesFormComponent,
   },
 ];
 
