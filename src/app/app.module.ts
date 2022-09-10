@@ -17,6 +17,7 @@ import { provideAuth, getAuth } from "@angular/fire/auth";
 import { UsersEffects } from "./state/effects/users.effects";
 import { MembersEffects } from "./state/effects/members.effects";
 import { SharedModule } from "./shared/shared.module";
+import { NewsEffects } from "./state/effects/news.effects";
 
 @NgModule({
   declarations: [AppComponent],
@@ -28,7 +29,7 @@ import { SharedModule } from "./shared/shared.module";
     NoopAnimationsModule,
     StoreModule.forRoot(ROOT_REDUCERS),
     StoreDevtoolsModule.instrument({ name: "TEST" }),
-    EffectsModule.forRoot([OrganizationEffects, UsersEffects, MembersEffects]),
+    EffectsModule.forRoot([OrganizationEffects, UsersEffects, MembersEffects, NewsEffects]),
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
   LeafletModule],
