@@ -20,12 +20,12 @@ import { ActivityDetailComponent } from "./pages/activities/activity-detail/acti
 const routes: Routes = [
   {
     path: "nosotros",
-    component: AboutViewComponent,
+    component: AboutViewComponent
   },
   {
     path: "",
     component: HomePageComponent,
-    ...canActivate( () => redirectUnauthorizedTo(['/login']))
+    ...canActivate( () => redirectUnauthorizedTo(['/login'])),
   },
   {
     path: "actividades",
@@ -37,7 +37,7 @@ const routes: Routes = [
   },
   {
     path: "contacto", 
-    component: ContactViewComponent 
+    component: ContactViewComponent,
   },
   {
     path: "backoffice",
@@ -53,25 +53,25 @@ const routes: Routes = [
   },
   {
     path:"novedades/:id",
-    component:NewsDetailsComponent
+    component:NewsDetailsComponent,
   },
   {
     path: "register",
     component: RegisterFormComponent,
-    ...canActivate( () => redirectLoggedInTo(['']))
+    ...canActivate( () => redirectLoggedInTo([''])),
   },
   {
     path: "login",
     component: LoginFormComponent,
-    ...canActivate( () => redirectLoggedInTo(['']))
+    ...canActivate( () => redirectLoggedInTo([''])),
   },
   {
     path: "categorias/edit/:id",
-    component: CategoriesFormComponent
+    component: CategoriesFormComponent,
   },
   {
     path: "categorias/new",
-    component: CategoriesFormComponent
+    component: CategoriesFormComponent,
   },
 ];
 
