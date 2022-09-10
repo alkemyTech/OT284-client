@@ -10,7 +10,7 @@ export const loadedNews=createAction(
     props<{news:newData[]}>()
 )
 
-export const errorNews=createAction(
+export const errorLoadedNews=createAction(
     '[News List] Not Loaded News',
     props<{message:string}>()
 )
