@@ -8,3 +8,13 @@ export const selectNews=createSelector(
     selectNewsFeature,
     (state: NewsState)=>state.news
 );
+
+export const selectLoadingNews=createSelector(
+    selectNewsFeature,
+    (state:NewsState)=>state.loading
+)
+
+export const selectErrorNews=createSelector(
+    selectNewsFeature,
+    (state:NewsState)=>state.error
+)
