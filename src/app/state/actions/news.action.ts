@@ -5,7 +5,7 @@ export const loadNews=createAction(
     '[News List] Load News'
 );
 
-export const loaderNews=createAction(
+export const loadedNews=createAction(
     '[News List] Loaded News',
     props<{news:newData[]}>()
 )
