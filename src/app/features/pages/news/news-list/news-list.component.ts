@@ -10,6 +10,7 @@ import Swal from 'sweetalert2';
 import { newData } from '../models/newM';
 import { NewsService } from '../news.service';
 import { selectNews } from 'src/app/state/selectors/news.selector';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-news-list',
