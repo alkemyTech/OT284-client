@@ -17,7 +17,7 @@ import { selectNews } from 'src/app/state/selectors/news.selector';
   styleUrls: ['./news-list.component.scss']
 })
 export class NewsListComponent implements OnInit {
-  public newsList:newData[]=[]
+  public newsList:Observable<newData[]>
   public linkCrear:string='/backoffice/news/create';
   public linkReference: string='CREAR NOVEDAD';
   displayedColumns: string[] = ['demo-image', 'demo-name', 'demo-date', 'demo-delete', 'demo-modify'];
