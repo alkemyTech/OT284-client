@@ -25,11 +25,11 @@ export class NewsListComponent implements OnInit {
   constructor(private srcNews:NewsService, private ruta:Router, public dialog: MatDialog, private store:Store<AppState>) { }
 
   ngOnInit(): void {
-    this.verNovedades();
+    //this.verNovedades();
     this.store.dispatch(loadNews())
   }
 
-  public verNovedades():void{
+/*   public verNovedades():void{
     //this.newsList=this.store.select(selectNews)
     this.srcNews.verNews().subscribe({
       next:(Response:newData[])=>{
@@ -44,8 +44,8 @@ export class NewsListComponent implements OnInit {
           data:{text:"Error al cargar novedades", message:error.message},
         })
       }
-    })
-  }
+    }) 
+  } */
 
   public eliminar(news:newData):void{
     Swal.fire({
