@@ -1,6 +1,11 @@
 import { createAction,props } from "@ngrx/store";
 import { newData } from "src/app/features/pages/news/models/newM";
 
+export const NEW_DELETE_ALERT='[News List] Alert Delete New';
+export const NEW_NOT_DELETE='[News List] Not Deleted New'
+export const NEW_DELETE='[News List] Delete New';
+export const NEW_DELETED='[News List] Deleted New';
+export const NEW_DELETE_FAILURE='[News List] Error delete New';
 export const loadNews=createAction(
     '[News List] Load News'
 );
