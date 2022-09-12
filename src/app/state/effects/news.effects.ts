@@ -11,20 +11,21 @@ import { MatAlertDialogComponent } from "src/app/shared/components/mat-alert-dia
 export class NewsEffects{
 
     loadNews$= createEffect(()=>this.actions$.pipe(
-        ofType('[News List] Load News'),
+        ofType(newsActions.loadNews),
         mergeMap(()=>this.srcNews.verNews()
         .pipe(
-            map((news)=>({type:'[News List] Loaded News', news})),
-            catchError((error:HttpErrorResponse) => of({ type: '[News List] Not Loaded News', message: error.message}))
+            map(news=>newsActions.loadedNews({news})),
+            catchError((error:HttpErrorResponse) => of(newsActions.errorLoadedNews(error))
             )
         )
         )
     )
+    )
 
     errorNews$=createEffect(()=>this.actions$.pipe(
-        ofType('[News List] Not Loaded News'),
-        tap(()=>this.dialog.open(MatAlertDialogComponent,{
-            data:{text:'Error al cargar novedades', message: 'Error de conexión al cargar novedades'},
+        ofType(newsActions.errorLoadedNews),
+        tap((action)=>this.dialog.open(MatAlertDialogComponent,{
+            data:{text:'Error al cargar novedades', message: action.message},
         }))
     ),
         {dispatch:false}
