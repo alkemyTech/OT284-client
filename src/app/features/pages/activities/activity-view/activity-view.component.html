@@ -1,7 +1,7 @@
 <app-title title="NUESTRAS ACTIVIDADES"></app-title>
 <div id="carouselExampleIndicators" #mycarouselControls class="carousel slide" data-ride="carousel" data-interval="2000">
     <ol class="carousel-indicators">
-        <button data-bs-target="#carouselExampleIndicators"  *ngFor="let item of activities$ | async;let index = index; first as isFirst" [ngClass]="{active:isFirst}" [attr.data-bs-slide-to]="index"></button>
+        <button data-bs-target="#carouselExampleIndicators"  *ngFor="let item of activities$| async;let index = index; first as isFirst" [ngClass]="{active:isFirst}" [attr.data-bs-slide-to]="index"></button>
     </ol>
     <div class="carousel-inner" >
             <div class="carousel-item" *ngFor="let activity of activities$ | async; let i=index; first as isFirst" [ngClass]="isFirst ? 'active' : ''">

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { ActivitiesService } from 'src/app/core/services/activities.service';
 import { Activity } from 'src/app/shared/interfaces/activity';
 import { activitiesExample } from './activities-example';
@@ -20,15 +20,15 @@ export class ActivityViewComponent implements OnInit {
   }
 
   private getListOfActivities(){
-    this.activities$ = this.httpActServ.getActivities()
-   /*  this.httpActServ.getActivities().subscribe(
+    this.httpActServ.getActivities().subscribe(
       (data: any)=>{
-        this.activities$ = data.data
+        this.activities$ = of(data)
+        console.log(this.activities$)
       },
       (error) =>{
         console.log(error)
       }
-    ) */
+    )
   }
 
 }

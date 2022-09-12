@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { Activity } from 'src/app/shared/interfaces/activity';
 import { environment } from 'src/environments/environment';
 import { HttpService } from './http.service';
@@ -12,7 +13,11 @@ export class ActivitiesService {
   constructor(private httpServ: HttpService) { }
 
   getActivities(): Observable<Activity[]> {
-    return this.httpServ.get<Activity[]>(environment.endpoints.actividades.list);
+    return this.httpServ.get<Activity[]>(environment.endpoints.actividades.list).pipe(
+      map(
+        (resp: any) => resp.data
+      )
+    );;
   }
 
   getActivity(id: number) {
