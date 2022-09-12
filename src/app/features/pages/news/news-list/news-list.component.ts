@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { MatAlertErrorComponent } from 'src/app/shared/components/mat-alert-error/mat-alert-error.component';
-import { loadedNews, loadNews } from 'src/app/state/actions/news.action';
+import { alertDelete, deleteNew, loadedNews, loadNews } from 'src/app/state/actions/news.action';
 import { AppState } from 'src/app/state/app.state';
 import { Store } from '@ngrx/store';
 import Swal from 'sweetalert2';
@@ -23,11 +23,12 @@ export class NewsListComponent implements OnInit {
   public linkReference: string='CREAR NOVEDAD';
   displayedColumns: string[] = ['demo-image', 'demo-name', 'demo-date', 'demo-delete', 'demo-modify'];
   
-  constructor(private srcNews:NewsService, private ruta:Router, public dialog: MatDialog, private store:Store<AppState>) { }
+  constructor(private ruta:Router, public dialog: MatDialog, private store:Store<AppState>) { }
 
   ngOnInit(): void {
     //this.verNovedades();
-    this.store.dispatch(loadNews())
+    this.store.dispatch(loadNews());
+    this.newsList=this.store.select(selectNews);
   }
 
 /*   public verNovedades():void{
@@ -48,8 +49,10 @@ export class NewsListComponent implements OnInit {
     }) 
   } */
 
-  public eliminar(news:newData):void{
-    Swal.fire({
+  public eliminar(newToDelete:newData):void{
+    this.store.dispatch(alertDelete({newToDelete}))
+    this.newsList=this.store.select(selectNews)
+    /* Swal.fire({
       title: `Esta seguro que quiere eliminar la novedad ${news.name}?`,
       showDenyButton: true,
       showCancelButton: true,
@@ -71,7 +74,7 @@ export class NewsListComponent implements OnInit {
       } else if (result.isDenied) {
         Swal.fire('The dish was not deleted', '', 'info')
       }
-    })
+    }) */
     
   }
 
