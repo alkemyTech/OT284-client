@@ -9,6 +9,7 @@ import { MatIconModule } from "@angular/material/icon";
 import { MatPaginatorModule } from "@angular/material/paginator";
 import { MatTableModule } from "@angular/material/table";
 import { MatDialogModule } from "@angular/material/dialog";
+import { FooterComponent } from "./components/footer/footer.component";
 import { TitleComponent } from "./components/title/title.component";
 import { MatAlertDialogComponent } from "./components/mat-alert-dialog/mat-alert-dialog.component";
 import { AuthButtonsComponent } from "./components/auth-buttons/auth-buttons.component";
@@ -18,8 +19,9 @@ import { MatAlertErrorComponent } from "./components/mat-alert-error/mat-alert-e
 import { SpinnerComponent } from "./components/spinner/spinner.component";
 import { MapWindowComponent } from "./components/map-window/map-window.component";
 import { LeafletModule } from "@asymmetrik/ngx-leaflet";
+import { HeaderComponent } from './components/header/header.component';
 
-import { FooterComponent } from "./components/footer/footer.component";
+
 @NgModule({
   declarations: [
     LinkComponent,
@@ -28,10 +30,10 @@ import { FooterComponent } from "./components/footer/footer.component";
     MatAlertDialogComponent,
     AuthButtonsComponent,
     MatAlertErrorComponent,
-    SpinnerComponent,
-    FooterComponent,
+    SpinnerComponent, 
     MapWindowComponent,
-  ],
+    FooterComponent,
+    HeaderComponent],
   imports: [CommonModule, RouterModule, MatButtonModule, LeafletModule],
   exports: [
     LinkComponent,
@@ -49,7 +51,8 @@ import { FooterComponent } from "./components/footer/footer.component";
     MapWindowComponent,
     MatCheckboxModule,
     SpinnerComponent,
-    FooterComponent,
+    HeaderComponent,
+    FooterComponent
   ],
 })
 export class SharedModule {}

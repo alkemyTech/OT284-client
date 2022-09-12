@@ -71,7 +71,6 @@ import { SlidesComponent } from './pages/activities/slides/slides.component';
     RouterModule,
     ReactiveFormsModule,
     HttpClientModule,
-    SharedModule,
     MatCardModule,
     MatButtonModule,
     MatFormFieldModule,  MatInputModule, MatIconModule, SharedModule,
