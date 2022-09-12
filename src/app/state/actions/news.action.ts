@@ -13,4 +13,27 @@ export const loadedNews=createAction(
 export const errorLoadedNews=createAction(
     '[News List] Not Loaded News',
     props<{message:string}>()
+export const alertDelete=createAction(
+    NEW_DELETE_ALERT,
+    props<{newToDelete:newData}>()
+)
+
+export const notDelete=createAction(
+    NEW_NOT_DELETE
+)
+
+export const deleteNew=createAction(
+    NEW_DELETE,
+    props<{newToDelete:newData}>()
+)
+
+export const deletedNew=createAction(
+    NEW_DELETED,
+    props<{newDeleted:newData}>()
+)
+
+export const errorDeleteNew=createAction(
+    NEW_DELETE_FAILURE
+)
+
 )
