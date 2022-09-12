@@ -1,9 +1,8 @@
 import {createReducer, on} from '@ngrx/store';
-import { newData } from 'src/app/features/pages/news/models/newM';
 import { NewsState } from 'src/app/shared/interfaces/news.state';
-import { errorLoadedNews, loadedNews, loadNews } from '../actions/news.action';
+import { deletedNew, errorLoadedNews, loadedNews, loadNews } from '../actions/news.action';
 
-export const initialState: NewsState = {loading:false, news:[], error:''}
+export const initialState: NewsState = {loading:false, news:[], error:'', newDeleted:false}
 
 export const newsReducer= createReducer(
     initialState,
@@ -15,5 +14,8 @@ export const newsReducer= createReducer(
     }),
     on(errorLoadedNews,(state, {message})=>{
         return {...state, loading:false, error:message}
+    }),
+    on(deletedNew, (state,{newDeleted})=>{
+        return {...state, news: state.news.filter(newM=>newM.id!==newDeleted.id), newDeleted:true}
     })
 )
