@@ -11,7 +11,17 @@ export class ActivitiesEffects {
     ofType(activitiesActionTypes.loadActivities),
     mergeMap(() => this.activitiesService.getActivities()
       .pipe(
-        map(activities => ({ activitiesActionTypes., activities })),
+        map(activities => ({ type: activitiesActionTypes.loadActivitiesSuccess, payload: activities })),
+        catchError(() => EMPTY)
+      ))
+    )
+  );
+
+  addActivity$ = createEffect(() => this.actions$.pipe(
+    ofType(activitiesActionTypes.addActivity),
+    mergeMap(() => this.activitiesService.addActivity()
+      .pipe(
+        map(message => ({ type: activitiesActionTypes.addActivitySuccess, payload: message })),
         catchError(() => EMPTY)
       ))
     )

@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic'
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { Activity } from 'src/app/shared/interfaces/activity';
+import { activitiesActionTypes } from 'src/app/state/actions/activities.actions';
 import { activitiesExample } from '../../../activities/activity-view/activities-example';
 
 @Component({
@@ -15,8 +19,9 @@ export class CreateEditActivityComponent implements OnInit {
   public editor=  ClassicEditor;
   activity= activitiesExample[0];
   private imgBase64!: any;
+  activities$: Observable<Activity[]> = this.store.select(state => state.activities);
 
-  constructor(private formB: FormBuilder) {
+  constructor(private formB: FormBuilder, private store: Store<{ activities: Activity[] }>) {
 
     this.form = this.formB.group({
         name:[this.activity.name.toLocaleUpperCase(),[Validators.required]],
@@ -37,6 +42,7 @@ export class CreateEditActivityComponent implements OnInit {
     }
     else{
       console.log("Hacer la solicitud HTTP POST")
+      this.store.dispatch({ type: activitiesActionTypes.addActivity })
     }
   }
 
