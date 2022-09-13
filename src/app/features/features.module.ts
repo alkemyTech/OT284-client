@@ -33,6 +33,7 @@ import { CKEditorModule } from "@ckeditor/ckeditor5-angular";
 import { ActivityDetailComponent } from './pages/activities/activity-detail/activity-detail.component';
 import { ActivityViewComponent } from './pages/activities/activity-view/activity-view.component';
 import { SlidesComponent } from './pages/activities/slides/slides.component';
+import { VjsPlayerComponent } from './pages/news/vjs-player/vjs-player.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found/page-not-found.component';
 
 @NgModule({
@@ -55,6 +56,7 @@ import { PageNotFoundComponent } from './pages/page-not-found/page-not-found/pag
     AboutTweetsComponent,
     ActivityViewComponent,
     SlidesComponent,
+    VjsPlayerComponent,
     ActivityDetailComponent,
     PageNotFoundComponent,
   ],
@@ -65,7 +67,7 @@ import { PageNotFoundComponent } from './pages/page-not-found/page-not-found/pag
     CategoriesFormComponent,
     SlidesFormComponent,
     UserFormComponent,
-    RouterModule,
+    RouterModule
   ],
   imports: [
     CommonModule,
@@ -75,7 +77,9 @@ import { PageNotFoundComponent } from './pages/page-not-found/page-not-found/pag
     HttpClientModule,
     MatCardModule,
     MatButtonModule,
-    MatFormFieldModule,  MatInputModule, MatIconModule, SharedModule,
+    MatFormFieldModule,
+    MatInputModule, 
+    MatIconModule, 
     NgxMatFileInputModule,
     FormsModule,
     ReactiveFormsModule,
