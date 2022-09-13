@@ -11,6 +11,14 @@ export const NEW_DELETE='[News List] Delete New';
 export const NEW_DELETED='[News List] Deleted New';
 export const NEW_DELETE_FAILURE='[News List] Error delete New';
 
+export const NEW_CREATE='[News Form] Create New';
+export const NEW_CREATED='[News Form] Created New';
+export const NEW_CREATE_FAILURE='[News Form] Error Create New';
+
+export const NEW_EDIT='[News Form] Edit New';
+export const NEW_EDITED='[News Form] Edited New';
+export const NEW_EDIT_FAILURE='[News Form] Error Edite New';
+
 export const loadNews=createAction(
     NEWS_LOAD
 );
@@ -48,4 +56,28 @@ export const errorDeleteNew=createAction(
     NEW_DELETE_FAILURE
 )
 
+export const createNew=createAction(
+    NEW_CREATE
+)
+
+export const createdNew=createAction(
+    NEW_CREATED,
+    props<{news:newData[]}>()
+)
+
+export const errorCreateNew=createAction(
+    NEW_CREATE_FAILURE
+)
+
+export const editNew=createAction(
+    NEW_EDIT
+)
+
+export const editedNew=createAction(
+    NEW_EDITED,
+    props<{news:newData[]}>()
+)
+
+export const errorEditedNew=createAction(
+    NEW_EDIT_FAILURE
 )
