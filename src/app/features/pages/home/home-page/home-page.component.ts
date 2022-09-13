@@ -16,9 +16,7 @@ export class HomePageComponent implements OnInit {
   constructor(private http: NewsHomeService, private dialog: MatDialog) { }
 
   ngOnInit(): void {
-    setTimeout(() => {
-      this.getSlides();
-    }, 1000);
+    this.getSlides();
     this.getWelcomeMessage();
     this.getNovedades();
   }
