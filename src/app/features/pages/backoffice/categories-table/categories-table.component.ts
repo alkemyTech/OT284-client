@@ -42,6 +42,7 @@ export class CategoriesTableComponent implements OnInit {
       if (result.isConfirmed) {
         this.categoryService.deleteCategory(category.id).subscribe(
           (resp: any) => {
+            this.dataSource$ = this.categoryService.getCategories();
             this.table.renderRows();
             Swal.fire(
               'Eliminado',
