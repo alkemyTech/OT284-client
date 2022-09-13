@@ -13,8 +13,10 @@ import { CreateMemberComponent } from "./members/create-member/create-member.com
 import { OrganizationComponent } from "./organization/organization.component";
 import { EditComponent } from "./organization/edit/edit.component";
 import { CreateEditActivityComponent } from "./activities/create-edit-activity/create-edit-activity.component";
-import { CategoriesTableComponent } from './categories-table/categories-table.component';
-import { CategoriesFormComponent } from '../categories/categories-form/categories-form.component';
+import { CategoriesTableComponent } from "./categories-table/categories-table.component";
+import { CategoriesFormComponent } from "../categories/categories-form/categories-form.component";
+import { SlidesViewComponent } from "./slides/slides-view/slides-view.component";
+import { SlidesFormComponent } from "./slides/slides-form/slides-form.component";
 
 const routes: Routes = [
   {
@@ -83,15 +85,23 @@ const routes: Routes = [
   },
   {
     path: "categories",
-    component: CategoriesTableComponent
+    component: CategoriesTableComponent,
   },
   {
     path: "categorias/create",
-    component: CategoriesFormComponent
+    component: CategoriesFormComponent,
   },
   {
     path: "categorias/edit/:id",
-    component: CategoriesFormComponent
+    component: CategoriesFormComponent,
+  },
+  {
+    path: "slides",
+    component: SlidesViewComponent,
+  },
+  {
+    path: "slides/create",
+    component: SlidesFormComponent,
   },
 ];
 
