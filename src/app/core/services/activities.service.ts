@@ -16,12 +16,13 @@ export class ActivitiesService {
     return this.httpServ.get<Activity[]>(environment.endpoints.actividades.list).pipe(
       map(
         (resp: any) => resp.data
+        /* (resp: any) => {return resp.data, resp.data.map((image: any) => image.blob())} */
       )
     );;
   }
 
   getActivity(id: number) {
-    return this.httpServ.get<any>(environment.endpoints.actividades.getById);
+    return this.httpServ.get<any>(environment.endpoints.actividades.getById(id));
   }
 
   postActivity(actividad: Activity): Observable<any> {
@@ -29,10 +30,14 @@ export class ActivitiesService {
   }
 
   putActivity(id: number, actividad: Activity) {
-    return this.httpServ.put(environment.endpoints.actividades.edit, actividad);
+    return this.httpServ.put(environment.endpoints.actividades.edit(id), actividad).pipe(
+      map(
+        (resp: any) => resp.data
+      )
+    );;
   }
 
   deleteActivity(id: number): Observable<any> {
-    return this.httpServ.delete(environment.endpoints.actividades.delete);
+    return this.httpServ.delete(environment.endpoints.actividades.delete(id));
   }
 }

@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { ActivitiesService } from 'src/app/core/services/activities.service';
 import { Activity } from 'src/app/shared/interfaces/activity';
-import { activitiesExample } from './activities-example';
 
 @Component({
   selector: 'app-activity-view',
@@ -20,15 +19,7 @@ export class ActivityViewComponent implements OnInit {
   }
 
   private getListOfActivities(){
-    this.httpActServ.getActivities().subscribe(
-      (data: any)=>{
-        this.activities$ = of(data)
-        console.log(this.activities$)
-      },
-      (error) =>{
-        console.log(error)
-      }
-    )
+    this.activities$ = this.httpActServ.getActivities()
   }
 
 }
