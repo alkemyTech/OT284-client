@@ -53,15 +53,6 @@ export class MemberFormComponent implements OnInit {
     }
   }
 
-  // convertFileToBase64(file: any) {
-  //   const reader = new FileReader();
-
-  //   reader.readAsDataURL(file);
-  //   reader.onload = () => {
-  //     console.log(reader.result);
-  //   }
-  // }
-
   onSubmit() {
     if (this.file) {
       /* check if file extension is valid */

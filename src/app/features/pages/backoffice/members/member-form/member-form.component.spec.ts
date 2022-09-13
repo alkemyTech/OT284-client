@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { MemberFormComponent } from './member-form.component';
 
@@ -22,4 +22,9 @@ describe('MemberFormComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('form should be invalid', waitForAsync(() => {
+    component.form.controls[''].setValue('');
+    expect(component.form.valid).toBeFalsy();
+  }));
 });
