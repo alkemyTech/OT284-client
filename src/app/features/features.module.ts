@@ -33,6 +33,7 @@ import { CKEditorModule } from "@ckeditor/ckeditor5-angular";
 import { ActivityDetailComponent } from './pages/activities/activity-detail/activity-detail.component';
 import { ActivityViewComponent } from './pages/activities/activity-view/activity-view.component';
 import { SlidesComponent } from './pages/activities/slides/slides.component';
+import { PageNotFoundComponent } from './pages/page-not-found/page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -55,6 +56,7 @@ import { SlidesComponent } from './pages/activities/slides/slides.component';
     ActivityViewComponent,
     SlidesComponent,
     ActivityDetailComponent,
+    PageNotFoundComponent,
   ],
   exports: [
     ActivityFormComponent,

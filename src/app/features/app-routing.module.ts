@@ -15,6 +15,7 @@ import { SlidesComponent } from "./pages/activities/slides/slides.component";
 import { ActivityViewComponent } from "./pages/activities/activity-view/activity-view.component";
 import { CategoriesFormComponent } from "./pages/categories/categories-form/categories-form.component";
 import { ActivityDetailComponent } from "./pages/activities/activity-detail/activity-detail.component";
+import { PageNotFoundComponent } from "./pages/page-not-found/page-not-found/page-not-found.component";
 
 
 const routes: Routes = [
@@ -72,6 +73,10 @@ const routes: Routes = [
   {
     path: "categorias/new",
     component: CategoriesFormComponent,
+  },
+  {
+    path: "**",
+    component: PageNotFoundComponent,
   },
 ];
 
