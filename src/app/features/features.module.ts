@@ -33,6 +33,7 @@ import { CKEditorModule } from "@ckeditor/ckeditor5-angular";
 import { ActivityDetailComponent } from './pages/activities/activity-detail/activity-detail.component';
 import { ActivityViewComponent } from './pages/activities/activity-view/activity-view.component';
 import { SlidesComponent } from './pages/activities/slides/slides.component';
+import { VjsPlayerComponent } from './pages/news/vjs-player/vjs-player.component';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import { SlidesComponent } from './pages/activities/slides/slides.component';
     AboutTweetsComponent,
     ActivityViewComponent,
     SlidesComponent,
+    VjsPlayerComponent,
     ActivityDetailComponent,
   ],
   exports: [
@@ -63,7 +65,7 @@ import { SlidesComponent } from './pages/activities/slides/slides.component';
     CategoriesFormComponent,
     SlidesFormComponent,
     UserFormComponent,
-    RouterModule,
+    RouterModule
   ],
   imports: [
     CommonModule,
@@ -73,7 +75,9 @@ import { SlidesComponent } from './pages/activities/slides/slides.component';
     HttpClientModule,
     MatCardModule,
     MatButtonModule,
-    MatFormFieldModule,  MatInputModule, MatIconModule, SharedModule,
+    MatFormFieldModule,
+    MatInputModule, 
+    MatIconModule, 
     NgxMatFileInputModule,
     FormsModule,
     ReactiveFormsModule,
