@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import { CategoryService } from '../../../../core/services/category.service';
 import { Category } from '../../../../shared/interfaces/category';
 
 import Swal from 'sweetalert2';
+import { NewsCategoriesService } from '../../../../core/services/news-categories.service';
 
 @Component({
   selector: 'app-categories-form',
@@ -19,7 +19,7 @@ export class CategoriesFormComponent implements OnInit {
   file!: any;
   Editor = ClassicEditor;
 
-  constructor( private fb: FormBuilder, private categoryService: CategoryService, private route: ActivatedRoute ) { }
+  constructor( private fb: FormBuilder, private categoryService: NewsCategoriesService, private route: ActivatedRoute ) { }
 
   ngOnInit(): void {
     this.createForm();

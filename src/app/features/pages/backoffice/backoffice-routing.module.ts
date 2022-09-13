@@ -13,6 +13,8 @@ import { CreateMemberComponent } from "./members/create-member/create-member.com
 import { OrganizationComponent } from "./organization/organization.component";
 import { EditComponent } from "./organization/edit/edit.component";
 import { CreateEditActivityComponent } from "./activities/create-edit-activity/create-edit-activity.component";
+import { CategoriesTableComponent } from './categories-table/categories-table.component';
+import { CategoriesFormComponent } from '../categories/categories-form/categories-form.component';
 
 const routes: Routes = [
   {
@@ -78,6 +80,18 @@ const routes: Routes = [
   {
     path: "activity/edit",
     component: CreateEditActivityComponent,
+  },
+  {
+    path: "categories",
+    component: CategoriesTableComponent
+  },
+  {
+    path: "categorias/create",
+    component: CategoriesFormComponent
+  },
+  {
+    path: "categorias/edit/:id",
+    component: CategoriesFormComponent
   },
 ];
 

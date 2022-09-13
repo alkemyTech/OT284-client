@@ -26,6 +26,7 @@ import { TermsAndConditionsComponent } from "./users/form-create-user/terms-and-
 import { OrganizationComponent } from "./organization/organization.component";
 import { EditComponent } from "./organization/edit/edit.component";
 import { CreateEditActivityComponent } from './activities/create-edit-activity/create-edit-activity.component';
+import { CategoriesTableComponent } from './categories-table/categories-table.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { CreateEditActivityComponent } from './activities/create-edit-activity/c
     TestimonialsPageComponent,
     EditComponent,
     CreateEditActivityComponent,
+    CategoriesTableComponent,
   ],
   imports: [
     CommonModule,
