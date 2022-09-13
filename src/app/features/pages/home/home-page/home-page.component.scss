@@ -12,6 +12,7 @@ $amarillo: #FAFA88;
         .home-text-bienvenida {
             background-color: $rojo;
             width: 50%;
+            padding: 5px;
         }
 
         .home-slider {
@@ -20,15 +21,28 @@ $amarillo: #FAFA88;
         }
     }
 
-    .home-novedades {
+    .home-staff {
         background-color: $amarillo;
         display: flex;
         flex-flow: column wrap;
         justify-content: center;
         align-items: center;
+       
     }
 }
-
+.home-section-header{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 5px;
+    .home-section-header-title{
+        font-size: 2em;
+        font-weight: bold;
+    }
+    .home-section-header-vertodos{
+        cursor: pointer;
+    }
+}
 @media screen and (max-width:600px) {
     .contenedor-homepage {
         .home-header {
