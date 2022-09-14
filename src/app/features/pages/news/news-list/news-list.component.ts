@@ -1,16 +1,13 @@
-import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { MatAlertErrorComponent } from 'src/app/shared/components/mat-alert-error/mat-alert-error.component';
-import { alertDelete, deleteNew, loadedNews, loadNews } from 'src/app/state/actions/news.action';
+import { deleteNew, loadNews } from 'src/app/state/actions/news.action';
 import { AppState } from 'src/app/state/app.state';
 import { Store } from '@ngrx/store';
-import Swal from 'sweetalert2';
 import { newData } from '../models/newM';
-import { NewsService } from '../news.service';
-import { selectNews } from 'src/app/state/selectors/news.selector';
+import { selectDeletedNew, selectNews } from 'src/app/state/selectors/news.selector';
 import { Observable } from 'rxjs';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-news-list',
@@ -18,7 +15,7 @@ import { Observable } from 'rxjs';
   styleUrls: ['./news-list.component.scss']
 })
 export class NewsListComponent implements OnInit {
-  public newsList:Observable<newData[]>
+  public newsList$:Observable<newData[]>
   public linkCrear:string='/backoffice/news/create';
   public linkReference: string='CREAR NOVEDAD';
   displayedColumns: string[] = ['demo-image', 'demo-name', 'demo-date', 'demo-delete', 'demo-modify'];
@@ -26,55 +23,24 @@ export class NewsListComponent implements OnInit {
   constructor(private ruta:Router, public dialog: MatDialog, private store:Store<AppState>) { }
 
   ngOnInit(): void {
-    //this.verNovedades();
     this.store.dispatch(loadNews());
-    this.newsList=this.store.select(selectNews);
+    this.newsList$=this.store.select(selectNews);
   }
 
-/*   public verNovedades():void{
-    //this.newsList=this.store.select(selectNews)
-    this.srcNews.verNews().subscribe({
-      next:(Response:newData[])=>{
-        //console.log(Response);
-        this.newsList=Response;
-        this.store.dispatch(loadedNews(
-          {news:Response}
-        ));
-      },
-      error:(error:HttpErrorResponse)=>{
-        this.dialog.open(MatAlertErrorComponent,{
-          data:{text:"Error al cargar novedades", message:error.message},
-        })
-      }
-    }) 
-  } */
-
-  public eliminar(newToDelete:newData):void{
-    this.store.dispatch(alertDelete({newToDelete}))
-    this.newsList=this.store.select(selectNews)
-    /* Swal.fire({
-      title: `Esta seguro que quiere eliminar la novedad ${news.name}?`,
+  public eliminar(newToDelete:newData){
+      Swal.fire({
+      title: `Esta seguro que quiere eliminar la novedad ${newToDelete.name}?`,
       showDenyButton: true,
       showCancelButton: true,
       confirmButtonText: 'Delete',
       denyButtonText: `Don't delete`,
     }).then((result) => {
       if (result.isConfirmed) {
-        this.srcNews.deleteNew(news.id).subscribe({
-          next:(Response:any)=>{
-            //console.log(Response);
-            Swal.fire('Deleted!', '', 'success')
-          },
-          error:(error:HttpErrorResponse)=>{
-            this.dialog.open(MatAlertErrorComponent,{
-              data:{text:"Error al eliminar novedad", message:error.message},
-            })
-          }
-        })
+        this.store.dispatch(deleteNew({newToDelete}));
       } else if (result.isDenied) {
         Swal.fire('The dish was not deleted', '', 'info')
       }
-    }) */
+    })
     
   }
 
