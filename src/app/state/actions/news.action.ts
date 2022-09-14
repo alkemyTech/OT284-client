@@ -85,3 +85,12 @@ export const editedNew=createAction(
 export const errorEditedNew=createAction(
     NEW_EDIT_FAILURE
 )
+
+export const receivedNew=createAction(
+    NEW_RECEIVED,
+    props<{newToEdit:newData}>()
+)
+
+export const errorReceivedNew=createAction(
+    NEW_NOT_RECEIVED
+)
