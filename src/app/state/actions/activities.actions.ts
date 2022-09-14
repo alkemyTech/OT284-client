@@ -18,7 +18,8 @@ export const loadActivitiesSuccess = createAction(
 );
 
 export const addActivity = createAction(
-    activitiesActionTypes.addActivity
+    activitiesActionTypes.addActivity,
+    props<{activity: Activity}>()
 );
 
 export const addActivitySuccess = createAction(
