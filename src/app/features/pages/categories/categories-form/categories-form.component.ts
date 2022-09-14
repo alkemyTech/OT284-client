@@ -5,7 +5,11 @@ import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { Category } from '../../../../shared/interfaces/category';
 
 import Swal from 'sweetalert2';
-import { NewsCategoriesService } from '../../../../core/services/news-categories.service';
+import { Store } from '@ngrx/store';
+import { AppState } from '../../../../state/app.state';
+import { createCategory, getCategoryById, editCategory } from '../../../../state/actions/categories.actions';
+import { Observable } from 'rxjs/internal/Observable';
+import { selectCategories } from '../../../../state/selectors/categories.selectors';
 
 @Component({
   selector: 'app-categories-form',
@@ -18,8 +22,9 @@ export class CategoriesFormComponent implements OnInit {
   form!: FormGroup;
   file!: any;
   Editor = ClassicEditor;
+  category$!: Observable<Category[]>;
 
-  constructor( private fb: FormBuilder, private categoryService: NewsCategoriesService, private route: ActivatedRoute ) { }
+  constructor( private fb: FormBuilder, private store: Store<AppState>, private route: ActivatedRoute ) { }
 
   ngOnInit(): void {
     this.createForm();
@@ -28,13 +33,16 @@ export class CategoriesFormComponent implements OnInit {
       let { id } = params;
 
       if ( id ) {
-        this.categoryService.getCategoryById(id).subscribe( category => {
-          this.category = category;
+        this.store.dispatch(getCategoryById({id}));
+        this.category$ = this.store.select(selectCategories);
+
+        this.category$.subscribe( categories => {
+          this.category = categories[0];
           this.form.get('image')?.removeValidators(Validators.required);
           this.form.setValue({
-            name: category.name,
+            name: this.category.name,
             image: '',
-            description: category.description
+            description: this.category.description
           })
         })
       }
@@ -130,13 +138,12 @@ export class CategoriesFormComponent implements OnInit {
   }
 
   createCategory() {
-    this.categoryService.createCategory(this.form.value).subscribe((resp: any) => {
-      Swal.close();
-      Swal.fire({
-        icon: 'success',
-        title: 'Completado',
-        text: resp.message
-      });
+    this.store.dispatch(createCategory({category: this.form.value}));
+    Swal.close();
+    Swal.fire({
+      icon: 'success',
+      title: 'Completado',
+      text: 'Categoría creada con éxito'
     });
     this.createForm();
   }
@@ -153,12 +160,11 @@ export class CategoriesFormComponent implements OnInit {
 
   editCategory() {
     if (this.category.id) {
-      this.categoryService.updateCategory(this.category.id, this.form.value).subscribe((resp: any) => {
-        Swal.fire({
-          icon: 'success',
-          title: 'Completado',
-          text: resp.message
-        });
+      this.store.dispatch(editCategory({id: this.category.id, category: this.form.value}));
+      Swal.fire({
+        icon: 'success',
+        title: 'Completado',
+        text: 'Categoría editada con éxito'
       });
     }
   }
