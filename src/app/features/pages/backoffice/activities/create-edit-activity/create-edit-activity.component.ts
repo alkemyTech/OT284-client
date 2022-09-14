@@ -22,6 +22,7 @@ export class CreateEditActivityComponent implements OnInit {
   public editor=  ClassicEditor;
   activity: Activity;
   private imgBase64!: any;
+  file!: any;
 
   constructor(private formB: FormBuilder, private route:ActivatedRoute, 
     private httpActServ: ActivitiesService, private location:Location, public dialog: MatDialog) {
@@ -37,8 +38,7 @@ export class CreateEditActivityComponent implements OnInit {
   ngOnInit(): void {
     this.activity = JSON.parse(this.route.snapshot.paramMap.get('activity')!)
     this.activity ? this.formType="edit" : this.formType="create"
-   /*  let blob = fetch(this.activity.image).then(r => this.convertFileToBase64(r.blob())); */
-
+   
     if (this.formType == "edit"){
       this.form.setValue({
         name: this.activity.name,
@@ -50,7 +50,11 @@ export class CreateEditActivityComponent implements OnInit {
 
   onSubmit(){
     if (this.formType == "edit"){
-      this.httpActServ.putActivity(this.activity.id,this.activity).subscribe(
+      this.form.get('image')?.removeValidators(Validators.required);
+      if (!this.file) {
+        this.form.removeControl('image');
+      }
+      this.httpActServ.putActivity(this.activity.id,this.form.value).subscribe(
         (data) => console.log(data),
         (err)=> console.log(err)
       )
@@ -64,7 +68,8 @@ export class CreateEditActivityComponent implements OnInit {
     this.location.historyGo(-2)
   }
 
-  fileEvent(e: Event) {
+  fileEvent(event: any) {
+    this.file = event.target.files[0];
     let imagen = this.form.controls.image.value;
     var allowedExtensions = /(.jpg|.png)$/i;
 
