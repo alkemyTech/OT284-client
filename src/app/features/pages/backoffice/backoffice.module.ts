@@ -25,8 +25,10 @@ import { TestimonialsPageComponent } from "./testimonials/testimonials-page/test
 import { TermsAndConditionsComponent } from "./users/form-create-user/terms-and-conditions/terms-and-conditions.component";
 import { OrganizationComponent } from "./organization/organization.component";
 import { EditComponent } from "./organization/edit/edit.component";
-import { CreateEditActivityComponent } from './activities/create-edit-activity/create-edit-activity.component';
-import { CategoriesTableComponent } from './categories-table/categories-table.component';
+import { CreateEditActivityComponent } from "./activities/create-edit-activity/create-edit-activity.component";
+import { SlidesViewComponent } from "./slides/slides-view/slides-view.component";
+import { SlidesFormComponent } from "./slides/slides-form/slides-form.component";
+import { CategoriesTableComponent } from "./categories-table/categories-table.component";
 
 @NgModule({
   declarations: [
@@ -47,6 +49,8 @@ import { CategoriesTableComponent } from './categories-table/categories-table.co
     EditComponent,
     CreateEditActivityComponent,
     CategoriesTableComponent,
+    SlidesViewComponent,
+    SlidesFormComponent,
   ],
   imports: [
     CommonModule,
