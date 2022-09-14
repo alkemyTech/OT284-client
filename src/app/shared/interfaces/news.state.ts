@@ -5,4 +5,5 @@ export interface NewsState{
     news: newData[],
     error:string,
     newDeleted:boolean,
+    newToEdit:newData
 }
