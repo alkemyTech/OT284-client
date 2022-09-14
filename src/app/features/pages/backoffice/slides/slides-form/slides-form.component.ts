@@ -7,6 +7,7 @@ import {
   Validators,
 } from "@angular/forms";
 import * as ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+
 import Base64UploaderPlugin from "customBuilder/Base64Upload";
 import { NewsSlidesService } from "src/app/core/services/news-slides.service";
 import { Slides } from "src/app/shared/interfaces/slides";
@@ -150,7 +151,7 @@ export class SlidesFormComponent implements OnInit, AfterViewInit, OnDestroy {
         this.slideForm.editSlideData.order
       );
       this.formSlides.controls.image.setValue(
-        this.slideForm.editSlideData.image
+        `<figure class="image"><img src="${this.slideForm.editSlideData.image}"></figure>`
       );
     }
 
