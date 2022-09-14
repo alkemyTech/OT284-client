@@ -83,6 +83,7 @@ import { VjsPlayerComponent } from './pages/news/vjs-player/vjs-player.component
     ReactiveFormsModule,
     CKEditorModule,
     NgxTwitterTimelineModule,
+    SharedModule
   ],
 })
 export class FeaturesModule {}
