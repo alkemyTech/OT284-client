@@ -27,7 +27,7 @@ export class NewsEffects{
 
     errorNews$=createEffect(()=>this.actions$.pipe(
         ofType(newsActions.errorLoadedNews),
-        tap((action)=>this.dialog.open(MatAlertDialogComponent,{
+        tap((action)=>this.dialog.open(MatAlertErrorComponent,{
             data:{text:'Error al cargar novedades', message: action.message},
         }))
     ),
