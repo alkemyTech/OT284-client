@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { Category } from '../../../../shared/interfaces/category';
 
@@ -24,7 +24,7 @@ export class CategoriesFormComponent implements OnInit {
   Editor = ClassicEditor;
   category$!: Observable<Category[]>;
 
-  constructor( private fb: FormBuilder, private store: Store<AppState>, private route: ActivatedRoute ) { }
+  constructor( private fb: FormBuilder, private store: Store<AppState>, private route: ActivatedRoute, private router: Router ) { }
 
   ngOnInit(): void {
     this.createForm();
@@ -144,8 +144,9 @@ export class CategoriesFormComponent implements OnInit {
       icon: 'success',
       title: 'Completado',
       text: 'Categoría creada con éxito'
+    }).then(() => {
+      this.router.navigateByUrl('/backoffice/categories');
     });
-    this.createForm();
   }
 
   swalFire() {
@@ -161,10 +162,13 @@ export class CategoriesFormComponent implements OnInit {
   editCategory() {
     if (this.category.id) {
       this.store.dispatch(editCategory({id: this.category.id, category: this.form.value}));
+      Swal.close();
       Swal.fire({
         icon: 'success',
         title: 'Completado',
         text: 'Categoría editada con éxito'
+      }).then(() => {
+        this.router.navigateByUrl('/backoffice/categories');
       });
     }
   }
