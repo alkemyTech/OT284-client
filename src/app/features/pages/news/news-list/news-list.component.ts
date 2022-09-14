@@ -5,7 +5,7 @@ import { deleteNew, loadNews } from 'src/app/state/actions/news.action';
 import { AppState } from 'src/app/state/app.state';
 import { Store } from '@ngrx/store';
 import { newData } from '../models/newM';
-import { selectDeletedNew, selectNews } from 'src/app/state/selectors/news.selector';
+import { selectNews } from 'src/app/state/selectors/news.selector';
 import { Observable } from 'rxjs';
 import Swal from 'sweetalert2';
 
