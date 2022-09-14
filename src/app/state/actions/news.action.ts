@@ -18,6 +18,7 @@ export const NEW_CREATE_FAILURE='[News Form] Error Create New';
 export const NEW_EDIT='[News Form] Edit New';
 export const NEW_EDITED='[News Form] Edited New';
 export const NEW_EDIT_FAILURE='[News Form] Error Edite New';
+export const NEW_GET='[News Form] Get New';
 export const NEW_RECEIVED='[News Form] Received New';
 export const NEW_NOT_RECEIVED='[News Form] Not Received New';
 
@@ -86,6 +87,10 @@ export const errorEditedNew=createAction(
     NEW_EDIT_FAILURE
 )
 
+export const getNew=createAction(
+    NEW_GET,
+    props<({id:number})>()
+)
 export const receivedNew=createAction(
     NEW_RECEIVED,
     props<{newToEdit:newData}>()

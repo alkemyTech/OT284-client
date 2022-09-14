@@ -77,6 +77,26 @@ export class NewsEffects{
         }))
     ))
 
+    //Effects for edit & create news:
+    editNew$=createEffect(()=>this.actions$.pipe(
+        ofType(newsActions.getNew),
+        mergeMap(action=>this.srcNews.getNewModel(action.id)
+        .pipe(
+            map(newToEdit=>newsActions.receivedNew({newToEdit})),
+            catchError(()=>of(newsActions.errorReceivedNew))
+        )
+        )
+    ))
+    
+    errorReceived$=createEffect(()=>this.actions$.pipe(
+        ofType(newsActions.errorReceivedNew),
+        tap(()=>this.dialog.open(MatAlertErrorComponent,{
+            data:{text:'Error', message: 'Error de conexión al modificar novedad'},
+        }))
+    ),
+        {dispatch:false}
+    )  
+
     constructor(
         private actions$:Actions,
         private srcNews:NewsService,
