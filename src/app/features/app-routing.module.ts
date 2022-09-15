@@ -65,14 +65,6 @@ const routes: Routes = [
     component: LoginFormComponent,
     ...canActivate( () => redirectLoggedInTo(['']))
   },
-  {
-    path: "categorias/edit/:id",
-    component: CategoriesFormComponent
-  },
-  {
-    path: "categorias/new",
-    component: CategoriesFormComponent
-  },
 ];
 
 @NgModule({

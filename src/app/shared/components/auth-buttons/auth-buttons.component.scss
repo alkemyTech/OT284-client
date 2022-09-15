@@ -2,7 +2,7 @@
     display: block;
     color: whitesmoke;
     margin: 0px auto;
-    margin-top: 2vh;
+    // margin-top: 2vh;
     width: 9em;
     border-radius: 5em;
     background-color: #FF0000;
@@ -14,8 +14,14 @@
 .btn-login{
     display: block;
     margin: 0px auto;
-    margin-top: 2vh;
+    // margin-top: 2vh;
     width: 9em;
     border: 2px solid rgba(52, 51, 51, 0.267);
     border-radius: 5em;
+}
+
+.buttons-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
