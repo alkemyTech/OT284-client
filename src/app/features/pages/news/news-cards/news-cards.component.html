@@ -1,13 +1,13 @@
 <app-title [title]="myTitle"></app-title>
 <div class="container">
     <form class="search-form">
-        <mat-form-field class="search-field" appearance="fill">
+        <mat-form-field class="search-field" appearance="fill" (keyup)="search.next($event)">
             <mat-label>Busque novedad por título</mat-label>
             <input matInput>
           </mat-form-field>
-    </form>
+    </form>    
     <div class="row">
-        <div *ngFor="let new of newsLista" class="card">
+        <div *ngFor="let new of newsLista$ |async" class="card">
             <div class="card-title">
                 <h2>{{new.name}}</h2>
             </div>
