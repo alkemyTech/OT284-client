@@ -4,7 +4,7 @@ import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic'
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Activity } from 'src/app/shared/interfaces/activity';
-import { activitiesActionTypes, addActivity } from 'src/app/state/actions/activities.actions';
+import { activitiesActionTypes, addActivity, editActivity } from 'src/app/state/actions/activities.actions';
 import { AppState } from 'src/app/state/app.state';
 import { activitiesExample } from '../../../activities/activity-view/activities-example';
 
@@ -38,11 +38,9 @@ export class CreateEditActivityComponent implements OnInit {
 
   onSubmit(){
     if (this.formType == "edit"){
-      console.log("Hacer la solicitud HTTP PATCH")
-      console.log(this.form.value)
+      this.store.dispatch(editActivity({id: this.activity.id, data:this.form.value}))
     }
     else{
-      console.log("Hacer la solicitud HTTP POST")
       this.store.dispatch(addActivity({activity: this.activity}))
     }
   }

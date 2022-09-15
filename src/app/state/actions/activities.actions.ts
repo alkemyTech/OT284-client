@@ -3,7 +3,7 @@ import { Activity } from "src/app/shared/interfaces/activity";
 
 export enum activitiesActionTypes{
     loadActivities = "[Activities View] Load activities ",
-    LoadActivitiesSuccess = "[Activities View] Load activities success",
+    loadActivitiesSuccess = "[Activities View] Load activities success",
     addActivity= "[Backoffice Activities] add activity",
     addActivitySuccess = "[Backoffice Activities] add activity success",
     editActivity= "[Backoffice Activities] edit activity",
@@ -15,7 +15,7 @@ export const loadActivities = createAction(
 );
 
 export const loadActivitiesSuccess = createAction(
-    activitiesActionTypes.LoadActivitiesSuccess,
+    activitiesActionTypes.loadActivitiesSuccess,
     props<{activities: Activity[]}>()
 );
 
@@ -30,7 +30,7 @@ export const addActivitySuccess = createAction(
 );
 export const editActivity = createAction(
     activitiesActionTypes.editActivity,
-    props<{data: any}>()
+    props<{id: number,data: any}>()
 );
 
 export const editActivitySuccess = createAction(
