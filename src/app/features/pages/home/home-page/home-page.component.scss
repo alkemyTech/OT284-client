@@ -3,26 +3,23 @@ $azul: #9AC9FB;
 $amarillo: #FAFA88;
 
 .contenedor-homepage {
-    padding: 1em 3em;
+    padding: 1em 10%;
 
     .home-header {
         display: flex;
         flex-flow: row wrap;
 
         .home-text-bienvenida {
-            background-color: $rojo;
             width: 50%;
-            padding: 5px;
+            padding: 1em;
         }
 
         .home-slider {
-            background-color: $azul;
             width: 50%;
         }
     }
 
     .home-staff {
-        background-color: $amarillo;
         display: flex;
         flex-flow: column wrap;
         justify-content: center;
