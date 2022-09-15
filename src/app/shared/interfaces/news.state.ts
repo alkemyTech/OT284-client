@@ -4,6 +4,8 @@ export interface NewsState{
     loading:boolean,
     news: newData[],
     error:string,
-    newDeleted:boolean,
-    newToEdit:newData
+    newWasDeleted:boolean,
+    newToDelete:newData,
+    newToEdit:newData,
+    newWasCreated:boolean
 }
