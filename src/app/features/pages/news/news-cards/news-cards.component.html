@@ -1,5 +1,11 @@
 <app-title [title]="myTitle"></app-title>
 <div class="container">
+    <form class="search-form">
+        <mat-form-field class="search-field" appearance="fill">
+            <mat-label>Busque novedad por título</mat-label>
+            <input matInput>
+          </mat-form-field>
+    </form>
     <div class="row">
         <div *ngFor="let new of newsLista" class="card">
             <div class="card-title">
