@@ -70,6 +70,7 @@ import { PageNotFoundComponent } from './pages/page-not-found/page-not-found/pag
     RouterModule
   ],
   imports: [
+    SharedModule,
     CommonModule,
     AppRoutingModule,
     RouterModule,
