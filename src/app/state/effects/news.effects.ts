@@ -6,7 +6,6 @@ import { of } from "rxjs";
 import { mergeMap, map, catchError, tap, exhaustMap } from "rxjs/operators";
 import { NewsService } from "src/app/features/pages/news/news.service";
 import { MatAlertErrorComponent } from "src/app/shared/components/mat-alert-error/mat-alert-error.component";
-import Swal from "sweetalert2";
 import * as newsActions from '../actions/news.action';
 
 @Injectable()
@@ -37,7 +36,7 @@ export class NewsEffects{
         ofType(newsActions.deleteNew),
         mergeMap((action)=>this.srcNews.deleteNew(action.newToDelete.id)
         .pipe(
-            map((action)=>newsActions.deletedNew(action.newToDelete)),
+            map(()=>newsActions.deletedNew),
             catchError((error:HttpErrorResponse) => of(newsActions.errorDeleteNew(error)))
         ))
     )) 
@@ -87,6 +86,16 @@ export class NewsEffects{
     ),
         {dispatch:false}
     )  
+
+    //Effect for edit new:
+    editNew$=createEffect(()=>this.actions$.pipe(
+        ofType(newsActions.editNew),
+        mergeMap(action=>this.srcNews.modificarNew(action.newToEdit)
+        .pipe(
+            map((newEdited)=>newsActions.editedNew({newEdited})),
+            catchError((error:HttpErrorResponse)=>of(newsActions.errorEditedNew(error)))
+        )))
+    )
 
     constructor(
         private actions$:Actions,
