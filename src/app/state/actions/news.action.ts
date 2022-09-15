@@ -1,6 +1,5 @@
 import { createAction,props } from "@ngrx/store";
 import { newData, Novedad } from "src/app/features/pages/news/models/newM";
-import { NewsFormState } from "src/app/shared/interfaces/news.state";
 
 export const NEWS_LOAD='[News List] Load News';
 export const NEWS_LOADED= '[News List] Loaded News';
@@ -46,7 +45,6 @@ export const deleteNew=createAction(
 
 export const deletedNew=createAction(
     NEW_DELETED,
-    props<{newDeleted:newData}>()
 )
 
 export const errorDeleteNew=createAction(
@@ -74,16 +72,17 @@ export const errorCreateNew=createAction(
 //ACCIONES NEWS-FORM. PARA EDITAR
 export const editNew=createAction(
     NEW_EDIT,
-    props<({id:number})>()
+    props<({newToEdit:newData})>()
 )
 
 export const editedNew=createAction(
     NEW_EDITED,
-    props<{news:newData[]}>()
+    props<{newEdited:newData}>()
 )
 
 export const errorEditedNew=createAction(
-    NEW_EDIT_FAILURE
+    NEW_EDIT_FAILURE,
+    props<{message:string}>()
 )
 
 export const getNew=createAction(
@@ -98,9 +97,4 @@ export const receivedNew=createAction(
 
 export const errorReceivedNew=createAction(
     NEW_NOT_RECEIVED
-)
-
-export const formValueChange=createAction(
-    NEW_FORM_CHANGE,
-    props<{newsForm:NewsFormState}>()
 )
