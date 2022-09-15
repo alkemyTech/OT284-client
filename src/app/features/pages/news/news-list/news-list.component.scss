@@ -38,6 +38,26 @@
     font-weight: bold;
   }
 
-  .centrado{
+  .boton{
     text-align: center;
+    align-self: center;
   }
+
+  /*FORM PARA BUSCAR*/
+
+.search-form{
+  width: 50%;
+  text-align: center;
+}
+
+.search-field{
+  width: 80%;
+  padding-top: 2%;
+}
+
+//container-news
+.container-news{
+  margin-top:2%;
+  display: flex;
+  justify-content: center;
+}
