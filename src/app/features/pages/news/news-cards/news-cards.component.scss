@@ -14,7 +14,7 @@ html{
 }
 
 .card{
-    width: 47%;
+    width: 30%;
     border: 1px solid rgb(48, 46, 46);
     border-radius: 5px;
     margin-bottom: 10px;
@@ -99,3 +99,14 @@ html{
     }
 
 }
+
+/*FORM PARA BUSCAR*/
+
+.search-form{
+    width: 100%;
+    text-align: center;
+  }
+
+  .search-field{
+    width: 50%;
+  }
