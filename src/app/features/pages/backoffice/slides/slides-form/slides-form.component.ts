@@ -1,4 +1,11 @@
-import { AfterViewInit, Component, OnDestroy, OnInit } from "@angular/core";
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+} from "@angular/core";
 import {
   AbstractControl,
   FormControl,
@@ -14,6 +21,8 @@ import { Slides } from "src/app/shared/interfaces/slides";
 import Swal from "sweetalert2";
 import { map } from "rxjs/operators";
 import { SlidesServiceService } from "./slides-service.service";
+
+import { environment } from "src/environments/environment";
 
 @Component({
   selector: "app-slides-form",
@@ -33,6 +42,7 @@ export class SlidesFormComponent implements OnInit, AfterViewInit, OnDestroy {
     image: new FormControl("", [Validators.required, this.validExtensions]),
   });
   editorConfig = { extraPlugins: [Base64UploaderPlugin] };
+
   constructor(
     private slides: NewsSlidesService,
     private slideForm: SlidesServiceService
@@ -68,6 +78,7 @@ export class SlidesFormComponent implements OnInit, AfterViewInit, OnDestroy {
     const desc = this.formSlides.value.desc;
     const order = this.formSlides.value.order;
     const image = this.obtenerImg(this.formSlides.value.image);
+    console.log(image);
     if (this.formSlides.valid) {
       if (!this.slideForm.isEditing) {
         this.slides
@@ -133,6 +144,20 @@ export class SlidesFormComponent implements OnInit, AfterViewInit, OnDestroy {
     }
   }
 
+  toDataUrl(url: string, callback: any) {
+    const xhr = new XMLHttpRequest();
+    xhr.onload = function () {
+      const reader = new FileReader();
+      reader.onloadend = function () {
+        callback(reader.result);
+      };
+      reader.readAsDataURL(xhr.response);
+    };
+    xhr.open("GET", url);
+    xhr.responseType = "blob";
+    xhr.send();
+  }
+
   private obtenerImg(image: string) {
     let str1 = image.split('src="')[1];
     return (image = str1.split('"')[0]);
@@ -150,12 +175,13 @@ export class SlidesFormComponent implements OnInit, AfterViewInit, OnDestroy {
       this.formSlides.controls.order.setValue(
         this.slideForm.editSlideData.order
       );
-      this.formSlides.controls.image.setValue(
-        `<figure class="image"><img src="${this.slideForm.editSlideData.image}"></figure>`
-      );
-    }
 
-    if (this.slideForm.isEditing) {
+      const proxyUrl = "https://cors-anywhere.herokuapp.com/",
+        targetUrl = this.slideForm.editSlideData.image;
+      this.toDataUrl(proxyUrl + targetUrl, (data: any) => {
+        this.formSlides.controls.image.setValue(`<img src="${data}"></img>`);
+      });
+
       this.formSlides.controls["order"].clearValidators();
       this.formSlides.controls["order"].setValidators(Validators.required);
     } else {
