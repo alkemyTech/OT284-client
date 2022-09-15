@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { deleteNew, loadNews } from 'src/app/state/actions/news.action';
+import { deletedNew, deleteNew, loadNews } from 'src/app/state/actions/news.action';
 import { AppState } from 'src/app/state/app.state';
-import { Store } from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
 import { newData } from '../models/newM';
 import { selectNews } from 'src/app/state/selectors/news.selector';
 import { Observable } from 'rxjs';
@@ -37,6 +37,7 @@ export class NewsListComponent implements OnInit {
     }).then((result) => {
       if (result.isConfirmed) {
         this.store.dispatch(deleteNew({newToDelete}));
+        this.newsList$=this.store.select(selectNews);
       } else if (result.isDenied) {
         Swal.fire('The dish was not deleted', '', 'info')
       }
