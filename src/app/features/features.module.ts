@@ -33,6 +33,7 @@ import { CKEditorModule } from "@ckeditor/ckeditor5-angular";
 import { ActivityDetailComponent } from './pages/activities/activity-detail/activity-detail.component';
 import { ActivityViewComponent } from './pages/activities/activity-view/activity-view.component';
 import { SlidesComponent } from './pages/activities/slides/slides.component';
+import { VjsPlayerComponent } from './pages/news/vjs-player/vjs-player.component';
 import { HomeWelcometextComponent } from './pages/home/home-welcometext/home-welcometext.component';
 
 @NgModule({
@@ -55,6 +56,7 @@ import { HomeWelcometextComponent } from './pages/home/home-welcometext/home-wel
     AboutTweetsComponent,
     ActivityViewComponent,
     SlidesComponent,
+    VjsPlayerComponent,
     ActivityDetailComponent,
     HomeWelcometextComponent,
   ],
@@ -65,7 +67,7 @@ import { HomeWelcometextComponent } from './pages/home/home-welcometext/home-wel
     CategoriesFormComponent,
     SlidesFormComponent,
     UserFormComponent,
-    RouterModule,
+    RouterModule
   ],
   imports: [
     CommonModule,
@@ -75,11 +77,14 @@ import { HomeWelcometextComponent } from './pages/home/home-welcometext/home-wel
     HttpClientModule,
     MatCardModule,
     MatButtonModule,
-    MatFormFieldModule,  MatInputModule, MatIconModule, SharedModule,
+    MatFormFieldModule,
+    MatInputModule, 
+    MatIconModule, 
     NgxMatFileInputModule,
     FormsModule,
     ReactiveFormsModule,
     CKEditorModule,
+    SharedModule,
     NgxTwitterTimelineModule,
   ],
 })

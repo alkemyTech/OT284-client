@@ -1,17 +1,17 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { HttpService } from './http.service';
 import { Category } from '../../shared/interfaces/category';
-import { map } from 'rxjs/operators'
 import { Observable } from 'rxjs';
+import { map } from "rxjs/operators";
 
 @Injectable({
   providedIn: 'root'
 })
-export class CategoryService {
+export class NewsCategoriesService {
 
   private url = 'https://ongapi.alkemy.org/api/categories';
 
-  constructor( private http: HttpClient ) { }
+  constructor( private http: HttpService ) { }
 
   createCategory( category: Category ) {
     return this.http.post(this.url, category);
@@ -27,4 +27,13 @@ export class CategoryService {
     );
   }
 
+  getCategories(): Observable<Category[]> {
+    return this.http.get(this.url).pipe(
+      map( (resp: any) => resp.data)
+    );
+  }
+
+  deleteCategory( id: number ) {
+    return this.http.delete(`${this.url}/${id}`);
+  }
 }
