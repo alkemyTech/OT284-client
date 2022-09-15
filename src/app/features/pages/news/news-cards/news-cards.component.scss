@@ -59,13 +59,13 @@ html{
 
 @media screen and (max-width:1170px){
     .card{
-        width: 80%;
+        width: 45%;
     }
 }
 
 @media screen and (max-width:900px){
     .container{
-        width: 100%;
+        width: 80%;
     }
     .card{
         width: 80%;
@@ -78,7 +78,7 @@ html{
     }
     .card{
         display:initial;
-        width:40%;
+        width:80%;
     }
     .card-body{
         padding-top:5px;
