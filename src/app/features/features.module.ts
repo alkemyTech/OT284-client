@@ -34,6 +34,7 @@ import { ActivityDetailComponent } from './pages/activities/activity-detail/acti
 import { ActivityViewComponent } from './pages/activities/activity-view/activity-view.component';
 import { SlidesComponent } from './pages/activities/slides/slides.component';
 import { VjsPlayerComponent } from './pages/news/vjs-player/vjs-player.component';
+import { PageNotFoundComponent } from './pages/page-not-found/page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -57,6 +58,7 @@ import { VjsPlayerComponent } from './pages/news/vjs-player/vjs-player.component
     SlidesComponent,
     VjsPlayerComponent,
     ActivityDetailComponent,
+    PageNotFoundComponent,
   ],
   exports: [
     ActivityFormComponent,
@@ -68,6 +70,7 @@ import { VjsPlayerComponent } from './pages/news/vjs-player/vjs-player.component
     RouterModule
   ],
   imports: [
+    SharedModule,
     CommonModule,
     AppRoutingModule,
     RouterModule,
