@@ -68,6 +68,7 @@ import { VjsPlayerComponent } from './pages/news/vjs-player/vjs-player.component
     RouterModule
   ],
   imports: [
+    SharedModule,
     CommonModule,
     AppRoutingModule,
     RouterModule,
