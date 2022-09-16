@@ -86,6 +86,7 @@ import { PageNotFoundComponent } from './pages/page-not-found/page-not-found/pag
     ReactiveFormsModule,
     CKEditorModule,
     NgxTwitterTimelineModule,
+    SharedModule
   ],
 })
 export class FeaturesModule {}

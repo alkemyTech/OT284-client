@@ -16,8 +16,8 @@ export const environment = {
     contactos: {
       list: "https://ongapi.alkemy.org/api/contacts",
       create: "https://ongapi.alkemy.org/api/contacts",
-      edit: "https://ongapi.alkemy.org/api/contacts/?id=${id}",
-      delete: "https://ongapi.alkemy.org/api/contacts/?id=${id}",
+      edit(id:number) {return `https://ongapi.alkemy.org/api/contacts/${id}`},
+      delete(id:number) {return `https://ongapi.alkemy.org/api/contacts/${id}`}
     },
     novedades: {
       list: "https://ongapi.alkemy.org/api/news",
@@ -50,7 +50,14 @@ export const environment = {
       create: "https://ongapi.alkemy.org/api/members",
       edit(id:number) {return `https://ongapi.alkemy.org/api/members/${id}`},
       delete(id:number) {return `https://ongapi.alkemy.org/api/members/${id}`}
-    }
+    },
+    actividades:{
+      list:"https://ongapi.alkemy.org/api/activities",
+      getById(id:number) {return `https://ongapi.alkemy.org/api/activities/${id}`},
+      create:"https://ongapi.alkemy.org/api/activities",
+      edit(id:number) {return `https://ongapi.alkemy.org/api/activities/${id}`},
+      delete(id:number) {return `https://ongapi.alkemy.org/api/activities/${id}`}
+    },
   },
   url: "https://ongapi.alkemy.org/api/",
 };
