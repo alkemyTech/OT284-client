@@ -5,6 +5,13 @@
     padding-top: 5vh;
     padding-bottom: 4vh;
 }
+.search-member{
+    width: 280px;
+    margin: 0px auto;
+}
+.search-member label,.search-member input{
+    border: 2px solid rgba(33, 32, 32, 0.267);
+}
 
 table {
     width: 60%;

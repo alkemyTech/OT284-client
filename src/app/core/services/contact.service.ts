@@ -22,7 +22,7 @@ export class ContactService {
   }
 
   deleteContact(id:number): Observable<any> {
-    return this.httpServ.delete(environment.endpoints.contactos.delete).pipe(
+    return this.httpServ.delete(environment.endpoints.contactos.delete(id)).pipe(
       map(
         (resp: any) => resp.message   
       )
@@ -30,7 +30,7 @@ export class ContactService {
   }
 
   editContact(id:number, body:any): Observable<any> {
-    return this.httpServ.put(environment.endpoints.contactos.edit, body).pipe(
+    return this.httpServ.put(environment.endpoints.contactos.edit(id), body).pipe(
       map(
         (resp: any) => resp
       )
