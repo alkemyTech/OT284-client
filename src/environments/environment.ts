@@ -51,6 +51,12 @@ export const environment = {
       edit(id:number) {return `https://ongapi.alkemy.org/api/members/${id}`},
       delete(id:number) {return `https://ongapi.alkemy.org/api/members/${id}`}
     },
+    categories: {
+      list: "https://ongapi.alkemy.org/api/categories",
+      create: "https://ongapi.alkemy.org/api/categories",
+      edit: "https://ongapi.alkemy.org/api/categories",
+      delete: "https://ongapi.alkemy.org/api/categories",
+    },
     actividades:{
       list:"https://ongapi.alkemy.org/api/activities",
       getById(id:number) {return `https://ongapi.alkemy.org/api/activities/${id}`},
