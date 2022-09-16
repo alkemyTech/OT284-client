@@ -6,7 +6,7 @@ import { MatTable } from '@angular/material/table';
 import Swal from 'sweetalert2';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../../../state/app.state';
-import { selectCategories } from '../../../../state/selectors/categories.selectors';
+import { selectCategories, selectLoading } from '../../../../state/selectors/categories.selectors';
 import { loadCategories, deleteCategory } from '../../../../state/actions/categories.actions';
 
 @Component({
@@ -18,6 +18,7 @@ export class CategoriesTableComponent implements OnInit {
 
   @ViewChild(MatTable) table: MatTable<any>;
 
+  isLoading: boolean;
   dataSource$: Observable<Category[]>;
   displayedColumns: string[] = ['name', 'createdAt', 'edit', 'delete'];
 
@@ -25,6 +26,9 @@ export class CategoriesTableComponent implements OnInit {
 
   ngOnInit(): void {
     this.store.dispatch(loadCategories());
+    this.store.select(selectLoading).subscribe(
+      loading => this.isLoading = loading
+    );
     this.dataSource$ = this.store.select(selectCategories);
   }
 

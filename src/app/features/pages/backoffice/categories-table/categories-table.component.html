@@ -2,7 +2,10 @@
     <div class="row-flex margin-bottom">
         <app-link routerLink="/backoffice/categorias/create" linkReference="Crear categoría"></app-link>
     </div>
-    <div class="row-flex">
+    <div *ngIf="isLoading" class="row-flex">
+        <app-spinner [isLoading]="isLoading"></app-spinner>
+    </div>
+    <div *ngIf="!isLoading" class="row-flex">
         <table mat-table [dataSource]="dataSource$" class="mat-elevation-z8 full-width">
             <!-- Name Column -->
             <ng-container matColumnDef="name">
