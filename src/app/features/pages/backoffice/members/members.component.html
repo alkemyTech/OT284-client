@@ -1,6 +1,11 @@
 <div class="container-list-members">
     <h2>Listado de miembros</h2>
     <button mat-raised-button routerLink="/backoffice/members/create">Crear miembro</button>
+    <div class="search-member">
+        <label for="search">Buscar Miembro</label>
+        <input type="text" name="search" id="search">
+        <p>{{search_string}}</p>
+    </div>
     <div *ngIf="(loading$ |async)" class="spinner-loading-members">
       <app-spinner [isLoading]="true"></app-spinner>
       <p>Cargando...</p>
