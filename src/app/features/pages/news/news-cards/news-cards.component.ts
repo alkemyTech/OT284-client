@@ -15,8 +15,10 @@ export class NewsCardsComponent implements OnInit {
   public newsLista: newData[]=[]
   public newModel!:newData;
   public myTitle:string;
+  public anotherTitle:string;
   constructor(private newsService: NewsService, private ruta:Router, public dialog: MatDialog) {
     this.myTitle="Novedades";
+    this.anotherTitle="Ultimo evento";
   }
 
   ngOnInit(): void {
