@@ -1,4 +1,3 @@
-import { ActivityFormComponent } from "./pages/activities/activity-form/activity-form.component";
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { RouterModule, Routes } from "@angular/router";
@@ -15,17 +14,18 @@ import { SlidesComponent } from "./pages/activities/slides/slides.component";
 import { ActivityViewComponent } from "./pages/activities/activity-view/activity-view.component";
 import { CategoriesFormComponent } from "./pages/categories/categories-form/categories-form.component";
 import { ActivityDetailComponent } from "./pages/activities/activity-detail/activity-detail.component";
+import { PageNotFoundComponent } from "./pages/page-not-found/page-not-found/page-not-found.component";
 
 
 const routes: Routes = [
   {
     path: "nosotros",
-    component: AboutViewComponent,
+    component: AboutViewComponent
   },
   {
     path: "",
     component: HomePageComponent,
-    ...canActivate( () => redirectUnauthorizedTo(['/login']))
+    ...canActivate( () => redirectUnauthorizedTo(['/login'])),
   },
   {
     path: "actividades",
@@ -37,7 +37,7 @@ const routes: Routes = [
   },
   {
     path: "contacto", 
-    component: ContactViewComponent 
+    component: ContactViewComponent,
   },
   {
     path: "backoffice",
@@ -53,17 +53,29 @@ const routes: Routes = [
   },
   {
     path:"novedades/:id",
-    component:NewsDetailsComponent
+    component:NewsDetailsComponent,
   },
   {
     path: "register",
     component: RegisterFormComponent,
-    ...canActivate( () => redirectLoggedInTo(['']))
+    ...canActivate( () => redirectLoggedInTo([''])),
   },
   {
     path: "login",
     component: LoginFormComponent,
-    ...canActivate( () => redirectLoggedInTo(['']))
+    ...canActivate( () => redirectLoggedInTo([''])),
+  },
+  {
+    path: "categorias/edit/:id",
+    component: CategoriesFormComponent,
+  },
+  {
+    path: "categorias/new",
+    component: CategoriesFormComponent,
+  },
+  {
+    path: "**",
+    component: PageNotFoundComponent,
   },
 ];
 
