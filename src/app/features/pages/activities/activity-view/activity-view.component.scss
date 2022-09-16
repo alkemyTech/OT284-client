@@ -1,6 +1,7 @@
 app-slides{
     display: flex;
     flex-direction: column;
+    margin-bottom: 10px;
 }
 button span{
     color: black;
@@ -13,4 +14,9 @@ button span{
         color: black;
         background-color: black;
     }
+}
+
+#carouselExampleIndicators{
+    display: flex;
+    flex-direction: column;
 }

@@ -3,11 +3,9 @@
       <mat-card-title>{{activity.name | uppercase}}</mat-card-title>
       <mat-card-subtitle>{{activity.slug}}</mat-card-subtitle>
     </mat-card-header>
-    <img mat-card-image src={{activity.image}} alt="Ativity Photo">
+    <img id="image" mat-card-image src={{activity.image}} alt="Ativity Photo">
     <mat-card-content>
-      <p>
-        {{activity.description}}
-      </p>
+      <p [innerHTML]="activity.description"></p>
     </mat-card-content>
     <mat-card-actions>
       <button (click)="goToActivityDetail()" mat-button>VER MAS</button>
