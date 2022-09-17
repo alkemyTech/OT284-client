@@ -21,18 +21,12 @@ img {
   vertical-align: middle;
 }
 
-.btn {
-  background-color: white;
-  border: 1px solid $gray-light;
-  //border-radius: 1rem;
-  color: $gray-dark;
-  padding: 0.5rem;
-  text-transform: lowercase;
-}
-
-.btn--block {
-  display: block;
-  width: 100%;
+mat-card-actions{
+  button{
+    border: solid rgb(0, 0, 0) 1px;
+    cursor: pointer;
+  }
+  display: contents;
 }
  
 .cards {

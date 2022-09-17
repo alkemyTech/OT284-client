@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Activity } from 'src/app/shared/interfaces/activity';
 
 @Component({
@@ -11,10 +11,14 @@ export class ActivityDetailComponent implements OnInit {
 
   activity:Activity
 
-  constructor( private route: ActivatedRoute,) { }
+  constructor( private route: ActivatedRoute, private router:Router) { }
 
   ngOnInit(): void {
     this.activity = JSON.parse(this.route.snapshot.paramMap.get('activity')!)
+  }
+
+  goToEditActivity(){
+    this.router.navigate(['/backoffice/activity/create', { activity: JSON.stringify(this.activity)}])
   }
 
 }

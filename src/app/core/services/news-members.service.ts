@@ -10,8 +10,15 @@ export class NewsMembersService {
 
   constructor(private httpService:HttpService) { }
 
-  getMembers(searchQuery ?: string, skipQuery?: string, limitQuery?: string){
-    return this.httpService.get(environment.endpoints.miembros.list);
+  getMembers(searchQuery : string, skipQuery?: string, limitQuery?: string){
+    console.log(searchQuery.search)
+    if(searchQuery.search.length >1){
+      return this.httpService.get(environment.endpoints.miembros.list+ `?search=${searchQuery.search}`);
+    }
+    else{
+      return this.httpService.get(environment.endpoints.miembros.list);
+    }
+    
   }
 
   postMembers(body: any){
