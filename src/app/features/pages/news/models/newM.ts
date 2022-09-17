@@ -13,7 +13,7 @@ export interface newData{
         category_id: number,
         created_at: string,
         updated_at: string,
-        deleted_at: null,
+        deleted_at: string,
         group_id: null
   }
 
@@ -25,7 +25,7 @@ export interface newImportantData{
 export class Novedad{
         id:number;
         name: string;
-        slug: string;
+        slug: null;
         content: string;
         image: string;
         user_id: number;
@@ -33,6 +33,7 @@ export class Novedad{
         created_at: string;
         updated_at: string;
         deleted_at: string;
+        group_id:null;
 
         constructor(data:any){
           this.id=data.id;
@@ -45,6 +46,7 @@ export class Novedad{
           this.created_at=new Date().toISOString();
           this.updated_at=new Date().toISOString();
           this.deleted_at=new Date().toISOString();
+          this.group_id=data.group_id;
         }
 
 }
