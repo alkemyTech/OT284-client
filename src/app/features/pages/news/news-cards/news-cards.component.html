@@ -1,10 +1,20 @@
 <app-title [title]="myTitle"></app-title>
-<div class="contenedor_spinner">
-  <app-spinner [isLoading]="isLoading"></app-spinner>
-</div>
 <div class="container">
+  <div class="container-spinner">
+    <app-spinner [isLoading]="isLoading"></app-spinner>
+  </div>
+  <form class="search-form">
+    <mat-form-field
+      class="search-field"
+      appearance="fill"
+      (keyup)="search.next($event)"
+    >
+      <mat-label>Busque novedad por título</mat-label>
+      <input matInput />
+    </mat-form-field>
+  </form>
   <div class="row">
-    <div *ngFor="let new of newsLista" class="card">
+    <div *ngFor="let new of newsList" class="card">
       <div class="card-title">
         <h2>{{ new.name }}</h2>
       </div>
@@ -30,4 +40,20 @@
       </div>
     </div>
   </div>
+</div>
+<div>
+  <app-title [title]="anotherTitle"></app-title>
+  <app-vjs-player
+    [options]="{
+      autoplay: true,
+      fluid: true,
+      aspectRatio: '16:9',
+      sources: [
+        {
+          src: 'https://www.youtube.com/watch?v=4YnSk1gI_Oo',
+          type: 'video/youtube'
+        }
+      ]
+    }"
+  ></app-vjs-player>
 </div>

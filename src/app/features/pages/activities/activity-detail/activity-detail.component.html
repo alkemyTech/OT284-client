@@ -7,6 +7,9 @@
           <p class="card__text">{{activity.description}}</p>
           <div class="card__title">{{activity.created_at}}</div>
         </div>
+        <mat-card-actions>
+          <button (click)="goToEditActivity()" mat-button>EDITAR</button>
+        </mat-card-actions>
       </div>
     </li>
 </ul>

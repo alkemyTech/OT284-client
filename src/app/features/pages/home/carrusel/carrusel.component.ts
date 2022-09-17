@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-carrusel',
@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CarruselComponent implements OnInit {
 
-  listSlider: Array<any> = [
+  @Input() listSlider: Array<any> = [
     { image: 'https://www.wallpaperuse.com/wallp/85-855565_m.jpg', title: 'Messi', description: 'El mejor jugador del mundo' },
     { image: 'https://www.wallpaperuse.com/wallp/85-855565_m.jpg', title: 'Messi', description: 'El mejor jugador del mundo' },
     { image: 'https://www.wallpaperuse.com/wallp/85-855565_m.jpg', title: 'Messi', description: 'El mejor jugador del mundo' }
