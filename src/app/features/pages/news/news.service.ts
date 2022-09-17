@@ -16,7 +16,7 @@ export class NewsService {
 
 
   public verNews():Observable<newData[]>{
-    return this.httpServ.get<newM>(environment.endpoints.novedades.list)
+    return this.httpServ.get<newM>(environment.endpoints.novedades.list, false)
     .pipe(map((result)=>result.data));
   }
 
