@@ -2,7 +2,6 @@ import { RouterModule } from "@angular/router";
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { AppRoutingModule } from "./app-routing.module";
-import { ActivityFormComponent } from "./pages/activities/activity-form/activity-form.component";
 import { LoginFormComponent } from "./pages/auth/login-form/login-form.component";
 import { RegisterFormComponent } from "./pages/auth/register-form/register-form.component";
 import { CategoriesFormComponent } from "./pages/categories/categories-form/categories-form.component";
@@ -35,10 +34,10 @@ import { ActivityViewComponent } from './pages/activities/activity-view/activity
 import { SlidesComponent } from './pages/activities/slides/slides.component';
 import { VjsPlayerComponent } from './pages/news/vjs-player/vjs-player.component';
 import { HomeWelcometextComponent } from './pages/home/home-welcometext/home-welcometext.component';
+import { PageNotFoundComponent } from './pages/page-not-found/page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
-    ActivityFormComponent,
     LoginFormComponent,
     RegisterFormComponent,
     CategoriesFormComponent,
@@ -59,9 +58,9 @@ import { HomeWelcometextComponent } from './pages/home/home-welcometext/home-wel
     VjsPlayerComponent,
     ActivityDetailComponent,
     HomeWelcometextComponent,
+    PageNotFoundComponent,
   ],
   exports: [
-    ActivityFormComponent,
     LoginFormComponent,
     RegisterFormComponent,
     CategoriesFormComponent,
@@ -70,6 +69,7 @@ import { HomeWelcometextComponent } from './pages/home/home-welcometext/home-wel
     RouterModule
   ],
   imports: [
+    SharedModule,
     CommonModule,
     AppRoutingModule,
     RouterModule,
@@ -86,6 +86,7 @@ import { HomeWelcometextComponent } from './pages/home/home-welcometext/home-wel
     CKEditorModule,
     SharedModule,
     NgxTwitterTimelineModule,
+    SharedModule
   ],
 })
 export class FeaturesModule {}
