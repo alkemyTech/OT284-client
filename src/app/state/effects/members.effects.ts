@@ -9,7 +9,7 @@ export class MembersEffects {
 
   loadMembers$ = createEffect(() => this.actions$.pipe(
     ofType('[Members] Load members'),
-    mergeMap( () => this.newsMembersService.getMembers('')
+    mergeMap( (search) => this.newsMembersService.getMembers(search)
         .pipe(
             map(members => ({type: '[Members] Loaded success', members})),
             catchError(() => EMPTY)

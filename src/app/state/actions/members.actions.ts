@@ -3,7 +3,8 @@ import { Member } from '../../shared/interfaces/member';
 
 
 export const loadMembers = createAction(
-    '[Members] Load members'
+    '[Members] Load members',
+    props<{search: string}>()
 );
 
 export const loadedMembers = createAction(

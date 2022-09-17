@@ -1,7 +1,17 @@
-<div [style.margin.px]="5" class="centrado">
-    <app-link [linkReference]="linkReference" [routerLink]="linkCrear"></app-link>
+<div class="container-news">
+
+<form class="search-form">
+  <mat-form-field class="search-field" appearance="fill" (keyup)="search.next($event)">
+      <mat-label>Busque novedad por título</mat-label>
+      <input matInput>
+    </mat-form-field>
+</form>
+
+<div [style.margin.px]="5" class="boton">
+  <app-link [linkReference]="linkReference" [routerLink]="linkCrear"></app-link>
 </div>
 
+</div>
 
 <table mat-table class="mat-elevation-z8 demo-table" [dataSource]="newsList$">
     <!--Imagen -->
