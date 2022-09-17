@@ -20,6 +20,7 @@ import { SpinnerComponent } from "./components/spinner/spinner.component";
 import { MapWindowComponent } from "./components/map-window/map-window.component";
 import { LeafletModule } from "@asymmetrik/ngx-leaflet";
 import { HeaderComponent } from './components/header/header.component';
+import { SkeletonComponent } from './components/skeleton/skeleton.component';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { HeaderComponent } from './components/header/header.component';
     SpinnerComponent, 
     MapWindowComponent,
     FooterComponent,
-    HeaderComponent],
+    HeaderComponent,
+    SkeletonComponent],
   imports: [CommonModule, RouterModule, MatButtonModule, LeafletModule],
   exports: [
     LinkComponent,
@@ -52,6 +54,7 @@ import { HeaderComponent } from './components/header/header.component';
     MatCheckboxModule,
     SpinnerComponent,
     HeaderComponent,
+    SkeletonComponent,
     FooterComponent
   ],
 })
