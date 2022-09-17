@@ -10,7 +10,9 @@ import { MatAlertDialogComponent } from 'src/app/shared/components/mat-alert-dia
 })
 export class HomePageComponent implements OnInit {
 
-  textoBienvenida: string = 'Texto de Bienvenida que despues sera consumido de una api';
+  textoBienvenida: string = '';
+  slides:any;
+  novedades:any;
   constructor(private http: NewsHomeService, private dialog: MatDialog) { }
 
   ngOnInit(): void {
@@ -19,9 +21,10 @@ export class HomePageComponent implements OnInit {
     this.getNovedades();
   }
 
-  getSlides() {
+  getSlides() { 
     this.http.getSlides().subscribe((data: any) => {
       console.log(data.data);
+      this.slides = data.data;
     },
       (error: any) => {
         console.log(error);
@@ -44,6 +47,7 @@ export class HomePageComponent implements OnInit {
   getNovedades() {
     this.http.getNews().subscribe((data: any) => {
       console.log(data.data);
+      this.novedades = data.data
     },
       (error: any) => {
         console.log(error);
