@@ -32,10 +32,27 @@ export class NewsListComponent implements OnInit {
   public verNovedades():void{
     this.store.dispatch(loadNews());
     this.newsList$=this.store.select(selectNews);
+    this.search.pipe(
+      map((event:any)=>event.target.value),
+      filter(text => text.length > 2),
+      debounce(()=>interval(500)),
+    ).subscribe({
+      next:(text)=>{
+        this.obtener(text);
+      }
+    })
+    this.search.pipe(
+      map((event:any)=>event.target.value),
+      filter(text=>text.length<=2)
+    ).subscribe({
+      next:()=>{
+        this.verNovedades()
+      }
+    })
   }
 
-  public obtener(text:string):void{
-    this.srcNews.buscarNews(text).subscribe({
+  private obtener(text:string):void{
+/*     this.srcNews.buscarNews(text).subscribe({
       next:(Response:newData[])=>{
         this.newsList=Response
       },
@@ -44,29 +61,20 @@ export class NewsListComponent implements OnInit {
           data:{text:"Error al cargar novedades", message:error.message},
         })
       }
-    })
+    }) */
   }
 
-  public eliminar(news:newData):void{
+  public eliminar(newToDelete:newData):void{
     Swal.fire({
-      title: `Esta seguro que quiere eliminar la novedad ${news.name}?`,
+      title: `Esta seguro que quiere eliminar la novedad ${newToDelete.name}?`,
       showDenyButton: true,
       showCancelButton: true,
       confirmButtonText: 'Delete',
       denyButtonText: `Don't delete`,
     }).then((result) => {
       if (result.isConfirmed) {
-        this.srcNews.deleteNew(news.id).subscribe({
-          next:(Response:any)=>{
-            //console.log(Response);
-            Swal.fire('Deleted!', '', 'success')
-          },
-          error:(error:HttpErrorResponse)=>{
-            this.dialog.open(MatAlertErrorComponent,{
-              data:{text:"Error al eliminar novedad", message:error.message},
-            })
-          }
-        })
+        this.store.dispatch(deleteNew({newToDelete}));
+        this.newsList$=this.store.select(selectNews);
       } else if (result.isDenied) {
         Swal.fire('The dish was not deleted', '', 'info')
       }
