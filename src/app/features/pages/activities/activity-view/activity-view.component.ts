@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { ActivitiesService } from 'src/app/core/services/activities.service';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 import { Activity } from 'src/app/shared/interfaces/activity';
+import { loadActivities } from 'src/app/state/actions/activities.actions';
+import { selectActivities } from 'src/app/state/selectors/activities.selector';
+import { activitiesExample } from './activities-example';
 
 @Component({
   selector: 'app-activity-view',
@@ -10,16 +13,12 @@ import { Activity } from 'src/app/shared/interfaces/activity';
 })
 export class ActivityViewComponent implements OnInit {
 
-  activities$: Observable<Activity[]>
+  activities$: Observable<Activity[]> = this.store.select(selectActivities)
 
-  constructor(private httpActServ: ActivitiesService) { }
+  constructor(private store:Store<any>) { }
 
   ngOnInit(): void {
-    this.getListOfActivities()
-  }
-
-  private getListOfActivities(){
-    this.activities$ = this.httpActServ.getActivities()
+    this.store.dispatch(loadActivities())
   }
 
 }

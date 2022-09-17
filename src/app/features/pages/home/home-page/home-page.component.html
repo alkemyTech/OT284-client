@@ -1,17 +1,54 @@
 <div class="contenedor-homepage">
   <div class="home-header">
-    <div class="home-text-bienvenida">
-      <p>{{ textoBienvenida }}</p>
-    </div>
-    <div class="home-slider">
-      <!-- <p>SLIDER</p> -->
-      <app-carrusel></app-carrusel>
-    </div>
+
+    <section class="home-text-bienvenida">
+      <app-home-welcometext [welcomeText]="textoBienvenida" ></app-home-welcometext>
+      <app-skeleton *ngIf="!textoBienvenida" [Cwidth]="300" [Cheight]="20" ></app-skeleton>
+      <app-skeleton *ngIf="!textoBienvenida" [Cwidth]="300" [Cheight]="20" ></app-skeleton>
+      <app-skeleton *ngIf="!textoBienvenida" [Cwidth]="300" [Cheight]="20" ></app-skeleton>
+    </section>
+
+    <section class="home-slider">
+      <app-skeleton  *ngIf="!slides" [Cwidth]="450" [Cheight]="300" [Ccircle]="false" ></app-skeleton>
+      <app-carrusel [listSlider]="slides"></app-carrusel>
+    </section>
   </div>
-  <div class="home-novedades">
-    <p>LISTADO DE NOVEDADES</p>
-  </div>
+
+  <section class="home-staff">
+    <div class="home-section-header">
+      <span class="home-section-header-title">Nuestro staff</span>
+      <span class="home-section-header-vertodos" [routerLink]="['/nosotros']" >Ver todos ></span>
+    </div>
+    <div>
+      <app-skeleton  *ngIf="!slides" [Cwidth]="500" [Cheight]="300"></app-skeleton>
+      <app-members-view></app-members-view>
+    </div>
+  </section>
+
+  <!-- <section class="home-testimonios">
+    <div class="home-section-header">
+      <span class="home-section-header-title">Testimonios </span>
+      <span class="home-section-header-vertodos" [routerLink]="['/testimonios']">Ver todos ></span>
+    </div>
+    <div>
+      <app-skeleton  *ngIf="!slides" [Cwidth]="500" [Cheight]="300" [Ccircle]="false" ></app-skeleton>
+    </div>
+  </section> -->
+
+  <section class="home-novedades">
+    <div class="home-section-header">
+      <span class="home-section-header-title">Ultimas novedades</span>
+      <span class="home-section-header-vertodos" [routerLink]="['/novedades']">Ver todos ></span>
+    </div>
+    <div>
+      <app-skeleton  *ngIf="!novedades" [Cwidth]="500" [Cheight]="300" [Ccircle]="false" ></app-skeleton>
+      <app-news-cards></app-news-cards>
+    </div>
+  </section>
 </div>
 
 <app-auth-buttons></app-auth-buttons>
+<!-- <app-footer></app-footer> -->
+<app-spinner [isLoading]="loading" [fullscreen]="true" ></app-spinner>
+<!-- <app-auth-buttons></app-auth-buttons> -->
 <app-footer></app-footer>

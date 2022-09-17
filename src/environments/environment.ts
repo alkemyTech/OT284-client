@@ -32,6 +32,13 @@ export const environment = {
         return `https://ongapi.alkemy.org/api/news/${id}`;
       },
     },
+    actividades:{
+      list:"https://ongapi.alkemy.org/api/activities",
+      getById(id:number) {return `https://ongapi.alkemy.org/api/activities/${id}`},
+      create:"https://ongapi.alkemy.org/api/activities",
+      edit(id:number) {return `https://ongapi.alkemy.org/api/activities/${id}`},
+      delete(id:number) {return `https://ongapi.alkemy.org/api/activities/${id}`}
+    },
     testimonios: {
       list: "https://ongapi.alkemy.org/api/testimonials/",
       create: "https://ongapi.alkemy.org/api/testimonials/",
@@ -56,13 +63,6 @@ export const environment = {
       create: "https://ongapi.alkemy.org/api/categories",
       edit: "https://ongapi.alkemy.org/api/categories",
       delete: "https://ongapi.alkemy.org/api/categories",
-    },
-    actividades:{
-      list:"https://ongapi.alkemy.org/api/activities",
-      getById(id:number) {return `https://ongapi.alkemy.org/api/activities/${id}`},
-      create:"https://ongapi.alkemy.org/api/activities",
-      edit(id:number) {return `https://ongapi.alkemy.org/api/activities/${id}`},
-      delete(id:number) {return `https://ongapi.alkemy.org/api/activities/${id}`}
     },
   },
   url: "https://ongapi.alkemy.org/api/",
