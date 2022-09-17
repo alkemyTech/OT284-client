@@ -12,6 +12,8 @@ export class HomePageComponent implements OnInit {
 
   loading: boolean = true;
   textoBienvenida: string = 'Texto de Bienvenida que despues sera consumido de una api';
+  slides:any;
+  novedades:any;
   constructor(private http: NewsHomeService, private dialog: MatDialog) { }
 
   ngOnInit(): void {
@@ -20,10 +22,12 @@ export class HomePageComponent implements OnInit {
     this.getNovedades();
   }
 
-  getSlides() {
+
+  getSlides() { 
     this.loading = true;
     this.http.getSlides().subscribe((data: any) => {
       console.log(data.data);
+      this.slides = data.data;
     },
       (error: any) => {
         console.log(error);
@@ -52,6 +56,7 @@ export class HomePageComponent implements OnInit {
     this.loading = true;
     this.http.getNews().subscribe((data: any) => {
       console.log(data.data);
+      this.novedades = data.data
     },
       (error: any) => {
         console.log(error);
