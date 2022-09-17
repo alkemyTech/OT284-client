@@ -35,4 +35,10 @@ export class NewsCategoriesService {
   deleteCategory( id: number ) {
     return this.http.delete(`${environment.endpoints.categories.delete}/${id}`);
   }
+
+  searchCategory( query: string ): Observable<Category[]> {
+    return this.http.get(`${environment.endpoints.categories.list}?search=${query}`).pipe(
+      map( (resp: any) => resp.data)
+    )
+  }
 }
