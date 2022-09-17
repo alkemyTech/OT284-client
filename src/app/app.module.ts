@@ -5,7 +5,7 @@ import { BrowserModule } from "@angular/platform-browser";
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 
 import { AppComponent } from "./app.component";
-import { NoopAnimationsModule } from "@angular/platform-browser/animations";
+import { BrowserAnimationsModule, NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { StoreModule } from "@ngrx/store";
 import { StoreDevtoolsModule } from "@ngrx/store-devtools";
 import { ROOT_REDUCERS } from "./state/app.state";
@@ -18,18 +18,20 @@ import { UsersEffects } from "./state/effects/users.effects";
 import { MembersEffects } from "./state/effects/members.effects";
 import { SharedModule } from "./shared/shared.module";
 import { NewsEffects } from "./state/effects/news.effects";
+import { CategoriesEffects } from './state/effects/categories.effects';
+import { ActivitiesEffects } from "./state/effects/activities.effects";
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     CoreModule,
     FeaturesModule,
     SharedModule,
-    NoopAnimationsModule,
     StoreModule.forRoot(ROOT_REDUCERS),
     StoreDevtoolsModule.instrument({ name: "TEST" }),
-    EffectsModule.forRoot([OrganizationEffects, UsersEffects, MembersEffects, NewsEffects]),
+    EffectsModule.forRoot([OrganizationEffects, UsersEffects, MembersEffects, ActivitiesEffects, CategoriesEffects, NewsEffects]),
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
   LeafletModule],

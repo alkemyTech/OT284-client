@@ -1,0 +1,42 @@
+<div class="container">
+  <app-link [routerLink]="routerPath" [linkReference]="linkRef"></app-link>
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef>Name</th>
+      <td mat-cell *matCellDef="let i">{{ i.name }}</td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="image">
+      <th mat-header-cell *matHeaderCellDef>Image</th>
+      <td mat-cell *matCellDef="let i">
+        <img [src]="i.image" alt="" />
+      </td>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="order">
+      <th mat-header-cell *matHeaderCellDef>Order</th>
+      <td mat-cell *matCellDef="let i">{{ i.order }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let i = index">
+        <a mat-icon-button (click)="editSlide(i)">
+          <mat-icon>edit</mat-icon>
+        </a>
+        <a mat-icon-button (click)="deleteSlide(i)">
+          <mat-icon color="warn">delete</mat-icon>
+        </a>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+</div>
