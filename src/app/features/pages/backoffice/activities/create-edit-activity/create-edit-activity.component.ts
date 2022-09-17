@@ -3,8 +3,11 @@ import { Location } from '@angular/common'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic'
-import { ActivitiesService } from 'src/app/core/services/activities.service';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 import { Activity } from 'src/app/shared/interfaces/activity';
+import { activitiesActionTypes, addActivity, editActivity } from 'src/app/state/actions/activities.actions';
+import { AppState } from 'src/app/state/app.state';
 import { activitiesExample } from '../../../activities/activity-view/activities-example';
 import { EMPTY } from 'rxjs';
 import { MatAlertErrorComponent } from 'src/app/shared/components/mat-alert-error/mat-alert-error.component';
@@ -23,9 +26,10 @@ export class CreateEditActivityComponent implements OnInit {
   activity: Activity;
   private imgBase64!: any;
   file!: any;
+  /* activities$: Observable<Activity[]> = this.store.select(state => state.activities); */
 
-  constructor(private formB: FormBuilder, private route:ActivatedRoute, 
-    private httpActServ: ActivitiesService, private location:Location, public dialog: MatDialog) {
+  constructor(private formB: FormBuilder, private store: Store<AppState>, private route:ActivatedRoute, 
+   private location:Location, public dialog: MatDialog) {
 
     this.form = this.formB.group({
         name:["",[Validators.required]],
@@ -54,16 +58,10 @@ export class CreateEditActivityComponent implements OnInit {
       if (!this.file) {
         this.form.removeControl('image');
       }
-      this.httpActServ.putActivity(this.activity.id,this.form.value).subscribe(
-        (data) => console.log(data),
-        (err)=> console.log(err)
-      )
+      this.store.dispatch(editActivity({id: this.activity.id, data:this.form.value}))
     }
     else{
-      this.httpActServ.postActivity(this.activity).subscribe(
-        (data) => console.log(data),
-        (err)=> console.log(err)
-      )
+      this.store.dispatch(addActivity({activity: this.activity}))
     }
     this.location.historyGo(-1)
   }

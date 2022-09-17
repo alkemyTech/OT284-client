@@ -26,13 +26,8 @@ export class MembersComponent implements OnInit {
   constructor(private store: Store<AppState>,public dialog: MatDialog,private membersService: NewsMembersService) { }
 
   ngOnInit(): void {
-    this.membersService.getMembers('').subscribe(
-      response => {
-        console.log(response);
-      }
-    )
     this.loading$ = this.store.select(selectMembersLoading);
-    this.store.dispatch(loadMembers());
+    this.store.dispatch(loadMembers({search: ''}));
     this.getListMembers();
 
     this.searchMember();
@@ -44,8 +39,8 @@ export class MembersComponent implements OnInit {
     const keyup = fromEvent(search, 'keyup');
     keyup.pipe(
       map((e:any) => searchString = e.currentTarget.value),
-      debounceTime(300)
-    ).subscribe(() => this.search_string = searchString)
+      debounceTime(200)
+    ).subscribe(() => this.store.dispatch(loadMembers({search: searchString})))
   }
 
   getListMembers(){

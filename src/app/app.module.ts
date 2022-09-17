@@ -18,6 +18,7 @@ import { UsersEffects } from "./state/effects/users.effects";
 import { MembersEffects } from "./state/effects/members.effects";
 import { SharedModule } from "./shared/shared.module";
 import { CategoriesEffects } from './state/effects/categories.effects';
+import { ActivitiesEffects } from "./state/effects/activities.effects";
 
 @NgModule({
   declarations: [AppComponent],
@@ -29,7 +30,7 @@ import { CategoriesEffects } from './state/effects/categories.effects';
     SharedModule,
     StoreModule.forRoot(ROOT_REDUCERS),
     StoreDevtoolsModule.instrument({ name: "TEST" }),
-    EffectsModule.forRoot([OrganizationEffects, UsersEffects, MembersEffects, CategoriesEffects]),
+    EffectsModule.forRoot([OrganizationEffects, UsersEffects, MembersEffects, ActivitiesEffects, CategoriesEffects]),
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
   LeafletModule],

@@ -14,7 +14,7 @@ html{
 }
 
 .card{
-    width: 47%;
+    width: 30%;
     border: 1px solid rgb(48, 46, 46);
     border-radius: 5px;
     margin-bottom: 10px;
@@ -47,7 +47,6 @@ html{
 }
 
 .card-title{
-    position:absolute;
     h2{
         margin-top: 0;
         font-size: 1.9vw;
@@ -59,13 +58,13 @@ html{
 
 @media screen and (max-width:1170px){
     .card{
-        width: 80%;
+        width: 45%;
     }
 }
 
 @media screen and (max-width:900px){
     .container{
-        width: 100%;
+        width: 80%;
     }
     .card{
         width: 80%;
@@ -78,7 +77,7 @@ html{
     }
     .card{
         display:initial;
-        width:40%;
+        width:80%;
     }
     .card-body{
         padding-top:5px;
@@ -99,3 +98,14 @@ html{
     }
 
 }
+
+/*FORM PARA BUSCAR*/
+
+.search-form{
+    width: 100%;
+    text-align: center;
+  }
+
+  .search-field{
+    width: 50%;
+  }

@@ -108,6 +108,10 @@ const routes: Routes = [
     path: "slides/create",
     component: SlidesFormComponent,
   },
+  {
+    path: "slides/edit",
+    component: SlidesFormComponent,
+  },
 ];
 
 @NgModule({

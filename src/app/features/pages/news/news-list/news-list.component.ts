@@ -2,6 +2,8 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { interval, Subject } from 'rxjs';
+import { debounce, filter, map } from 'rxjs/operators';
 import { MatAlertErrorComponent } from 'src/app/shared/components/mat-alert-error/mat-alert-error.component';
 import Swal from 'sweetalert2';
 import { newData } from '../models/newM';
@@ -14,6 +16,7 @@ import { NewsService } from '../news.service';
 })
 export class NewsListComponent implements OnInit {
   public newsList:newData[]=[]
+  public search=new Subject<any>();
   public linkCrear:string='/backoffice/news/create';
   public linkReference: string='CREAR NOVEDAD';
   displayedColumns: string[] = ['demo-image', 'demo-name', 'demo-date', 'demo-delete', 'demo-modify'];
@@ -22,6 +25,23 @@ export class NewsListComponent implements OnInit {
 
   ngOnInit(): void {
     this.verNovedades();
+    this.search.pipe(
+      map((event:any)=>event.target.value),
+      filter(text => text.length > 2),
+      debounce(()=>interval(500)),
+    ).subscribe({
+      next:(text)=>{
+        this.obtener(text);
+      }
+    })
+    this.search.pipe(
+      map((event:any)=>event.target.value),
+      filter(text=>text.length<=2)
+    ).subscribe({
+      next:()=>{
+        this.verNovedades()
+      }
+    })
   }
 
   public verNovedades():void{
@@ -29,6 +49,19 @@ export class NewsListComponent implements OnInit {
       next:(Response:newData[])=>{
         //console.log(Response);
         this.newsList=Response;
+      },
+      error:(error:HttpErrorResponse)=>{
+        this.dialog.open(MatAlertErrorComponent,{
+          data:{text:"Error al cargar novedades", message:error.message},
+        })
+      }
+    })
+  }
+
+  public obtener(text:string):void{
+    this.srcNews.buscarNews(text).subscribe({
+      next:(Response:newData[])=>{
+        this.newsList=Response
       },
       error:(error:HttpErrorResponse)=>{
         this.dialog.open(MatAlertErrorComponent,{

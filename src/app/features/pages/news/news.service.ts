@@ -12,11 +12,11 @@ import { newData, newM, Novedad } from './models/newM';
 })
 export class NewsService {
   public novedad!:newData;
-  constructor(private http:HttpClient, private ruta: Router, private httpServ:HttpService) { }
+  constructor(private ruta: Router, private httpServ:HttpService) { }
 
 
   public verNews():Observable<newData[]>{
-    return this.httpServ.get<newM>(environment.endpoints.novedades.list)
+    return this.httpServ.get<newM>(environment.endpoints.novedades.list, false)
     .pipe(map((result)=>result.data));
   }
 
@@ -40,5 +40,13 @@ export class NewsService {
   public redireccionar():void{
     this.ruta.navigate(['/novedades']);
   }
+
+  public buscarNews(text:string):Observable<any>{
+    return this.httpServ.get<any>(`${environment.endpoints.novedades.list}?search=${text}`)
+    .pipe(
+      map(result=>result.data)
+    )
+  }
+
 
 }

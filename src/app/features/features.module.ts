@@ -33,6 +33,7 @@ import { ActivityDetailComponent } from './pages/activities/activity-detail/acti
 import { ActivityViewComponent } from './pages/activities/activity-view/activity-view.component';
 import { SlidesComponent } from './pages/activities/slides/slides.component';
 import { VjsPlayerComponent } from './pages/news/vjs-player/vjs-player.component';
+import { HomeWelcometextComponent } from './pages/home/home-welcometext/home-welcometext.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found/page-not-found.component';
 
 @NgModule({
@@ -56,6 +57,7 @@ import { PageNotFoundComponent } from './pages/page-not-found/page-not-found/pag
     SlidesComponent,
     VjsPlayerComponent,
     ActivityDetailComponent,
+    HomeWelcometextComponent,
     PageNotFoundComponent,
   ],
   exports: [
@@ -82,6 +84,7 @@ import { PageNotFoundComponent } from './pages/page-not-found/page-not-found/pag
     FormsModule,
     ReactiveFormsModule,
     CKEditorModule,
+    SharedModule,
     NgxTwitterTimelineModule,
     SharedModule
   ],
