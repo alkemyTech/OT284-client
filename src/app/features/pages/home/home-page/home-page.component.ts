@@ -10,7 +10,8 @@ import { MatAlertDialogComponent } from 'src/app/shared/components/mat-alert-dia
 })
 export class HomePageComponent implements OnInit {
 
-  textoBienvenida: string = '';
+  loading: boolean = true;
+  textoBienvenida: string = 'Texto de Bienvenida que despues sera consumido de una api';
   slides:any;
   novedades:any;
   constructor(private http: NewsHomeService, private dialog: MatDialog) { }
@@ -21,7 +22,9 @@ export class HomePageComponent implements OnInit {
     this.getNovedades();
   }
 
+
   getSlides() { 
+    this.loading = true;
     this.http.getSlides().subscribe((data: any) => {
       console.log(data.data);
       this.slides = data.data;
@@ -29,10 +32,13 @@ export class HomePageComponent implements OnInit {
       (error: any) => {
         console.log(error);
         this.notifyError("Error al obtener los datos de los slides");
+      }).add(() => {
+        this.loading = false;
       })
   }
 
   getWelcomeMessage() {
+    this.loading = true;
     this.http.getMessageText().subscribe((data: any) => {
       console.log(data);
       this.textoBienvenida = data.data.long_description
@@ -40,11 +46,14 @@ export class HomePageComponent implements OnInit {
       (error: any) => {
         console.log(error);
         this.notifyError("Error al obtener los datos del mensaje de bienvenida");
+      }).add(() => {
+        this.loading = false;
       })
   }
 
 
   getNovedades() {
+    this.loading = true;
     this.http.getNews().subscribe((data: any) => {
       console.log(data.data);
       this.novedades = data.data
@@ -52,6 +61,8 @@ export class HomePageComponent implements OnInit {
       (error: any) => {
         console.log(error);
         this.notifyError("Error al obtener los datos de las novedades");
+      }).add(() => {
+        this.loading = false;
       })
   }
 
