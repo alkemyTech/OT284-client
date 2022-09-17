@@ -17,6 +17,7 @@ import { CategoriesTableComponent } from "./categories-table/categories-table.co
 import { CategoriesFormComponent } from "../categories/categories-form/categories-form.component";
 import { SlidesViewComponent } from "./slides/slides-view/slides-view.component";
 import { SlidesFormComponent } from "./slides/slides-form/slides-form.component";
+import { ActivitiesPageComponent } from "./activities/activities-page/activities-page.component";
 
 const routes: Routes = [
   {
@@ -74,6 +75,10 @@ const routes: Routes = [
   {
     path: "organization/edit",
     component: EditComponent,
+  },
+  {
+    path: "activities",
+    component: ActivitiesPageComponent,
   },
   {
     path: "activity/create",

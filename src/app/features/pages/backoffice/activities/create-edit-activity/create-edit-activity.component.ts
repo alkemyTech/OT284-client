@@ -65,7 +65,7 @@ export class CreateEditActivityComponent implements OnInit {
         (err)=> console.log(err)
       )
     }
-    this.location.historyGo(-2)
+    this.location.historyGo(-1)
   }
 
   fileEvent(event: any) {

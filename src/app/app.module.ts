@@ -5,11 +5,7 @@ import { BrowserModule } from "@angular/platform-browser";
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 
 import { AppComponent } from "./app.component";
-<<<<<<< HEAD
 import { BrowserAnimationsModule, NoopAnimationsModule } from "@angular/platform-browser/animations";
-=======
-import { BrowserAnimationsModule} from "@angular/platform-browser/animations";
->>>>>>> 6751925dfda6d05c1a01786ab207e21ccc81e500
 import { StoreModule } from "@ngrx/store";
 import { StoreDevtoolsModule } from "@ngrx/store-devtools";
 import { ROOT_REDUCERS } from "./state/app.state";
