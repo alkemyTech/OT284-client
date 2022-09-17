@@ -36,7 +36,7 @@ export class NewsEffects{
         ofType(newsActions.deleteNew),
         mergeMap((action)=>this.srcNews.deleteNew(action.newToDelete.id)
         .pipe(
-            map(()=>newsActions.deletedNew),
+            map((response)=>newsActions.deletedNew(response)),
             catchError((error:HttpErrorResponse) => of(newsActions.errorDeleteNew(error)))
         ))
     )) 

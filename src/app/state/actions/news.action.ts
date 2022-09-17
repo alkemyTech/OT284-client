@@ -45,6 +45,7 @@ export const deleteNew=createAction(
 
 export const deletedNew=createAction(
     NEW_DELETED,
+    props<any>()
 )
 
 export const errorDeleteNew=createAction(
