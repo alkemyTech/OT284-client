@@ -1,7 +1,7 @@
 import {createReducer, on} from '@ngrx/store';
 import { newData } from 'src/app/features/pages/news/models/newM';
 import { NewsState } from 'src/app/shared/interfaces/news.state';
-import { deletedNew, deleteNew, errorLoadedNews, loadedNews, loadNews, receivedNew } from '../actions/news.action';
+import { deletedNew, deleteNew, errorLoadedNews, loadedNews, loadNews, receivedNew, searchNew, searchNewFailure, searchNewSuccess } from '../actions/news.action';
 
 export const initialNew: newData={
     id: 0, name: "", slug: null, content: "", image: "", user_id: 0, category_id: 0,
@@ -21,6 +21,15 @@ export const newsReducer= createReducer(
     }),
     on(errorLoadedNews,(state, {message})=>{
         return {...state, loading:false, error:message}
+    }),
+    on(searchNew,(state)=>{
+        return {...state,loading:true,error:''}
+    }),
+    on(searchNewSuccess,(state,{news})=>{
+        return {...state,loading:false, news}
+    }),
+    on(searchNewFailure,(state,{message})=>{
+        return {...state,loading:false,error:message}
     }),
     on(deleteNew,(state,{newToDelete})=>{
         return {...state, newToDelete}
