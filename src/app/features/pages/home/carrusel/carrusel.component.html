@@ -4,8 +4,8 @@
             data-bs-interval="5000"  >
             <img src="{{item.image}}"  alt="...">
             <div class="carousel-caption d-none d-sm-block">
-                <h5>{{item.title}}</h5>
-                <p> {{item.description}} </p>
+                <h3> <b> {{item.name}} </b> </h3>
+                <div [innerHTML]="item.description" > </div>
             </div>
         </div>
     </div>
