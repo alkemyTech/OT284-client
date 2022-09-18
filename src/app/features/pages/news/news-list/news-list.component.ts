@@ -3,9 +3,9 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { interval, Subject } from 'rxjs';
 import { debounce, filter, map } from 'rxjs/operators';
-import { deletedNew, deleteNew, loadNews } from 'src/app/state/actions/news.action';
+import { deleteNew, loadNews, searchNew } from 'src/app/state/actions/news.action';
 import { AppState } from 'src/app/state/app.state';
-import { select, Store } from '@ngrx/store';
+import { Store } from '@ngrx/store';
 import { newData } from '../models/newM';
 import { selectNews } from 'src/app/state/selectors/news.selector';
 import { Observable } from 'rxjs';
@@ -27,11 +27,6 @@ export class NewsListComponent implements OnInit {
 
   ngOnInit(): void {
     this.verNovedades();
-  }
-
-  public verNovedades():void{
-    this.store.dispatch(loadNews());
-    this.newsList$=this.store.select(selectNews);
     this.search.pipe(
       map((event:any)=>event.target.value),
       filter(text => text.length > 2),
@@ -51,17 +46,14 @@ export class NewsListComponent implements OnInit {
     })
   }
 
-  private obtener(text:string):void{
-/*     this.srcNews.buscarNews(text).subscribe({
-      next:(Response:newData[])=>{
-        this.newsList=Response
-      },
-      error:(error:HttpErrorResponse)=>{
-        this.dialog.open(MatAlertErrorComponent,{
-          data:{text:"Error al cargar novedades", message:error.message},
-        })
-      }
-    }) */
+  public verNovedades():void{
+    this.store.dispatch(loadNews());
+    this.newsList$=this.store.select(selectNews);
+  }
+
+  public obtener(text:string):void{
+    this.store.dispatch(searchNew({text}));
+    this.newsList$=this.store.select(selectNews);
   }
 
   public eliminar(newToDelete:newData):void{
@@ -76,7 +68,7 @@ export class NewsListComponent implements OnInit {
         this.store.dispatch(deleteNew({newToDelete}));
         this.newsList$=this.store.select(selectNews);
       } else if (result.isDenied) {
-        Swal.fire('The dish was not deleted', '', 'info')
+        Swal.fire('La novedad no fue eliminada', '', 'info')
       }
     })
     
