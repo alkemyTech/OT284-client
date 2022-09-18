@@ -32,6 +32,22 @@ export class NewsEffects{
         {dispatch:false}
     )
 
+    searchNews$=createEffect(()=>this.actions$.pipe(
+        ofType(newsActions.searchNew),
+        mergeMap((action)=>this.srcNews.buscarNews(action.text)
+        .pipe(
+            map((news)=>newsActions.searchNewSuccess(news)),
+            catchError((error:HttpErrorResponse)=>of(newsActions.searchNewFailure(error)))
+        ))
+    ))
+
+    searchNewsFailure$=createEffect(()=>this.actions$.pipe(
+        ofType(newsActions.searchNewFailure),
+        tap((action)=>this.dialog.open(MatAlertErrorComponent,{
+            data:{text:"Error al buscar novedad", message:action.message},
+        }))
+    ))
+
     deleteNew$=createEffect(()=>this.actions$.pipe(
         ofType(newsActions.deleteNew),
         mergeMap((action)=>this.srcNews.deleteNew(action.newToDelete.id)
