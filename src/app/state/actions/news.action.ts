@@ -5,6 +5,10 @@ export const NEWS_LOAD='[News List] Load News';
 export const NEWS_LOADED= '[News List] Loaded News';
 export const NEWS_LOAD_FAILURE='[News List] Not Loaded News';
 
+export const SEARCH_NEW='[News List] Searching News';
+export const SEARCH_NEW_SUCCESS='[News List] Searched News';
+export const SEARCH_NEW_FAILURE='[News List] Not Searched News';
+
 export const NEW_DELETE_ALERT='[News List] Alert Delete New';
 export const NEW_NOT_DELETE='[News List] Not Deleted New'
 export const NEW_DELETE='[News List] Delete New';
@@ -50,6 +54,21 @@ export const deletedNew=createAction(
 
 export const errorDeleteNew=createAction(
     NEW_DELETE_FAILURE,
+    props<{message:string}>()
+)
+
+export const searchNew=createAction(
+    SEARCH_NEW,
+    props<{text:string}>()
+)
+
+export const searchNewSuccess=createAction(
+    SEARCH_NEW_SUCCESS,
+    props<{news:newData[]}>()
+)
+
+export const searchNewFailure=createAction(
+    SEARCH_NEW_FAILURE,
     props<{message:string}>()
 )
 
