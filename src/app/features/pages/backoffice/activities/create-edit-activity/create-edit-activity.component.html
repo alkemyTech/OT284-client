@@ -1,4 +1,4 @@
-<app-title  title={{activity.name}}></app-title>
+<app-title  *ngIf="activity!" title={{activity.name}}></app-title>
 <div class="cards">
     <form class="cards__item" [formGroup]="form" (ngSubmit)="onSubmit()">
       <div class="card"  >
@@ -29,7 +29,7 @@
                 La descripcion es requerida
             </span>
             </div>
-          <div class="card__title">{{activity.created_at}}</div>
+          <div *ngIf="activity!" class="card__title">{{activity.created_at}}</div>
           <button type=”submit” >ENVIAR</button>
         </div>
       </div>

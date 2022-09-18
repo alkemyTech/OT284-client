@@ -27,12 +27,16 @@ export class ActivitiesPageComponent implements OnInit {
 
   editActivity(activity: Activity){
     console.log(activity)
-    this.route.navigate(["backoffice/activity/edit",{ activity: JSON.stringify(activity)}])
+    this.route.navigate(["backoffice/activity/edit",{ activity: JSON.stringify(activity), formType: "edit"}])
   }
 
   deleteActivity(activity: Activity){
    this.store.dispatch(deleteActivity({id: activity.id}))
    this.store.dispatch(loadActivities());
+  }
+
+  onCreateClick(){
+    this.route.navigate(["backoffice/activity/create", {formType: "create"}])
   }
 
 }

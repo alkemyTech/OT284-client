@@ -1,5 +1,8 @@
 <app-title title="LISTADO DE ACTIVIDADES"></app-title>
 <div class="table-container">
+  <div class="button-container">
+    <button (click)="onCreateClick()">Crear Nueva</button>
+  </div>
 <table mat-table [dataSource]="dataSource$" class="mat-elevation-z8">
     <ng-container matColumnDef="name">
       <th mat-header-cell *matHeaderCellDef>ACTIVIDAD</th>
