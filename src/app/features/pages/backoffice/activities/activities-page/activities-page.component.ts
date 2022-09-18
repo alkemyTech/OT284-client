@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Activity } from 'src/app/shared/interfaces/activity';
-import { loadActivities } from 'src/app/state/actions/activities.actions';
+import { deleteActivity, loadActivities } from 'src/app/state/actions/activities.actions';
 import { AppState } from 'src/app/state/app.state';
 import { selectActivities } from 'src/app/state/selectors/activities.selector';
 import { activitiesExample } from '../../../activities/activity-view/activities-example';
@@ -17,13 +17,12 @@ import { activitiesExample } from '../../../activities/activity-view/activities-
 export class ActivitiesPageComponent implements OnInit {
 
   displayedColumns: string[] = ['name', 'image', 'created_at', 'actions'];
-  dataSource$ : Observable<Activity[]> 
+  dataSource$ : Observable<Activity[]> = this.store.select(selectActivities)
 
   constructor(private store:Store<AppState>, private route:Router) { }
 
   ngOnInit(): void {
     this.store.dispatch(loadActivities());
-    this.dataSource$ = this.store.select(selectActivities)
   }
 
   editActivity(activity: Activity){
@@ -32,7 +31,8 @@ export class ActivitiesPageComponent implements OnInit {
   }
 
   deleteActivity(activity: Activity){
-    console.log(activity)
+   this.store.dispatch(deleteActivity({id: activity.id}))
+   this.store.dispatch(loadActivities());
   }
 
 }
