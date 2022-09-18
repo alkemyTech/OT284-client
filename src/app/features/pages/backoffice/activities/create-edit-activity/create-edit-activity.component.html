@@ -16,7 +16,7 @@
                 <ngx-mat-file-input (change)="fileEvent($event)" formControlName="image" matInput placeholder="Seleccione una imagen">
                 </ngx-mat-file-input>
             </mat-form-field>
-            <span *ngIf="form.controls.image.errors?.invalidExtension" class="invalid">
+            <span *ngIf="form.controls.image.errors?.invalidExtension" class="alert">
                 Ingrese un archivo con extension '.jpg' o '.png'
             </span>
         </div>
@@ -25,7 +25,7 @@
           <div class="contenedor-input">
             <ckeditor class="ck-editor__editable_inline" formControlName="description" 
             [editor]="editor" ></ckeditor>
-            <span *ngIf="form.controls.description.errors && form.controls.description.touched" class="invalid">
+            <span *ngIf="form.controls.description.errors && form.controls.description.touched" class="alert">
                 La descripcion es requerida
             </span>
             </div>
