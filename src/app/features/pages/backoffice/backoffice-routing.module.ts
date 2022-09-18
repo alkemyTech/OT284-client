@@ -48,8 +48,12 @@ const routes: Routes = [
     component: NewsFormComponent,
   },
   {
-    path: "members/edit",
+    path: "members/edit/:id",
     component: MemberFormComponent,
+  },
+  {
+    path: "members/create",
+    component: MemberFormComponent
   },
   {
     path: "news/:id",
