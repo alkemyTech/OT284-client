@@ -7,7 +7,7 @@ export interface NewsState{
     newWasDeleted:boolean,
     newToDelete:newData,
     newWasCreated:boolean,
-    newToCreate:newData,
-    newWasEdited:boolean,
     newToEdit:newData,
+    newWasEdited:boolean,
+    responseCreateEdit:any
 }

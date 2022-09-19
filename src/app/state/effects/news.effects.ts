@@ -4,7 +4,7 @@ import { MatDialog } from "@angular/material/dialog";
 import { Router } from "@angular/router";
 import {Actions, createEffect, ofType} from "@ngrx/effects"
 import { of } from "rxjs";
-import { mergeMap, map, catchError, tap, exhaustMap } from "rxjs/operators";
+import { mergeMap, map, catchError, tap } from "rxjs/operators";
 import { NewsService } from "src/app/features/pages/news/news.service";
 import { MatAlertErrorComponent } from "src/app/shared/components/mat-alert-error/mat-alert-error.component";
 import * as newsActions from '../actions/news.action';
@@ -109,7 +109,7 @@ export class NewsEffects{
         ofType(newsActions.editNew),
         mergeMap(action=>this.srcNews.modificarNew(action.newToEdit)
         .pipe(
-            map((response)=>newsActions.editedNew({response})),
+            map((response)=>newsActions.editedNew({response}),newsActions.loadNews),
             catchError((error:HttpErrorResponse)=>of(newsActions.errorEditedNew(error)))
         )))
     )

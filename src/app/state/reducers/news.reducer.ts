@@ -10,8 +10,8 @@ export const initialNew: newData={
 
 export const initialState: NewsState = {loading:false, news:[], error:'', 
                                         newWasDeleted:false, newToDelete:initialNew, 
-                                        newWasEdited:false, newToEdit: initialNew, 
-                                        newWasCreated:false,newToCreate:initialNew}
+                                        newWasEdited:false, newToEdit:initialNew,
+                                        newWasCreated:false, responseCreateEdit:''}
 
 export const newsReducer= createReducer(
     initialState,
@@ -43,22 +43,30 @@ export const newsReducer= createReducer(
     on(receivedNew,(state,{newToEdit})=>{
         return {...state, newToEdit}
     }),
-    on(createNew,(state,{newToCreate})=>{
-        return {...state,newToCreate}
+    on(createNew,(state)=>{
+        return {...state}
     }),
-    on(createdNew, (state)=>{
-        let newCreated=state.newToCreate
-        state.news.push(newCreated)
-        return {...state,news:state.news, newWasCreated:true}
+    on(createdNew, (state, {response})=>{
+        if(response.success){
+            let newsNow=[...state.news,response.data]
+            return {...state,news:newsNow, newWasCreated:true, responseCreateEdit:response}
+        }else if(response.error){
+            return {...state, newWasCreated:false, responseCreateEdit:response}
+        }else{
+            return {...state}
+        }
     }),
     on(editNew,(state,{newToEdit})=>{
         return {...state,newToEdit}
     }),
-    on(editedNew, (state)=>{
-        let newEdited=state.newToEdit;
-        let index=state.news.findIndex(newM=>newM.id=newEdited.id);
-        state.news[index]=newEdited;
-        return {...state,news:state.news, newWasEdited:true}
+    on(editedNew, (state,{response})=>{
+        if(response.success){
+            return {...state, newWasEdited:true, responseCreateEdit:response}
+        }else if(response.error){
+            return {...state, newWasEdited:false, responseCreateEdit:response}
+        }else{
+            return {...state}
+        }
     }),
 )
 

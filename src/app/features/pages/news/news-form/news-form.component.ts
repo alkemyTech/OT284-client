@@ -2,19 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { newData, Novedad } from '../models/newM';
-import { NewsService } from '../news.service';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import Swal from 'sweetalert2';
 import Base64UploaderPlugin from 'customBuilder/Base64Upload';
-import { MatAlertErrorComponent } from 'src/app/shared/components/mat-alert-error/mat-alert-error.component';
 import { MatDialog } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/state/app.state';
 import { getNew, createNew, editNew } from 'src/app/state/actions/news.action';
-import { selectNewToEdit } from 'src/app/state/selectors/news.selector';
-import { Observable, using } from 'rxjs';
-import {tap} from 'rxjs/operators'
-import { HttpErrorResponse } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { selectNewToEdit, selectResponse } from 'src/app/state/selectors/news.selector';
 
 @Component({
   selector: 'app-news-form',
@@ -66,9 +62,11 @@ export class NewsFormComponent implements OnInit {
       if(metodo=='post'){
         const newToCreate=new Novedad(this.sendForm.value);
         newToCreate.id=0;
-        this.obtenerNuevaImg(newToCreate);
+        if(newToCreate.image.includes('base64')){
+          this.obtenerNuevaImg(newToCreate);
+        }
         this.store.dispatch(createNew({newToCreate}));
-        this.redireccionar();
+        this.mostrarResp();
       }else if(metodo='put'){
         const newToEdit=new Novedad(this.sendForm.value);
         newToEdit.id=this.id;
@@ -77,7 +75,7 @@ export class NewsFormComponent implements OnInit {
           this.obtenerNuevaImg(newToEdit);
         }
         this.store.dispatch(editNew({newToEdit}));
-        this.redireccionar();
+        this.mostrarResp();
       }
     }else{
       Swal.fire({
@@ -111,6 +109,22 @@ export class NewsFormComponent implements OnInit {
 
   private redireccionar(){
     this.router.navigate(['/backoffice/news']);
+  }
+
+  private mostrarResp(){
+    this.store.select(selectResponse).subscribe({
+      next:(response)=>{
+        if(response.success){
+          this.redireccionar();
+        }else if(response.error){
+          Swal.fire({
+            icon:'error',
+            title: 'No se enviaron los datos',
+            text: 'Por favor inserte una imagen'
+          })
+        }
+      }
+    })
   }
 
 }

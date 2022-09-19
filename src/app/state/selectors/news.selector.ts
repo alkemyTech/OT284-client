@@ -23,3 +23,7 @@ export const selectNewToEdit=createSelector(
     selectNewsFeature,
     (state:NewsState)=>state.newToEdit
 )
+export const selectResponse=createSelector(
+    selectNewsFeature,
+    (state:NewsState)=>state.responseCreateEdit
+)
