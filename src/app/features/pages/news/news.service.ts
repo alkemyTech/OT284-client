@@ -48,5 +48,12 @@ export class NewsService {
     )
   }
 
+  public buscarNewsWithCateg(text:string,category:string):Observable<any>{
+    return this.httpServ.get<any>(`${environment.endpoints.novedades.list}?search=${text}&category=${category}`)
+    .pipe(
+      map(result=>result.data)
+    )
+  }
+
 
 }
