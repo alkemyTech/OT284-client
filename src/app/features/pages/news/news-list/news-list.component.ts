@@ -10,6 +10,7 @@ import { newData } from '../models/newM';
 import { selectNews } from 'src/app/state/selectors/news.selector';
 import { Observable } from 'rxjs';
 import Swal from 'sweetalert2';
+import { NewsService } from '../news.service';
 
 @Component({
   selector: 'app-news-list',
@@ -23,7 +24,7 @@ export class NewsListComponent implements OnInit {
   public linkReference: string='CREAR NOVEDAD';
   displayedColumns: string[] = ['demo-image', 'demo-name', 'demo-date', 'demo-delete', 'demo-modify'];
   
-  constructor(private ruta:Router, public dialog: MatDialog, private store:Store<AppState>) { }
+  constructor(private srcNews: NewsService, private ruta:Router, public dialog: MatDialog, private store:Store<AppState>) { }
 
   ngOnInit(): void {
     this.verNovedades();
@@ -52,8 +53,11 @@ export class NewsListComponent implements OnInit {
   }
 
   public obtener(text:string):void{
-    this.store.dispatch(searchNew({text}));
-    this.newsList$=this.store.select(selectNews);
+    this.srcNews.buscarNews(text).subscribe((Response)=>{
+      this.newsList$=Response;
+    })
+    //this.store.dispatch(searchNew({text}));
+    //this.newsList$=this.store.select(selectNews);
   }
 
   public eliminar(newToDelete:newData):void{
