@@ -69,13 +69,3 @@ export const newsReducer= createReducer(
         }
     }),
 )
-
-/* export const formNewsReducer=createReducer(
-    initialFormState,
-    on(formValueChange,(state,{type, ...update})=>{
-        return {...state,...update}
-    })
-)
-export function reducer(state: NewsFormState | undefined, action: Action){
-    return formNewsReducer(state,action)
-} */
