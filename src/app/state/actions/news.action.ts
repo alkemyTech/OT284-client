@@ -81,7 +81,7 @@ export const createNew=createAction(
 
 export const createdNew=createAction(
     NEW_CREATED,
-    props<{newCreated:newData}>()
+    props<any>()
 )
 
 export const errorCreateNew=createAction(
@@ -97,7 +97,7 @@ export const editNew=createAction(
 
 export const editedNew=createAction(
     NEW_EDITED,
-    props<{newEdited:newData}>()
+    props<any>()
 )
 
 export const errorEditedNew=createAction(

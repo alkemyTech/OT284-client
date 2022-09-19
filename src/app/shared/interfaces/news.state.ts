@@ -6,6 +6,8 @@ export interface NewsState{
     error:string,
     newWasDeleted:boolean,
     newToDelete:newData,
+    newWasCreated:boolean,
+    newToCreate:newData,
+    newWasEdited:boolean,
     newToEdit:newData,
-    newWasCreated:boolean
 }

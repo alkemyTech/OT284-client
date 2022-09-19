@@ -1,7 +1,7 @@
 import {createReducer, on} from '@ngrx/store';
 import { newData } from 'src/app/features/pages/news/models/newM';
 import { NewsState } from 'src/app/shared/interfaces/news.state';
-import { deletedNew, deleteNew, errorLoadedNews, loadedNews, loadNews, receivedNew, searchNew, searchNewFailure, searchNewSuccess } from '../actions/news.action';
+import { createdNew, createNew, deletedNew, deleteNew, editedNew, editNew, errorLoadedNews, loadedNews, loadNews, receivedNew, searchNew, searchNewFailure, searchNewSuccess } from '../actions/news.action';
 
 export const initialNew: newData={
     id: 0, name: "", slug: null, content: "", image: "", user_id: 0, category_id: 0,
@@ -9,7 +9,9 @@ export const initialNew: newData={
 }
 
 export const initialState: NewsState = {loading:false, news:[], error:'', 
-                                        newWasDeleted:false, newToDelete:initialNew, newToEdit: initialNew, newWasCreated:false}
+                                        newWasDeleted:false, newToDelete:initialNew, 
+                                        newWasEdited:false, newToEdit: initialNew, 
+                                        newWasCreated:false,newToCreate:initialNew}
 
 export const newsReducer= createReducer(
     initialState,
@@ -41,9 +43,23 @@ export const newsReducer= createReducer(
     on(receivedNew,(state,{newToEdit})=>{
         return {...state, newToEdit}
     }),
-/*     on(createdNew,(state, {newCreated})=>{
-        return {...state,news:state.news.push(newCreated), newWasCreated:true}
-    }) */
+    on(createNew,(state,{newToCreate})=>{
+        return {...state,newToCreate}
+    }),
+    on(createdNew, (state)=>{
+        let newCreated=state.newToCreate
+        state.news.push(newCreated)
+        return {...state,news:state.news, newWasCreated:true}
+    }),
+    on(editNew,(state,{newToEdit})=>{
+        return {...state,newToEdit}
+    }),
+    on(editedNew, (state)=>{
+        let newEdited=state.newToEdit;
+        let index=state.news.findIndex(newM=>newM.id=newEdited.id);
+        state.news[index]=newEdited;
+        return {...state,news:state.news, newWasEdited:true}
+    }),
 )
 
 /* export const formNewsReducer=createReducer(

@@ -1,6 +1,7 @@
 import { HttpErrorResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
+import { Router } from "@angular/router";
 import {Actions, createEffect, ofType} from "@ngrx/effects"
 import { of } from "rxjs";
 import { mergeMap, map, catchError, tap, exhaustMap } from "rxjs/operators";
@@ -89,7 +90,7 @@ export class NewsEffects{
         ofType(newsActions.createNew),
         mergeMap(action=>this.srcNews.nuevaNew(action.newToCreate)
         .pipe(
-            map((newCreated)=>newsActions.createdNew({newCreated})),
+            map((response)=>newsActions.createdNew({response})),
             catchError((error:HttpErrorResponse) => of(newsActions.errorCreateNew(error)))
         ))
     ))
@@ -108,14 +109,24 @@ export class NewsEffects{
         ofType(newsActions.editNew),
         mergeMap(action=>this.srcNews.modificarNew(action.newToEdit)
         .pipe(
-            map((newEdited)=>newsActions.editedNew({newEdited})),
+            map((response)=>newsActions.editedNew({response})),
             catchError((error:HttpErrorResponse)=>of(newsActions.errorEditedNew(error)))
         )))
     )
 
+    errorEditedNew$=createEffect(()=>this.actions$.pipe(
+        ofType(newsActions.errorEditedNew),
+        tap((action)=>this.dialog.open(MatAlertErrorComponent,{
+            data:{text:'Error al editar novedad', message: action.message},
+        }))
+    ),
+        {dispatch:false}
+    )  
+
     constructor(
         private actions$:Actions,
         private srcNews:NewsService,
-        public dialog: MatDialog
+        public dialog: MatDialog,
+        public ruta:Router
     ){}
 }

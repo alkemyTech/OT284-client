@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { newData, Novedad } from '../models/newM';
 import { NewsService } from '../news.service';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
@@ -33,7 +33,7 @@ export class NewsFormComponent implements OnInit {
   public metodo:string="";
   public sendForm!:FormGroup;
 
-  constructor(private store:Store<AppState>,private svcNew:NewsService, private ruta:ActivatedRoute, private formBuilder:FormBuilder,public dialog:MatDialog) {
+  constructor(private store:Store<AppState>,private router:Router, private ruta:ActivatedRoute, private formBuilder:FormBuilder,public dialog:MatDialog) {
     this.id=this.ruta.snapshot.params['id'];
     this.metodo="post";
     this.sendForm=this.formBuilder.group(
@@ -68,7 +68,7 @@ export class NewsFormComponent implements OnInit {
         newToCreate.id=0;
         this.obtenerNuevaImg(newToCreate);
         this.store.dispatch(createNew({newToCreate}));
-        //this.svcNew.redireccionar();
+        this.redireccionar();
       }else if(metodo='put'){
         const newToEdit=new Novedad(this.sendForm.value);
         newToEdit.id=this.id;
@@ -77,6 +77,7 @@ export class NewsFormComponent implements OnInit {
           this.obtenerNuevaImg(newToEdit);
         }
         this.store.dispatch(editNew({newToEdit}));
+        this.redireccionar();
       }
     }else{
       Swal.fire({
@@ -106,6 +107,10 @@ export class NewsFormComponent implements OnInit {
   private obtenerNuevaImg(novedad:Novedad):void{
     let str1=novedad.image.split('src="')[1];
     novedad.image=str1.split('"')[0];
+  }
+
+  private redireccionar(){
+    this.router.navigate(['/backoffice/news']);
   }
 
 }
