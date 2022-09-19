@@ -13,12 +13,16 @@ export class NewsMembersService {
 
   constructor(private httpService:HttpService) { }
 
-  getMembers(searchQuery : string, skipQuery?: string, limitQuery?: string){
+  getMembers(searchQuery : string, skipQuery?: string, limitQuery?: string): Observable<Member[]>{
     if(searchQuery.search.length >1){
-      return this.httpService.get(environment.endpoints.miembros.list+ `?search=${searchQuery.search}`);
+      return this.httpService.get(environment.endpoints.miembros.list+ `?search=${searchQuery.search}`).pipe(
+        map( (resp: any) => resp.data)
+      );
     }
     else{
-      return this.httpService.get(environment.endpoints.miembros.list);
+      return this.httpService.get(environment.endpoints.miembros.list).pipe(
+        map( (resp: any) => resp.data)
+      );
     }
     
   }

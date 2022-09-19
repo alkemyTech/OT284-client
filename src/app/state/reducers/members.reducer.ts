@@ -19,13 +19,14 @@ export const membersReducer = createReducer(
         return { ...state, loading: false, members}
     }),
     on(deleteMember, (state, { id }) => {
-        const updatedMembers = state.members.filter((member: any) => member.data.id !== id);
+        const updatedMembers = state.members.filter((member: any) => member.id !== id);
         return { ...state, members: updatedMembers }
     }),
-    on(getMemberById, (state) => {
-        return { ...state, loading: true }
+    on(getMemberById, (state, { id }) => {
+        const member = state.members.filter((member) => member.id == id);
+        return { ...state, loading: true, members: member }
     }),
-    on(getMemberByIdSuccess, (state, { member }) => {
-        return { ...state, member, loading: false }
-    })
+    // on(getMemberByIdSuccess, (state, { member }) => {
+    //     return { ...state, member, loading: false }
+    // })
 );

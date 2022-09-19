@@ -7,8 +7,8 @@ import { Store } from '@ngrx/store';
 import { AppState } from '../../../../../state/app.state';
 import { ActivatedRoute, Router } from '@angular/router';
 import { getMemberById, createMember, editMember, getMemberByIdSuccess } from '../../../../../state/actions/members.actions';
-import { selectMember } from '../../../../../state/selectors/members.selectors';
 import Swal from 'sweetalert2';
+import { selectMembers } from 'src/app/state/selectors/members.selectors';
 
 @Component({
   selector: 'app-member-form',
@@ -21,7 +21,7 @@ export class MemberFormComponent implements OnInit {
   form!: FormGroup;
   file!: any;
   Editor = ClassicEditor;
-  member$!: Observable<Member>;
+  member$!: Observable<Member[]>;
 
   constructor( private fb: FormBuilder, private store: Store<AppState>, private route: ActivatedRoute, private router: Router ) { }
 
@@ -33,10 +33,10 @@ export class MemberFormComponent implements OnInit {
       
       if ( id ) {
         this.store.dispatch(getMemberById({id}));
-        this.member$ = this.store.select(selectMember);
+        this.member$ = this.store.select(selectMembers);
         
-        this.member$.subscribe( (member) => {
-          this.member = member;
+        this.member$.subscribe( member => {
+          this.member = member[0];
           this.form.get('image')?.removeValidators(Validators.required);
           this.form.setValue({
             name: this.member.name,
