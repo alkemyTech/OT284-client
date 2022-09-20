@@ -1,7 +1,7 @@
 import { createReducer, on } from "@ngrx/store";
 import { activitiesState } from "src/app/shared/interfaces/activities.state";
 import { Activity } from "src/app/shared/interfaces/activity";
-import { addActivity, addActivitySuccess, editActivity, editActivitySuccess, loadActivities, loadActivitiesSuccess } from "../actions/activities.actions";
+import { addActivity, addActivitySuccess, deleteActivity, deleteActivitySuccess, editActivity, editActivitySuccess, loadActivities, loadActivitiesSuccess } from "../actions/activities.actions";
 
 export const initialState: activitiesState = {
   activities: {} as Activity[],
@@ -22,10 +22,16 @@ export const activitiesReducer = createReducer(
   on(addActivitySuccess, (state,{message}) =>{
     return {...state, message }
   }),
-  on(editActivity, (state,{data}) => {
+  on(editActivity, (state,{id,data}) => {
     return { ...state, data };
   }),
   on(editActivitySuccess, (state,{message}) =>{
+    return {...state, message }
+  }),
+  on(deleteActivity, (state,{id}) => {
+    return { ...state, id };
+  }),
+  on(deleteActivitySuccess, (state,{message}) =>{
     return {...state, message }
   }),
 );

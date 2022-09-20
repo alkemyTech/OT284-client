@@ -17,8 +17,4 @@ export class ActivityDetailComponent implements OnInit {
     this.activity = JSON.parse(this.route.snapshot.paramMap.get('activity')!)
   }
 
-  goToEditActivity(){
-    this.router.navigate(['/backoffice/activity/create', { activity: JSON.stringify(this.activity)}])
-  }
-
 }
