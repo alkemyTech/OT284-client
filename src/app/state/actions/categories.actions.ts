@@ -46,3 +46,13 @@ export const getCategoryByIdSuccess = createAction(
     '[Category Form] Get Category by id success',
     props<{ category: Category }>()
 )
+
+export const searchCategory = createAction(
+    '[Category Search] Searching category',
+    props<{ query: string }>()
+)
+
+export const searchCategorySuccess = createAction(
+    '[Category Search] Search category success',
+    props<{ categories: Category[] }>()
+)
