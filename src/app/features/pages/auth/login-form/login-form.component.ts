@@ -43,6 +43,16 @@ export class LoginFormComponent implements OnInit {
   login(form: any){
     console.log(form.value);
     const {email,password} = form.value;
+
+    this.authService.login(email, password).subscribe({
+      next: (response) => {
+        console.log(response);
+      },
+      error: (error) => {
+        console.error(`error : ${error}`);
+      },
+      complete: () => console.log(`login exitoso.`)
+    });
     
     this.authService.loginFirebase(email,password)
     .then(response => {

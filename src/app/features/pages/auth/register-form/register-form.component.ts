@@ -66,6 +66,16 @@ export class RegisterFormComponent implements OnInit {
     console.log(form.value);
     const {name,email,password} = form.value;
 
+    this.authService.register(name,email,password).subscribe({
+      next: (response) => {
+        console.log(response);
+      },
+      error: (error) => {
+        console.error(`error : ${error}`);
+      },
+      complete: () => console.log(`registro exitoso.`)
+    });
+
     this.authService.registerFirebase(email,password)
     .then( response => {
       console.log(response);
@@ -80,7 +90,14 @@ export class RegisterFormComponent implements OnInit {
       })
 
     })
-    .catch( error => console.error(`error ${error}`));
+    .catch( error => {
+      console.error(`error ${error}`);
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'El email ya esta registrado.'
+      })
+    });
     
   }
 
