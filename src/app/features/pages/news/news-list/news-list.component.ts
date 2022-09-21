@@ -15,6 +15,8 @@ import Swal from 'sweetalert2';
 import { NewsService } from '../news.service';
 import { loadCategories } from 'src/app/state/actions/categories.actions';
 import { selectCategories } from 'src/app/state/selectors/categories.selectors';
+import { HttpErrorResponse } from '@angular/common/http';
+import { MatAlertErrorComponent } from 'src/app/shared/components/mat-alert-error/mat-alert-error.component';
 
 @Component({
   selector: 'app-news-list',
@@ -30,25 +32,42 @@ export class NewsListComponent implements OnInit {
   
   constructor(private store:Store<AppState>, private srcNews:NewsService, private ruta:Router, public dialog: MatDialog, private srcCategory:NewsCategoriesService) { }
 
-  categoriesList$:Observable<Category[]>;
-  selected='todas';
+  categoriesList:string[]=['Todas'];
+  categoryName:string='';
   buscador:string='';
+  selectedCategory:string;
 
   public getCategories(){
-    this.store.dispatch(loadCategories());
-    this.categoriesList$=this.store.select(selectCategories);
+    let categorias:Category[];
+    this.srcCategory.getCategories().subscribe(cat=>{
+      categorias=cat;
+      categorias.forEach(cat=>{
+        this.categoriesList.push(cat.name);
+      })
+    })
   }
 
   public searchCat(event:any){
-    let categoryName=event.source.value;
-    if(this.buscador!='' && event.source.value!='todas' && event.source.selected){
-      this.srcNews.buscarNewsWithCateg(this.buscador,categoryName).subscribe({
-        next:(Response:newData[])=>{
-          this.newsList=Response
-        },
+    if(event.source.value && event.source.selected){
+      this.categoryName=event.source.value;
+    }
+    //Busca por categoria y texto
+    if(this.buscador!='' && this.categoryName!='Todas'){
+      this.srcNews.buscarNewsWithCateg(this.buscador,this.categoryName).subscribe(resp=>{
+        this.newsList$=resp;
       })
-    }else if(categoryName=='todas'){
-      this.obtener(this.buscador);
+    }
+    //Busca por texto solo
+    else if(this.categoryName=='Todas' && this.buscador!=''){
+      this.obtener();
+    }
+    //Trae todas las novedades:
+    else if(this.buscador=='' && this.categoryName=='Todas'){
+      this.newsList$=this.store.select(selectNews);
+    }
+    //Busca por categoria solamente
+    else if(this.buscador=='' && this.categoryName!=''){
+      this.newsList$=this.srcNews.buscarNewsByCatOnly(this.categoryName);
     }
   }
 
@@ -62,7 +81,7 @@ export class NewsListComponent implements OnInit {
     ).subscribe({
       next:(text)=>{
         this.buscador=text;
-        this.obtener(text);
+        this.obtener();
       }
     })
     this.search.pipe(
@@ -71,31 +90,60 @@ export class NewsListComponent implements OnInit {
     ).subscribe({
       next:()=>{
         this.buscador='';
-        this.verNovedades()
+        this.obtener();
       }
     })
   }
 
   public verNovedades():void{
+    //Hago el llamado al servicio directamente
+      this.srcNews.verNews().subscribe({
+        next: (Response) => {
+          this.newsList$ = Response;
+        },
+        error: (error: HttpErrorResponse) => {
+          this.dialog.open(MatAlertErrorComponent, {
+            data: {text: "Error al buscar novedades", message: error.message},
+          });
+        },
+    });
+    //Hago la acción por el store para que queden cargados, sin el select:
     this.store.dispatch(loadNews());
-    this.newsList$=this.store.select(selectNews);
   }
 
-  public obtener(text:string):void{
-    this.srcNews.buscarNews(text).subscribe((Response)=>{
-      this.newsList$=Response;
-    })
-    //this.store.dispatch(searchNew({text}));
-    //this.newsList$=this.store.select(selectNews);
+
+  public obtener():void{
+    //Busca solo por texto
+    if(this.buscador!=''){
+      if(this.categoryName=='Todas' || this.categoryName==''){
+        this.newsList$=this.srcNews.buscarNews(this.buscador);
+        //this.store.dispatch(searchNew({text}));
+        //this.newsList$=this.store.select(selectNews);
+      }
+      //Busca por texto y categoria
+      else if(this.categoryName!='Todas'){
+        this.newsList$=this.srcNews.buscarNewsWithCateg(this.buscador,this.categoryName)
+      }
+    }else if(this.buscador==''){
+      //Trae todas las novedades
+      if(this.categoryName=='Todas' || this.categoryName==''){
+        console.log('todo')
+        this.newsList$=this.store.select(selectNews);
+      }
+      //Busca por categoria solamente
+      else if(this.categoryName!='Todas'){
+        this.newsList$=this.srcNews.buscarNewsByCatOnly(this.categoryName);
+      }
+    };
   }
 
   public eliminar(newToDelete:newData):void{
     Swal.fire({
       title: `Esta seguro que quiere eliminar la novedad ${newToDelete.name}?`,
       showDenyButton: true,
-      showCancelButton: true,
-      confirmButtonText: 'Delete',
-      denyButtonText: `Don't delete`,
+      showCancelButton: false,
+      confirmButtonText: 'Eliminar',
+      denyButtonText: `Cancelar`,
     }).then((result) => {
       if (result.isConfirmed) {
         this.store.dispatch(deleteNew({newToDelete}));
