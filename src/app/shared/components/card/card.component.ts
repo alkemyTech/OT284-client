@@ -9,7 +9,7 @@ export class CardComponent implements OnInit {
 
   @Input() title: string;
   @Input() image: string;
-  @Input() text: string
+  @Input() text: any
 
   @Input() id: number;
   @Output() verMasEvent: EventEmitter<any> = new EventEmitter();
