@@ -4,7 +4,9 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { interval, Subject } from 'rxjs';
 import { debounce, filter, map } from 'rxjs/operators';
+import { NewsCategoriesService } from 'src/app/core/services/news-categories.service';
 import { MatAlertErrorComponent } from 'src/app/shared/components/mat-alert-error/mat-alert-error.component';
+import { Category } from 'src/app/shared/interfaces/category';
 import Swal from 'sweetalert2';
 import { newData } from '../models/newM';
 import { NewsService } from '../news.service';
@@ -21,16 +23,41 @@ export class NewsListComponent implements OnInit {
   public linkReference: string='CREAR NOVEDAD';
   displayedColumns: string[] = ['demo-image', 'demo-name', 'demo-date', 'demo-delete', 'demo-modify'];
   
-  constructor(private srcNews:NewsService, private ruta:Router, public dialog: MatDialog) { }
+  constructor(private srcNews:NewsService, private ruta:Router, public dialog: MatDialog, private srcCategory:NewsCategoriesService) { }
+
+  categoriesList:Category[];
+  selected='todas';
+  buscador:string='';
+
+  public getCategories(){
+    this.srcCategory.getCategories().subscribe((data)=>{
+      this.categoriesList=data;
+    })
+  }
+
+  public searchCat(event:any){
+    let categoryName=event.source.value;
+    if(this.buscador!='' && event.source.value!='todas' && event.source.selected){
+      this.srcNews.buscarNewsWithCateg(this.buscador,categoryName).subscribe({
+        next:(Response:newData[])=>{
+          this.newsList=Response
+        },
+      })
+    }else if(categoryName=='todas'){
+      this.obtener(this.buscador);
+    }
+  }
 
   ngOnInit(): void {
     this.verNovedades();
+    this.getCategories();
     this.search.pipe(
       map((event:any)=>event.target.value),
       filter(text => text.length > 2),
       debounce(()=>interval(500)),
     ).subscribe({
       next:(text)=>{
+        this.buscador=text;
         this.obtener(text);
       }
     })
@@ -39,6 +66,7 @@ export class NewsListComponent implements OnInit {
       filter(text=>text.length<=2)
     ).subscribe({
       next:()=>{
+        this.buscador='';
         this.verNovedades()
       }
     })
