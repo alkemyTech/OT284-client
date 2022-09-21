@@ -25,7 +25,7 @@ import { AppState } from "src/app/state/app.state";
   styleUrls: ["./users.component.scss"],
 })
 export class UsersComponent implements OnInit {
-  displayedColumns: string[] = ["name", "email", "actions"];
+  displayedColumns: string[] = ["role", "name", "email", "actions"];
   dataSource = new MatTableDataSource<userData>();
   @ViewChild("users", { static: true })
   paginator: MatPaginator;
@@ -40,6 +40,7 @@ export class UsersComponent implements OnInit {
   roleSelect: ElementRef;
   loading$: Observable<boolean>;
   selected: number = 0;
+  loadingBoolean = true;
 
   constructor(
     private user: UsersService,
@@ -92,6 +93,7 @@ export class UsersComponent implements OnInit {
     this.user.editUserData = this.row[realIndex];
     this.router.navigateByUrl("backoffice/users/edit");
     this.user.userIsEditing = true;
+    console.log(this.row[realIndex]);
   }
 
   deleteUser(i: number) {
@@ -135,6 +137,10 @@ export class UsersComponent implements OnInit {
 
     this.search();
     this.loading$ = this.store.select(selectUsersLoading);
+    this.loading$.subscribe((data: boolean) => {
+      this.loadingBoolean = data;
+    });
+
     this.store.select(selectUsers).subscribe((data: any) => {
       if (data.data) {
         this.row = data.data;
