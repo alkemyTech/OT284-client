@@ -55,5 +55,12 @@ export class NewsService {
     )
   }
 
+  public buscarNewsByCatOnly(category:string):Observable<any>{
+    return this.httpServ.get<any>(`${environment.endpoints.novedades.list}?category=${category}`)
+    .pipe(
+      map(result=>result.data)
+    )
+  }
+
 
 }
