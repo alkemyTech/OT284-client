@@ -32,9 +32,7 @@ export class UsersService {
         filter((a) => a !== null)
       );
     } else {
-      new$ = merge(this.userError, this.userSuccess).pipe(
-        filter((a) => a !== null)
-      );
+      new$ = this.userSuccess.pipe(filter((a) => a !== null));
     }
 
     return new$.subscribe((data) => {
