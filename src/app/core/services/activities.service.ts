@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Observable, throwError } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
 import { Activity } from 'src/app/shared/interfaces/activity';
 import { environment } from 'src/environments/environment';
 import { HttpService } from './http.service';
@@ -12,12 +12,14 @@ export class ActivitiesService {
 
   constructor(private httpServ: HttpService) { }
 
-  getActivities(): Observable<Activity[]> {
+  getActivities(): Observable<any> {
     return this.httpServ.get<Activity[]>(environment.endpoints.actividades.list).pipe(
       map(
-        (resp: any) => resp.data
-        /* (resp: any) => {return resp.data, resp.data.map((image: any) => image.blob())} */
-      )
+        (resp: any) => resp.data,
+      ),
+      catchError((err:any) => {
+        console.log(err)
+        return throwError(err.message)})
     );;
   }
 

@@ -4,6 +4,7 @@ import { Activity } from "src/app/shared/interfaces/activity";
 export enum activitiesActionTypes{
     loadActivities = "[Activities View] Load activities ",
     loadActivitiesSuccess = "[Activities View] Load activities success",
+    loadActivitiesError = "[Activities View] Load activities error",
     addActivity= "[Backoffice Activities] add activity",
     addActivitySuccess = "[Backoffice Activities] add activity success",
     editActivity= "[Backoffice Activities] edit activity",
@@ -17,6 +18,11 @@ export const loadActivities = createAction(
 export const loadActivitiesSuccess = createAction(
     activitiesActionTypes.loadActivitiesSuccess,
     props<{activities: Activity[]}>()
+);
+
+export const loadActivitiesError = createAction(
+    activitiesActionTypes.loadActivitiesError,
+    props<{error: string}>()
 );
 
 export const addActivity = createAction(
