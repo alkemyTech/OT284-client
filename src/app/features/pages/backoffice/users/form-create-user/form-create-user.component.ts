@@ -11,19 +11,15 @@ import { MatDialog } from "@angular/material/dialog";
 import { FormMapComponent } from "./form-map/form-map.component";
 import { TermsAndConditionsComponent } from "./terms-and-conditions/terms-and-conditions.component";
 import { MatCheckboxChange } from "@angular/material/checkbox";
-import { select, Store } from "@ngrx/store";
+import { Store } from "@ngrx/store";
 import { AppState } from "src/app/state/app.state";
 import {
   createUserAction,
   editUserAction,
 } from "src/app/state/actions/users.actions";
-import {
-  selectUserError,
-  selectUserSuccess,
-} from "src/app/state/selectors/users.selectors";
+
 import { Router } from "@angular/router";
-import { Subscription, merge, Observable } from "rxjs";
-import { distinctUntilChanged, filter, first, takeWhile } from "rxjs/operators";
+
 @Component({
   selector: "app-form-create-user",
   templateUrl: "./form-create-user.component.html",
@@ -55,8 +51,6 @@ export class FormCreateUserComponent
   confirmedAddress = false;
   acceptedTerms = false;
   status: string;
-  userError: Observable<any>;
-  userSuccess: Observable<any>;
 
   validExtensions(control: AbstractControl) {
     if (control.value.includes(".jpg") || control.value.includes(".png")) {

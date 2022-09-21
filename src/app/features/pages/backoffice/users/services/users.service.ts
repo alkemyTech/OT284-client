@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Store } from "@ngrx/store";
 
-import { merge, Observable } from "rxjs";
+import { Observable } from "rxjs";
 import { filter, distinct } from "rxjs/operators";
 import { AppState } from "src/app/state/app.state";
 import {

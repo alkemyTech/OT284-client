@@ -4,16 +4,11 @@ import { MatPaginator } from "@angular/material/paginator";
 import { MatTableDataSource } from "@angular/material/table";
 import { Router } from "@angular/router";
 import { fromEvent, Observable } from "rxjs";
-import {
-  debounceTime,
-  distinctUntilChanged,
-  map,
-  switchMap,
-} from "rxjs/operators";
+import { debounceTime, distinctUntilChanged, map } from "rxjs/operators";
 import { MatAlertDialogComponent } from "src/app/shared/components/mat-alert-dialog/mat-alert-dialog.component";
 import { UsersService } from "./services/users.service";
 import { userData } from "../../../../shared/interfaces/userInterface";
-import { ReducerManager, Store } from "@ngrx/store";
+import { Store } from "@ngrx/store";
 import {
   deleteUserAction,
   loadUsers,
@@ -23,7 +18,6 @@ import {
   selectUsersLoading,
 } from "src/app/state/selectors/users.selectors";
 import { AppState } from "src/app/state/app.state";
-import { usersReducer } from "src/app/state/reducers/users.reducer";
 
 @Component({
   selector: "app-users",
