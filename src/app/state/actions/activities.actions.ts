@@ -8,6 +8,8 @@ export enum activitiesActionTypes{
     addActivitySuccess = "[Backoffice Activities] add activity success",
     editActivity= "[Backoffice Activities] edit activity",
     editActivitySuccess = "[Backoffice Activities] edit activity success",
+    deleteActivity= "[Backoffice Activities] delete activity",
+    deleteActivitySuccess = "[Backoffice Activities] delete activity success",
 }
 
 export const loadActivities = createAction(
@@ -35,5 +37,14 @@ export const editActivity = createAction(
 
 export const editActivitySuccess = createAction(
     activitiesActionTypes.editActivitySuccess,
+    props<{message: string}>()
+);
+export const deleteActivity = createAction(
+    activitiesActionTypes.deleteActivity,
+    props<{id: number}>()
+);
+
+export const deleteActivitySuccess = createAction(
+    activitiesActionTypes.deleteActivitySuccess,
     props<{message: string}>()
 );

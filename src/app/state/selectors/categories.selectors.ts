@@ -13,3 +13,8 @@ export const selectLoading = createSelector(
     selectCategoriesFeature,
     (state: CategoryState) => state.loading
 );
+
+export const selectCategoriesResult = createSelector(
+    selectCategoriesFeature,
+    (state: CategoryState) => state.categoriesResults
+)

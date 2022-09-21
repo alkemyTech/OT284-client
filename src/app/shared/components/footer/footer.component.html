@@ -1,4 +1,4 @@
-<div class="contenedor">
+<div class="contenedor" *ngIf="orgData">
   <hr />
   <div class="columns">
     <div class="columna-1">
@@ -7,7 +7,7 @@
     </div>
     <div class="columna-2">
       <div class="orgName"><p>secciones</p></div>
-      <a routerLink="">Inicio</a>
+      <a routerLink="home">Inicio</a>
       <a routerLink="nosotros">Nosotros</a>
       <a routerLink="novedades">Novedades</a>
       <a routerLink="">Testimonios</a>
