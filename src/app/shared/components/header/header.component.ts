@@ -23,7 +23,13 @@ export class HeaderComponent implements OnInit {
       text: 'Contacto',
       link: 'contacto',
       render: true
-    }]
+    },
+    {
+      text: 'Actividades',
+      link: 'actividades',
+      render: true
+    }
+  ]
   constructor(public router: Router) { }
 
   ngOnInit(): void {
