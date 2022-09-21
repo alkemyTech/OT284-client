@@ -19,6 +19,9 @@ import {
 } from "src/app/state/actions/users.actions";
 
 import { Router } from "@angular/router";
+import * as ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+
+import Base64UploaderPlugin from "customBuilder/Base64Upload";
 
 @Component({
   selector: "app-form-create-user",
@@ -51,9 +54,15 @@ export class FormCreateUserComponent
   confirmedAddress = false;
   acceptedTerms = false;
   status: string;
+  public Editor = ClassicEditor;
+  editorConfig = { extraPlugins: [Base64UploaderPlugin] };
 
   validExtensions(control: AbstractControl) {
-    if (control.value.includes(".jpg") || control.value.includes(".png")) {
+    if (
+      control.value.includes("jpg") ||
+      control.value.includes("png") ||
+      control.value.includes("jpeg")
+    ) {
       return null;
     } else {
       return { forbbidenExtension: true };
@@ -98,6 +107,8 @@ export class FormCreateUserComponent
   }
 
   onSubmit() {
+    const profilePic = this.obtenerImg(this.formUser.value.profilePic);
+    console.log(profilePic);
     if (this.formUser.valid && this.confirmedAddress) {
       if (!this.user.editUserData) {
         this.store.dispatch(
@@ -109,6 +120,7 @@ export class FormCreateUserComponent
               password: this.formUser.value.password,
               latitude: this.formMap.lat,
               longitude: this.formMap.long,
+              profile_image: profilePic,
             },
           })
         );
@@ -130,7 +142,6 @@ export class FormCreateUserComponent
 
       this.user.selectorsUsers();
 
-      console.log(this.user.status);
       setTimeout(() => {
         if (
           this.user.status === "User saved successfully" ||
@@ -140,6 +151,11 @@ export class FormCreateUserComponent
         }
       }, 2000);
     }
+  }
+
+  private obtenerImg(image: string) {
+    let str1 = image.split('src="')[1];
+    return (image = str1.split('"')[0]);
   }
 
   ngAfterViewInit(): void {

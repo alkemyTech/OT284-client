@@ -93,6 +93,7 @@ export class UsersComponent implements OnInit {
     this.user.editUserData = this.row[realIndex];
     this.router.navigateByUrl("backoffice/users/edit");
     this.user.userIsEditing = true;
+    console.log(this.row[realIndex]);
   }
 
   deleteUser(i: number) {
