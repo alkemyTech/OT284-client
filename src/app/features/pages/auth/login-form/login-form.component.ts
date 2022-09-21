@@ -47,6 +47,7 @@ export class LoginFormComponent implements OnInit {
     this.authService.login(email, password).subscribe({
       next: (response) => {
         console.log(response);
+        localStorage.setItem('UserData', JSON.stringify(response));
       },
       error: (error) => {
         console.error(`error : ${error}`);

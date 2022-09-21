@@ -34,6 +34,7 @@ export class AuthButtonsComponent implements OnInit {
         timer: 1500
       }).finally(() => {
         localStorage.removeItem('uid');
+        localStorage.removeItem('UserData');
         this.router.navigate(['/login']);
       })
     })

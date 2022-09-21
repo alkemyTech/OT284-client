@@ -86,7 +86,9 @@ export class RegisterFormComponent implements OnInit {
         showConfirmButton: false,
         timer: 2000
       }).finally(() => {
-        this.router.navigate(['/login']);
+        this.authService.logoutFirebase()
+        .then()
+        .catch( error => console.error(`error: ${error}`));
       })
 
     })
@@ -98,6 +100,8 @@ export class RegisterFormComponent implements OnInit {
         text: 'El email ya esta registrado.'
       })
     });
+
+    this.router.navigate(['/login']);
     
   }
 
