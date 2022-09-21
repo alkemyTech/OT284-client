@@ -57,6 +57,16 @@ export class CategoriesEffects {
     )
   );
 
+  searchCategory$ = createEffect(() => this.actions$.pipe(
+    ofType('[Category Search] Searching category'),
+    mergeMap((action: any) => this.categoryService.searchCategory(action.query)
+      .pipe(
+        map((categories) => ({ type: '[Category Search] Search category success', categories })),
+        catchError(() => EMPTY)
+      ))
+    )
+  );
+
   constructor(
     private actions$: Actions,
     private categoryService: NewsCategoriesService

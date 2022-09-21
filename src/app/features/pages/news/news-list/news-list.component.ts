@@ -1,14 +1,17 @@
-import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { interval, Subject } from 'rxjs';
 import { debounce, filter, map } from 'rxjs/operators';
 import { NewsCategoriesService } from 'src/app/core/services/news-categories.service';
-import { MatAlertErrorComponent } from 'src/app/shared/components/mat-alert-error/mat-alert-error.component';
+import { deleteNew, loadNews, searchNew } from 'src/app/state/actions/news.action';
+import { AppState } from 'src/app/state/app.state';
 import { Category } from 'src/app/shared/interfaces/category';
-import Swal from 'sweetalert2';
+import { Store } from '@ngrx/store';
 import { newData } from '../models/newM';
+import { selectNews } from 'src/app/state/selectors/news.selector';
+import { Observable } from 'rxjs';
+import Swal from 'sweetalert2';
 import { NewsService } from '../news.service';
 
 @Component({
@@ -17,13 +20,13 @@ import { NewsService } from '../news.service';
   styleUrls: ['./news-list.component.scss']
 })
 export class NewsListComponent implements OnInit {
-  public newsList:newData[]=[]
+  public newsList$:Observable<newData[]>;
   public search=new Subject<any>();
   public linkCrear:string='/backoffice/news/create';
   public linkReference: string='CREAR NOVEDAD';
   displayedColumns: string[] = ['demo-image', 'demo-name', 'demo-date', 'demo-delete', 'demo-modify'];
   
-  constructor(private srcNews:NewsService, private ruta:Router, public dialog: MatDialog, private srcCategory:NewsCategoriesService) { }
+  constructor(private store:Store<AppState>, private srcNews:NewsService, private ruta:Router, public dialog: MatDialog, private srcCategory:NewsCategoriesService) { }
 
   categoriesList:Category[];
   selected='todas';
@@ -73,54 +76,31 @@ export class NewsListComponent implements OnInit {
   }
 
   public verNovedades():void{
-    this.srcNews.verNews().subscribe({
-      next:(Response:newData[])=>{
-        //console.log(Response);
-        this.newsList=Response;
-      },
-      error:(error:HttpErrorResponse)=>{
-        this.dialog.open(MatAlertErrorComponent,{
-          data:{text:"Error al cargar novedades", message:error.message},
-        })
-      }
-    })
+    this.store.dispatch(loadNews());
+    this.newsList$=this.store.select(selectNews);
   }
 
   public obtener(text:string):void{
-    this.srcNews.buscarNews(text).subscribe({
-      next:(Response:newData[])=>{
-        this.newsList=Response
-      },
-      error:(error:HttpErrorResponse)=>{
-        this.dialog.open(MatAlertErrorComponent,{
-          data:{text:"Error al cargar novedades", message:error.message},
-        })
-      }
+    this.srcNews.buscarNews(text).subscribe((Response)=>{
+      this.newsList$=Response;
     })
+    //this.store.dispatch(searchNew({text}));
+    //this.newsList$=this.store.select(selectNews);
   }
 
-  public eliminar(news:newData):void{
+  public eliminar(newToDelete:newData):void{
     Swal.fire({
-      title: `Esta seguro que quiere eliminar la novedad ${news.name}?`,
+      title: `Esta seguro que quiere eliminar la novedad ${newToDelete.name}?`,
       showDenyButton: true,
       showCancelButton: true,
       confirmButtonText: 'Delete',
       denyButtonText: `Don't delete`,
     }).then((result) => {
       if (result.isConfirmed) {
-        this.srcNews.deleteNew(news.id).subscribe({
-          next:(Response:any)=>{
-            //console.log(Response);
-            Swal.fire('Deleted!', '', 'success')
-          },
-          error:(error:HttpErrorResponse)=>{
-            this.dialog.open(MatAlertErrorComponent,{
-              data:{text:"Error al eliminar novedad", message:error.message},
-            })
-          }
-        })
+        this.store.dispatch(deleteNew({newToDelete}));
+        this.newsList$=this.store.select(selectNews);
       } else if (result.isDenied) {
-        Swal.fire('The dish was not deleted', '', 'info')
+        Swal.fire('La novedad no fue eliminada', '', 'info')
       }
     })
     

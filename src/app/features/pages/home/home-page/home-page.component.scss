@@ -8,6 +8,8 @@ $amarillo: #FAFA88;
     .home-header {
         display: flex;
         flex-flow: row wrap;
+        align-items: center;
+        margin-bottom: 2em;
 
         .home-text-bienvenida {
             width: 50%;

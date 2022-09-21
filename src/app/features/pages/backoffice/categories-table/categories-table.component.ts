@@ -1,13 +1,14 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { Category } from '../../../../shared/interfaces/category';
-import { Observable } from 'rxjs';
+import { fromEvent, Observable } from 'rxjs';
 import { MatTable } from '@angular/material/table';
 import Swal from 'sweetalert2';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../../../state/app.state';
-import { selectCategories } from '../../../../state/selectors/categories.selectors';
-import { loadCategories, deleteCategory } from '../../../../state/actions/categories.actions';
+import { selectCategories, selectLoading, selectCategoriesResult } from '../../../../state/selectors/categories.selectors';
+import { loadCategories, deleteCategory, searchCategory } from '../../../../state/actions/categories.actions';
+import { filter, map, debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
 @Component({
   selector: 'app-categories-table',
@@ -16,16 +17,38 @@ import { loadCategories, deleteCategory } from '../../../../state/actions/catego
 })
 export class CategoriesTableComponent implements OnInit {
 
+  @ViewChild('searchInput', {static: true}) searchInput: ElementRef;
   @ViewChild(MatTable) table: MatTable<any>;
 
+  isLoading: boolean;
   dataSource$: Observable<Category[]>;
   displayedColumns: string[] = ['name', 'createdAt', 'edit', 'delete'];
 
   constructor( private router: Router, private store: Store<AppState> ) { }
 
   ngOnInit(): void {
+
     this.store.dispatch(loadCategories());
     this.dataSource$ = this.store.select(selectCategories);
+
+    fromEvent(this.searchInput.nativeElement, 'keyup').pipe(
+      map((event: any) => {
+        return event.target.value;
+      }),
+      debounceTime(500),
+      distinctUntilChanged()
+    ).subscribe((query: string) => {
+      if (query.length > 2) {
+        this.store.dispatch(searchCategory({query}));
+        this.dataSource$ = this.store.select(selectCategoriesResult);
+      } else {
+        this.dataSource$ = this.store.select(selectCategories);
+      }
+    })
+    
+    this.store.select(selectLoading).subscribe(
+      loading => this.isLoading = loading
+    );
   }
 
   onEdit(category: Category) {
