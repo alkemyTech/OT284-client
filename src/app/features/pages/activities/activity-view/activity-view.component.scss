@@ -1,22 +1,37 @@
-app-slides{
+app-slides {
     display: flex;
     flex-direction: column;
     margin-bottom: 10px;
 }
-button span{
+
+button span {
     color: black;
     background-color: black;
 }
 
-.carousel-indicators{
+.carousel-indicators {
     position: relative;
-    button{
+
+    button {
         color: black;
         background-color: black;
     }
 }
 
-#carouselExampleIndicators{
+#carouselExampleIndicators {
     display: flex;
     flex-direction: column;
+    width: 70%;
+    padding: 10px;
+}
+
+.contenedor-view {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.title {
+    width: 100%;
 }

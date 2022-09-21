@@ -3,7 +3,6 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { NewsHomeService } from 'src/app/core/services/news-home.service';
 import { MatAlertDialogComponent } from 'src/app/shared/components/mat-alert-dialog/mat-alert-dialog.component';
-import { environment } from 'src/environments/environment';
 import { Novedad } from '../../news/models/newM';
 
 @Component({
@@ -17,7 +16,7 @@ export class HomePageComponent implements OnInit {
   textoBienvenida: string = 'Texto de Bienvenida que despues sera consumido de una api';
   slides: any;
   novedades: any;
-  
+
   constructor(private http: NewsHomeService, private dialog: MatDialog, private router: Router) { }
 
   ngOnInit(): void {
