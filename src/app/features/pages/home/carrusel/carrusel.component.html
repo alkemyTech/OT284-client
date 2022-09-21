@@ -1,11 +1,11 @@
 <div id="carousel" class="carousel slide" data-bs-ride="carousel" >
     <div class="carousel-inner" style="border-radius: 20px;">
-        <div *ngFor="let item of listSlider, let i = index" [ngClass]=" i==0 ? 'active' : '' " class="carousel-item"
+        <div *ngFor="let item of listSlider, let i = index" [ngClass]=" i==0 ? 'active' : '' " class="carousel-item myItem"
             data-bs-interval="5000"  >
-            <img src="{{item.image}}" class="d-block w-100" alt="...">
+            <img src="{{item.image}}"  alt="...">
             <div class="carousel-caption d-none d-sm-block">
-                <h5>{{item.title}}</h5>
-                <p> {{item.description}} </p>
+                <h3> <b> {{item.name}} </b> </h3>
+                <div [innerHTML]="item.description" > </div>
             </div>
         </div>
     </div>

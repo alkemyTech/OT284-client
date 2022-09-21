@@ -29,6 +29,7 @@ import { CreateEditActivityComponent } from "./activities/create-edit-activity/c
 import { SlidesViewComponent } from "./slides/slides-view/slides-view.component";
 import { SlidesFormComponent } from "./slides/slides-form/slides-form.component";
 import { CategoriesTableComponent } from "./categories-table/categories-table.component";
+import { ActivitiesPageComponent } from './activities/activities-page/activities-page.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { CategoriesTableComponent } from "./categories-table/categories-table.co
     CategoriesTableComponent,
     SlidesViewComponent,
     SlidesFormComponent,
+    ActivitiesPageComponent,
   ],
   imports: [
     CommonModule,

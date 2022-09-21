@@ -53,15 +53,18 @@ export class CreateEditActivityComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.activity = JSON.parse(this.route.snapshot.paramMap.get('activity')!)
-    this.activity ? this.formType="edit" : this.formType="create"
-   
+    this.formType = this.route.snapshot.paramMap.get('formType')!
+     
     if (this.formType == "edit"){
+      this.activity = JSON.parse(this.route.snapshot.paramMap.get('activity')!) 
       this.form.setValue({
         name: this.activity.name,
         description: this.activity.description,
         image: this.activity.image
       })
+    }
+    else{
+      this.activity = {} as Activity
     }
   }
 
@@ -74,9 +77,12 @@ export class CreateEditActivityComponent implements OnInit {
       this.store.dispatch(editActivity({id: this.activity.id, data:this.form.value}))
     }
     else{
+      this.activity.name = this.form.value.name
+      this.activity.description = this.form.value.description
+      this.activity.created_at = new Date(Date.now())
       this.store.dispatch(addActivity({activity: this.activity}))
     }
-    this.location.historyGo(-2)
+    this.location.historyGo(-1)
   }
 
   fileEvent(event: any) {

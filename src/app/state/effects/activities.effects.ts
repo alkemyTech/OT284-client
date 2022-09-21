@@ -4,7 +4,7 @@ import { Action } from '@ngrx/store';
 import { EMPTY, of } from 'rxjs';
 import { map, mergeMap, catchError } from 'rxjs/operators';
 import { ActivitiesService } from 'src/app/core/services/activities.service';
-import { activitiesActionTypes, addActivitiesError, addActivity, addActivitySuccess, editActivitiesError, editActivity, editActivitySuccess, loadActivitiesError, loadActivitiesSuccess } from '../actions/activities.actions';
+import { activitiesActionTypes, addActivitiesError, addActivity, addActivitySuccess, deleteActivity, deleteActivitySuccess, editActivitiesError, editActivity, editActivitySuccess, loadActivitiesError, loadActivitiesSuccess } from '../actions/activities.actions';
 
 @Injectable()
 export class ActivitiesEffects {
@@ -35,6 +35,16 @@ export class ActivitiesEffects {
       .pipe(
         map((data: any) => editActivitySuccess( data.message )),
         catchError((error: any) => of(editActivitiesError({error})))
+      ))
+    )
+  );
+
+  deleteActivity$ = createEffect(() => this.actions$.pipe(
+    ofType(deleteActivity),
+    mergeMap((action) => this.activitiesService.deleteActivity(action.id)
+      .pipe(
+        map((data: any) => deleteActivitySuccess( data.message )),
+        catchError(() => EMPTY)
       ))
     )
   );

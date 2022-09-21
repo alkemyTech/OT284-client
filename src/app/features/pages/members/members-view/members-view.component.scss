@@ -1,24 +1,25 @@
 .container {
     padding-right: 15px;
     padding-left: 15px;
-    margin-right: auto;
-    margin-left: auto;
     margin-top: 30px;
+    margin-bottom: 30px;
 }
 
-.row {
+.roww {
+    width: 100%;
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
-    justify-content: center;
     gap: 20px;
+    justify-content: center;
 }
 
 .card {
-    flex: 30%;
     max-width: 200px;
     text-align: center;
     border: 0px;
+    margin: 0;
+    padding: 0;
 }
 
 .image-fit {
@@ -26,9 +27,6 @@
     border-radius: 8px;
 }
 
-.negative-margin {
-    margin-top: -20px;
-}
 
 .btn-red {
     background-color: #DB5752;
@@ -37,23 +35,13 @@
 }
 
 .member-description {
-    margin-top: -127px;
-    color: white;
+    position: absolute;
+    width: 100%;
+    bottom: 0px;
     text-shadow: 1px 1px black;
+    color: white;
 }
 
-@media (min-width: 768px) {
-    .container {
-        width: 750px;
-    }
-}
-@media (min-width: 992px) {
-    .container {
-        width: 970px;
-    }
-}
-@media (min-width: 1200px) {
-    .container {
-        width: 1170px;
-    }
+.txt{
+    margin: 0;
 }
