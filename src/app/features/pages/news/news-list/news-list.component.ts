@@ -13,6 +13,8 @@ import { selectNews } from 'src/app/state/selectors/news.selector';
 import { Observable } from 'rxjs';
 import Swal from 'sweetalert2';
 import { NewsService } from '../news.service';
+import { loadCategories } from 'src/app/state/actions/categories.actions';
+import { selectCategories } from 'src/app/state/selectors/categories.selectors';
 
 @Component({
   selector: 'app-news-list',
@@ -28,14 +30,13 @@ export class NewsListComponent implements OnInit {
   
   constructor(private store:Store<AppState>, private srcNews:NewsService, private ruta:Router, public dialog: MatDialog, private srcCategory:NewsCategoriesService) { }
 
-  categoriesList:Category[];
+  categoriesList$:Observable<Category[]>;
   selected='todas';
   buscador:string='';
 
   public getCategories(){
-    this.srcCategory.getCategories().subscribe((data)=>{
-      this.categoriesList=data;
-    })
+    this.store.dispatch(loadCategories());
+    this.categoriesList$=this.store.select(selectCategories);
   }
 
   public searchCat(event:any){
