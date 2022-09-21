@@ -6,33 +6,29 @@ export interface newM{
 export interface newData{
         id: number,
         name: string,
-        slug: null,
+        slug: null | undefined,
         content: string,
         image: string,
-        user_id: number,
+        user_id: number | undefined,
         category_id: number,
         created_at: string,
         updated_at: string,
-        deleted_at: null,
-        group_id: null
+        deleted_at: string | undefined,
+        group_id: null | undefined
   }
-
-export interface newImportantData{
-  id: number,
-  name: string,
-}
 
 export class Novedad{
         id:number;
         name: string;
-        slug: string;
+        slug: null | undefined;
         content: string;
         image: string;
-        user_id: number;
+        user_id: number | undefined;
         category_id: number;
         created_at: string;
         updated_at: string;
-        deleted_at: string;
+        deleted_at: string | undefined;
+        group_id: null | undefined;
 
         constructor(data:any){
           this.id=data.id;
@@ -45,6 +41,7 @@ export class Novedad{
           this.created_at=new Date().toISOString();
           this.updated_at=new Date().toISOString();
           this.deleted_at=new Date().toISOString();
+          this.group_id=data.group_id;
         }
 
 }

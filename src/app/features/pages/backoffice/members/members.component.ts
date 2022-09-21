@@ -45,9 +45,8 @@ export class MembersComponent implements OnInit {
 
   getListMembers(){
     this.store.select(selectMembers).subscribe(
-      (response: any) => {
-        this.members = response.data;
-        console.log(this.members);
+      (members) => {
+        this.members = members;
         this.dataSource = new MatTableDataSource(this.members);
       }
     )
