@@ -132,7 +132,10 @@ export class FormCreateUserComponent
 
       console.log(this.user.status);
       setTimeout(() => {
-        if (this.user.status === "User saved successfully") {
+        if (
+          this.user.status === "User saved successfully" ||
+          this.user.status === "User updated successfully"
+        ) {
           this.router.navigateByUrl("backoffice/users");
         }
       }, 2000);

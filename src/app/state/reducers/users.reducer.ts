@@ -36,13 +36,13 @@ export const usersReducer = createReducer(
   on(createUserActionSucess, (state, { message }) => {
     return { ...state, success: message };
   }),
-  on(editUserActionSucess, (state, { success }) => {
-    return { ...state, success: success };
+  on(editUserActionSucess, (state, { message }) => {
+    return { ...state, success: message };
   }),
-  on(createUserActionError, (state, { message }) => {
-    return { ...state, error: message };
+  on(createUserActionError, (state, { error }) => {
+    return { ...state, error: error.message };
   }),
   on(editUserActionError, (state, { error }) => {
-    return { ...state, error: error };
+    return { ...state, error: error.message };
   })
 );

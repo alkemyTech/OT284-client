@@ -1,8 +1,8 @@
 import { Injectable } from "@angular/core";
 import { Store } from "@ngrx/store";
 
-import { Observable } from "rxjs";
-import { filter, distinct } from "rxjs/operators";
+import { Observable, merge } from "rxjs";
+import { filter } from "rxjs/operators";
 import { AppState } from "src/app/state/app.state";
 import {
   selectUserError,
@@ -15,7 +15,7 @@ import {
 export class UsersService {
   editUserData: any;
   userIsEditing = false;
-  status: string;
+  status: any;
   statusSuccess: string;
   userSuccess: Observable<any>;
   userError: Observable<any>;
@@ -26,25 +26,40 @@ export class UsersService {
     this.userSuccess = this.store.select(selectUserSuccess);
 
     this.userError = this.store.select(selectUserError);
-
+    let new$;
     if (!this.status) {
-      const new$ = this.userError.pipe(
-        filter((a) => a !== null),
-        distinct()
+      new$ = merge(this.userSuccess, this.userError).pipe(
+        filter((a) => a !== null)
       );
-      return new$.subscribe((data) => {
-        this.status = data;
-        console.log(this.status);
-      });
     } else {
-      const new$ = this.userSuccess.pipe(
-        filter((a) => a !== null),
-        distinct()
+      new$ = merge(this.userError, this.userSuccess).pipe(
+        filter((a) => a !== null)
       );
-      return new$.subscribe((data) => {
-        this.status = data;
-        console.log(this.status);
-      });
     }
+
+    return new$.subscribe((data) => {
+      this.status = data;
+    });
+
+    // if (!this.status) {
+    //   const new$ = this.userError.pipe(
+    //     filter((a) => a !== null),
+    //     distinct()
+    //   );
+    //   return new$.subscribe((data) => {
+    //     this.status = data;
+
+    //     console.log(this.status);
+    //   });
+    // } else {
+    //   const new$ = this.userSuccess.pipe(
+    //     filter((a) => a !== null),
+    //     distinct()
+    //   );
+    //   return new$.subscribe((data) => {
+    //     this.status = data;
+    //     console.log(this.status);
+    //   });
+    // }
   }
 }
