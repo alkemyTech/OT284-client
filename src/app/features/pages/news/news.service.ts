@@ -15,7 +15,7 @@ export class NewsService {
   constructor(private ruta: Router, private httpServ:HttpService) { }
 
 
-  public verNews():Observable<newData[]>{
+  public verNews():Observable<any>{
     return this.httpServ.get<newM>(environment.endpoints.novedades.list, false)
     .pipe(map((result)=>result.data));
   }
