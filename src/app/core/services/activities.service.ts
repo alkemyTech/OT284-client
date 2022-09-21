@@ -28,14 +28,24 @@ export class ActivitiesService {
   }
 
   postActivity(actividad: Activity): Observable<any> {
-    return this.httpServ.post(environment.endpoints.actividades.create, actividad);
+    return this.httpServ.post(environment.endpoints.actividades.create, actividad).pipe(
+      map(
+        (resp: any) => resp.data,
+      ),
+      catchError((err:any) => {
+        console.log(err)
+        return throwError(err.message)})
+    );;
   }
 
   putActivity(id: number, actividad: Activity) {
     return this.httpServ.put(environment.endpoints.actividades.edit(id), actividad).pipe(
       map(
         (resp: any) => resp.data
-      )
+      ),
+      catchError((err:any) => {
+        console.log(err)
+        return throwError(err.message)})
     );;
   }
 

@@ -12,6 +12,7 @@ import { activitiesExample } from '../../../activities/activity-view/activities-
 import { EMPTY } from 'rxjs';
 import { MatAlertErrorComponent } from 'src/app/shared/components/mat-alert-error/mat-alert-error.component';
 import { MatDialog } from '@angular/material/dialog';
+import { Actions, ofType } from '@ngrx/effects';
 
 @Component({
   selector: 'app-create-edit-activity',
@@ -29,13 +30,25 @@ export class CreateEditActivityComponent implements OnInit {
   /* activities$: Observable<Activity[]> = this.store.select(state => state.activities); */
 
   constructor(private formB: FormBuilder, private store: Store<AppState>, private route:ActivatedRoute, 
-   private location:Location, public dialog: MatDialog) {
+   private location:Location, public dialog: MatDialog, actions$ :Actions) {
 
     this.form = this.formB.group({
         name:["",[Validators.required]],
         description:["",[Validators.required]],
         image:["",[Validators.required]],
     })
+
+    actions$
+      .pipe(ofType(activitiesActionTypes.addActivitiesError || activitiesActionTypes.editActivitiesError))
+      .subscribe((action:any) => (
+        dialog
+      .open(MatAlertErrorComponent, {
+        data: {
+          text: 'Ha ocurrido un error, Intente de nuevo mas tarde',
+          message: `${action.error}.`,
+        }
+      })
+      ));
 
   }
 

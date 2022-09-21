@@ -4,11 +4,13 @@ import { Activity } from "src/app/shared/interfaces/activity";
 export enum activitiesActionTypes{
     loadActivities = "[Activities View] Load activities ",
     loadActivitiesSuccess = "[Activities View] Load activities success",
-    loadActivitiesError = "[Activities View] Load activities error",
     addActivity= "[Backoffice Activities] add activity",
     addActivitySuccess = "[Backoffice Activities] add activity success",
     editActivity= "[Backoffice Activities] edit activity",
     editActivitySuccess = "[Backoffice Activities] edit activity success",
+    loadActivitiesError = "[Activities View] Load activities error",
+    addActivitiesError = "[Activities View] add activities error",
+    editActivitiesError = "[Activities View] edit activities error",
 }
 
 export const loadActivities = createAction(
@@ -18,11 +20,6 @@ export const loadActivities = createAction(
 export const loadActivitiesSuccess = createAction(
     activitiesActionTypes.loadActivitiesSuccess,
     props<{activities: Activity[]}>()
-);
-
-export const loadActivitiesError = createAction(
-    activitiesActionTypes.loadActivitiesError,
-    props<{error: string}>()
 );
 
 export const addActivity = createAction(
@@ -42,4 +39,17 @@ export const editActivity = createAction(
 export const editActivitySuccess = createAction(
     activitiesActionTypes.editActivitySuccess,
     props<{message: string}>()
+);
+
+export const loadActivitiesError = createAction(
+    activitiesActionTypes.loadActivitiesError,
+    props<{error: string}>()
+);
+export const addActivitiesError = createAction(
+    activitiesActionTypes.addActivitiesError,
+    props<{error: string}>()
+);
+export const editActivitiesError = createAction(
+    activitiesActionTypes.editActivitiesError,
+    props<{error: string}>()
 );
