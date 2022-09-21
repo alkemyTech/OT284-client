@@ -10,6 +10,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./login-form.component.scss']
 })
 export class LoginFormComponent implements OnInit {
+  public responseLogin: any;
   
   public loginForm!: FormGroup;
 
@@ -47,6 +48,7 @@ export class LoginFormComponent implements OnInit {
     this.authService.loginFirebase(email,password)
     .then(response => {
       console.log(response);
+      this.responseLogin = response;
       localStorage.setItem('uid', response.user.uid);
       this.router.navigate(['']);
     })
