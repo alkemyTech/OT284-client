@@ -28,7 +28,7 @@ export class NewsListComponent implements OnInit {
   public search=new Subject<any>();
   public linkCrear:string='/backoffice/news/create';
   public linkReference: string='CREAR NOVEDAD';
-  displayedColumns: string[] = ['demo-image', 'demo-name', 'demo-date', 'demo-delete', 'demo-modify'];
+  displayedColumns: string[] = ['demo-image', 'demo-name', 'demo-date', 'demo-actions'];
   
   constructor(private store:Store<AppState>, private srcNews:NewsService, private ruta:Router, public dialog: MatDialog, private srcCategory:NewsCategoriesService) { }
 
