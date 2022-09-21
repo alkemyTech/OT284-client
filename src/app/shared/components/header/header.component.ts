@@ -11,7 +11,7 @@ export class HeaderComponent implements OnInit {
   public list: any = [
     {
       text: 'Inicio',
-      link: '',
+      link: 'home',
       render: true
     },
     {
