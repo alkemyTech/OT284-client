@@ -54,6 +54,10 @@ export class MemberFormComponent implements OnInit {
   }
 
   onSubmit() {
+    if ( this.form.valid ) {
+      console.log(this.form.value);
+      return;
+    }
     if (this.file) {
       /* check if file extension is valid */
       if( !this.fileExtensionCheck(this.file) ) {
