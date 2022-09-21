@@ -9,6 +9,8 @@ import Swal from 'sweetalert2';
 import Base64UploaderPlugin from 'customBuilder/Base64Upload';
 import { MatAlertErrorComponent } from 'src/app/shared/components/mat-alert-error/mat-alert-error.component';
 import { MatDialog } from '@angular/material/dialog';
+import { Category } from 'src/app/shared/interfaces/category';
+import { NewsCategoriesService } from 'src/app/core/services/news-categories.service';
 
 
 @Component({
@@ -21,15 +23,12 @@ export class NewsFormComponent implements OnInit {
   editorConfig={extraPlugins:[Base64UploaderPlugin]}
   public newModel!: newData;
   private id:number;
-  public categories:any[]=[
-    {id: 2292, name: "Deportes monumento"},
-    {id: 2293, name: "Recaudacion 2022 julio"}
-  ]
+  public categories:Category[]
   public metodo:string="";
   public sendForm!:FormGroup;
   public image!:string;
 
-  constructor(private svcNew:NewsService, private ruta:ActivatedRoute, private formBuilder:FormBuilder,public dialog:MatDialog) {
+  constructor(private srcCategory:NewsCategoriesService,private svcNew:NewsService, private ruta:ActivatedRoute, private formBuilder:FormBuilder,public dialog:MatDialog) {
     this.newModel={
       id: 0, name: "", slug: null, content: "", image: "", user_id: 0, category_id: 0,
       created_at: "", updated_at: "", deleted_at: null, group_id: null
@@ -48,6 +47,13 @@ export class NewsFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.verInputs(this.id);
+    this.getCategories();
+  }
+
+  public getCategories(){
+    this.srcCategory.getCategories().subscribe((categories)=>{
+      this.categories=categories;
+    })
   }
 
   public verInputs(id:number){
