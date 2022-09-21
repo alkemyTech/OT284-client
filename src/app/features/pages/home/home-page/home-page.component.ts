@@ -56,6 +56,8 @@ export class HomePageComponent implements OnInit {
     this.http.getNews().subscribe((data: any) => {
       let arrayNovedades: Novedad[] = data.data;
       this.novedades = arrayNovedades.slice(-3)
+      console.log(this.novedades);
+      
     },
       (error: any) => {
         this.notifyError("Error al obtener los datos de las novedades");

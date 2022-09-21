@@ -11,9 +11,9 @@
         </ng-template>
     </div>
     <div class="pcard-text">
-        <div [innerHTML]="text" ></div>
+        <div [innerHTML]="text | date"></div>
     </div>
     <div class="pcard-extras" >
-        <button class="btn-ver-mas" mat-raised-button (click)="verMas()" >Ver mas</button>
+        <button class="btn-ver-mas" mat-raised-button color="warn" (click)="verMas()" >Ver mas</button>
     </div>
 </div>

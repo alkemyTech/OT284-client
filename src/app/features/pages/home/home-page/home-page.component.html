@@ -46,7 +46,7 @@
       <div class="home-cards-container-2" *ngFor="let item of novedades">
         <app-card (verMasEvent)="verDetallesNovedad($event)" 
           [title]="item.name" [image]="item.image"
-          [text]="item.content" [id]="item.id">
+          [text]="item.created_at" [id]="item.id">
         </app-card>
       </div>
     </div>
