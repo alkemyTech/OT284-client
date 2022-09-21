@@ -1,11 +1,22 @@
 import { createReducer, on } from "@ngrx/store";
 import { userData } from "src/app/shared/interfaces/userInterface";
 import { userState } from "src/app/shared/interfaces/users.state";
-import { loadedUsers, loadUsers } from "../actions/users.actions";
+import {
+  createUserAction,
+  createUserActionError,
+  createUserActionSucess,
+  editUserAction,
+  editUserActionError,
+  editUserActionSucess,
+  loadedUsers,
+  loadUsers,
+} from "../actions/users.actions";
 
 export const initialState: userState = {
   loading: false,
   users: {} as userData,
+  error: null,
+  success: null,
 };
 
 export const usersReducer = createReducer(
@@ -15,5 +26,23 @@ export const usersReducer = createReducer(
   }),
   on(loadedUsers, (state, { users }) => {
     return { ...state, loading: false, users };
+  }),
+  on(createUserAction, (state, { body }) => {
+    return { ...state, body };
+  }),
+  on(editUserAction, (state, { id }) => {
+    return { ...state, id };
+  }),
+  on(createUserActionSucess, (state, { message }) => {
+    return { ...state, success: message };
+  }),
+  on(editUserActionSucess, (state, { success }) => {
+    return { ...state, success: success };
+  }),
+  on(createUserActionError, (state, { message }) => {
+    return { ...state, error: message };
+  }),
+  on(editUserActionError, (state, { error }) => {
+    return { ...state, error: error };
   })
 );

@@ -73,20 +73,6 @@
         Archivo inválido.
       </div>
 
-      <mat-form-field class="example-full-width" appearance="fill">
-        <mat-label>Descripción</mat-label>
-        <input matInput formControlName="description" />
-      </mat-form-field>
-
-      <div
-        class="invalid-inputs"
-        *ngIf="
-          formUser.get('description')?.touched &&
-          formUser.get('description')?.invalid
-        "
-      >
-        La descripción debe tener al menos 10 caracteres.
-      </div>
       <div class="address">
         <mat-form-field class="example-full-width" appearance="fill">
           <mat-label>Direccion</mat-label>
@@ -143,6 +129,9 @@
 
       <div class="invalid-inputs" *ngIf="!formUser.valid && ngForm.submitted">
         Por favor complete todos los campos.
+      </div>
+      <div *ngIf="ngForm.submitted && user.status">
+        {{ user.status }}
       </div>
     </div>
   </form>

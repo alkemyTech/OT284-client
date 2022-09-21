@@ -13,3 +13,13 @@ export const selectUsersLoading = createSelector(
   selectUsersFeature,
   (state: userState) => state.loading
 );
+
+export const selectUserError = createSelector(
+  selectUsersFeature,
+  (state: userState) => state.error
+);
+
+export const selectUserSuccess = createSelector(
+  selectUsersFeature,
+  (state: userState) => state.success
+);

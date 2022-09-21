@@ -8,8 +8,10 @@ export enum UsersActionType {
   deleteUserAction = "[Users] Deleting User",
   deleteUserSucess = "[Users] User Deleted",
   creatingUser = "[User Create] Creating User",
+  creatingUserError = "[User Create] Creating User Error",
   userCreated = "[User Create] User Created",
   EditingUser = "[User Edit] Editing User",
+  EditingUserError = "[User Edit] Editing User Error",
   userEdited = "[User Edit] User Edited",
 }
 
@@ -36,11 +38,27 @@ export const createUserAction = createAction(
   props<{ body: any }>()
 );
 
-export const createUserActionSucess = createAction(UsersActionType.userCreated);
+export const createUserActionSucess = createAction(
+  UsersActionType.userCreated,
+  props<{ message: any }>()
+);
+
+export const createUserActionError = createAction(
+  UsersActionType.creatingUserError,
+  props<{ message: any }>()
+);
 
 export const editUserAction = createAction(
   UsersActionType.EditingUser,
   props<{ id: number; body: any }>()
 );
 
-export const editUserActionSucess = createAction(UsersActionType.userEdited);
+export const editUserActionSucess = createAction(
+  UsersActionType.userEdited,
+  props<{ success: any }>()
+);
+
+export const editUserActionError = createAction(
+  UsersActionType.EditingUserError,
+  props<{ error: any }>()
+);

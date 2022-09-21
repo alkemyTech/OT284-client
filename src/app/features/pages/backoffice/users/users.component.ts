@@ -4,11 +4,16 @@ import { MatPaginator } from "@angular/material/paginator";
 import { MatTableDataSource } from "@angular/material/table";
 import { Router } from "@angular/router";
 import { fromEvent, Observable } from "rxjs";
-import { debounceTime, distinctUntilChanged, map } from "rxjs/operators";
+import {
+  debounceTime,
+  distinctUntilChanged,
+  map,
+  switchMap,
+} from "rxjs/operators";
 import { MatAlertDialogComponent } from "src/app/shared/components/mat-alert-dialog/mat-alert-dialog.component";
 import { UsersService } from "./services/users.service";
 import { userData } from "../../../../shared/interfaces/userInterface";
-import { Store } from "@ngrx/store";
+import { ReducerManager, Store } from "@ngrx/store";
 import {
   deleteUserAction,
   loadUsers,
@@ -18,6 +23,7 @@ import {
   selectUsersLoading,
 } from "src/app/state/selectors/users.selectors";
 import { AppState } from "src/app/state/app.state";
+import { usersReducer } from "src/app/state/reducers/users.reducer";
 
 @Component({
   selector: "app-users",
@@ -25,7 +31,7 @@ import { AppState } from "src/app/state/app.state";
   styleUrls: ["./users.component.scss"],
 })
 export class UsersComponent implements OnInit {
-  displayedColumns: string[] = ["name", "email", "actions"];
+  displayedColumns: string[] = ["role", "name", "email", "actions"];
   dataSource = new MatTableDataSource<userData>();
   @ViewChild("users", { static: true })
   paginator: MatPaginator;
@@ -40,6 +46,7 @@ export class UsersComponent implements OnInit {
   roleSelect: ElementRef;
   loading$: Observable<boolean>;
   selected: number = 0;
+  loadingBoolean = true;
 
   constructor(
     private user: UsersService,
@@ -135,6 +142,10 @@ export class UsersComponent implements OnInit {
 
     this.search();
     this.loading$ = this.store.select(selectUsersLoading);
+    this.loading$.subscribe((data: boolean) => {
+      this.loadingBoolean = data;
+    });
+
     this.store.select(selectUsers).subscribe((data: any) => {
       if (data.data) {
         this.row = data.data;
