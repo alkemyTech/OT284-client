@@ -13,6 +13,8 @@ import { AppState } from 'src/app/state/app.state';
 import { getNew, createNew, editNew } from 'src/app/state/actions/news.action';
 import { Observable } from 'rxjs';
 import { selectNewToEdit, selectResponse } from 'src/app/state/selectors/news.selector';
+import { loadCategories } from 'src/app/state/actions/categories.actions';
+import { selectCategories } from 'src/app/state/selectors/categories.selectors';
 
 @Component({
   selector: 'app-news-form',
@@ -24,11 +26,11 @@ export class NewsFormComponent implements OnInit {
   editorConfig={extraPlugins:[Base64UploaderPlugin]}
   public newModel$!: Observable<newData>;
   private id:number;
-  public categories:Category[]
+  public categories$:Observable<Category[]>
   public metodo:string="";
   public sendForm!:FormGroup;
 
-  constructor(private store:Store<AppState>,private router:Router, private ruta:ActivatedRoute, private formBuilder:FormBuilder,public dialog:MatDialog) {
+  constructor(private store:Store<AppState>,private router:Router, private ruta:ActivatedRoute, private formBuilder:FormBuilder,public dialog:MatDialog, private srcCategory:NewsCategoriesService ) {
     this.id=this.ruta.snapshot.params['id'];
     this.metodo="post";
     this.sendForm=this.formBuilder.group(
@@ -44,6 +46,11 @@ export class NewsFormComponent implements OnInit {
   ngOnInit(): void {
     this.getCategories();
     if(this.id!==undefined){
+      this.getNewById();
+    }
+  }
+
+  public getNewById(){
       let id=this.id;
       this.store.dispatch(getNew({id}));
       this.newModel$=this.store.select(selectNewToEdit);
@@ -54,13 +61,11 @@ export class NewsFormComponent implements OnInit {
         this.sendForm.controls.image.setValue(`<figure class="image"><img src="${newM.image}"></figure>`);
         this.sendForm.controls.category_id.setValue(newM.category_id)
       })
-    }
   }
 
   public getCategories(){
-    this.srcCategory.getCategories().subscribe((categories)=>{
-      this.categories=categories;
-    })
+    this.store.dispatch(loadCategories());
+    this.categories$=this.store.select(selectCategories);
   }
 
   public enviarNovedad(metodo:string):void{
