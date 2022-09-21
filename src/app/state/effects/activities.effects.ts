@@ -3,7 +3,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { EMPTY } from 'rxjs';
 import { map, mergeMap, catchError } from 'rxjs/operators';
 import { ActivitiesService } from 'src/app/core/services/activities.service';
-import { activitiesActionTypes, addActivity, addActivitySuccess, editActivity, editActivitySuccess, loadActivitiesSuccess } from '../actions/activities.actions';
+import { activitiesActionTypes, addActivity, addActivitySuccess, deleteActivity, deleteActivitySuccess, editActivity, editActivitySuccess, loadActivitiesSuccess } from '../actions/activities.actions';
 
 @Injectable()
 export class ActivitiesEffects {
@@ -33,6 +33,16 @@ export class ActivitiesEffects {
     mergeMap((action) => this.activitiesService.putActivity(action.id,action.data)
       .pipe(
         map((data: any) => editActivitySuccess( data.message )),
+        catchError(() => EMPTY)
+      ))
+    )
+  );
+
+  deleteActivity$ = createEffect(() => this.actions$.pipe(
+    ofType(deleteActivity),
+    mergeMap((action) => this.activitiesService.deleteActivity(action.id)
+      .pipe(
+        map((data: any) => deleteActivitySuccess( data.message )),
         catchError(() => EMPTY)
       ))
     )
