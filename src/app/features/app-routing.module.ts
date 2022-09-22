@@ -23,7 +23,7 @@ const routes: Routes = [
     component: AboutViewComponent
   },
   {
-    path: "",
+    path: "home",
     component: HomePageComponent,
     ...canActivate( () => redirectUnauthorizedTo(['/login'])),
   },

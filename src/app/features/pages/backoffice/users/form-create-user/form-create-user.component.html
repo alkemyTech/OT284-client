@@ -1,149 +1,137 @@
-<div class="wrapper">
-  <h1>Usuarios</h1>
-  <form
-    [formGroup]="formUser"
-    #ngForm="ngForm"
-    (ngSubmit)="onSubmit()"
-    *ngIf="formUser"
-  >
-    <div class="container">
-      <mat-form-field class="example-full-width" appearance="fill">
-        <mat-label>Nombre</mat-label>
-        <input #name matInput name="name" type="text" formControlName="name" />
-      </mat-form-field>
+<form
+  [formGroup]="formUser"
+  #ngForm="ngForm"
+  (ngSubmit)="onSubmit()"
+  *ngIf="formUser"
+>
+  <div class="container">
+    <h1>Usuarios</h1>
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Nombre</mat-label>
+      <input #name matInput name="name" type="text" formControlName="name" />
+    </mat-form-field>
 
-      <div
-        class="invalid-inputs"
-        *ngIf="formUser.get('name')?.touched && formUser.get('name')?.invalid"
-      >
-        El nombre debe tener al menos 4 caracteres.
-      </div>
-
-      <mat-form-field class="example-full-width" appearance="fill">
-        <mat-label>Contraseña</mat-label>
-        <input
-          #password
-          matInput
-          name="password"
-          type="password"
-          formControlName="password"
-        />
-      </mat-form-field>
-
-      <mat-form-field class="example-full-width" appearance="fill">
-        <mat-label>E-mail</mat-label>
-        <input
-          #email
-          matInput
-          name="email"
-          type="email"
-          formControlName="email"
-        />
-      </mat-form-field>
-      <div
-        class="invalid-inputs"
-        *ngIf="formUser.get('email')?.touched && formUser.get('email')?.invalid"
-      >
-        Por favor ingrese un e-mail válido
-      </div>
-
-      <mat-form-field appearance="fill">
-        <mat-label>Rol</mat-label>
-        <mat-select matNativeControl formControlName="role_id">
-          <mat-option value="1">Administrador</mat-option>
-          <mat-option value="2">Usuario</mat-option>
-        </mat-select>
-      </mat-form-field>
-      <div class="upload_profile_photo">
-        <label>Imagen</label>
-        <input
-          id="imageUpload"
-          type="file"
-          name="profile_photo"
-          formControlName="profilePic"
-        />
-      </div>
-      <div
-        class="invalid-inputs"
-        *ngIf="
-          formUser.get('profilePic')?.touched &&
-          formUser.get('profilePic')?.invalid
-        "
-      >
-        Archivo inválido.
-      </div>
-
-      <mat-form-field class="example-full-width" appearance="fill">
-        <mat-label>Descripción</mat-label>
-        <input matInput formControlName="description" />
-      </mat-form-field>
-
-      <div
-        class="invalid-inputs"
-        *ngIf="
-          formUser.get('description')?.touched &&
-          formUser.get('description')?.invalid
-        "
-      >
-        La descripción debe tener al menos 10 caracteres.
-      </div>
-      <div class="address">
-        <mat-form-field class="example-full-width" appearance="fill">
-          <mat-label>Direccion</mat-label>
-          <input
-            #address
-            matInput
-            name="address"
-            type="address"
-            formControlName="address"
-          />
-        </mat-form-field>
-        <button type="button" mat-button color="primary" (click)="openDialog()">
-          Confirmar
-        </button>
-        <div *ngIf="confirmedAddress; else elseBlock2">
-          <mat-icon color="primary">check</mat-icon>
-        </div>
-        <ng-template #elseBlock2>
-          <mat-icon color="warn">cancel</mat-icon>
-        </ng-template>
-      </div>
-      <div
-        class="invalid-inputs"
-        *ngIf="!confirmedAddress && formUser.get('address')?.touched"
-      >
-        Por favor confirma tu dirección
-      </div>
-
-      <div class="address" *ngIf="!user.userIsEditing">
-        <button type="button" (click)="showTerms()" mat-button color="primary">
-          Leer los Términos y Condiciones de la ONG
-        </button>
-      </div>
-      <div class="checkbox" *ngIf="!user.userIsEditing">
-        <mat-checkbox (change)="showOptions($event)"></mat-checkbox>
-        <div>Acepto los términos y condiciones</div>
-      </div>
-      <div
-        class="invalid-inputs"
-        *ngIf="!acceptedTerms && ngForm.submitted && !user.userIsEditing"
-      >
-        Por favor acepte los términos y condiciones
-      </div>
-
-      <button
-        class="submitButton"
-        [disabled]="isDisabled()"
-        type="submit"
-        mat-button
-        color="primary"
-      >
-        Enviar
-      </button>
-
-      <div class="invalid-inputs" *ngIf="!formUser.valid && ngForm.submitted">
-        Por favor complete todos los campos.
-      </div>
+    <div
+      class="invalid-inputs"
+      *ngIf="formUser.get('name')?.touched && formUser.get('name')?.invalid"
+    >
+      El nombre debe tener al menos 4 caracteres.
     </div>
-  </form>
-</div>
+
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Contraseña</mat-label>
+      <input
+        #password
+        matInput
+        name="password"
+        type="password"
+        formControlName="password"
+      />
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>E-mail</mat-label>
+      <input
+        #email
+        matInput
+        name="email"
+        type="email"
+        formControlName="email"
+      />
+    </mat-form-field>
+    <div
+      class="invalid-inputs"
+      *ngIf="formUser.get('email')?.touched && formUser.get('email')?.invalid"
+    >
+      Por favor ingrese un e-mail válido
+    </div>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Rol</mat-label>
+      <mat-select matNativeControl formControlName="role_id">
+        <mat-option value="1">Administrador</mat-option>
+        <mat-option value="2">Usuario</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-label>Subir Imagen</mat-label>
+    <ckeditor
+      [editor]="Editor"
+      matInput
+      [config]="editorConfig"
+      formControlName="profilePic"
+    >
+    </ckeditor>
+
+    <div
+      class="invalid-inputs"
+      *ngIf="
+        formUser.get('profilePic')?.touched &&
+        formUser.get('profilePic')?.invalid
+      "
+    >
+      Archivo inválido.
+    </div>
+
+    <div class="address">
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Direccion</mat-label>
+        <input
+          #address
+          matInput
+          name="address"
+          type="address"
+          formControlName="address"
+        />
+      </mat-form-field>
+      <button type="button" mat-button color="primary" (click)="openDialog()">
+        Confirmar
+      </button>
+      <div *ngIf="confirmedAddress; else elseBlock2">
+        <mat-icon color="primary">check</mat-icon>
+      </div>
+      <ng-template #elseBlock2>
+        <mat-icon color="warn">cancel</mat-icon>
+      </ng-template>
+    </div>
+    <div
+      class="invalid-inputs"
+      *ngIf="!confirmedAddress && formUser.get('address')?.touched"
+    >
+      Por favor confirma tu dirección
+    </div>
+
+    <div class="address" *ngIf="!user.userIsEditing">
+      <button type="button" (click)="showTerms()" mat-button color="primary">
+        Leer los Términos y Condiciones de la ONG
+      </button>
+    </div>
+    <div class="checkbox" *ngIf="!user.userIsEditing">
+      <mat-checkbox (change)="showOptions($event)"></mat-checkbox>
+      <div>Acepto los términos y condiciones</div>
+    </div>
+    <div
+      class="invalid-inputs"
+      *ngIf="!acceptedTerms && ngForm.submitted && !user.userIsEditing"
+    >
+      Por favor acepte los términos y condiciones
+    </div>
+
+    <button
+      class="submitButton"
+      [disabled]="isDisabled()"
+      type="submit"
+      mat-button
+      color="primary"
+    >
+      Enviar
+    </button>
+
+    <div class="invalid-inputs" *ngIf="!formUser.valid && ngForm.submitted">
+      Por favor complete todos los campos.
+    </div>
+    <div *ngIf="ngForm.submitted && user.status">
+      {{ user.status }}
+    </div>
+  </div>
+</form>
