@@ -1,16 +1,19 @@
 import { Injectable } from "@angular/core";
+import { Router } from "@angular/router";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
-import { EMPTY } from "rxjs";
-import { map, mergeMap, catchError } from "rxjs/operators";
+import { EMPTY, of } from "rxjs";
+import { map, mergeMap, catchError, switchMap } from "rxjs/operators";
 import { NewsUsersService } from "src/app/core/services/newsUsers.service";
 import { userData } from "src/app/shared/interfaces/userInterface";
 import { environment } from "src/environments/environment";
 import {
   createUserAction,
+  createUserActionError,
   createUserActionSucess,
   deleteUserAction,
   deleteUserActionSuccess,
   editUserAction,
+  editUserActionError,
   editUserActionSucess,
   loadedUsers,
   loadUsers,
@@ -45,10 +48,14 @@ export class UsersEffects {
   createUser$ = createEffect(() =>
     this.actions$.pipe(
       ofType(createUserAction),
-      mergeMap((action) =>
+      switchMap((action) =>
         this.user.post(action.body).pipe(
-          map(() => createUserActionSucess()),
-          catchError(() => EMPTY)
+          map((data: any) => {
+            return createUserActionSucess(data);
+          }),
+          catchError((error) => {
+            return of(createUserActionError(error));
+          })
         )
       )
     )
@@ -59,12 +66,16 @@ export class UsersEffects {
       ofType(editUserAction),
       mergeMap((action) =>
         this.user.put(action.id, action.body).pipe(
-          map(() => editUserActionSucess()),
-          catchError(() => EMPTY)
+          map((data: any) => editUserActionSucess(data)),
+          catchError((error) => of(editUserActionError(error)))
         )
       )
     )
   );
 
-  constructor(private actions$: Actions, private user: NewsUsersService) {}
+  constructor(
+    private actions$: Actions,
+    private user: NewsUsersService,
+    private router: Router
+  ) {}
 }

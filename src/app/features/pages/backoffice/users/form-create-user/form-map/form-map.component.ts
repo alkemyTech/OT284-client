@@ -22,7 +22,7 @@ export class FormMapComponent implements OnInit {
     const long = this.long;
 
     const mapCoordinates = { lat: lat, lng: long };
-    console.log(mapCoordinates);
+
     const map = new google.maps.Map(
       document.getElementById("map") as HTMLElement,
       {
@@ -45,7 +45,6 @@ export class FormMapComponent implements OnInit {
       this.lat = this.formMap.lat;
       this.long = this.formMap.long;
       this.initMap();
-      console.log(data);
     });
   }
 

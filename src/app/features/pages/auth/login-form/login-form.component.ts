@@ -49,7 +49,7 @@ export class LoginFormComponent implements OnInit {
     .then(response => {
       console.log(response);
       localStorage.setItem('uid', response.user.uid);
-      this.router.navigate(['']);
+      this.router.navigateByUrl('/home')
     })
     .catch(error => {
       console.error(`error : ${error}`);
