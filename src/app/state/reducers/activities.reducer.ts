@@ -16,17 +16,22 @@ export const activitiesReducer = createReducer(
   on(loadActivitiesSuccess, (state,{activities}) =>{
     return {...state, loading:false, activities }
   }),
-  on(addActivity, (state,{activity}) => {
-    return ({...state, activities: state.activities.concat(activity)})
+  on(addActivity, (state) => {
+    return { ...state};
   }),
-  on(addActivitySuccess, (state,{message}) =>{
-    return {...state, message }
+  on(addActivitySuccess, (state,{activity}) =>{
+    return {...state, activities: [...state.activities, activity] }
   }),
-  on(editActivity, (state,{id,data}) => {
-    return { ...state, data };
+  on(editActivity, (state) => {
+    return { ...state};
   }),
-  on(editActivitySuccess, (state,{message}) =>{
-    return {...state, message }
+  on(editActivitySuccess, (state,{activity}) =>{
+    const activities = state.activities.map((item :any) =>{
+      let nActivity = {} as Activity 
+      item.id === activity.id ? nActivity = activity : nActivity = item
+      return nActivity
+    })
+    return { ...state, activities };
   }),
   on(deleteActivity, (state,{id}) => {
     const activities = state.activities.filter((activity: any) => activity.id !== id);

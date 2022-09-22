@@ -11,7 +11,7 @@
                 <ngx-mat-file-input (change)="fileEvent($event)" formControlName="image" matInput placeholder="Seleccione una imagen">
                 </ngx-mat-file-input>
             </mat-form-field>
-            <span *ngIf="form.controls.image.errors?.invalidExtension" class="alert">
+            <span *ngIf="form.controls?.invalidExtension" class="alert">
                 Ingrese un archivo con extension '.jpg' o '.png'
             </span>
           </div>

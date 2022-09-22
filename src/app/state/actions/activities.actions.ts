@@ -28,7 +28,7 @@ export const addActivity = createAction(
 
 export const addActivitySuccess = createAction(
     activitiesActionTypes.addActivitySuccess,
-    props<{message: string}>()
+    props<{activity: Activity}>()
 );
 export const editActivity = createAction(
     activitiesActionTypes.editActivity,
@@ -37,7 +37,7 @@ export const editActivity = createAction(
 
 export const editActivitySuccess = createAction(
     activitiesActionTypes.editActivitySuccess,
-    props<{message: string}>()
+    props<{activity: Activity}>()
 );
 export const deleteActivity = createAction(
     activitiesActionTypes.deleteActivity,

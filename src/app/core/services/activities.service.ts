@@ -16,7 +16,6 @@ export class ActivitiesService {
     return this.httpServ.get<Activity[]>(environment.endpoints.actividades.list).pipe(
       map(
         (resp: any) => resp.data
-        /* (resp: any) => {return resp.data, resp.data.map((image: any) => image.blob())} */
       )
     );;
   }
@@ -26,7 +25,11 @@ export class ActivitiesService {
   }
 
   postActivity(actividad: Activity): Observable<any> {
-    return this.httpServ.post(environment.endpoints.actividades.create, actividad);
+    return this.httpServ.post(environment.endpoints.actividades.create, actividad).pipe(
+      map(
+        (resp: any) => resp.data
+      )
+    );
   }
 
   putActivity(id: number, actividad: Activity) {
