@@ -126,42 +126,48 @@ describe('MemberFormComponent', () => {
     expect(errors['minLength']).toBeFalsy();
   })
 
-  it('should call the onSubmit method when form is submitted', () => {
-    let form = fixture.debugElement.query(By.css('form'));
-    let fnc = spyOn(component, 'onSubmit');
+  // it('should call the onSubmit method when form is submitted', () => {
+  //   let form = fixture.debugElement.query(By.css('form'));
+  //   let fnc = spyOn(component, 'onSubmit');
 
-    form.triggerEventHandler('ngSubmit', null);
-    expect(fnc).toHaveBeenCalled();
-  });
+  //   form.triggerEventHandler('ngSubmit', null);
+  //   expect(fnc).toHaveBeenCalled();
+  // });
 
-  it('should call editMember when form in valid and member is not undefined', () => {
-    let fnc = spyOn(component, 'editMember');
+  it('should call editMember when form is valid and member is not undefined', () => {
     let form = fixture.debugElement.query(By.css('form'));
+    let editMember = spyOn(component, 'editMember');
+
     const data = {
-      deleted_at: null,
-      description: "<p>Asistente social</p>",
-      facebookUrl: "https://www.google.com/",
-      group_id: null,
       id: 858,
-      image: "http://ongapi.alkemy.org/storage/XtV4g2tm8k.png",
-      linkedinUrl: "https://www.google.com/",
       name: "Susana Perez",
+      image: "http://ongapi.alkemy.org/storage/9TvHsxwgIt.png",
+      description: "<p>Asistente social</p>",
+      facebookUrl: "https://www.facebook.com/zuck",
+      linkedinUrl: "https://www.linkedin.com/in/mcordero76/",
+      deleted_at: null,
+      group_id: null
+    }
+
+    const dataForm = {
+      name: "Susana Perez",
+      image: "http://ongapi.alkemy.org/storage/9TvHsxwgIt.png",
+      description: "<p>Asistente social</p>",
+      facebookUrl: "https://www.facebook.com/zuck",
+      linkedinUrl: "https://www.linkedin.com/in/mcordero76/",
     }
 
     component.member = data;
+    component.form.patchValue(dataForm);
+
+    component.form.get('image')?.clearValidators();
+    component.form.get('image')?.updateValueAndValidity();
+
+    form.triggerEventHandler('ngSubmit', null);
+
     expect(component.member).not.toBeUndefined();
-
-    // // component.form.patchValue(data);
-    // form.triggerEventHandler('ngSubmit', null);
-
-    // expect(fnc).toHaveBeenCalled();
-  
-    // component.form.patchValue(data);
-    // fixture.detectChanges();
-    // form.triggerEventHandler('ngSubmit', null);
-
-    // expect(component.form.valid).toBeTruthy();
-    // expect(fnc).toHaveBeenCalled();
+    expect(component.form.valid).toBeTruthy();
+    expect(editMember).toHaveBeenCalled();
   });
 
 });
