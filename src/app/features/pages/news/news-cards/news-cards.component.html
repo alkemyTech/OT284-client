@@ -22,11 +22,13 @@
         <img [src]="new.image" />
       </div>
       <div class="card-body">
-        <div *ngIf="mostrarFechaAct(new.created_at, new.updated_at)">
-          <p>Fecha de actualización: {{ new.updated_at | date: "dd/MM/yy" }}</p>
-        </div>
-        <div *ngIf="!mostrarFechaAct(new.created_at, new.updated_at)">
-          <p>Fecha de creación: {{ new.created_at | date: "dd/MM/yy" }}</p>
+        <div class="fecha">
+          <div *ngIf="mostrarFechaAct(new.created_at, new.updated_at)">
+            <p>Fecha de actualización: {{ new.updated_at | date: "dd/MM/yy" }}</p>
+          </div>
+          <div *ngIf="!mostrarFechaAct(new.created_at, new.updated_at)">
+            <p>Fecha de creación: {{ new.created_at | date: "dd/MM/yy" }}</p>
+          </div>
         </div>
           <button
           type="button"
