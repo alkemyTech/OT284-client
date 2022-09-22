@@ -28,6 +28,11 @@ export const editedCategory = createAction(
     '[Category Edit] Edit success'
 )
 
+export const editCategoryError = createAction(
+    '[Category Edit] Editing category error',
+    props<{ error: any }>()
+)
+
 export const createCategory = createAction(
     '[Category Create] Creating category',
     props<{ category: Category }>()
@@ -35,6 +40,11 @@ export const createCategory = createAction(
 
 export const createdCategory = createAction(
     '[Category Create] Create success'
+)
+
+export const createCategoryError = createAction(
+    '[Category Create] Creating category error',
+    props<{ error: any }>()
 )
 
 export const getCategoryById = createAction(
