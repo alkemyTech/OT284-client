@@ -17,7 +17,7 @@ export const activitiesReducer = createReducer(
     return {...state, loading:false, activities }
   }),
   on(addActivity, (state,{activity}) => {
-    return { ...state, activity };
+    return ({...state, activities: state.activities.concat(activity)})
   }),
   on(addActivitySuccess, (state,{message}) =>{
     return {...state, message }
@@ -29,7 +29,8 @@ export const activitiesReducer = createReducer(
     return {...state, message }
   }),
   on(deleteActivity, (state,{id}) => {
-    return { ...state, id };
+    const activities = state.activities.filter((activity: any) => activity.id !== id);
+    return { ...state, activities };
   }),
   on(deleteActivitySuccess, (state,{message}) =>{
     return {...state, message }

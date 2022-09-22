@@ -74,22 +74,8 @@ img {
   padding: 1rem;
 }
 
-.card__image {
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: contain;
-  border-top-left-radius: 0.25rem;
-  border-top-right-radius: 0.25rem;
-  filter: contrast(70%);
-  //filter: saturate(180%);
-  overflow: hidden;
-  position: relative;
-  transition: filter 0.5s cubic-bezier(.43,.41,.22,.91);;
-  &::before {
-    content: "";
-	  display: block;
-    padding-top: 60.25%; 
-  }
+img{
+ width: 100%;
 }
 
 .card__title {
@@ -115,9 +101,8 @@ img {
 
   input{
     min-height: 40px;
-    background-color: #DB5752;
-    color: white;
-    border: #f0f0f0 solid 1px;
+    color: rgb(4, 4, 4);
+    border: #6f6f6f solid 0.5px;
     border-radius: 5px;
     text-align: center;
   }
