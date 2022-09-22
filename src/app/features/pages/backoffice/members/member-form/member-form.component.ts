@@ -23,6 +23,8 @@ export class MemberFormComponent implements OnInit {
   Editor = ClassicEditor;
   member$!: Observable<Member[]>;
 
+  private imgBase64!: any;
+
   constructor( private fb: FormBuilder, private store: Store<AppState>, private route: ActivatedRoute, private router: Router ) { }
 
   ngOnInit(): void {
@@ -76,6 +78,7 @@ export class MemberFormComponent implements OnInit {
 
   setImageError() {
     this.form.controls['image'].setErrors({'incorrect': true});
+    this.imgBase64 = null;
     if ( this.form.invalid ) {
       this.invalidForm();
     }
@@ -83,35 +86,33 @@ export class MemberFormComponent implements OnInit {
 
   onFileSelected(event: any) {
     this.file = event.target.files[0];
+
     if( !this.fileExtensionCheck(this.file) ) {
       this.setImageError();
+    } else {
+      this.convertFileToBase64(this.file);
+    }
+  }
+
+  convertFileToBase64(file: any) {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      this.imgBase64 = reader.result?.toString();
+      this.form.controls.image.setValue(this.imgBase64);
+      this.form.controls['image'].setErrors(null);
     }
   }
 
   onSubmit() {
     if ( !this.member ) {
       /* create member */
-      if ( this.file && this.fileExtensionCheck(this.file) ) {
-        /* image is valid */
-        this.form.controls['image'].setErrors(null);
-
-        const reader = new FileReader();
-        reader.readAsDataURL(this.file);
-        reader.onload = () => {
-          this.form.value.image = reader.result;
-          if ( this.form.invalid ) {
-            this.invalidForm();
-          } else {
-            this.swalFire();
-            /* make the call to the API */
-            this.createMember();
-          }
-        }
+      if ( this.form.invalid ) {
+        this.invalidForm();
+        return;
       } else {
-        /* there is no image */
-        if ( this.form.invalid ) {
-          this.invalidForm();
-        }
+        this.swalFire();
+        this.createMember();
       }
     } else {
       /* edit category */
@@ -120,13 +121,10 @@ export class MemberFormComponent implements OnInit {
         this.swalFire();
         this.editMember();
         return;
-      }
-      const reader = new FileReader();
-      reader.readAsDataURL(this.file);
-      reader.onload = () => {
-        this.form.value.image = reader.result;
+      } else {
         if ( this.form.invalid ) {
           this.invalidForm();
+          return;
         } else {
           /* make the call to the API */
           this.swalFire();

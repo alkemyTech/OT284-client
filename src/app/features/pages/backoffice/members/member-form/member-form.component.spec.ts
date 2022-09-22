@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { MemberFormComponent } from './member-form.component';
@@ -14,7 +14,7 @@ describe('MemberFormComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ReactiveFormsModule, CKEditorModule, HttpClientModule, RouterModule.forRoot([]), StoreModule.forRoot(ROOT_REDUCERS)],
+      imports: [ReactiveFormsModule, FormsModule, CKEditorModule, HttpClientModule, RouterModule.forRoot([]), StoreModule.forRoot(ROOT_REDUCERS)],
       declarations: [ MemberFormComponent ]
     })
     .compileComponents();
@@ -126,18 +126,15 @@ describe('MemberFormComponent', () => {
     expect(errors['minLength']).toBeFalsy();
   })
 
-  // it('should call the onSubmit method when form is submitted', () => {
-  //   let form = fixture.debugElement.query(By.css('form'));
-  //   let fnc = spyOn(component, 'onSubmit');
+  it('should call the onSubmit method when form is submitted', () => {
+    let form = fixture.debugElement.query(By.css('form'));
+    let fnc = spyOn(component, 'onSubmit');
 
-  //   form.triggerEventHandler('ngSubmit', null);
-  //   expect(fnc).toHaveBeenCalled();
-  // });
+    form.triggerEventHandler('ngSubmit', null);
+    expect(fnc).toHaveBeenCalled();
+  });
 
   it('should call editMember when form is valid and member is not undefined', () => {
-    let form = fixture.debugElement.query(By.css('form'));
-    let editMember = spyOn(component, 'editMember');
-
     const data = {
       id: 858,
       name: "Susana Perez",
@@ -148,7 +145,7 @@ describe('MemberFormComponent', () => {
       deleted_at: null,
       group_id: null
     }
-
+    
     const dataForm = {
       name: "Susana Perez",
       image: "http://ongapi.alkemy.org/storage/9TvHsxwgIt.png",
@@ -160,6 +157,9 @@ describe('MemberFormComponent', () => {
     component.member = data;
     component.form.patchValue(dataForm);
 
+    let editMember = spyOn(component, 'editMember');
+    let form = fixture.debugElement.query(By.css('form'));
+  
     component.form.get('image')?.clearValidators();
     component.form.get('image')?.updateValueAndValidity();
 
