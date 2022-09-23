@@ -13,3 +13,8 @@ export const selectMembersLoading = createSelector(
     selectMembersFeature,
     (state : memberState) => state.loading
 );
+
+export const selectMember = createSelector(
+    selectMembersFeature,
+    (state: memberState) => state.member
+)

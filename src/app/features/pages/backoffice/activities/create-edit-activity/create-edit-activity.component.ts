@@ -12,6 +12,7 @@ import { activitiesExample } from '../../../activities/activity-view/activities-
 import { EMPTY } from 'rxjs';
 import { MatAlertErrorComponent } from 'src/app/shared/components/mat-alert-error/mat-alert-error.component';
 import { MatDialog } from '@angular/material/dialog';
+import { Actions, ofType } from '@ngrx/effects';
 
 @Component({
   selector: 'app-create-edit-activity',
@@ -29,7 +30,7 @@ export class CreateEditActivityComponent implements OnInit {
   /* activities$: Observable<Activity[]> = this.store.select(state => state.activities); */
 
   constructor(private formB: FormBuilder, private store: Store<AppState>, private route:ActivatedRoute, 
-   private location:Location, public dialog: MatDialog) {
+   private location:Location, public dialog: MatDialog, actions$ :Actions) {
 
     this.form = this.formB.group({
         name:["",[Validators.required]],
@@ -37,18 +38,33 @@ export class CreateEditActivityComponent implements OnInit {
         image:["",[Validators.required]],
     })
 
+    actions$
+      .pipe(ofType(activitiesActionTypes.addActivitiesError || activitiesActionTypes.editActivitiesError))
+      .subscribe((action:any) => (
+        dialog
+      .open(MatAlertErrorComponent, {
+        data: {
+          text: 'Ha ocurrido un error, Intente de nuevo mas tarde',
+          message: `${action.error}.`,
+        }
+      })
+      ));
+
   }
 
   ngOnInit(): void {
-    this.activity = JSON.parse(this.route.snapshot.paramMap.get('activity')!)
-    this.activity ? this.formType="edit" : this.formType="create"
-   
+    this.formType = this.route.snapshot.paramMap.get('formType')!
+     
     if (this.formType == "edit"){
+      this.activity = JSON.parse(this.route.snapshot.paramMap.get('activity')!) 
       this.form.setValue({
         name: this.activity.name,
         description: this.activity.description,
         image: this.activity.image
       })
+    }
+    else{
+      this.activity = {} as Activity
     }
   }
 
@@ -61,9 +77,12 @@ export class CreateEditActivityComponent implements OnInit {
       this.store.dispatch(editActivity({id: this.activity.id, data:this.form.value}))
     }
     else{
+      this.activity.name = this.form.value.name
+      this.activity.description = this.form.value.description
+      this.activity.created_at = new Date(Date.now())
       this.store.dispatch(addActivity({activity: this.activity}))
     }
-    this.location.historyGo(-2)
+    this.location.historyGo(-1)
   }
 
   fileEvent(event: any) {
