@@ -11,7 +11,6 @@ import {
   loadedUsers,
   loadUsers,
 } from "../actions/users.actions";
-import { Observable, throwError } from "rxjs";
 
 export const initialState: userState = {
   loading: false,
