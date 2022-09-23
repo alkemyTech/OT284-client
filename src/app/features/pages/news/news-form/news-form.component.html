@@ -58,7 +58,7 @@
       </mat-form-field><br>
 
       <mat-label>IMAGEN</mat-label>
-      <button type="button" mat-raised-button color="primary" (click)="cleanImg()" class="btn-modificar">BORRAR</button>
+      <button *ngIf="metodo=='put'" type="button" mat-raised-button color="primary" (click)="cleanImg()" class="btn-modificar">BORRAR</button>
       <ckeditor [editor]="Editor" matInput [config]="editorConfig" formControlName="image"
         [ngClass]="{'is-invalid':imagen.errors && imagen.touched}">
       </ckeditor>
