@@ -102,15 +102,12 @@ export class MemberFormComponent implements OnInit {
   convertFileToBase64(file: any) {
     const reader = new FileReader();
     reader.readAsDataURL(file);
-    reader.onload = () => {
+    reader.onload = (_event) => {
       this.imgBase64 = reader.result?.toString();
       this.form.controls.image.setValue(this.imgBase64);
       this.form.controls['image'].setErrors(null);
+      this.image = reader.result;
     }
-
-    const reader = new FileReader();
-    reader.readAsDataURL(this.file);
-    reader.onload = (_event) => this.image = reader.result;
   }
 
   onSubmit() {
@@ -120,14 +117,12 @@ export class MemberFormComponent implements OnInit {
         this.invalidForm();
         return;
       } else {
-        this.swalFire();
         this.createMember();
       }
     } else {
       /* edit category */
       if ( !this.file ) {
         this.form.removeControl('image');
-        this.swalFire();
         this.editMember();
         return;
       } else {
@@ -136,26 +131,20 @@ export class MemberFormComponent implements OnInit {
           return;
         } else {
           /* make the call to the API */
-          this.swalFire();
           this.editMember();
         }
       }
     }
   }
 
-  swalFire() {
+  createMember() {
+    this.store.dispatch(createMember({member: this.form.value}));
+
     Swal.fire({
       allowOutsideClick: false,
       icon: 'info',
       text: 'Espere por favor...',
     });
-
-    Swal.showLoading();
-  }
-
-  createMember() {
-    this.store.dispatch(createMember({member: this.form.value}));
-
     Swal.showLoading();
 
     setTimeout(() => {
@@ -181,6 +170,11 @@ export class MemberFormComponent implements OnInit {
     if ( this.member.id ) {
       this.store.dispatch(editMember({id: this.member.id, member: this.form.value}));
 
+      Swal.fire({
+        allowOutsideClick: false,
+        icon: 'info',
+        text: 'Espere por favor...',
+      });
       Swal.showLoading();
 
       setTimeout(() => {

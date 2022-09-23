@@ -134,6 +134,26 @@ describe('MemberFormComponent', () => {
     expect(fnc).toHaveBeenCalled();
   });
 
+  it('should call createMember when form is valid and member is undefined', () => {    
+    const dataForm = {
+      name: "Susana Perez",
+      image: "http://ongapi.alkemy.org/storage/9TvHsxwgIt.png",
+      description: "<p>Asistente social</p>",
+      facebookUrl: "https://www.facebook.com/zuck",
+      linkedinUrl: "https://www.linkedin.com/in/mcordero76/",
+    }
+
+    component.form.patchValue(dataForm);
+
+    let createMember = spyOn(component, 'createMember');
+  
+    component.onSubmit();
+
+    expect(component.member).toBeUndefined();
+    expect(component.form.valid).toBeTruthy();
+    expect(createMember).toHaveBeenCalled();
+  });
+
   it('should call editMember when form is valid and member is not undefined', () => {
     const data = {
       id: 858,
@@ -145,6 +165,7 @@ describe('MemberFormComponent', () => {
       deleted_at: null,
       group_id: null
     }
+    component.member = data;
     
     const dataForm = {
       name: "Susana Perez",
@@ -153,20 +174,14 @@ describe('MemberFormComponent', () => {
       facebookUrl: "https://www.facebook.com/zuck",
       linkedinUrl: "https://www.linkedin.com/in/mcordero76/",
     }
-
-    component.member = data;
     component.form.patchValue(dataForm);
+    expect(component.form.invalid).toBeFalsy();
 
     let editMember = spyOn(component, 'editMember');
-    let form = fixture.debugElement.query(By.css('form'));
   
-    component.form.get('image')?.clearValidators();
-    component.form.get('image')?.updateValueAndValidity();
-
-    form.triggerEventHandler('ngSubmit', null);
+    component.onSubmit();
 
     expect(component.member).not.toBeUndefined();
-    expect(component.form.valid).toBeTruthy();
     expect(editMember).toHaveBeenCalled();
   });
 
