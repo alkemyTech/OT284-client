@@ -20,15 +20,8 @@ import {
 
 import { Router } from "@angular/router";
 import * as ClassicEditor from "@ckeditor/ckeditor5-build-classic";
-import {
-  filter,
-  last,
-  first,
-  skip,
-  distinctUntilChanged,
-  catchError,
-} from "rxjs/operators";
-import { merge, Observable, of } from "rxjs";
+import { skip, distinctUntilChanged } from "rxjs/operators";
+
 import Base64UploaderPlugin from "customBuilder/Base64Upload";
 import {
   selectUserError,
