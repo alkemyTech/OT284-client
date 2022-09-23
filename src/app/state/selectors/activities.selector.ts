@@ -12,3 +12,7 @@ export const selectLoading = createSelector(
     selectActivitiesFeature,
     (state : activitiesState) => state.loading
 );
+export const selectError = createSelector(
+    selectActivitiesFeature,
+    (state : activitiesState) => state.error
+);
