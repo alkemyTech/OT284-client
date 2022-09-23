@@ -25,7 +25,7 @@
 				<div class="contact-form-container">
 					<section>
 						<app-contact-form (messageResponse)="receiveMessage($event)" class="form"></app-contact-form>
-						<app-map-window [address]="address"></app-map-window>
+						<app-map-window [address]="organization.address"></app-map-window>
 					</section>
 					<div id="form-message-success">
 						{{messageResponse}}
