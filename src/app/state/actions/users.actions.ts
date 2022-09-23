@@ -40,7 +40,7 @@ export const createUserAction = createAction(
 
 export const createUserActionSucess = createAction(
   UsersActionType.userCreated,
-  props<{ message: any }>()
+  props<{ error: any }>()
 );
 
 export const createUserActionError = createAction(
@@ -55,7 +55,7 @@ export const editUserAction = createAction(
 
 export const editUserActionSucess = createAction(
   UsersActionType.userEdited,
-  props<{ message: any }>()
+  props<{ error: any }>()
 );
 
 export const editUserActionError = createAction(

@@ -130,8 +130,6 @@
     <div class="invalid-inputs" *ngIf="!formUser.valid && ngForm.submitted">
       Por favor complete todos los campos.
     </div>
-    <div *ngIf="ngForm.submitted && user.status">
-      {{ user.status }}
-    </div>
+    <div class="invalid-inputs" *ngIf="ngForm.submitted"></div>
   </div>
 </form>
