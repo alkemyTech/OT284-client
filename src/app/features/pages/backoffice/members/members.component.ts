@@ -5,12 +5,11 @@ import { MatAlertDialogComponent } from 'src/app/shared/components/mat-alert-dia
 import { Store } from '@ngrx/store';
 import { fromEvent, Observable } from 'rxjs';
 import { Member } from 'src/app/shared/interfaces/member';
-import { loadMembers } from 'src/app/state/actions/members.actions';
+import { deleteMember, loadMembers } from 'src/app/state/actions/members.actions';
 import { AppState } from 'src/app/state/app.state';
 import { selectMembers, selectMembersLoading } from 'src/app/state/selectors/members.selectors';
 import { MatDialog } from '@angular/material/dialog';
 import { debounceTime, map } from 'rxjs/operators';
-import { NewsMembersService } from 'src/app/core/services/news-members.service';
 
 @Component({
   selector: 'app-members',
@@ -21,9 +20,9 @@ export class MembersComponent implements OnInit {
   loading$: Observable<boolean> = new Observable()
   members: Member[];
   dataSource: MatTableDataSource<any>;
-  displayedColumns: string[] = ['name', 'photo', 'delete', 'edit'];
+  displayedColumns: string[] = ['name', 'photo', 'actions'];
   search_string: string;
-  constructor(private store: Store<AppState>,public dialog: MatDialog,private membersService: NewsMembersService) { }
+  constructor(private store: Store<AppState>,public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.loading$ = this.store.select(selectMembersLoading);
@@ -52,12 +51,12 @@ export class MembersComponent implements OnInit {
     )
   }
 
-  delete(){
+  delete(id:number, name: string){
     this.dialog
       .open(MatAlertDialogComponent, {
         data: {
           title: "Confirmación",
-          message: `¿Estás seguro que deseas borrar el miembro?`,
+          message: `¿Estás seguro que deseas eliminar a '${name}' ?`,
           confirmText: "Sí",
           cancelText: "No",
         },
@@ -65,7 +64,7 @@ export class MembersComponent implements OnInit {
       .afterClosed()
       .subscribe((confirmado: Boolean) => {
         if (confirmado) {
-          
+          this.store.dispatch(deleteMember({id}))
         }
       });
   }
