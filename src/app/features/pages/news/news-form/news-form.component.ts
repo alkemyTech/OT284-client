@@ -6,11 +6,15 @@ import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import Swal from 'sweetalert2';
 import Base64UploaderPlugin from 'customBuilder/Base64Upload';
 import { MatDialog } from '@angular/material/dialog';
+import { Category } from 'src/app/shared/interfaces/category';
+import { NewsCategoriesService } from 'src/app/core/services/news-categories.service';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/state/app.state';
 import { getNew, createNew, editNew } from 'src/app/state/actions/news.action';
 import { Observable } from 'rxjs';
 import { selectNewToEdit, selectResponse } from 'src/app/state/selectors/news.selector';
+import { loadCategories } from 'src/app/state/actions/categories.actions';
+import { selectCategories } from 'src/app/state/selectors/categories.selectors';
 
 @Component({
   selector: 'app-news-form',
@@ -22,14 +26,11 @@ export class NewsFormComponent implements OnInit {
   editorConfig={extraPlugins:[Base64UploaderPlugin]}
   public newModel$!: Observable<newData>;
   private id:number;
-  public categories:any[]=[
-    {id: 2292, name: "Deportes monumento"},
-    {id: 2293, name: "Recaudacion 2022 julio"}
-  ]
+  public categories$:Observable<Category[]>
   public metodo:string="";
   public sendForm!:FormGroup;
 
-  constructor(private store:Store<AppState>,private router:Router, private ruta:ActivatedRoute, private formBuilder:FormBuilder,public dialog:MatDialog) {
+  constructor(private store:Store<AppState>,private router:Router, private ruta:ActivatedRoute, private formBuilder:FormBuilder,public dialog:MatDialog, private srcCategory:NewsCategoriesService ) {
     this.id=this.ruta.snapshot.params['id'];
     this.metodo="post";
     this.sendForm=this.formBuilder.group(
@@ -43,7 +44,13 @@ export class NewsFormComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    this.getCategories();
     if(this.id!==undefined){
+      this.getNewById();
+    }
+  }
+
+  public getNewById(){
       let id=this.id;
       this.store.dispatch(getNew({id}));
       this.newModel$=this.store.select(selectNewToEdit);
@@ -54,7 +61,11 @@ export class NewsFormComponent implements OnInit {
         this.sendForm.controls.image.setValue(`<figure class="image"><img src="${newM.image}"></figure>`);
         this.sendForm.controls.category_id.setValue(newM.category_id)
       })
-    }
+  }
+
+  public getCategories(){
+    this.store.dispatch(loadCategories());
+    this.categories$=this.store.select(selectCategories);
   }
 
   public enviarNovedad(metodo:string):void{
