@@ -2,19 +2,17 @@
   color: rgb(37, 37, 37);
 }
 
-.wrapper {
-  width: 100vw;
+.container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-}
-
-form {
+  width: 700px;
   padding: 3rem;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
     rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
     rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  text-align: center;
 }
 
 h1 {
@@ -56,14 +54,6 @@ mat-checkbox {
   margin: 15px 0 15px 0;
 }
 
-.container {
-  display: flex;
-  flex-direction: column;
-  width: 400px;
-  justify-content: center;
-  align-items: center;
-}
-
 .upload_profile_photo {
   display: flex;
   flex-direction: row;
@@ -82,5 +72,10 @@ label {
 
 .invalid-inputs {
   color: red;
+  font-size: 12px;
+}
+
+.user-success {
+  color: green;
   font-size: 12px;
 }

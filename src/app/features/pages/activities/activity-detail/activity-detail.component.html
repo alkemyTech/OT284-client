@@ -4,7 +4,7 @@
       <div class="card">
         <div class="card__image card__image--fence" [ngStyle]="{'background-image': 'url('+activity.image+')'}"></div>
         <div class="card__content">
-          <p class="card__text">{{activity.description}}</p>
+          <p [innerHTML]="activity.description" class="card__text"></p>
           <div class="card__title">{{activity.created_at}}</div>
         </div>
       </div>
