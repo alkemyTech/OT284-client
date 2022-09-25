@@ -17,4 +17,9 @@ export const selectMembersLoading = createSelector(
 export const selectMember = createSelector(
     selectMembersFeature,
     (state: memberState) => state.member
-)
+);
+
+export const selectMemberError = createSelector(
+    selectMembersFeature,
+    (state: memberState) => state.error
+);

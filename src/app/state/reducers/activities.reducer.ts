@@ -1,11 +1,12 @@
 import { createReducer, on } from "@ngrx/store";
 import { activitiesState } from "src/app/shared/interfaces/activities.state";
 import { Activity } from "src/app/shared/interfaces/activity";
-import { addActivity, addActivitySuccess, deleteActivity, deleteActivitySuccess, editActivity, editActivitySuccess, loadActivities, loadActivitiesSuccess } from "../actions/activities.actions";
+import { addActivitiesError, addActivity, addActivitySuccess, deleteActivity, deleteActivitySuccess, editActivitiesError, editActivity, editActivitySuccess, loadActivities, loadActivitiesError, loadActivitiesSuccess } from "../actions/activities.actions";
 
 export const initialState: activitiesState = {
   activities: {} as Activity[],
-  loading:false
+  loading:false,
+  error:""
 };
 
 export const activitiesReducer = createReducer(
@@ -19,11 +20,23 @@ export const activitiesReducer = createReducer(
   on(addActivity, (state) => {
     return { ...state};
   }),
+  on(loadActivitiesError, (state,{error}) =>{
+    return {...state, loading:false, error }
+  }),
+  on(addActivity, (state,{activity}) => {
+    return { ...state, activity };
+  }),
   on(addActivitySuccess, (state,{activity}) =>{
     return {...state, activities: [...state.activities, activity] }
   }),
   on(editActivity, (state) => {
     return { ...state};
+  }),
+  on(addActivitiesError, (state,{error}) =>{
+    return {...state, loading:false, error }
+  }),
+  on(editActivity, (state,{id,data}) => {
+    return { ...state, data };
   }),
   on(editActivitySuccess, (state,{activity}) =>{
     const activities = state.activities.map((item :any) =>{
@@ -39,5 +52,8 @@ export const activitiesReducer = createReducer(
   }),
   on(deleteActivitySuccess, (state,{message}) =>{
     return {...state, message }
+  }),
+  on(editActivitiesError, (state,{error}) =>{
+    return {...state, loading:false, error }
   }),
 );

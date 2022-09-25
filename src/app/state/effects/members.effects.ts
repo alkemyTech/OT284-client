@@ -30,10 +30,10 @@ export class MembersEffects {
 
   createMember$ = createEffect(() => this.actions$.pipe(
     ofType('[Member Create] Creating Member'),
-    mergeMap((action: any) => this.newsMembersService.postMembers(action.category)
+    mergeMap((action: any) => this.newsMembersService.postMembers(action.member)
       .pipe(
         map(() => ({ type: '[Member Create] Create success' })),
-        catchError(() => EMPTY)
+        catchError(async (error) => ({ type: '[Member Create] Creating member error', error }))
       ))
     )
   );
@@ -53,7 +53,7 @@ export class MembersEffects {
     mergeMap((action: any) => this.newsMembersService.putMember(action.id, action.member)
       .pipe(
         map(() => ({ type: '[Member Edit] Edit success' })),
-        catchError(() => EMPTY)
+        catchError(async (error) => ({ type: '[Member Edit] Editing member error', error }))
       ))
     )
   );

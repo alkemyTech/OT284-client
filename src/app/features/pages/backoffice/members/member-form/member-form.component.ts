@@ -9,6 +9,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { getMemberById, createMember, editMember, getMemberByIdSuccess } from '../../../../../state/actions/members.actions';
 import Swal from 'sweetalert2';
 import { selectMembers } from 'src/app/state/selectors/members.selectors';
+import { selectMemberError } from '../../../../../state/selectors/members.selectors';
 
 @Component({
   selector: 'app-member-form',
@@ -20,8 +21,11 @@ export class MemberFormComponent implements OnInit {
   member: Member;
   form!: FormGroup;
   file!: any;
+  image!: any;
   Editor = ClassicEditor;
   member$!: Observable<Member[]>;
+  error$ = this.store.select(selectMemberError);
+  error: any = null;
 
   constructor( private fb: FormBuilder, private store: Store<AppState>, private route: ActivatedRoute, private router: Router ) { }
 
@@ -37,6 +41,7 @@ export class MemberFormComponent implements OnInit {
         
         this.member$.subscribe( member => {
           this.member = member[0];
+          this.image = member[0].image;
           this.form.get('image')?.removeValidators(Validators.required);
           this.form.setValue({
             name: this.member.name,
@@ -70,8 +75,8 @@ export class MemberFormComponent implements OnInit {
 
   /* check if image is jpg or png */
   fileExtensionCheck( file: any ) {
-    const extensionFile = file.type;
-    return ( extensionFile === 'image/jpg' || extensionFile === 'image/png') ? true : false;
+    const extensionFile = file.type.toLowerCase();
+    return ( extensionFile === 'image/jpg' || extensionFile === 'image/png' || extensionFile === 'image/jpeg') ? true : false;
   }
 
   setImageError() {
@@ -86,6 +91,10 @@ export class MemberFormComponent implements OnInit {
     if( !this.fileExtensionCheck(this.file) ) {
       this.setImageError();
     }
+
+    const reader = new FileReader();
+    reader.readAsDataURL(this.file);
+    reader.onload = (_event) => this.image = reader.result;
   }
 
   onSubmit() {
@@ -148,27 +157,51 @@ export class MemberFormComponent implements OnInit {
 
   createMember() {
     this.store.dispatch(createMember({member: this.form.value}));
-    Swal.close();
-    Swal.fire({
-      icon: 'success',
-      title: 'Completado',
-      text: 'Miembro creado con éxito'
-    }).then(() => {
-      this.router.navigateByUrl('/backoffice/members');
-    });
+
+    Swal.showLoading();
+
+    setTimeout(() => {
+      if ( this.error ) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'No se pudo crear el miembro, intente con otro nombre.'
+        })
+      } else {
+        Swal.fire({
+          icon: 'success',
+          title: 'Completado',
+          text: 'Miembro creado con éxito'
+        }).then(() => {
+          this.router.navigateByUrl('/backoffice/members');
+        });
+      }
+    }, 2500)
   }
 
   editMember() {
     if ( this.member.id ) {
       this.store.dispatch(editMember({id: this.member.id, member: this.form.value}));
-      Swal.close();
-      Swal.fire({
-        icon: 'success',
-        title: 'Completado',
-        text: 'Miembro editado con éxito'
-      }).then(() => {
-        this.router.navigateByUrl('/backoffice/members')
-      })
+
+      Swal.showLoading();
+
+      setTimeout(() => {
+        if ( this.error ) {
+          Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'No se pudo editar el miembro, intente con otro nombre.'
+          })
+        } else {
+          Swal.fire({
+            icon: 'success',
+            title: 'Completado',
+            text: 'Miembro editado con éxito'
+          }).then(() => {
+            this.router.navigateByUrl('/backoffice/members');
+          });
+        }
+      }, 2500)
     }
   }
 
