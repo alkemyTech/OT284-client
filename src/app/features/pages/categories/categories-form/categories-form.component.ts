@@ -9,7 +9,7 @@ import { Store } from '@ngrx/store';
 import { AppState } from '../../../../state/app.state';
 import { createCategory, getCategoryById, editCategory } from '../../../../state/actions/categories.actions';
 import { Observable } from 'rxjs/internal/Observable';
-import { selectCategories } from '../../../../state/selectors/categories.selectors';
+import { selectCategories, selectCategoriesError } from '../../../../state/selectors/categories.selectors';
 
 @Component({
   selector: 'app-categories-form',
@@ -23,10 +23,15 @@ export class CategoriesFormComponent implements OnInit {
   file!: any;
   Editor = ClassicEditor;
   category$!: Observable<Category[]>;
+  error$ = this.store.select(selectCategoriesError);
+  error: any = null
 
   constructor( private fb: FormBuilder, private store: Store<AppState>, private route: ActivatedRoute, private router: Router ) { }
 
   ngOnInit(): void {
+
+    this.error$.subscribe(error => this.error = error);
+
     this.createForm();
 
     this.route.params.subscribe( params => {
@@ -66,13 +71,8 @@ export class CategoriesFormComponent implements OnInit {
   }
 
   fileExtensionCheck( file: any ) {
-    const extensionFile = file.type;
-    
-    if ( extensionFile === 'image/jpg' || extensionFile === 'image/png' ) {
-      return true;
-    } 
-
-    return false;
+    const extensionFile = file.type.toLowerCase();
+    return ( extensionFile === 'image/jpg' || extensionFile === 'image/png' || extensionFile === 'image/jpeg') ? true : false;
   }
 
   onFileSelected(event: any) {
@@ -139,14 +139,26 @@ export class CategoriesFormComponent implements OnInit {
 
   createCategory() {
     this.store.dispatch(createCategory({category: this.form.value}));
-    Swal.close();
-    Swal.fire({
-      icon: 'success',
-      title: 'Completado',
-      text: 'Categoría creada con éxito'
-    }).then(() => {
-      this.router.navigateByUrl('/backoffice/categories');
-    });
+    Swal.showLoading();
+    
+    setTimeout(() => {
+      if ( this.error ) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'No se pudo crear la categoría, intente con otro nombre.'
+        })
+      } else {
+        Swal.fire({
+          icon: 'success',
+          title: 'Completado',
+          text: 'Categoría creada con éxito'
+        }).then(() => {
+          this.router.navigateByUrl('/backoffice/categories');
+        });
+      }
+    }, 2500)
+
   }
 
   swalFire() {
@@ -162,14 +174,26 @@ export class CategoriesFormComponent implements OnInit {
   editCategory() {
     if (this.category.id) {
       this.store.dispatch(editCategory({id: this.category.id, category: this.form.value}));
-      Swal.close();
-      Swal.fire({
-        icon: 'success',
-        title: 'Completado',
-        text: 'Categoría editada con éxito'
-      }).then(() => {
-        this.router.navigateByUrl('/backoffice/categories');
-      });
+
+      Swal.showLoading();
+    
+      setTimeout(() => {
+        if ( this.error ) {
+          Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'No se pudo editar la categoría, intente con otro nombre.'
+          })
+        } else {
+          Swal.fire({
+            icon: 'success',
+            title: 'Completado',
+            text: 'Categoría editada con éxito'
+          }).then(() => {
+            this.router.navigateByUrl('/backoffice/categories');
+          });
+        }
+      }, 2500)
     }
   }
 
