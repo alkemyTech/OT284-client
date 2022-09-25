@@ -14,13 +14,8 @@ export class SlidesSearchComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-  }
-
-
-  onKeyUp(event: any) {
     const txtBuscar = <HTMLInputElement>document.getElementById("txtBuscar")!;
     const keyUp = fromEvent(txtBuscar, "keyup");
-
     const result = keyUp.pipe(
       debounceTime(500)
     );
@@ -28,6 +23,5 @@ export class SlidesSearchComponent implements OnInit {
     result.subscribe(() => {
       this.debounceOutput.emit(txtBuscar.value);
     })
-
   }
 }
