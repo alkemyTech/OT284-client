@@ -1,4 +1,8 @@
+import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {  MatDialogModule } from '@angular/material/dialog';
+import { By } from '@angular/platform-browser';
 
 import { ContactFormComponent } from './contact-form.component';
 
@@ -8,7 +12,8 @@ describe('ContactFormComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ContactFormComponent ]
+      imports: [ReactiveFormsModule, FormsModule, HttpClientModule, MatDialogModule],
+      declarations: [ ContactFormComponent]
     })
     .compileComponents();
   });
@@ -16,6 +21,7 @@ describe('ContactFormComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(ContactFormComponent);
     component = fixture.componentInstance;
+
     fixture.detectChanges();
   });
 
@@ -23,7 +29,7 @@ describe('ContactFormComponent', () => {
     expect(component).toBeTruthy();
   });
   const fillForm = () => {
-    setFieldValue( '', "name");
+    setFieldValue( 'es', "name");
     setFieldValue( '', "email");
     setFieldValue( '', "phone");
     setFieldValue( '', "message");
@@ -31,10 +37,30 @@ describe('ContactFormComponent', () => {
 
   it('should not submit on form error', () => {
     fillForm()
-    fixture.debugElement
-   /*  fixture.debugElement.nativeElement.querySelector('#form').triggerEventHandler('submit', {});
+    fixture.detectChanges() 
+    let submitBtn = fixture.debugElement.query(By.css('button'))
+    /* let form = fixture.debugElement.nativeElement.querySelector('#container') */
+    expect(submitBtn.nativeElement.getAttribute('disabled')).toEqual('');
+  });
 
-    expect(signupService.signup).toThrowError */
+  it('invalid form when is empty', () => {
+    expect(component.contactForm.valid).toBeFalsy();
+  });
+
+  it('valid form when fields are correctly loaded ', () => {
+    setFieldValue( 'Emilio', "name");
+    setFieldValue( 'emilio@gmail.com', "email");
+    setFieldValue( '12345678', "phone");
+    setFieldValue( 'Hola', "message");
+    expect(component.contactForm.valid).toBeTruthy();
+  });
+  it('submit button not disable when fields are correctly loaded ', () => {
+    setFieldValue( 'Emilio', "name");
+    setFieldValue( 'emilio@gmail.com', "email");
+    setFieldValue( '12345678', "phone");
+    setFieldValue( 'Hola', "message");
+    let submitBtn = fixture.debugElement.query(By.css('button'))
+    expect(submitBtn.nativeElement.disable).toBeFalsy();
   });
 
   function setFieldValue(value: string, input: any) {
