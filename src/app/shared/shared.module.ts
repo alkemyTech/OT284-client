@@ -21,12 +21,14 @@ import { MapWindowComponent } from "./components/map-window/map-window.component
 import { LeafletModule } from "@asymmetrik/ngx-leaflet";
 import { HeaderComponent } from './components/header/header.component';
 import { SkeletonComponent } from './components/skeleton/skeleton.component';
+import { CardComponent } from "./components/card/card.component";
 
 
 @NgModule({
   declarations: [
     LinkComponent,
     TitleComponent,
+    CardComponent,
     PhonePipe,
     MatAlertDialogComponent,
     AuthButtonsComponent,
@@ -55,6 +57,7 @@ import { SkeletonComponent } from './components/skeleton/skeleton.component';
     SpinnerComponent,
     HeaderComponent,
     SkeletonComponent,
+    CardComponent,
     FooterComponent
   ],
 })
