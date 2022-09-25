@@ -2,9 +2,12 @@ import { Component, OnInit } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
 import { MatTableDataSource } from "@angular/material/table";
 import { Router } from "@angular/router";
+import { Store } from "@ngrx/store";
 import { NewsSlidesService } from "src/app/core/services/news-slides.service";
 import { MatAlertDialogComponent } from "src/app/shared/components/mat-alert-dialog/mat-alert-dialog.component";
 import { Slides } from "src/app/shared/interfaces/slides";
+import { loadSlides } from "src/app/state/actions/slides.action";
+import { selectListSlides, selectSlidesLoading } from "src/app/state/selectors/slides.selector";
 import { SlidesServiceService } from "../slides-form/slides-service.service";
 
 @Component({
@@ -17,8 +20,9 @@ export class SlidesViewComponent implements OnInit {
     private slides: NewsSlidesService,
     public dialog: MatDialog,
     private slidesForm: SlidesServiceService,
-    private router: Router
-  ) {}
+    private router: Router,
+    private store: Store<any>
+  ) { }
   displayedColumns: string[] = ["name", "image", "order", "actions"];
   dataSource = new MatTableDataSource<Slides>();
   row: Slides[];
@@ -58,16 +62,16 @@ export class SlidesViewComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.slides.getSlide().subscribe((data: any) => {
-      this.row = data.data;
-      this.updateTable();
-    });
+    this.searchSlides("");
   }
 
-  filtrarSlides(event: any) {
-    console.log("--", event);
-    this.row = event;
-    this.updateTable();
+  searchSlides(event: any) {
+    this.store.dispatch(loadSlides({ parameters: event }));
+
+    this.store.select(selectListSlides).subscribe((data: Slides[]) => {
+      this.row = data;
+      this.updateTable();
+    })
   }
 
 }

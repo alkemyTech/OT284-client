@@ -11,6 +11,8 @@ import { organizationReducer } from "./reducers/organization.reducer";
 import { usersReducer } from "./reducers/users.reducer";
 import { CategoryState } from '../shared/interfaces/category.state';
 import { categoriesReducer } from './reducers/categories.reducer';
+import { slidesReducer } from "./reducers/slides.reducer";
+import { SlidesState } from "../shared/interfaces/slides.state";
 
 export interface AppState {
   organization: OrganizationState;
@@ -18,7 +20,8 @@ export interface AppState {
   members: memberState;
   news: NewsState;
   categories: CategoryState
-  activities: activitiesState
+  activities: activitiesState,
+  slides: SlidesState
 }
 
 export const ROOT_REDUCERS: ActionReducerMap<AppState> = {
@@ -27,5 +30,6 @@ export const ROOT_REDUCERS: ActionReducerMap<AppState> = {
   members: membersReducer,
   news: newsReducer,
   categories: categoriesReducer,
-  activities: activitiesReducer
+  activities: activitiesReducer,
+  slides: slidesReducer
 };

@@ -1,7 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { fromEvent, interval } from 'rxjs';
-import { debounce, debounceTime, scan } from 'rxjs/operators';
-import { NewsSlidesService } from 'src/app/core/services/news-slides.service';
+import { fromEvent } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
 
 @Component({
   selector: 'app-slides-search',
@@ -12,7 +11,7 @@ export class SlidesSearchComponent implements OnInit {
 
   text: any;
   @Output() debounceOutput: EventEmitter<any> = new EventEmitter<any>();
-  constructor(private http: NewsSlidesService) { }
+  constructor() { }
 
   ngOnInit(): void {
   }
@@ -23,14 +22,11 @@ export class SlidesSearchComponent implements OnInit {
     const keyUp = fromEvent(txtBuscar, "keyup");
 
     const result = keyUp.pipe(
-      scan(i => i++, 1),
       debounceTime(500)
     );
 
     result.subscribe(() => {
-      this.http.getSlideFilter(txtBuscar.value).subscribe((data: any) => {
-        this.debounceOutput.emit(data.data);
-      })
+      this.debounceOutput.emit(txtBuscar.value);
     })
 
   }
