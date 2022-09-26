@@ -1,54 +1,46 @@
 .container-list-members{
     width: 100%;
     min-height: 100vh;
-    background-color: rgb(231, 219, 219);
     padding-top: 5vh;
     padding-bottom: 4vh;
 }
 .search-member{
-    width: 50%;
+    display: block;
+    width: 300px;
+    font-size: 1.5em;
     margin: 0px auto;
-    margin-bottom: 5vh;
-}
-.search-member label,.search-member input{
-    border: 2px solid rgba(33, 32, 32, 0.267);
-}
-.search-member label{
+    margin-bottom: 2vh;
     text-align: center;
-    background-color: #444;
-    color: whitesmoke;
-    width: 30%;
-    padding: 0.5vh;
-    border-top-left-radius: 2em;
-    border-bottom-left-radius: 2em;
-}
-mat-icon{
-    font-size: 2.7em;
-}
-
-.search-member input{
-    font-size: 3em;
-    width: 60%;
-    border-top-right-radius: 2em;
-    border-bottom-right-radius: 2em;
 }
 
 table {
-    width: 60%;
+    width: 50%;
     margin: 0px auto;
 }
 
 table td, table th{
     padding: 1em;
+    text-align: center;
+}
+
+
+table .delete-btn{
+    color: red;
+    cursor: pointer;
+}
+
+table .edit-btn{
+    color: black;
+    margin-right: 1em;
 }
 table img{
-    width: 200px;
-    height: 200px;
+    width: 250px;
+    height: 250px;
 }
 h2{
     display: block;
     text-align: center;
-    font-size: 5em;
+    font-size: 4em;
     padding-bottom: 4vh;
 }
 button{
@@ -87,9 +79,6 @@ button{
     h2{
         font-size: 4em;
     }
-    .search-member{
-        width: 70%;
-    }
     .search-failed h3{
         font-size: 3em;
         line-height: 6vh;
@@ -110,55 +99,23 @@ button{
         height: 150px;
     }
 
-    .search-member{
-        width: 80%;
-    }
-    .search-member input{
-        font-size: 2em;
-        width: 80%;
-    }
-
-    .search-member label{
-        padding-top: 0.2vh;
-        width: 20%;
-    }
-    mat-icon{
-        font-size: 2em;
-    }
 }
 
 @media (max-width: 550px) {
     h2{
         font-size: 2em;
     }
-    table {
-        font-size: 1em;
+    table td{
+        font-size: 0.8em;
     }
 
     table img{
-        width: 100px;
-        height: 100px;
+        width: 110px;
+        height: 110px;
+    }
+
+    table .edit-btn{
+        margin-right: 0;
     }
     
-    table button{
-        font-size: 10px;
-        width: 3em;
-    }
-
-    table td, table th{
-        font-size: 10px;
-    }
-}
-
-@media (max-width: 390px) {
-
-    table img{
-        width: 85px;
-        height: 85px;
-    }
-    
-    table td, table th{
-        padding: 0.5em;
-    }
-
 }

@@ -11,6 +11,7 @@ import { fader, slideInAnimation } from './shared/animations/transitionPagesAnim
 export class AppComponent {
   title:string = 'base-ong-angular-client';
   
+
   constructor() {}
 
 }

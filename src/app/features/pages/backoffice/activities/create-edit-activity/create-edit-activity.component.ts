@@ -4,12 +4,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic'
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
 import { Activity } from 'src/app/shared/interfaces/activity';
-import { activitiesActionTypes, addActivity, editActivity } from 'src/app/state/actions/activities.actions';
+import { activitiesActionTypes, addActivity, editActivity, loadActivities } from 'src/app/state/actions/activities.actions';
 import { AppState } from 'src/app/state/app.state';
-import { activitiesExample } from '../../../activities/activity-view/activities-example';
-import { EMPTY } from 'rxjs';
 import { MatAlertErrorComponent } from 'src/app/shared/components/mat-alert-error/mat-alert-error.component';
 import { MatDialog } from '@angular/material/dialog';
 import { Actions, ofType } from '@ngrx/effects';
@@ -27,7 +24,6 @@ export class CreateEditActivityComponent implements OnInit {
   activity: Activity;
   private imgBase64!: any;
   file!: any;
-  /* activities$: Observable<Activity[]> = this.store.select(state => state.activities); */
 
   constructor(private formB: FormBuilder, private store: Store<AppState>, private route:ActivatedRoute, 
    private location:Location, public dialog: MatDialog, actions$ :Actions) {

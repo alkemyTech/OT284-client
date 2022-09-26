@@ -30,6 +30,11 @@ export const editedMember = createAction(
     '[Member Edit] Edit success'
 )
 
+export const editMemberError = createAction(
+    '[Member Edit] Editing member error',
+    props<{ error: any }>()
+)
+
 export const createMember = createAction(
     '[Member Create] Creating Member',
     props<{ member: Member }>()
@@ -37,6 +42,11 @@ export const createMember = createAction(
 
 export const createdMember = createAction(
     '[Member Create] Create success'
+)
+
+export const createMemberError = createAction(
+    '[Member Create] Creating member error',
+    props<{ error: any }>()
 )
 
 export const getMemberById = createAction(

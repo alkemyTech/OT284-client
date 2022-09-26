@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Auth, GoogleAuthProvider, onAuthStateChanged } from '@angular/fire/auth';
+import { Auth, GoogleAuthProvider } from '@angular/fire/auth';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from '@angular/fire/auth';
 import { getAuth, signInWithPopup } from '@firebase/auth';
 import { Router } from '@angular/router';

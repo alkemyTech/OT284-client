@@ -3,6 +3,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { EMPTY } from 'rxjs';
 import { map, mergeMap, catchError } from 'rxjs/operators';
 import { NewsCategoriesService } from '../../core/services/news-categories.service';
+import { createCategoryError } from '../actions/categories.actions';
 
 @Injectable()
 export class CategoriesEffects {
@@ -32,10 +33,9 @@ export class CategoriesEffects {
     mergeMap((action: any) => this.categoryService.createCategory(action.category)
       .pipe(
         map(() => ({ type: '[Category Create] Create success' })),
-        catchError(() => EMPTY)
+        catchError(async (error) => ({ type: '[Category Create] Creating category error', error })))
       ))
-    )
-  );
+    );
 
   loadCategory$ = createEffect(() => this.actions$.pipe(
     ofType('[Category Form] Get Category by id'),
@@ -52,7 +52,7 @@ export class CategoriesEffects {
     mergeMap((action: any) => this.categoryService.updateCategory(action.id, action.category)
       .pipe(
         map(() => ({ type: '[Category Edit] Edit success' })),
-        catchError(() => EMPTY)
+        catchError(async (error) => ({ type: '[Category Edit] Editing category error', error }))
       ))
     )
   );

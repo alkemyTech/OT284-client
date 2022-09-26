@@ -17,14 +17,20 @@ export const activitiesReducer = createReducer(
   on(loadActivitiesSuccess, (state,{activities}) =>{
     return {...state, loading:false, activities }
   }),
+  on(addActivity, (state) => {
+    return { ...state};
+  }),
   on(loadActivitiesError, (state,{error}) =>{
     return {...state, loading:false, error }
   }),
   on(addActivity, (state,{activity}) => {
     return { ...state, activity };
   }),
-  on(addActivitySuccess, (state,{message}) =>{
-    return {...state, message }
+  on(addActivitySuccess, (state,{activity}) =>{
+    return {...state, activities: [...state.activities, activity] }
+  }),
+  on(editActivity, (state) => {
+    return { ...state};
   }),
   on(addActivitiesError, (state,{error}) =>{
     return {...state, loading:false, error }
@@ -32,11 +38,17 @@ export const activitiesReducer = createReducer(
   on(editActivity, (state,{id,data}) => {
     return { ...state, data };
   }),
-  on(editActivitySuccess, (state,{message}) =>{
-    return {...state, message }
+  on(editActivitySuccess, (state,{activity}) =>{
+    const activities = state.activities.map((item :any) =>{
+      let nActivity = {} as Activity 
+      item.id === activity.id ? nActivity = activity : nActivity = item
+      return nActivity
+    })
+    return { ...state, activities };
   }),
   on(deleteActivity, (state,{id}) => {
-    return { ...state, id };
+    const activities = state.activities.filter((activity: any) => activity.id !== id);
+    return { ...state, activities };
   }),
   on(deleteActivitySuccess, (state,{message}) =>{
     return {...state, message }

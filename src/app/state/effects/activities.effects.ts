@@ -4,6 +4,7 @@ import { Action } from '@ngrx/store';
 import { EMPTY, of } from 'rxjs';
 import { map, mergeMap, catchError } from 'rxjs/operators';
 import { ActivitiesService } from 'src/app/core/services/activities.service';
+import { Activity } from 'src/app/shared/interfaces/activity';
 import { activitiesActionTypes, addActivitiesError, addActivity, addActivitySuccess, deleteActivity, deleteActivitySuccess, editActivitiesError, editActivity, editActivitySuccess, loadActivitiesError, loadActivitiesSuccess } from '../actions/activities.actions';
 
 @Injectable()

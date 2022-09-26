@@ -1,11 +1,4 @@
-import {
-  AfterViewInit,
-  Component,
-  ElementRef,
-  OnDestroy,
-  OnInit,
-  ViewChild,
-} from "@angular/core";
+import { AfterViewInit, Component, OnDestroy, OnInit } from "@angular/core";
 import {
   AbstractControl,
   FormControl,
@@ -21,8 +14,7 @@ import { Slides } from "src/app/shared/interfaces/slides";
 import Swal from "sweetalert2";
 import { map } from "rxjs/operators";
 import { SlidesServiceService } from "./slides-service.service";
-
-import { environment } from "src/environments/environment";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-slides-form",
@@ -45,7 +37,8 @@ export class SlidesFormComponent implements OnInit, AfterViewInit, OnDestroy {
 
   constructor(
     private slides: NewsSlidesService,
-    private slideForm: SlidesServiceService
+    private slideForm: SlidesServiceService,
+    private router: Router
   ) {}
 
   validExtensions(control: AbstractControl) {
@@ -93,7 +86,7 @@ export class SlidesFormComponent implements OnInit, AfterViewInit, OnDestroy {
               Swal.fire({
                 icon: "success",
                 text: "Slide creada con éxito",
-              });
+              }).then(() => this.router.navigateByUrl("backoffice/slides"));
               console.log(data);
             },
             error: (error) => {
@@ -121,8 +114,7 @@ export class SlidesFormComponent implements OnInit, AfterViewInit, OnDestroy {
               Swal.fire({
                 icon: "success",
                 text: "Slide editada con éxito",
-              });
-              console.log(data);
+              }).then(() => this.router.navigateByUrl("backoffice/slides"));
             },
             error: (error) => {
               console.log(error);
@@ -144,18 +136,8 @@ export class SlidesFormComponent implements OnInit, AfterViewInit, OnDestroy {
     }
   }
 
-  toDataUrl(url: string, callback: any) {
-    const xhr = new XMLHttpRequest();
-    xhr.onload = function () {
-      const reader = new FileReader();
-      reader.onloadend = function () {
-        callback(reader.result);
-      };
-      reader.readAsDataURL(xhr.response);
-    };
-    xhr.open("GET", url);
-    xhr.responseType = "blob";
-    xhr.send();
+  deleteImage() {
+    this.formSlides.controls["image"].setValue("");
   }
 
   private obtenerImg(image: string) {
@@ -176,11 +158,9 @@ export class SlidesFormComponent implements OnInit, AfterViewInit, OnDestroy {
         this.slideForm.editSlideData.order
       );
 
-      const proxyUrl = "https://cors-anywhere.herokuapp.com/",
-        targetUrl = this.slideForm.editSlideData.image;
-      this.toDataUrl(proxyUrl + targetUrl, (data: any) => {
-        this.formSlides.controls.image.setValue(`<img src="${data}"></img>`);
-      });
+      this.formSlides.controls.image.setValue(
+        `<img src="${this.slideForm.editSlideData.image}"></img>`
+      );
 
       this.formSlides.controls["order"].clearValidators();
       this.formSlides.controls["order"].setValidators(Validators.required);
