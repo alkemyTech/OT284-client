@@ -25,3 +25,13 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+
+## Documentacion test Formulario Login y peticion login a Firebase
+
+1_ Valido que el formulario sea invalido solo ingresando password.
+2_ Valido que el formulario sea invalido solo ingresando email.
+3_ Valido que el formulario sea invalido porque la contraseña no cumple con: longitud mínima de 6 caraceteres, y contener al menos un número, una letra y un símbolo (por ejemplo: @#$%).
+4_ Valido que el formulario sea valido.
+5_ Valido que el login de Firebase sea exitoso.
+6_ Valido que al ingresar un usuario que no existe el login de firebase falle.

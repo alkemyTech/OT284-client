@@ -5,8 +5,8 @@ export interface Member {
     description: string;
     facebookUrl: string;
     linkedinUrl: string;
-    created_at:  Date;
-    updated_at:  Date;
-    deleted_at:  null;
+    created_at?:  Date;
+    updated_at?:  Date;
+    deleted_at?:  null;
     group_id:    null;
 }

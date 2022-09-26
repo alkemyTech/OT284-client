@@ -5,6 +5,13 @@
       <mat-label>Busque novedad por título</mat-label>
       <input matInput>
     </mat-form-field>
+    -
+    <mat-form-field appearance="fill" class="categories-field">
+      <mat-label>Categoria</mat-label>
+      <mat-select [(value)]="categoryName">
+        <mat-option *ngFor="let category of categoriesList" (onSelectionChange)="searchCat($event)" [value]="category">{{category}}</mat-option>
+      </mat-select>
+    </mat-form-field>
 </form>
 
 <div [style.margin.px]="5" class="boton">
@@ -16,32 +23,32 @@
 <table mat-table class="mat-elevation-z8 demo-table" [dataSource]="newsList$">
     <!--Imagen -->
     <ng-container matColumnDef="demo-image">
-      <th mat-header-cell *matHeaderCellDef> Imagen </th>
+      <th mat-header-cell *matHeaderCellDef> IMAGEN </th>
       <td mat-cell *matCellDef="let new"> <img [src]="new.image"></td>
     </ng-container>
   
     <!-- Name -->
     <ng-container matColumnDef="demo-name">
-      <th mat-header-cell *matHeaderCellDef> Titulo </th>
+      <th mat-header-cell *matHeaderCellDef class="title"> TITULO </th>
       <td mat-cell *matCellDef="let new"> {{new.name}} </td>
     </ng-container>
   
     <!-- Created_At -->
     <ng-container matColumnDef="demo-date">
-      <th mat-header-cell *matHeaderCellDef> Fecha de creación </th>
-      <td mat-cell *matCellDef="let new"> {{new.created_at | date :'dd/MM/yy'}} </td>
-    </ng-container>
-  
-    <!-- Delete action -->
-    <ng-container matColumnDef="demo-delete">
-      <th mat-header-cell *matHeaderCellDef>  </th>
-      <td mat-cell *matCellDef="let new"> <button type="button" (click)="eliminar(new)" mat-raised-button color="warn">ELIMINAR</button></td>
+      <th mat-header-cell *matHeaderCellDef> FECHA DE CREACIÓN </th>
+      <td mat-cell *matCellDef="let new"> {{new.created_at | date :'dd/MM/yyyy'}} </td>
     </ng-container>
 
-    <!-- Modify action -->
-    <ng-container matColumnDef="demo-modify">
-        <th mat-header-cell *matHeaderCellDef> </th>
-        <td mat-cell *matCellDef="let new"> <button type="button" (click)="modificar(new.id)" mat-raised-button color="primary">MODIFICAR</button></td>
+      <ng-container matColumnDef="demo-actions" >
+        <th mat-header-cell *matHeaderCellDef > ACCIONES</th>
+        <td mat-cell *matCellDef="let new">
+          <a mat-icon-button (click)="modificar(new.id)">
+            <mat-icon color="primary">edit</mat-icon>
+          </a>
+          <a mat-icon-button (click)="eliminar(new)">
+            <mat-icon color="warn">delete</mat-icon>
+          </a>
+        </td>
       </ng-container>
   
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

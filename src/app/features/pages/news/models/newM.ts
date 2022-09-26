@@ -8,7 +8,7 @@ export interface newData{
         name: string,
         slug: null | undefined,
         content: string,
-        image: string,
+        image?: string,
         user_id: number | undefined,
         category_id: number,
         created_at: string,
@@ -22,7 +22,7 @@ export class Novedad{
         name: string;
         slug: null | undefined;
         content: string;
-        image: string;
+        image?:  string;
         user_id: number | undefined;
         category_id: number;
         created_at: string;

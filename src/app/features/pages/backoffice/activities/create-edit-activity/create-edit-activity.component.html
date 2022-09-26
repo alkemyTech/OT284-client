@@ -1,25 +1,26 @@
-<app-title  *ngIf="activity!" title={{activity.name}}></app-title>
+<app-title   [title]="activity.name==null ? 'CREACION DE ACTIVIDAD' : activity.name"></app-title>
 <div class="cards">
     <form class="cards__item" [formGroup]="form" (ngSubmit)="onSubmit()">
       <div class="card"  >
-
-        <div class="input_text" >
-          <input type=”text”  placeholder="Nombre" formControlName="name"/>
-          <span *ngIf="form.controls.name?.hasError('required')" class="alert">
-              El campo "Nombre" es requerido
-          </span>
-        </div>
-
-        <div class="card__image card__image--fence" [ngStyle]="{'background-image': 'url('+activity.image+')'}">
+        <div >
+          <div>
+            <img [src]="activity.image! ? activity.image : '../../../../../../assets/img/placeholder.jpg'" alt="Imagen de actividad">
+          </div>
           <div class="contenedor-input">
             <mat-form-field class="form-field" appearance="fill">
                 <ngx-mat-file-input (change)="fileEvent($event)" formControlName="image" matInput placeholder="Seleccione una imagen">
                 </ngx-mat-file-input>
             </mat-form-field>
-            <span *ngIf="form.controls.image.errors?.invalidExtension" class="alert">
+            <span *ngIf="form.controls?.invalidExtension" class="alert">
                 Ingrese un archivo con extension '.jpg' o '.png'
             </span>
+          </div>
         </div>
+        <div class="input_text" >
+          <input type=”text”  placeholder="Nombre de la actividad" formControlName="name"/>
+          <span *ngIf="form.controls.name?.hasError('required')" class="alert">
+              El campo "Nombre" es requerido
+          </span>
         </div>
         <div class="card__content">
           <div class="contenedor-input">
@@ -29,8 +30,8 @@
                 La descripcion es requerida
             </span>
             </div>
-          <div *ngIf="activity!" class="card__title">{{activity.created_at}}</div>
-          <button type=”submit” >ENVIAR</button>
+          <div *ngIf="activity!" class="card__title">{{activity.created_at | date:'dd/MM/yyyy'}}</div>
+          <button type=”submit” mat-raised-button color="warn">ENVIAR</button>
         </div>
       </div>
     </form>
