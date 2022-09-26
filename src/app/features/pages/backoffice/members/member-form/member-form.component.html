@@ -12,6 +12,9 @@
                     </mat-error>
                 </mat-form-field>
                 <div class="margin-y">
+                    <div *ngIf="image" class="mb-3">
+                        <img class="image-fit" src="{{image}}" alt="" srcset="">
+                    </div>
                     <input (change)="onFileSelected($event)" type="file" class="item-center" id="imagen">
                     <mat-error *ngIf="invalidInput('image')">
                         La imagen es obligatoria. (Debe ser .png o .jpg)

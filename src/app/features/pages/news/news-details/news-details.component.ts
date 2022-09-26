@@ -30,7 +30,7 @@ export class NewsDetailsComponent implements OnInit {
     this.svc.getNewModel(id).subscribe({
       next:(data:newData)=>{
         this.myTitle=data.name;
-        this.srcImg=data.image;
+        this.srcImg!=data.image;
         this.isLoading=false;
         this.content=data.content;
       },

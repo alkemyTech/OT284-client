@@ -28,7 +28,7 @@ export class NewsCategoriesService {
 
   getCategories(): Observable<Category[]> {
     return this.http.get(environment.endpoints.categories.list).pipe(
-      map( (resp: any) => resp.data)
+      map( (resp: any) => resp.data.reverse())
     );
   }
 

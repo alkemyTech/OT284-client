@@ -34,3 +34,12 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 4_ Valido que el boton de submmit sea disable cuando los campos son incorrecto
 5_ Valido que el boton de submmit sea enable cuando los campos son correctos
 6_ Valido que al hacer subbmit se llame al metodo sendMessage y que la respuesta sea igual a la mockeada.
+
+## Documentacion test Formulario Login y peticion login a Firebase
+
+1_ Valido que el formulario sea invalido solo ingresando password.
+2_ Valido que el formulario sea invalido solo ingresando email.
+3_ Valido que el formulario sea invalido porque la contraseña no cumple con: longitud mínima de 6 caraceteres, y contener al menos un número, una letra y un símbolo (por ejemplo: @#$%).
+4_ Valido que el formulario sea valido.
+5_ Valido que el login de Firebase sea exitoso.
+6_ Valido que al ingresar un usuario que no existe el login de firebase falle.

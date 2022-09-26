@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { NewsHomeService } from 'src/app/core/services/news-home.service';
 import { MatAlertDialogComponent } from 'src/app/shared/components/mat-alert-dialog/mat-alert-dialog.component';
+import { Novedad } from '../../news/models/newM';
 
 @Component({
   selector: 'app-home-page',
@@ -12,9 +14,10 @@ export class HomePageComponent implements OnInit {
 
   loading: boolean = true;
   textoBienvenida: string = 'Texto de Bienvenida que despues sera consumido de una api';
-  slides:any;
-  novedades:any;
-  constructor(private http: NewsHomeService, private dialog: MatDialog) { }
+  slides: any;
+  novedades: any;
+
+  constructor(private http: NewsHomeService, private dialog: MatDialog, private router: Router) { }
 
   ngOnInit(): void {
     this.getSlides();
@@ -23,7 +26,7 @@ export class HomePageComponent implements OnInit {
   }
 
 
-  getSlides() { 
+  getSlides() {
     this.loading = true;
     this.http.getSlides().subscribe((data: any) => {
       this.slides = data.data;
@@ -51,7 +54,10 @@ export class HomePageComponent implements OnInit {
   getNovedades() {
     this.loading = true;
     this.http.getNews().subscribe((data: any) => {
-      this.novedades = data.data
+      let arrayNovedades: Novedad[] = data.data;
+      this.novedades = arrayNovedades.slice(-3)
+      console.log(this.novedades);
+      
     },
       (error: any) => {
         this.notifyError("Error al obtener los datos de las novedades");
@@ -72,5 +78,8 @@ export class HomePageComponent implements OnInit {
       })
   }
 
+  verDetallesNovedad(a: any) {
+    this.router.navigateByUrl('novedades/' + a);
+  }
 
 }

@@ -22,7 +22,7 @@ export class CategoriesTableComponent implements OnInit {
 
   isLoading: boolean;
   dataSource$: Observable<Category[]>;
-  displayedColumns: string[] = ['name', 'createdAt', 'edit', 'delete'];
+  displayedColumns: string[] = ['name', 'createdAt', 'actions'];
 
   constructor( private router: Router, private store: Store<AppState> ) { }
 

@@ -1,11 +1,4 @@
-import {
-  AfterViewInit,
-  Component,
-  ElementRef,
-  OnDestroy,
-  OnInit,
-  ViewChild,
-} from "@angular/core";
+import { AfterViewInit, Component, OnDestroy, OnInit } from "@angular/core";
 import {
   AbstractControl,
   FormControl,
@@ -24,6 +17,18 @@ import {
   createUserAction,
   editUserAction,
 } from "src/app/state/actions/users.actions";
+
+import { Router } from "@angular/router";
+import * as ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import { skip, distinctUntilChanged } from "rxjs/operators";
+
+import Base64UploaderPlugin from "customBuilder/Base64Upload";
+import {
+  selectUserError,
+  selectUserSuccess,
+} from "src/app/state/selectors/users.selectors";
+import Swal from "sweetalert2";
+
 @Component({
   selector: "app-form-create-user",
   templateUrl: "./form-create-user.component.html",
@@ -36,7 +41,8 @@ export class FormCreateUserComponent
     public user: UsersService,
     private formMap: FormMapService,
     public dialog: MatDialog,
-    private store: Store<AppState>
+    private store: Store<AppState>,
+    private router: Router
   ) {}
 
   formUser = new FormGroup({
@@ -48,21 +54,26 @@ export class FormCreateUserComponent
       Validators.required,
       this.validExtensions,
     ]),
-    description: new FormControl("", [
-      Validators.required,
-      Validators.minLength(10),
-    ]),
+
     address: new FormControl("", Validators.required),
   });
   confirmedAddress = false;
   acceptedTerms = false;
 
-  @ViewChild("email", { static: false }) email: ElementRef;
-  @ViewChild("name", { static: false }) name: ElementRef;
-  @ViewChild("password", { static: false }) password: ElementRef;
+  public Editor = ClassicEditor;
+  editorConfig = { extraPlugins: [Base64UploaderPlugin] };
+  userError$ = this.store
+    .select(selectUserError)
+    .pipe(skip(1), distinctUntilChanged());
+
+  userSuccess$ = this.store.select(selectUserSuccess).pipe();
 
   validExtensions(control: AbstractControl) {
-    if (control.value.includes(".jpg") || control.value.includes(".png")) {
+    if (
+      control.value.includes("jpg") ||
+      control.value.includes("png") ||
+      control.value.includes("jpeg")
+    ) {
       return null;
     } else {
       return { forbbidenExtension: true };
@@ -99,35 +110,36 @@ export class FormCreateUserComponent
   }
 
   isDisabled(): boolean {
-    if (this.formUser.valid && this.confirmedAddress) {
-      return false;
-    } else {
-      return true;
-    }
+    return !(this.formUser.valid &&
+    this.confirmedAddress &&
+    this.user.userIsEditing
+      ? true
+      : this.acceptedTerms);
   }
 
   onSubmit() {
+    const profilePic = this.obtenerImg(this.formUser.value.profilePic);
+
     if (this.formUser.valid && this.confirmedAddress) {
       if (!this.user.editUserData) {
-        if (this.acceptedTerms) {
-          this.store.dispatch(
-            createUserAction({
-              body: {
-                name: this.formUser.value.name,
-                email: this.formUser.value.email,
-                role_id: Number(this.formUser.value.role_id),
-                password: this.formUser.value.password,
-                latitude: this.formMap.lat,
-                longitude: this.formMap.long,
-              },
-            })
-          );
-        }
+        this.store.dispatch(
+          createUserAction({
+            body: {
+              name: this.formUser.value.name,
+              email: this.formUser.value.email,
+              role_id: Number(this.formUser.value.role_id),
+              password: this.formUser.value.password,
+              latitude: this.formMap.lat,
+              longitude: this.formMap.long,
+              profile_image: profilePic,
+            },
+          })
+        );
+        this.handleErrors(this.user.userIsEditing);
       } else {
-        const id = this.user.editUserData.id;
         this.store.dispatch(
           editUserAction({
-            id: id,
+            id: this.user.editUserData.id,
             body: {
               name: this.formUser.value.name,
               email: this.formUser.value.email,
@@ -138,15 +150,39 @@ export class FormCreateUserComponent
             },
           })
         );
+        this.handleErrors(this.user.userIsEditing);
       }
     }
   }
 
+  handleErrors(editorCreate: boolean) {
+    this.userError$.subscribe((data) => {
+      if (data === "success") {
+        Swal.fire({
+          icon: "success",
+          text: editorCreate
+            ? "Usuario editado con éxito"
+            : "Usuario creado con éxito",
+        }).then(() => this.router.navigateByUrl("backoffice/users"));
+      } else {
+        Swal.fire({
+          icon: "error",
+          text: "Error al crear el usuario",
+        });
+      }
+    });
+  }
+
+  private obtenerImg(image: string) {
+    let str1 = image.split('src="')[1];
+    return (image = str1.split('"')[0]);
+  }
+
   ngAfterViewInit(): void {
     if (this.user.editUserData) {
-      this.name.nativeElement.value = this.user.editUserData.name;
-      this.email.nativeElement.value = this.user.editUserData.email;
-      this.password.nativeElement.value = this.user.editUserData.password;
+      this.formUser.controls.name.setValue(this.user.editUserData.name);
+      this.formUser.controls.email.setValue(this.user.editUserData.email);
+      this.formUser.controls.password.setValue(this.user.editUserData.password);
     }
   }
 

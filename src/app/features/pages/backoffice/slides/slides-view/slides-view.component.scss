@@ -22,3 +22,12 @@ table {
 img {
   width: 400px;
 }
+
+.mat-header-cell {
+  text-align: center;
+}
+
+.cell {
+  display: flex;
+  justify-content: center;
+}

@@ -1,5 +1,5 @@
 table {
-  width: 75%;
+  width: 100%;
 }
 
 a {
@@ -11,46 +11,6 @@ app-link {
   margin: 2rem 0 2rem 0;
 }
 
-mat-label {
-  font-weight: 500;
-}
-
-.searchInputs {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-}
-.search {
-  display: flex;
-  flex-direction: column;
-  margin-right: 1rem;
-}
-
-.role {
-  display: flex;
-  flex-direction: column;
-}
-
-mat-select {
-  margin: 0 0 1rem 0;
-  padding: 1rem;
-  width: 300px;
-  background-color: rgb(245, 245, 245);
-}
-
-input {
-  border: 1px solid rgba(0, 0, 1, 0.473);
-  width: 300px;
-
-  margin-bottom: 0.7rem;
-  border-radius: 8px;
-  padding: 0.5rem;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
-    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
-    rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
-}
-
 .container {
   display: flex;
   flex-direction: column;
@@ -59,8 +19,20 @@ input {
   width: 100%;
 }
 
+.searchers {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  gap: 2rem;
+}
+
 .paginator {
   display: flex;
-  justify-content: flex-end;
-  width: 75%;
+  justify-content: center;
+
+  width: 100%;
+}
+
+.mat-header-cell {
+  text-align: center;
 }
