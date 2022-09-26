@@ -10,6 +10,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./login-form.component.scss']
 })
 export class LoginFormComponent implements OnInit {
+  public responseLogin: any;
   
   public loginForm!: FormGroup;
 
