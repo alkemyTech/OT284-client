@@ -29,33 +29,39 @@ export class HeaderComponent implements OnInit {
       link: 'actividades',
       render: true
     }
-  
+
   ]
   constructor(public router: Router) { }
 
   ngOnInit(): void {
+    this.actualizarItems();
+  }
+
+  actualizarItems() {
+    this.list = [{
+      text: 'Inicio',
+      link: 'home',
+      render: true
+    },
+    {
+      text: 'Nosotros',
+      link: 'nosotros',
+      render: true
+    },
+    {
+      text: 'Contacto',
+      link: 'contacto',
+      render: true
+    },
+    {
+      text: 'Actividades',
+      link: 'actividades',
+      render: true
+    }]
+
     let user = JSON.parse(localStorage.getItem("UserData") || "{}");
     if (JSON.stringify(user) == "{}") {
-
-      this.list = [
-        {
-          text: 'Inicio',
-          link: '',
-          render: true
-        },
-        {
-          text: 'Nosotros',
-          link: 'nosotros',
-          render: true
-        },
-        {
-          text: 'Contacto',
-          link: 'contacto',
-          render: true
-        }
-      ]
     } else {
-
       if (user.data.user.role_id == 1) {
         this.list = [
           {
@@ -69,6 +75,11 @@ export class HeaderComponent implements OnInit {
             render: true
           },
           {
+            text: 'Contacto',
+            link: 'contacto',
+            render: true
+          },
+          {
             text: 'Actividades',
             link: 'actividades',
             render: true
@@ -79,7 +90,7 @@ export class HeaderComponent implements OnInit {
             render: true
           },
           {
-            text: 'Escritorio',
+            text: 'Backoffice',
             link: 'backoffice',
             render: true
           }
@@ -97,6 +108,11 @@ export class HeaderComponent implements OnInit {
             render: true
           },
           {
+            text: 'Contacto',
+            link: 'contacto',
+            render: true
+          },
+          {
             text: 'Actividades',
             link: 'actividades',
             render: true
@@ -105,15 +121,14 @@ export class HeaderComponent implements OnInit {
             text: 'Novedades',
             link: 'novedades',
             render: true
-          },
-          {
-            text: 'Contacto',
-            link: 'contacto',
-            render: true
           }
         ]
       }
     }
   }
+
+
+
+
 
 }
