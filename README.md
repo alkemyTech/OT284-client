@@ -45,7 +45,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 6_ Valido que al ingresar un usuario que no existe el login de firebase falle.
 
 
-## Documentación test Formulario de miembro y peticion de enviar mensaje
+## Documentación test Formulario de miembro
 
 1_ Valido la creación del formulario.
 2_ Valido que el formulario sea inválido si se ingresan los campos vacios.
