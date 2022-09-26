@@ -12,8 +12,8 @@
   <div class="container">
     <form [formGroup]="sendForm" class="example-form"  (ngSubmit)="enviarNovedad(this.metodo)">
 
-      <mat-label>Titulo de la Novedad</mat-label>
-      <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>TITULO</mat-label>
+      <mat-form-field class="example-full-width">
 
         <input matInput id="name" name="name" type="text" formControlName="name"
           [ngClass]="{'is-invalid':titulo.errors && titulo.touched}">
@@ -28,7 +28,7 @@
       </mat-form-field>
 
 
-      <mat-label>Contenido de la Novedad</mat-label>
+      <mat-label>CONTENIDO</mat-label>
       <ckeditor [editor]="Editor" rows="10" id="content" name="content" formControlName="content" type="text"
         data="Hello, world!" [ngClass]="{'is-invalid':contenido.errors && contenido.touched}">
       </ckeditor>
@@ -42,8 +42,8 @@
       </div><br>
 
 
-      <mat-label>Categorias</mat-label><br>
-      <mat-form-field appearance="fill">
+      <mat-label>CATEGORÍA</mat-label><br>
+      <mat-form-field>
         <mat-select id="category_id" name="category_id" formControlName="category_id"
           [ngClass]="{'is-invalid':categoria.errors && categoria.touched}">
           <mat-option *ngFor="let category of categories$! |async" [value]="category.id">
@@ -57,7 +57,8 @@
         </div>
       </mat-form-field><br>
 
-      <mat-label>Imagen de la novedad</mat-label><br>
+      <mat-label>IMAGEN</mat-label>
+      <button *ngIf="metodo=='put'" type="button" mat-raised-button color="primary" (click)="cleanImg()" class="btn-modificar">BORRAR</button>
       <ckeditor [editor]="Editor" matInput [config]="editorConfig" formControlName="image"
         [ngClass]="{'is-invalid':imagen.errors && imagen.touched}">
       </ckeditor>
@@ -65,11 +66,11 @@
         <p *ngIf="imagen.hasError('required')" class="text-danger">
           La imagen es requerida.
         </p>
-      </div><br>
-      <br>
+      </div>
 
-
-      <button type="submit" mat-raised-button color="primary">ENVIAR</button>
+      <div class="btn-enviar">
+        <button type="submit" mat-raised-button color="primary">ENVIAR</button>
+      </div>
     </form>
   </div>
 </body>

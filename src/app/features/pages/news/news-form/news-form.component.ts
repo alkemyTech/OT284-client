@@ -36,7 +36,7 @@ export class NewsFormComponent implements OnInit {
     this.sendForm=this.formBuilder.group(
       {
         name:["",[Validators.required, Validators.minLength(4)]],
-        content:["",[Validators.required, Validators.minLength(200)]],
+        content:["",[Validators.required, Validators.minLength(50)]],
         category_id:["",[Validators.required]],
         image:["", [Validators.required]]
       }
@@ -73,7 +73,7 @@ export class NewsFormComponent implements OnInit {
       if(metodo=='post'){
         const newToCreate=new Novedad(this.sendForm.value);
         newToCreate.id=0;
-        if(newToCreate.image.includes('base64')){
+        if(newToCreate.image!.includes('base64')){
           this.obtenerNuevaImg(newToCreate);
         }
         this.store.dispatch(createNew({newToCreate}));
@@ -82,8 +82,11 @@ export class NewsFormComponent implements OnInit {
         const newToEdit=new Novedad(this.sendForm.value);
         newToEdit.id=this.id;
         newToEdit.updated_at=new Date().toISOString();
-        if(newToEdit.image.includes('base64')){
+        if(newToEdit.image!.includes('base64')){
           this.obtenerNuevaImg(newToEdit);
+        }else{
+          this.sendForm.controls.image.setValue('');
+          delete newToEdit.image;
         }
         this.store.dispatch(editNew({newToEdit}));
         this.mostrarResp();
@@ -114,11 +117,18 @@ export class NewsFormComponent implements OnInit {
   }
 
   private obtenerNuevaImg(novedad:Novedad):void{
-    let str1=novedad.image.split('src="')[1];
+    let str1=novedad.image!.split('src="')[1];
     novedad.image=str1.split('"')[0];
   }
 
   private redireccionar(){
+    Swal.fire({
+      position: 'center',
+      icon: 'success',
+      title: 'Los datos se enviaron exitosamente',
+      showConfirmButton: false,
+      timer: 1500
+    })
     this.router.navigate(['/backoffice/news']);
   }
 
@@ -138,4 +148,14 @@ export class NewsFormComponent implements OnInit {
     })
   }
 
+  public cleanImg():void{
+    this.sendForm.controls.image.setValue('');
+    Swal.fire({
+      text:'Cargue una nueva imagen cliqueando en el icono mostrado',
+      imageUrl: 'https://acortar.link/ELSE2j',
+      imageWidth: 300,
+      imageHeight:200,
+      imageAlt: 'Octavo icono'
+    })
+  }
 }
