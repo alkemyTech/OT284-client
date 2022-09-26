@@ -39,21 +39,30 @@ describe("LoginFormComponent", () => {
     expect(component).toBeTruthy();
   });
 
-  it("Formulario invalido, falta ingresar password", () => {
+  it("1_ Formulario invalido, falta ingresar password.", () => {
     const app = fixture.componentInstance;
     const email = app.loginForm.controls["email"];
     email.setValue("maxi@gmail.com");
     expect(app.loginForm.invalid).toBeTruthy();
   });
 
-  it("Formulario invalido, falta ingresar email", () => {
+  it("2_ Formulario invalido, falta ingresar email.", () => {
     const app = fixture.componentInstance;
     const password = app.loginForm.controls["password"];
     password.setValue("Maxiasd123$");
     expect(app.loginForm.invalid).toBeTruthy();
   });
 
-  it("Formulario valido, se puede hacer submit", () => {
+  it("3_ Formulario invalido, la contraseña no cumple con el pattern.", () => {
+    const app = fixture.componentInstance;
+    const email = app.loginForm.controls["email"];
+    email.setValue("maxi@gmail.com");
+    const password = app.loginForm.controls["password"];
+    password.setValue("maxiasd123");
+    expect(app.loginForm.invalid).toBeTruthy();
+  });
+
+  it("4_ Formulario valido, se puede hacer submit.", () => {
     const app = fixture.componentInstance;
     const email = app.loginForm.controls["email"];
     email.setValue("maxi@gmail.com");
@@ -62,7 +71,7 @@ describe("LoginFormComponent", () => {
     expect(app.loginForm.valid).toBeTruthy();
   });
 
-  it('Login Firebase exitoso.', () => {
+  it('5_ Login Firebase exitoso.', () => {
     const app = fixture.componentInstance;
     const email = app.loginForm.controls["email"];
     email.setValue("maxi@gmail.com");
@@ -80,7 +89,7 @@ describe("LoginFormComponent", () => {
     
   });
 
-  it('Login Firebase fallido, el usuario ingresado no existe.', async () => {
+  it('6_ Login Firebase fallido, el usuario ingresado no existe.', async () => {
     const app = fixture.componentInstance;
     const email = app.loginForm.controls["email"];
     email.setValue("maxi48000000@gmail.com");
