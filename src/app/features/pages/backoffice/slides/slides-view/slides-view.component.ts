@@ -23,13 +23,14 @@ export class SlidesViewComponent implements OnInit {
     private router: Router,
     private store: Store<any>
   ) { }
-  displayedColumns: string[] = ["name", "image", "order", "actions"];
+  displayedColumns: string[] = ["image", "name", "order", "actions"];
   dataSource = new MatTableDataSource<Slides>();
   row: Slides[];
   routerPath = "create";
-  linkRef = "Create Slide";
+  linkRef = "Crear Slide";
 
   updateTable() {
+    this.row.sort((a: any, b: any) => a.order - b.order);
     this.dataSource.data = this.row;
   }
 
@@ -57,7 +58,7 @@ export class SlidesViewComponent implements OnInit {
 
   editSlide(i: number) {
     this.slidesForm.editSlideData = this.row[i];
-    this.slidesForm.isEditing = true
+    this.slidesForm.isEditing = true;
     this.router.navigateByUrl("backoffice/slides/edit");
   }
 

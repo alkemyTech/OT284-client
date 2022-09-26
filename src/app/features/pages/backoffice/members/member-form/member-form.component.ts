@@ -9,6 +9,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { getMemberById, createMember, editMember, getMemberByIdSuccess } from '../../../../../state/actions/members.actions';
 import Swal from 'sweetalert2';
 import { selectMembers } from 'src/app/state/selectors/members.selectors';
+import { selectMemberError } from '../../../../../state/selectors/members.selectors';
 
 @Component({
   selector: 'app-member-form',
@@ -20,8 +21,13 @@ export class MemberFormComponent implements OnInit {
   member: Member;
   form!: FormGroup;
   file!: any;
+  image!: any;
   Editor = ClassicEditor;
   member$!: Observable<Member[]>;
+  error$ = this.store.select(selectMemberError);
+  error: any = null;
+
+  private imgBase64!: any;
 
   constructor( private fb: FormBuilder, private store: Store<AppState>, private route: ActivatedRoute, private router: Router ) { }
 
@@ -37,6 +43,7 @@ export class MemberFormComponent implements OnInit {
         
         this.member$.subscribe( member => {
           this.member = member[0];
+          this.image = member[0].image;
           this.form.get('image')?.removeValidators(Validators.required);
           this.form.setValue({
             name: this.member.name,
@@ -70,12 +77,13 @@ export class MemberFormComponent implements OnInit {
 
   /* check if image is jpg or png */
   fileExtensionCheck( file: any ) {
-    const extensionFile = file.type;
-    return ( extensionFile === 'image/jpg' || extensionFile === 'image/png') ? true : false;
+    const extensionFile = file.type.toLowerCase();
+    return ( extensionFile === 'image/jpg' || extensionFile === 'image/png' || extensionFile === 'image/jpeg') ? true : false;
   }
 
   setImageError() {
     this.form.controls['image'].setErrors({'incorrect': true});
+    this.imgBase64 = null;
     if ( this.form.invalid ) {
       this.invalidForm();
     }
@@ -83,92 +91,109 @@ export class MemberFormComponent implements OnInit {
 
   onFileSelected(event: any) {
     this.file = event.target.files[0];
+
     if( !this.fileExtensionCheck(this.file) ) {
       this.setImageError();
+    } else {
+      this.convertFileToBase64(this.file);
+    }
+  }
+
+  convertFileToBase64(file: any) {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = (_event) => {
+      this.imgBase64 = reader.result?.toString();
+      this.form.controls.image.setValue(this.imgBase64);
+      this.form.controls['image'].setErrors(null);
+      this.image = reader.result;
     }
   }
 
   onSubmit() {
     if ( !this.member ) {
       /* create member */
-      if ( this.file && this.fileExtensionCheck(this.file) ) {
-        /* image is valid */
-        this.form.controls['image'].setErrors(null);
-
-        const reader = new FileReader();
-        reader.readAsDataURL(this.file);
-        reader.onload = () => {
-          this.form.value.image = reader.result;
-          if ( this.form.invalid ) {
-            this.invalidForm();
-          } else {
-            this.swalFire();
-            /* make the call to the API */
-            this.createMember();
-          }
-        }
+      if ( this.form.invalid ) {
+        this.invalidForm();
+        return;
       } else {
-        /* there is no image */
-        if ( this.form.invalid ) {
-          this.invalidForm();
-        }
+        this.createMember();
       }
     } else {
       /* edit category */
       if ( !this.file ) {
         this.form.removeControl('image');
-        this.swalFire();
         this.editMember();
         return;
-      }
-      const reader = new FileReader();
-      reader.readAsDataURL(this.file);
-      reader.onload = () => {
-        this.form.value.image = reader.result;
+      } else {
         if ( this.form.invalid ) {
           this.invalidForm();
+          return;
         } else {
           /* make the call to the API */
-          this.swalFire();
           this.editMember();
         }
       }
     }
   }
 
-  swalFire() {
+  createMember() {
+    this.store.dispatch(createMember({member: this.form.value}));
+
     Swal.fire({
       allowOutsideClick: false,
       icon: 'info',
       text: 'Espere por favor...',
     });
-
     Swal.showLoading();
-  }
 
-  createMember() {
-    this.store.dispatch(createMember({member: this.form.value}));
-    Swal.close();
-    Swal.fire({
-      icon: 'success',
-      title: 'Completado',
-      text: 'Miembro creado con éxito'
-    }).then(() => {
-      this.router.navigateByUrl('/backoffice/members');
-    });
+    setTimeout(() => {
+      if ( this.error ) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'No se pudo crear el miembro, intente con otro nombre.'
+        })
+      } else {
+        Swal.fire({
+          icon: 'success',
+          title: 'Completado',
+          text: 'Miembro creado con éxito'
+        }).then(() => {
+          this.router.navigateByUrl('/backoffice/members');
+        });
+      }
+    }, 2500)
   }
 
   editMember() {
     if ( this.member.id ) {
       this.store.dispatch(editMember({id: this.member.id, member: this.form.value}));
-      Swal.close();
+
       Swal.fire({
-        icon: 'success',
-        title: 'Completado',
-        text: 'Miembro editado con éxito'
-      }).then(() => {
-        this.router.navigateByUrl('/backoffice/members')
-      })
+        allowOutsideClick: false,
+        icon: 'info',
+        text: 'Espere por favor...',
+      });
+      Swal.showLoading();
+
+      setTimeout(() => {
+        if ( this.error ) {
+          Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'No se pudo editar el miembro, intente con otro nombre.'
+          })
+        } else {
+          Swal.fire({
+            icon: 'success',
+            title: 'Completado',
+            text: 'Miembro editado con éxito'
+          }).then(() => {
+            this.router.navigateByUrl('/backoffice/members');
+          });
+        }
+      }, 2500)
     }
   }
 

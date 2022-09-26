@@ -9,6 +9,7 @@ import { fader, slideInAnimation } from './shared/animations/transitionPagesAnim
   animations: [slideInAnimation,fader],
 })
 export class AppComponent {
+  title:string = 'base-ong-angular-client';
 
   constructor() {}
 

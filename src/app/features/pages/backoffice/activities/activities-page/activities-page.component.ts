@@ -16,13 +16,14 @@ import { activitiesExample } from '../../../activities/activity-view/activities-
 })
 export class ActivitiesPageComponent implements OnInit {
 
-  displayedColumns: string[] = ['name', 'image', 'created_at', 'actions'];
-  dataSource$ : Observable<Activity[]> = this.store.select(selectActivities)
-
+  displayedColumns: string[] = ['image','name', 'created_at', 'actions'];
+  dataSource$ : Observable<Activity[]> 
   constructor(private store:Store<AppState>, private route:Router) { }
 
   ngOnInit(): void {
     this.store.dispatch(loadActivities());
+    this.dataSource$ = this.store.select(selectActivities)
+
   }
 
   editActivity(activity: Activity){
@@ -32,7 +33,6 @@ export class ActivitiesPageComponent implements OnInit {
 
   deleteActivity(activity: Activity){
    this.store.dispatch(deleteActivity({id: activity.id}))
-   this.store.dispatch(loadActivities());
   }
 
   onCreateClick(){

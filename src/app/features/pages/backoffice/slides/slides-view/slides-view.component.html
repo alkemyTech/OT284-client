@@ -5,35 +5,43 @@
     <!--- Note that these columns can be defined in any order.
           The actual rendered columns are set as a property on the row definition" -->
 
-    <!-- Position Column -->
-    <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef>Name</th>
-      <td mat-cell *matCellDef="let i">{{ i.name }}</td>
-    </ng-container>
-
     <!-- Name Column -->
     <ng-container matColumnDef="image">
-      <th mat-header-cell *matHeaderCellDef>Image</th>
+      <th mat-header-cell *matHeaderCellDef>Imagen</th>
       <td mat-cell *matCellDef="let i">
-        <img [src]="i.image" alt="" />
+        <div class="cell">
+          <img [src]="i.image" alt="" />
+        </div>
+      </td>
+    </ng-container>
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef>Nombre</th>
+      <td mat-cell *matCellDef="let i">
+        <div class="cell">{{ i.name }}</div>
       </td>
     </ng-container>
 
     <!-- Weight Column -->
     <ng-container matColumnDef="order">
-      <th mat-header-cell *matHeaderCellDef>Order</th>
-      <td mat-cell *matCellDef="let i">{{ i.order }}</td>
+      <th mat-header-cell *matHeaderCellDef>Orden</th>
+      <td mat-cell *matCellDef="let i">
+        <div class="cell">{{ i.order }}</div>
+      </td>
     </ng-container>
 
     <ng-container matColumnDef="actions">
-      <th mat-header-cell *matHeaderCellDef></th>
+      <th mat-header-cell *matHeaderCellDef>Acciones</th>
       <td mat-cell *matCellDef="let i = index">
-        <a mat-icon-button (click)="editSlide(i)">
-          <mat-icon>edit</mat-icon>
-        </a>
-        <a mat-icon-button (click)="deleteSlide(i)">
-          <mat-icon color="warn">delete</mat-icon>
-        </a>
+        <div class="cell">
+          <a mat-icon-button (click)="editSlide(i)">
+            <mat-icon>edit</mat-icon>
+          </a>
+          <a mat-icon-button (click)="deleteSlide(i)">
+            <mat-icon color="warn">delete</mat-icon>
+          </a>
+        </div>
       </td>
     </ng-container>
 

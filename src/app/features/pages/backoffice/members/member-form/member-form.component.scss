@@ -38,6 +38,14 @@
     margin-top: 5px;
 }
 
+.image-fit {
+    -o-object-fit: cover;
+       object-fit: cover;
+    width: 50%;
+    height: 50%;
+    vertical-align: middle;
+    border-radius: 8px;
+}
 
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {

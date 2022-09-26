@@ -15,9 +15,9 @@ export class NewsService {
   constructor(private ruta: Router, private httpServ:HttpService) { }
 
 
-  public verNews():Observable<newData[]>{
+  public verNews():Observable<any>{
     return this.httpServ.get<newM>(environment.endpoints.novedades.list, false)
-    .pipe(map((result)=>result.data));
+    .pipe(map((result)=>result.data.reverse()));
   }
 
   public getNewModel(id:number):Observable<newData>{
@@ -44,7 +44,21 @@ export class NewsService {
   public buscarNews(text:string):Observable<any>{
     return this.httpServ.get<any>(`${environment.endpoints.novedades.list}?search=${text}`)
     .pipe(
-      map(result=>result.data)
+      map(result=>result.data.reverse())
+    )
+  }
+
+  public buscarNewsWithCateg(text:string,category:string):Observable<any>{
+    return this.httpServ.get<any>(`${environment.endpoints.novedades.list}?search=${text}&category=${category}`)
+    .pipe(
+      map(result=>result.data.reverse())
+    )
+  }
+
+  public buscarNewsByCatOnly(category:string):Observable<any>{
+    return this.httpServ.get<any>(`${environment.endpoints.novedades.list}?category=${category}`)
+    .pipe(
+      map(result=>result.data.reverse())
     )
   }
 

@@ -2,13 +2,13 @@
   <div class="container">
     <h1>Slides</h1>
     <mat-form-field class="example-full-width" appearance="fill">
-      <mat-label>Name</mat-label>
+      <mat-label>Nombre</mat-label>
       <input matInput name="name" type="text" formControlName="name" />
     </mat-form-field>
     <mat-error
       *ngIf="formSlides.get('name')?.touched && formSlides.get('name')?.invalid"
     >
-      Name is required.</mat-error
+      El nombre es requerido.</mat-error
     >
 
     <ckeditor
@@ -16,7 +16,7 @@
       rows="8"
       type="text"
       [config]="{
-        placeholder: 'Description'
+        placeholder: 'Descripción'
       }"
       placeholder="Type the content here!"
       formControlName="desc"
@@ -24,21 +24,38 @@
     <mat-error
       *ngIf="formSlides.get('desc')?.touched && formSlides.get('desc')?.invalid"
     >
-      Description is required.</mat-error
+      La descripción es requerida.</mat-error
     >
 
     <mat-form-field class="example-full-width" appearance="fill">
-      <mat-label>Order</mat-label>
-      <input matInput name="order" type="number" formControlName="order" />
+      <mat-label>Orden</mat-label>
+      <input
+        matInput
+        name="order"
+        type="number"
+        min="1"
+        formControlName="order"
+      />
       <mat-error
         *ngIf="
-          formSlides.get('order')?.touched && formSlides.get('order')?.invalid
+          formSlides.get('order')?.touched &&
+          formSlides.get('order')?.errors?.required
         "
       >
-        Invalid order.</mat-error
+        El orden es inválido.</mat-error
       >
     </mat-form-field>
-    <mat-label>Subir Imagen</mat-label>
+
+    <button
+      (click)="deleteImage()"
+      class="buttonImg"
+      type="button"
+      mat-button
+      color="primary"
+    >
+      Borrar Imagen
+    </button>
+
     <ckeditor
       [editor]="Editor"
       matInput
@@ -51,9 +68,9 @@
         formSlides.get('image')?.touched && formSlides.get('image')?.invalid
       "
     >
-      Image is required.</mat-error
+      La imagen es requerida.</mat-error
     >
 
-    <button type="submit" mat-button color="primary">Submit</button>
+    <button type="submit" mat-button color="primary">Enviar</button>
   </div>
 </form>
