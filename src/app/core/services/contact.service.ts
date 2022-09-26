@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { throwError } from 'rxjs';
 import { Observable } from 'rxjs/internal/Observable';
-import { map } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { HttpService } from './http.service';
 
@@ -17,7 +18,10 @@ export class ContactService {
     return this.httpServ.post(environment.endpoints.contactos.create , body).pipe(
       map(
         (resp: any) => resp.message   
-      )
+      ),
+      catchError((err:any) => {
+        console.log(err)
+        return throwError(err.message)})
     );
   }
 
