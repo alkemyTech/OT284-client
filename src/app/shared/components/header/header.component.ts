@@ -56,7 +56,7 @@ export class HeaderComponent implements OnInit {
       ]
     } else {
 
-      if (user.tipo == "admin") {
+      if (user.data.user.role_id == 1) {
         this.list = [
           {
             text: 'Inicio',
@@ -84,7 +84,7 @@ export class HeaderComponent implements OnInit {
             render: true
           }
         ]
-      } else if (user.tipo == "usuario") {
+      } else if (user.data.user.role_id == 2) {
         this.list = [
           {
             text: 'Inicio',
