@@ -24,7 +24,7 @@ export class ActivitiesEffects {
     ofType(addActivity),
     mergeMap((action) => this.activitiesService.postActivity(action.activity)
       .pipe(
-        map((data: any) => addActivitySuccess( data.message )),
+        map((activity: Activity) => addActivitySuccess( {activity} )),
         catchError((error: any) => of(addActivitiesError({error})))
       ))
     )
@@ -34,7 +34,7 @@ export class ActivitiesEffects {
     ofType(editActivity),
     mergeMap((action) => this.activitiesService.putActivity(action.id,action.data)
       .pipe(
-        map((data: any) => editActivitySuccess( data.message )),
+        map((activity: Activity) => editActivitySuccess( {activity} )),
         catchError((error: any) => of(editActivitiesError({error})))
       ))
     )
