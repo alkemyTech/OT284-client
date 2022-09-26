@@ -25,3 +25,12 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+## Documentacion test Formulario contacto y peticion de enviar mensaje
+
+1_ Valido la creacion del formulario
+2_ Valido que el formulario sea invalido si se ingresan los campos vacios
+3_ Valido que el formulario sea valido si se ingresan los campos correctamente
+4_ Valido que el boton de submmit sea disable cuando los campos son incorrecto
+5_ Valido que el boton de submmit sea enable cuando los campos son correctos
+6_ Valido que al hacer subbmit se llame al metodo sendMessage y que la respuesta sea igual a la mockeada.
