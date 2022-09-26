@@ -1,9 +1,9 @@
-<form [formGroup]="formOrganization" (ngSubmit)="onSubmit()">
+<form [formGroup]="formOrganization" (ngSubmit)="onSubmit()" #ngForm="ngForm">
   <div class="container">
     <h1>EDITAR ORGANIZACION</h1>
     <img [src]="logo" alt="logo" />
     <mat-form-field class="example-full-width" appearance="fill">
-      <mat-label>Name</mat-label>
+      <mat-label>Nombre</mat-label>
       <input matInput name="name" type="name" formControlName="name" />
     </mat-form-field>
     <div
@@ -13,11 +13,16 @@
         formOrganization.get('name')?.invalid
       "
     >
-      Name is required.
+      El nombre es requerido.
     </div>
     <!-- Acá va Logo y short desc con CKEditor -->
-    <mat-label class="uploadLabel">Upload Logo</mat-label>
-    <input class="fileInput" type="file" formControlName="logo" />
+    <mat-label class="uploadLabel">Cambiar Logo</mat-label>
+    <ckeditor
+      [editor]="Editor"
+      rows="8"
+      formControlName="logo"
+      [config]="editorConfig"
+    ></ckeditor>
     <div
       class="invalid-inputs"
       *ngIf="
@@ -25,7 +30,7 @@
         formOrganization.get('logo')?.invalid
       "
     >
-      Logo is required.
+      El logo es requerido.
     </div>
 
     <mat-label class="uploadLabel">Short Description</mat-label>
@@ -37,7 +42,7 @@
         formOrganization.get('shortDesc')?.invalid
       "
     >
-      Short Description is required.
+      Short Description es requerida.
     </div>
 
     <mat-form-field class="example-full-width" appearance="fill">
@@ -51,7 +56,7 @@
         formOrganization.get('longDesc')?.invalid
       "
     >
-      Long Description is required.
+      Long Description es requerida.
     </div>
 
     <!-- FB, Linkedin, IG, TW -->
@@ -109,8 +114,21 @@
         formOrganization.get('twitter')?.invalid
       "
     >
-      Invalid URL.
+      URL inválida.
     </div>
-    <button type="submit" mat-button color="primary">Enviar</button>
+    <button
+      [disabled]="!formOrganization.valid"
+      type="submit"
+      mat-button
+      color="primary"
+    >
+      Enviar
+    </button>
+    <div
+      class="invalid-inputs"
+      *ngIf="!formOrganization.valid && ngForm.submitted"
+    >
+      Por favor complete todos los campos.
+    </div>
   </div>
 </form>
