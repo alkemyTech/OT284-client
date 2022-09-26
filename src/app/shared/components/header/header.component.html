@@ -10,8 +10,7 @@
 
   <ul class="nav-menu">
     <li class="nav-item" *ngFor="let item of list" [ngClass]="{'hidden': !item.render}">
-      <a *ngIf="item.render" routerLinkActive="active" routerLink="/{{item.link}}" class="nav-item-link"
-        [routerLinkActiveOptions]="{exact:true}">
+      <a *ngIf="item.render" routerLinkActive="active" routerLink="/{{item.link}}" class="nav-item-link">
         {{item.text}}
       </a>
     </li>
