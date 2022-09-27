@@ -38,10 +38,7 @@ export const createUserAction = createAction(
   props<{ body: any }>()
 );
 
-export const createUserActionSucess = createAction(
-  UsersActionType.userCreated,
-  props<{ error: any }>()
-);
+export const createUserActionSucess = createAction(UsersActionType.userCreated);
 
 export const createUserActionError = createAction(
   UsersActionType.creatingUserError,
@@ -53,10 +50,7 @@ export const editUserAction = createAction(
   props<{ id: number; body: any }>()
 );
 
-export const editUserActionSucess = createAction(
-  UsersActionType.userEdited,
-  props<{ error: any }>()
-);
+export const editUserActionSucess = createAction(UsersActionType.userEdited);
 
 export const editUserActionError = createAction(
   UsersActionType.EditingUserError,

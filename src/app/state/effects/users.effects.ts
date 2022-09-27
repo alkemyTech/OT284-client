@@ -50,8 +50,8 @@ export class UsersEffects {
       ofType(createUserAction),
       switchMap((action) =>
         this.user.post(action.body).pipe(
-          map((data: any) => {
-            return createUserActionSucess(data);
+          map(() => {
+            return createUserActionSucess();
           }),
           catchError((error) => {
             return of(createUserActionError(error));
@@ -66,7 +66,7 @@ export class UsersEffects {
       ofType(editUserAction),
       mergeMap((action) =>
         this.user.put(action.id, action.body).pipe(
-          map((data: any) => editUserActionSucess(data)),
+          map(() => editUserActionSucess()),
           catchError((error) => of(editUserActionError(error)))
         )
       )
