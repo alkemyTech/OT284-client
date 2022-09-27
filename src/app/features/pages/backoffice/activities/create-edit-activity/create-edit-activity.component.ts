@@ -82,7 +82,7 @@ export class CreateEditActivityComponent implements OnInit {
   }
 
   fileEvent(event: any) {
-    this.file = event.target.files[0];
+    this.file = event.target.files;
     let imagen = this.form.controls.image.value;
     var allowedExtensions = /(.jpg|.png)$/i;
 
