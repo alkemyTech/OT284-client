@@ -18,17 +18,9 @@ import {
   editUserAction,
 } from "src/app/state/actions/users.actions";
 
-import { Router } from "@angular/router";
 import * as ClassicEditor from "@ckeditor/ckeditor5-build-classic";
-import { filter, skip, skipWhile } from "rxjs/operators";
 
 import Base64UploaderPlugin from "customBuilder/Base64Upload";
-import {
-  selectUserError,
-  selectUserSuccess,
-} from "src/app/state/selectors/users.selectors";
-import Swal from "sweetalert2";
-import { Subscription } from "rxjs";
 
 @Component({
   selector: "app-form-create-user",
@@ -42,8 +34,7 @@ export class FormCreateUserComponent
     public user: UsersService,
     private formMap: FormMapService,
     public dialog: MatDialog,
-    private store: Store<AppState>,
-    private router: Router
+    private store: Store<AppState>
   ) {}
 
   formUser = new FormGroup({
@@ -63,8 +54,6 @@ export class FormCreateUserComponent
 
   public Editor = ClassicEditor;
   editorConfig = { extraPlugins: [Base64UploaderPlugin] };
-
-  userErrorSubscription: Subscription;
 
   validExtensions(control: AbstractControl) {
     if (
