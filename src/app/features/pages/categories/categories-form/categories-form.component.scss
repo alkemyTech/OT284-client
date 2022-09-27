@@ -12,6 +12,15 @@
     align-items: center;
 }
 
+.image-fit {
+    -o-object-fit: cover;
+       object-fit: cover;
+    width: 50%;
+    height: 50%;
+    vertical-align: middle;
+    border-radius: 8px;
+}
+
 .card {
     width: 100%;
     text-align: center;

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, AfterViewInit, AfterViewChecked } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Member } from '../../../../shared/interfaces/member';
 import { AppState } from '../../../../state/app.state';
@@ -20,9 +20,9 @@ export class MembersViewComponent implements OnInit {
 
   ngOnInit(): void {
     this.members$ = this.store.select(selectMembers);
-      this.memberServices.getMembers('3').subscribe((resp: any) => {
-        this.member = resp.data
-      })
+    // this.memberServices.getMembers('3').subscribe((resp: any) => {
+    //   this.member = resp.data
+    // })
   }
 
 }
