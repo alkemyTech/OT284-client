@@ -5,6 +5,7 @@ import { AppState } from '../../../../state/app.state';
 import { Observable } from 'rxjs';
 import { selectMembers } from '../../../../state/selectors/organization.selectors';
 import { NewsMembersService } from 'src/app/core/services/news-members.service';
+import { loadMembers } from 'src/app/state/actions/organization.actions';
 
 @Component({
   selector: 'app-members-view',
@@ -19,6 +20,7 @@ export class MembersViewComponent implements OnInit {
   constructor( private store: Store<AppState>, private memberServices: NewsMembersService ) { }
 
   ngOnInit(): void {
+    this.store.dispatch(loadMembers());
     this.members$ = this.store.select(selectMembers);
     // this.memberServices.getMembers('3').subscribe((resp: any) => {
     //   this.member = resp.data
