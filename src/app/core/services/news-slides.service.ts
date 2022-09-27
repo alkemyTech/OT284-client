@@ -28,4 +28,7 @@ export class NewsSlidesService {
   deleteSlide(id: number): Observable<Slides> {
     return this.http.delete(`${environment.url}slides/${id}`);
   }
+  getSlideFilter(search:string): Observable<Slides> {
+    return this.http.get(environment.url + "slides?search="+search);
+  }
 }

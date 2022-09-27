@@ -64,4 +64,11 @@ export class SlidesViewComponent implements OnInit {
       this.updateTable();
     });
   }
+
+  filtrarSlides(event: any) {
+    console.log("--", event);
+    this.row = event;
+    this.updateTable();
+  }
+
 }

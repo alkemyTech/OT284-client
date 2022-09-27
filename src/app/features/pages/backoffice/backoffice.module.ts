@@ -30,6 +30,7 @@ import { SlidesViewComponent } from "./slides/slides-view/slides-view.component"
 import { SlidesFormComponent } from "./slides/slides-form/slides-form.component";
 import { CategoriesTableComponent } from "./categories-table/categories-table.component";
 import { ActivitiesPageComponent } from './activities/activities-page/activities-page.component';
+import { SlidesSearchComponent } from './slides/slides-search/slides-search.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +54,7 @@ import { ActivitiesPageComponent } from './activities/activities-page/activities
     SlidesViewComponent,
     SlidesFormComponent,
     ActivitiesPageComponent,
+    SlidesSearchComponent,
   ],
   imports: [
     CommonModule,
