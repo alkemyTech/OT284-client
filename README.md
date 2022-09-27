@@ -43,3 +43,16 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 4_ Valido que el formulario sea valido.
 5_ Valido que el login de Firebase sea exitoso.
 6_ Valido que al ingresar un usuario que no existe el login de firebase falle.
+
+
+## Documentación test Formulario de miembro
+
+1_ Valido la creación del formulario.
+2_ Valido que el formulario sea inválido si se ingresan los campos vacios.
+3_ Valido que el formulario sea válido si se ingresan los campos correctamente.
+4_ Valido que funcionen los validadores de cada input del formulario.
+5_ Valido que al enviar el formulario se llame al método onSubmit.
+6_ Valido que al hacer submit, si el formulario es válido y la propiedad 'miembro' es undefined, 
+llame al método createMember.
+7_ Valido que al hacer submit, si el formulario es válido y la propiedad 'miembro' no es undefined,
+llame al método editMember.
