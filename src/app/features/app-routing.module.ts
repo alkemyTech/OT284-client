@@ -18,6 +18,12 @@ import { PageNotFoundComponent } from "./pages/page-not-found/page-not-found/pag
 
 
 const routes: Routes = [
+
+  {
+    path: "login",
+    component: LoginFormComponent,
+    ...canActivate( () => redirectLoggedInTo([''])),
+  },
   {
     path: "nosotros",
     component: AboutViewComponent
@@ -61,11 +67,6 @@ const routes: Routes = [
     ...canActivate( () => redirectLoggedInTo([''])),
   },
   {
-    path: "login",
-    component: LoginFormComponent,
-    ...canActivate( () => redirectLoggedInTo([''])),
-  },
-  {
     path: "categorias/edit/:id",
     component: CategoriesFormComponent,
   },
@@ -73,9 +74,14 @@ const routes: Routes = [
     path: "categorias/new",
     component: CategoriesFormComponent,
   },
+  // {
+  //   path: "**",
+  //   component: PageNotFoundComponent,
+  // },
   {
-    path: "**",
-    component: PageNotFoundComponent,
+    path: '**',
+    redirectTo: 'login',
+    pathMatch: 'full'
   },
 ];
 
