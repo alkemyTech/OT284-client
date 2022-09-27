@@ -8,8 +8,15 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
 
-  public list: any = [
-    {
+  public list: any = []
+  constructor(public router: Router) { }
+
+  ngOnInit(): void {
+    this.actualizarItems();
+  }
+
+  actualizarItems() {
+    this.list = [{
       text: 'Inicio',
       link: 'home',
       render: true
@@ -28,92 +35,36 @@ export class HeaderComponent implements OnInit {
       text: 'Actividades',
       link: 'actividades',
       render: true
-    }
-  
-  ]
-  constructor(public router: Router) { }
+    }]
 
-  ngOnInit(): void {
     let user = JSON.parse(localStorage.getItem("UserData") || "{}");
-    if (JSON.stringify(user) == "{}") {
-
-      this.list = [
-        {
-          text: 'Inicio',
-          link: '',
-          render: true
-        },
-        {
-          text: 'Nosotros',
-          link: 'nosotros',
-          render: true
-        },
-        {
-          text: 'Contacto',
-          link: 'contacto',
-          render: true
-        }
-      ]
-    } else {
-
-      if (user.tipo == "admin") {
-        this.list = [
-          {
-            text: 'Inicio',
-            link: '',
-            render: true
-          },
-          {
-            text: 'Nosotros',
-            link: 'nosotros',
-            render: true
-          },
-          {
-            text: 'Actividades',
-            link: 'actividades',
-            render: true
-          },
+    if (JSON.stringify(user) != "{}") {
+      if (user.data?.user?.role_id == 1) {
+        this.list.push(
           {
             text: 'Novedades',
             link: 'novedades',
             render: true
           },
           {
-            text: 'Escritorio',
+            text: 'Backoffice',
             link: 'backoffice',
             render: true
-          }
-        ]
-      } else if (user.tipo == "usuario") {
-        this.list = [
-          {
-            text: 'Inicio',
-            link: '',
-            render: true
-          },
-          {
-            text: 'Nosotros',
-            link: 'nosotros',
-            render: true
-          },
-          {
-            text: 'Actividades',
-            link: 'actividades',
-            render: true
-          },
+          });
+      } else {
+        this.list.push(
           {
             text: 'Novedades',
             link: 'novedades',
             render: true
-          },
-          {
-            text: 'Contacto',
-            link: 'contacto',
-            render: true
-          }
-        ]
+          });
       }
     }
+
   }
+
+
+
+
 
 }

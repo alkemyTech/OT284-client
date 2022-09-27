@@ -17,7 +17,7 @@ export class SlidesComponent implements OnInit {
   }
 
   goToActivityDetail() {
-    this.router.navigate(['/activity-detail', { activity: JSON.stringify(this.activity)}]);
+    this.router.navigate(['/actividades/detalles', { activity: JSON.stringify(this.activity)}]);
   }
 
 }

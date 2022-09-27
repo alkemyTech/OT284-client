@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Auth, onAuthStateChanged } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/core/services/auth.service';
@@ -11,6 +11,7 @@ import Swal from 'sweetalert2';
 })
 export class AuthButtonsComponent implements OnInit {
   userid!: string | null;
+  @Output() actualizacionUsuario: EventEmitter<any> = new EventEmitter<any>();
   constructor(private router:Router,private auth: Auth,private authService: AuthService) { }
 
   ngOnInit(): void {
@@ -36,6 +37,7 @@ export class AuthButtonsComponent implements OnInit {
         localStorage.removeItem('uid');
         localStorage.removeItem('UserData');
         this.router.navigate(['/login']);
+        this.actualizacionUsuario.emit();
       })
     })
     .catch( error => console.error(`error: ${error}`));
@@ -47,6 +49,7 @@ export class AuthButtonsComponent implements OnInit {
 
   stateUserLogin(){
     onAuthStateChanged(this.auth, (user) => {
+      this.actualizacionUsuario.emit();
       if(user){
        this.userid= user?.uid;
       }
