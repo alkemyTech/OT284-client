@@ -129,7 +129,9 @@ export class NewsFormComponent implements OnInit {
       showConfirmButton: false,
       timer: 1500
     })
-    this.router.navigate(['/backoffice/news']);
+    setTimeout(()=>{
+      this.router.navigate(['/backoffice/news']);
+    },2000);
   }
 
   private mostrarResp(){
