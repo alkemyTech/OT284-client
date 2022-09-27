@@ -3,6 +3,7 @@ import { environment } from "src/environments/environment";
 import { HttpService } from "./http.service";
 import { Observable } from "rxjs";
 import { Slides } from "src/app/shared/interfaces/slides";
+import { map } from "rxjs/operators";
 
 @Injectable({
   providedIn: "root",
@@ -29,6 +30,8 @@ export class NewsSlidesService {
     return this.http.delete(`${environment.url}slides/${id}`);
   }
   getSlideFilter(search:string): Observable<Slides> {
-    return this.http.get(environment.url + "slides?search="+search);
+    return this.http.get(environment.url + "slides?search="+search).pipe(
+      map((resp: any) => resp.data)
+    )
   }
 }
