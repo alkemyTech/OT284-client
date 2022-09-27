@@ -20,7 +20,7 @@ import {
 
 import { Router } from "@angular/router";
 import * as ClassicEditor from "@ckeditor/ckeditor5-build-classic";
-import { skip, distinctUntilChanged } from "rxjs/operators";
+import { filter, skip, skipWhile } from "rxjs/operators";
 
 import Base64UploaderPlugin from "customBuilder/Base64Upload";
 import {
@@ -28,6 +28,7 @@ import {
   selectUserSuccess,
 } from "src/app/state/selectors/users.selectors";
 import Swal from "sweetalert2";
+import { Subscription } from "rxjs";
 
 @Component({
   selector: "app-form-create-user",
@@ -62,11 +63,8 @@ export class FormCreateUserComponent
 
   public Editor = ClassicEditor;
   editorConfig = { extraPlugins: [Base64UploaderPlugin] };
-  userError$ = this.store
-    .select(selectUserError)
-    .pipe(skip(1), distinctUntilChanged());
 
-  userSuccess$ = this.store.select(selectUserSuccess).pipe();
+  userErrorSubscription: Subscription;
 
   validExtensions(control: AbstractControl) {
     if (
@@ -135,7 +133,7 @@ export class FormCreateUserComponent
             },
           })
         );
-        this.handleErrors(this.user.userIsEditing);
+        this.user.handleErrors(this.user.userIsEditing);
       } else {
         this.store.dispatch(
           editUserAction({
@@ -150,27 +148,9 @@ export class FormCreateUserComponent
             },
           })
         );
-        this.handleErrors(this.user.userIsEditing);
+        this.user.handleErrors(this.user.userIsEditing);
       }
     }
-  }
-
-  handleErrors(editorCreate: boolean) {
-    this.userError$.subscribe((data) => {
-      if (data === "success") {
-        Swal.fire({
-          icon: "success",
-          text: editorCreate
-            ? "Usuario editado con éxito"
-            : "Usuario creado con éxito",
-        }).then(() => this.router.navigateByUrl("backoffice/users"));
-      } else {
-        Swal.fire({
-          icon: "error",
-          text: "Error al crear el usuario",
-        });
-      }
-    });
   }
 
   private obtenerImg(image: string) {
