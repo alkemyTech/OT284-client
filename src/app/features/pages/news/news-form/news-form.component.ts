@@ -36,7 +36,7 @@ export class NewsFormComponent implements OnInit {
     this.sendForm=this.formBuilder.group(
       {
         name:["",[Validators.required, Validators.minLength(4)]],
-        content:["",[Validators.required, Validators.minLength(50)]],
+        content:["",[Validators.required]],
         category_id:["",[Validators.required]],
         image:["", [Validators.required]]
       }
@@ -129,7 +129,9 @@ export class NewsFormComponent implements OnInit {
       showConfirmButton: false,
       timer: 1500
     })
-    this.router.navigate(['/backoffice/news']);
+    setTimeout(()=>{
+      this.router.navigate(['/backoffice/news']);
+    },2000);
   }
 
   private mostrarResp(){
