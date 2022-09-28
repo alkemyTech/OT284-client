@@ -16,6 +16,7 @@ export class MembersViewComponent implements OnInit {
 
   members$: Observable<Member[]>
   member: Member[];
+  imageLoading: boolean = true;
 
   constructor( private store: Store<AppState>, private memberServices: NewsMembersService ) { }
 
@@ -25,6 +26,10 @@ export class MembersViewComponent implements OnInit {
     // this.memberServices.getMembers('3').subscribe((resp: any) => {
     //   this.member = resp.data
     // })
+  }
+
+  onImageLoaded() {
+    this.imageLoading = false;
   }
 
 }
