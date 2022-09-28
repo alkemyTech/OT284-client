@@ -47,6 +47,13 @@ section{
     }
 }
 
+.image-container{
+    width: 20%;
+    img{
+        width: 100%;
+    }
+}
+
 #form-message-success{
     align-content: center;
     color: rgb(10, 161, 73);
