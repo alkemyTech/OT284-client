@@ -30,7 +30,8 @@ export class AuthService {
         console.log(user);
         // Add the uid to localstorage and redirect to home
         localStorage.setItem('uid', user.uid);
-        this.router.navigate(['']);
+        localStorage.setItem('UserData', JSON.stringify(user));
+        this.router.navigate(['home']);
       }).catch((error) => {
         // Handle Errors here.
         const errorCode = error.code;

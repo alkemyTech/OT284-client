@@ -30,7 +30,7 @@ export class SlidesViewComponent implements OnInit {
   linkRef = "Crear Slide";
 
   updateTable() {
-    this.row.sort((a: any, b: any) => a.order - b.order);
+    // this.row.sort((a: any, b: any) => a.order - b.order);
     this.dataSource.data = this.row;
   }
 
@@ -71,6 +71,8 @@ export class SlidesViewComponent implements OnInit {
 
     this.store.select(selectListSlides).subscribe((data: Slides[]) => {
       this.row = data;
+      console.log("asddas",data);
+      
       this.updateTable();
     })
   }

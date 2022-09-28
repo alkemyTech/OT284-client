@@ -1,6 +1,6 @@
 <div class="container">
     <div class="roww">
-        <div class="card" *ngFor="let member of members$ | async">
+        <div class="card" *ngFor="let member of members$ | async | slice:0:cantidadMiembros">
             <img class="image-fit img-fluid" [src]="member.image" alt="member.name" (load)="onImageLoaded()">
             <div *ngIf="!imageLoading">
                 <div class="member-description">

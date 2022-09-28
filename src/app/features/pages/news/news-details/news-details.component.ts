@@ -14,7 +14,7 @@ import { NewsService } from '../news.service';
 export class NewsDetailsComponent implements OnInit {
   public myTitle:string;
   public id:number;
-  public srcImg:string;
+  public srcImg:any;
   public content:string;
   public isLoading:boolean;
   constructor(private svc:NewsService, private ruta:ActivatedRoute, public dialog:MatDialog) {
@@ -30,7 +30,7 @@ export class NewsDetailsComponent implements OnInit {
     this.svc.getNewModel(id).subscribe({
       next:(data:newData)=>{
         this.myTitle=data.name;
-        this.srcImg!=data.image;
+        this.srcImg=data.image;
         this.isLoading=false;
         this.content=data.content;
       },
