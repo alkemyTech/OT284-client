@@ -29,7 +29,9 @@ export class MembersViewComponent implements OnInit {
   }
 
   onImageLoaded() {
-    this.imageLoading = false;
+    setTimeout(() => {
+      this.imageLoading = false;
+    }, 200);
   }
 
 }
