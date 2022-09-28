@@ -20,20 +20,10 @@
       <span class="home-section-header-vertodos" [routerLink]="['/nosotros']">Ver todos ></span>
     </div>
     <div>
-      <!-- <app-skeleton *ngIf="!slides" [Cwidth]="500" [Cheight]="300"></app-skeleton> -->
-      <app-members-view></app-members-view>
+      <app-members-view [cantidadMiembros]="3" ></app-members-view>
     </div>
   </section>
 
-  <!-- <section class="home-testimonios">
-    <div class="home-section-header">
-      <span class="home-section-header-title">Testimonios </span>
-      <span class="home-section-header-vertodos" [routerLink]="['/testimonios']">Ver todos ></span>
-    </div>
-    <div>
-      <app-skeleton  *ngIf="!slides" [Cwidth]="500" [Cheight]="300" [Ccircle]="false" ></app-skeleton>
-    </div>
-  </section> -->
 
   <section class="home-novedades">
     <div class="home-section-header">

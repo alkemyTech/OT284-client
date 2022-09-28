@@ -16,6 +16,7 @@ export class MembersViewComponent implements OnInit {
 
   members$: Observable<Member[]>
   member: Member[];
+  @Input() cantidadMiembros:number;
 
   constructor( private store: Store<AppState>, private memberServices: NewsMembersService ) { }
 
