@@ -1,0 +1,10 @@
+<app-title [title]="myTitle"></app-title>
+<div class="container">
+    <div class="img-center">
+        <app-spinner [isLoading]="isLoading"></app-spinner>
+        <img [src]="srcImg">
+    </div>
+    <div class="texto">
+        <p [innerHTML]="content"></p>
+    </div>
+</div>

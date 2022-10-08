@@ -1,0 +1,42 @@
+.example-full-width {
+    width: 100%;
+  }
+
+  .example-form{
+    width: 80%;
+    padding: 20px;
+  }
+
+  .text-danger{
+    color: red;
+    font-size: small;
+  }
+
+  mat-label{
+    font-size: large;
+  }
+
+  .btn-modificar{
+    margin-left:2%;
+    margin-bottom: 1%;
+  }
+
+  .btn-enviar{
+    margin-top:2%;
+    text-align: center;
+  }
+
+  mat-label{
+    padding-left: 0.5%;
+  }
+
+  .container{
+    margin-top: 2%;
+    margin-bottom: 2%;
+    display: flex;
+    justify-content: center;
+  }
+
+  input, mat-select{
+    padding-left:0.5%;
+  }

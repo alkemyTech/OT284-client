@@ -1,0 +1,89 @@
+.contenedor {
+  display: flex;
+  flex-direction: column;
+  background-color: #c0c0c0;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2em;
+}
+
+.columns {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  padding: 2rem;
+  justify-content: center;
+}
+@media only screen and (max-width: 560px) {
+  .columns {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .columna-1,
+  .columna-2,
+  .columna-3 {
+    margin-top: 1rem;
+  }
+
+  .facebook,
+  .instagram,
+  .linkedin,
+  .twitter {
+    justify-content: center;
+  }
+}
+
+.columna-1,
+.columna-2,
+.columna-3 {
+  display: flex;
+  flex-direction: column;
+  width: 33%;
+  align-items: center;
+}
+
+.columna-interior {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.facebook,
+.instagram,
+.linkedin,
+.twitter {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.columna-1 img {
+  max-width: 100%;
+}
+
+.orgName {
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+}
+
+.registered {
+  margin-bottom: 1rem;
+}
+
+a {
+  color: rgb(58, 59, 75);
+  font-weight: 500;
+  padding: 0.3rem;
+}
+
+hr {
+  width: 75%;
+  height: 1px;
+  background-color: black;
+  opacity: 100%;
+  border: none;
+}

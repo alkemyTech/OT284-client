@@ -1,0 +1,76 @@
+<form [formGroup]="formSlides" (ngSubmit)="onSubmit()">
+  <div class="container">
+    <h1>Slides</h1>
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Nombre</mat-label>
+      <input matInput name="name" type="text" formControlName="name" />
+    </mat-form-field>
+    <mat-error
+      *ngIf="formSlides.get('name')?.touched && formSlides.get('name')?.invalid"
+    >
+      El nombre es requerido.</mat-error
+    >
+
+    <ckeditor
+      [editor]="Editor"
+      rows="8"
+      type="text"
+      [config]="{
+        placeholder: 'Descripción'
+      }"
+      placeholder="Type the content here!"
+      formControlName="desc"
+    ></ckeditor>
+    <mat-error
+      *ngIf="formSlides.get('desc')?.touched && formSlides.get('desc')?.invalid"
+    >
+      La descripción es requerida.</mat-error
+    >
+
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Orden</mat-label>
+      <input
+        matInput
+        name="order"
+        type="number"
+        min="1"
+        formControlName="order"
+      />
+      <mat-error
+        *ngIf="
+          formSlides.get('order')?.touched &&
+          formSlides.get('order')?.errors?.required
+        "
+      >
+        El orden es inválido.</mat-error
+      >
+    </mat-form-field>
+
+    <button
+      (click)="deleteImage()"
+      class="buttonImg"
+      type="button"
+      mat-button
+      color="primary"
+    >
+      Borrar Imagen
+    </button>
+
+    <ckeditor
+      [editor]="Editor"
+      matInput
+      [config]="editorConfig"
+      formControlName="image"
+    >
+    </ckeditor>
+    <mat-error
+      *ngIf="
+        formSlides.get('image')?.touched && formSlides.get('image')?.invalid
+      "
+    >
+      La imagen es requerida.</mat-error
+    >
+
+    <button type="submit" mat-button color="primary">Enviar</button>
+  </div>
+</form>

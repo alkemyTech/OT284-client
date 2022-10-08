@@ -1,0 +1,47 @@
+<div class="contenedor-homepage">
+  <div class="home-header">
+
+    <section class="home-text-bienvenida">
+      <app-home-welcometext [welcomeText]="textoBienvenida"></app-home-welcometext>
+      <app-skeleton *ngIf="!textoBienvenida" [Cwidth]="300" [Cheight]="20"></app-skeleton>
+      <app-skeleton *ngIf="!textoBienvenida" [Cwidth]="300" [Cheight]="20"></app-skeleton>
+      <app-skeleton *ngIf="!textoBienvenida" [Cwidth]="300" [Cheight]="20"></app-skeleton>
+    </section>
+
+    <section class="home-slider">
+      <app-skeleton *ngIf="!slides" [Cwidth]="450" [Cheight]="300" [Ccircle]="false"></app-skeleton>
+      <app-carrusel [listSlider]="slides"></app-carrusel>
+    </section>
+  </div>
+
+  <section class="home-staff">
+    <div class="home-section-header">
+      <span class="home-section-header-title">Nuestro staff</span>
+      <span class="home-section-header-vertodos" [routerLink]="['/nosotros']">Ver todos ></span>
+    </div>
+    <div>
+      <app-members-view [cantidadMiembros]="3" ></app-members-view>
+    </div>
+  </section>
+
+
+  <section class="home-novedades">
+    <div class="home-section-header">
+      <span class="home-section-header-title">Ultimas novedades</span>
+      <span class="home-section-header-vertodos" [routerLink]="['/novedades']">Ver todos ></span>
+    </div>
+
+    <div class="home-cards-container">
+      <app-skeleton *ngIf="!novedades" [Cwidth]="500" [Cheight]="300" [Ccircle]="false"></app-skeleton>
+      <div class="home-cards-container-2" *ngFor="let item of novedades">
+        <app-card (verMasEvent)="verDetallesNovedad($event)" 
+          [title]="item.name" [image]="item.image"
+          [text]="item.created_at" [id]="item.id">
+        </app-card>
+      </div>
+    </div>
+  </section>
+</div>
+
+<app-footer></app-footer>
+<app-spinner [isLoading]="loading" [fullscreen]="true"></app-spinner>

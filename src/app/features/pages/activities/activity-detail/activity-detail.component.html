@@ -1,0 +1,12 @@
+<app-title title={{activity.name}}></app-title>
+<ul class="cards">
+    <li class="cards__item">
+      <div class="card">
+        <div class="card__image card__image--fence" [ngStyle]="{'background-image': 'url('+activity.image+')'}"></div>
+        <div class="card__content">
+          <p [innerHTML]="activity.description" class="card__text"></p>
+          <div class="card__title">{{activity.created_at}}</div>
+        </div>
+      </div>
+    </li>
+</ul>

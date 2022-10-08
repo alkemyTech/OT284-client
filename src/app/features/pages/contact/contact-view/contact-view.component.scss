@@ -1,0 +1,62 @@
+.title{
+    align-self: center;
+    text-align: center;
+}
+
+.contact-items-container{
+    display: flex;
+    align-content: center;
+    align-items:center;
+}
+
+section{
+    display: flex;
+}
+
+.contact-item{
+    display: flex;
+    border: 1px solid black;
+    align-content:space-between;
+    align-items:center;
+    span{
+        margin: 10px;
+    }
+    margin: 5px;
+    width: 50%;
+}
+
+.title2{
+    text-align: center;
+}
+
+.form-image{
+    align-content: center;
+    object-fit: contain;
+
+}
+
+.contact-form-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    div{
+        margin: 10px;
+        img {
+            object-fit: cover;
+          }
+    }
+}
+
+.image-container{
+    width: 20%;
+    img{
+        width: 100%;
+    }
+}
+
+#form-message-success{
+    align-content: center;
+    color: rgb(10, 161, 73);
+    font-size: medium;
+}
+

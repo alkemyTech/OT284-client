@@ -1,0 +1,19 @@
+<div class="pcard">
+    <div class="pcard-title">
+        <h2>{{title}}</h2>
+    </div>
+    <div class="pcard-image">
+        <div *ngIf="image; else placeholder">
+            <img src={{image}} alt={{title}}>
+        </div>
+        <ng-template #placeholder>
+            <img src="https://uning.es/wp-content/uploads/2016/08/ef3-placeholder-image.jpg" alt="">
+        </ng-template>
+    </div>
+    <div class="pcard-text">
+        <div [innerHTML]="text | date:'dd/MM/yyyy' "></div>
+    </div>
+    <div class="pcard-extras" >
+        <button class="btn-ver-mas" mat-raised-button color="warn" (click)="verMas()" >Ver mas</button>
+    </div>
+</div>

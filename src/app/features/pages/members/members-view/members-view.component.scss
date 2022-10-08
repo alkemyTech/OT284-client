@@ -1,0 +1,48 @@
+.container {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.roww {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    gap: 20px;
+    justify-content: center;
+}
+
+.card {
+    max-width: 200px;
+    text-align: center;
+    border: 0px;
+    margin: 0;
+    padding: 0;
+}
+
+.image-fit {
+    vertical-align: middle;
+    border-radius: 8px;
+    height: 100%;
+}
+
+
+.btn-red {
+    background-color: #DB5752;
+    color: white;
+    margin: 5px;
+}
+
+.member-description {
+    position: absolute;
+    width: 100%;
+    bottom: 0px;
+    text-shadow: 1px 1px black;
+    color: white;
+}
+
+.txt{
+    margin: 0;
+}

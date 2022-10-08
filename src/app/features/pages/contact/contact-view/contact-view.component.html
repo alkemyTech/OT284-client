@@ -1,0 +1,42 @@
+<div class="container" *ngIf="organization$ | async as organization">
+	<app-title title="CONTACTANOS"></app-title>
+	<div class="contact-container">
+		<div class="col-md-12">
+			<div class="contact-items-container">
+				<div class="contact-item">
+					<span class="fa fa-map-marker"></span>
+					<span>Direccion: {{organization.address}}</span>
+				</div>
+				<div class="contact-item">
+					<span class="fa fa-phone"></span>
+					<span >Telefono: {{organization.phone | phoneTransform}}</span>
+				</div>
+				<div class="contact-item">
+					<span class="fa fa-paper-plane"></span>
+					<span>Linkedin: <a href="{{organization.linkedin_url}}"> {{organization.linkedin_url}}</a></span>
+				</div>
+				<div class="contact-item">
+					<span class="fa fa-facebook"></span>
+					<span>Facebook: <a href="{{organization.facebook_url}}"> {{organization.facebook_url}}</a></span>
+				</div>
+			</div>
+			<div class="form-image">
+				<h3 class="title2">Completa el formulario de contacto</h3>
+				<div class="contact-form-container">
+					<section>
+						<app-contact-form (messageResponse)="receiveMessage($event)" class="form"></app-contact-form>
+						<app-map-window [address]="organization.address"></app-map-window>
+					</section>
+					<div id="form-message-success">
+						{{messageResponse}}
+					</div>
+					<div class="image-container">
+						<img src="{{organization.logo}}" alt="Imagen ONG">
+					</div>
+					
+				</div>
+				
+			</div>
+		</div>
+	</div>
+</div>

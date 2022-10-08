@@ -1,0 +1,38 @@
+table {
+  width: 100%;
+}
+
+a {
+  cursor: pointer;
+  color: black;
+}
+
+app-link {
+  margin: 2rem 0 2rem 0;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.searchers {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  gap: 2rem;
+}
+
+.paginator {
+  display: flex;
+  justify-content: center;
+
+  width: 100%;
+}
+
+.mat-header-cell {
+  text-align: center;
+}

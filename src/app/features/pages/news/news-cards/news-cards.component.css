@@ -1,0 +1,124 @@
+html {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.container {
+  margin: 0 auto;
+  width: 90%;
+}
+
+.row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -ms-flex-flow: wrap;
+      flex-flow: wrap;
+}
+
+.card {
+  width: 47%;
+  border: 1px solid #302e2e;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 10px;
+}
+
+.card-img {
+  text-align: center;
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 40%;
+          flex: 0 0 40%;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.card-img img {
+  width: 100%;
+  margin-top: 10%;
+  border-radius: 5px;
+}
+
+.card:hover {
+  -webkit-transform: scale(1.01);
+          transform: scale(1.01);
+  -webkit-box-shadow: 0 0 40px -10px rgba(0, 0, 0, 0.25);
+          box-shadow: 0 0 40px -10px rgba(0, 0, 0, 0.25);
+}
+
+.card-body {
+  margin: 3px;
+  margin-bottom: 0px;
+  padding-top: 30px;
+}
+
+.card-title {
+  position: absolute;
+}
+
+.card-title h2 {
+  margin-top: 0;
+  font-size: 1.9vw;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+/*Responsive*/
+@media screen and (max-width: 1170px) {
+  .card {
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .container {
+    width: 100%;
+  }
+  .card {
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .container {
+    width: 100%;
+  }
+  .card {
+    display: initial;
+    width: 40%;
+  }
+  .card-body {
+    padding-top: 5px;
+  }
+  .card-img {
+    display: block;
+    -webkit-box-flex: 0;
+        -ms-flex: none;
+            flex: none;
+  }
+}
+
+@media screen and (max-width: 580px) {
+  .card {
+    display: initial;
+    width: 80%;
+  }
+  .card-title h2 {
+    font-size: 4.5vw;
+  }
+}
+/*# sourceMappingURL=news-cards.component.css.map */

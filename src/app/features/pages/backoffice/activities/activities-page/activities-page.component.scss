@@ -1,0 +1,41 @@
+.table-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+table {
+    width: 80%;
+    margin: 10px;
+  }
+
+td, th {
+  text-align: center !important;
+}
+
+.mat-sort-header-container {
+    justify-content: center !important;
+}
+
+.mat-column-actions{
+  width: 20%;
+}
+
+.mat-column-image{
+  padding: 10px;
+  width: 20%;
+  img{
+    width: 50vh;
+    padding-bottom:2%;
+    padding-top: 2%;
+    margin-left:0%;
+    border-radius: 15px;
+}
+}
+
+th{
+  background-color: rgb(188, 187, 187);
+  font-size: medium;
+ font-weight: bold;
+}
+  

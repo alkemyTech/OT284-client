@@ -1,0 +1,23 @@
+<div class="container">
+    <div class="roww">
+        <div class="card" *ngFor="let member of members$ | async | slice:0:cantidadMiembros">
+            <img class="image-fit img-fluid" [src]="member.image" alt="member.name" (load)="onImageLoaded()">
+            <div *ngIf="!imageLoading">
+                <div class="member-description">
+                    <a href="{{member.facebookUrl}}">
+                        <button mat-mini-fab class="btn-red">
+                            <i class="fab fa-facebook"></i>
+                        </button>
+                    </a>
+                    <a href="{{member.linkedinUrl}}">
+                        <button mat-mini-fab class="btn-red">
+                            <i class="fab fa-linkedin"></i>
+                        </button>
+                    </a>
+                    <h3 class="txt"><b>{{ member.name }}</b></h3>
+                    <div class="txt" [innerHTML]="member.description"></div>
+                </div> 
+            </div>
+        </div>
+    </div>
+</div>

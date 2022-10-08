@@ -1,0 +1,46 @@
+<div class="flex-container">
+    <form [formGroup]="contactForm" id="container" (ngSubmit)="onSubmit()">
+        <div >
+            <input type=”text” placeholder="Nombre" class="form-control" formControlName="name"/>
+            <div *ngIf = "Name?.touched && Name?.errors">
+                <span *ngIf="Name?.hasError('required')" class="alert">
+                    El campo "Nombre" es requerido
+                </span>
+            </div> 
+        </div>
+        <div >
+            <input type=”text” placeholder="Email" class="form-control" formControlName="email" type="email"/>
+            <div *ngIf = "Email?.touched && Email?.errors">
+                <span *ngIf="Email?.errors?.['email']" class="alert">
+                    El email debe tener formato "@"
+                </span>
+                <span *ngIf="Email?.hasError('required')" class="alert">
+                    El campo "Email" es requerido
+                </span>
+            </div>   
+        </div>
+        <div >
+            <input type="number" minlength="8" placeholder="Telefono" class="form-control" formControlName="phone"/>
+            <div *ngIf = "Phone?.touched && Phone?.errors">   
+                <span minlength="8" *ngIf="!contactForm.controls['phone'].valid" class="alert">
+                    El telefono debe tener al menos 8 numeros
+                </span>
+                <br>
+                <span *ngIf="Phone?.hasError('required')" class="alert">
+                    El campo "Telefono" es requerido
+                </span>
+                
+            </div> 
+        </div>
+        <div class=”message-form-group”>
+            <textarea rows="6" id="message" class="form-control" placeholder="Escriba su mensaje aqui" formControlName="message"></textarea>
+            <br>
+            <span *ngIf="Message?.hasError('required')" class="alert">
+                El campo "Mensaje" es requerido
+            </span>
+        </div>
+        <div >
+            <button class="button" type=”submit” [disabled]="!contactForm.valid" >Enviar</button>
+        </div>
+    </form>
+</div>
